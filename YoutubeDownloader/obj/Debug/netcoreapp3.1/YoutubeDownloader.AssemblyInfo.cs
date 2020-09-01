@@ -11,14 +11,14 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Tyrrrz")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Thomas Nürk")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright (C) Alexey Golub")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.7.12.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.7.12")]
+[assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright (C) Thomas Nürk")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.3.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.3.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("YoutubeDownloader")]
 [assembly: System.Reflection.AssemblyTitleAttribute("YoutubeDownloader")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.7.12.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.3.0.0")]
 
 // Von der MSBuild WriteCodeFragment-Klasse generiert.
 

@@ -19,9 +19,16 @@ jobs:
         dotnet-version: 3.1.100
 
     - name: Build & publish
-      run: dotnet publish YoutubeDownloader/ -o YoutubeDownloader/bin/Publish --configuration Release
+      run: dotnet publish YoutubeDownloader/ -o YoutubeDownloader/bin/Publish/ --configuration Release
 
-    - name: Pack
+    - name: Create installer
+      run: |
+        choco install innosetup --no-progress
+        Copy-Item -Path YoutubeDownloader/bin/Publish/ -Recurse -Destination Installer/Source/
+        & "c:\Program Files (x86)\Inno Setup 6\ISCC.exe" Installer/Installer.iss
+      shell: pwsh
+
+    - name: Create archive
       run: Compress-Archive -Path YoutubeDownloader/bin/Publish/* -DestinationPath YoutubeDownloader/bin/Publish/Archive.zip -Force
       shell: pwsh
 
@@ -38,7 +45,7 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Upload release asset
+    - name: Upload release asset (archive)
       uses: actions/upload-release-asset@v1.0.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -47,3 +54,13 @@ jobs:
         asset_path: YoutubeDownloader/bin/Publish/Archive.zip
         asset_name: YoutubeDownloader.zip
         asset_content_type: application/zip
+
+    - name: Upload release asset (installer)
+      uses: actions/upload-release-asset@v1.0.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: Installer/bin/YoutubeDownloader-Installer.exe
+        asset_name: YoutubeDownloader-Installer.exe
+        asset_content_type: application/octet-stream

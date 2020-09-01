@@ -1,4 +1,5 @@
-﻿using Tyrrrz.Settings;
+﻿using System;
+using Tyrrrz.Settings;
 using YoutubeDownloader.Internal;
 
 namespace YoutubeDownloader.Services
@@ -20,7 +21,7 @@ namespace YoutubeDownloader.Services
         public SettingsService()
         {
             Configuration.StorageSpace = StorageSpace.Instance;
-            Configuration.SubDirectoryPath = "";
+            Configuration.SubDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\YoutubeDownloader";
             Configuration.FileName = "Settings.dat";
         }
     }

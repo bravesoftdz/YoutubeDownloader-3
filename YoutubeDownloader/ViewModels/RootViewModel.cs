@@ -53,24 +53,24 @@ namespace YoutubeDownloader.ViewModels
             ProgressManager.Bind(o => o.Progress,
                 (sender, args) => IsProgressIndeterminate = ProgressManager.IsActive && ProgressManager.Progress.IsEither(0, 1));
         }
-
+        
         private async Task HandleAutoUpdateAsync()
         {
             try
             {
-                // Check for updates
+                // Check for updates#
                 var updateVersion = await _updateService.CheckForUpdatesAsync();
                 if (updateVersion == null)
                     return;
 
                 // Notify user of an update and prepare it
-                Notifications.Enqueue($"Downloading update to YoutubeDownloader v{updateVersion}...");
+                Notifications.Enqueue($"Update von YoutubeDownloader v{updateVersion} herunterladen...");
                 await _updateService.PrepareUpdateAsync(updateVersion);
 
                 // Prompt user to install update (otherwise install it when application exits)
                 Notifications.Enqueue(
-                    "Update has been downloaded and will be installed when you exit",
-                    "INSTALL NOW", () =>
+                    "Das Update wurde heruntergeladen und wird beim Beenden installiert",
+                    "JETZT INSTALLIEREN", () =>
                     {
                         _updateService.FinalizeUpdate(true);
                         RequestClose();
@@ -79,7 +79,7 @@ namespace YoutubeDownloader.ViewModels
             catch
             {
                 // Failure to update shouldn't crash the application
-                Notifications.Enqueue("Failed to perform application update");
+                Notifications.Enqueue("Fehler beim Updaten des Downloaders.");
             }
         }
 
@@ -160,14 +160,14 @@ namespace YoutubeDownloader.ViewModels
 
                 // Extract videos and other details
                 var videos = executedQueries.SelectMany(q => q.Videos).Distinct(v => v.Id).ToArray();
-                var dialogTitle = executedQueries.Count == 1 ? executedQueries.Single().Title : "Multiple queries";
+                var dialogTitle = executedQueries.Count == 1 ? executedQueries.Single().Title : "Mehrfachauswahl";
 
                 // If no videos were found - tell the user
                 if (videos.Length <= 0)
                 {
                     // Create dialog
-                    var dialog = _viewModelFactory.CreateMessageBoxViewModel("Nothing found",
-                        "Couldn't find any videos based on the query or URL you provided");
+                    var dialog = _viewModelFactory.CreateMessageBoxViewModel("Nichts gefunden",
+                        "Basierend auf dem angegebenen Suchbegriff oder der URL konnten keine Videos gefunden werden");
 
                     // Show dialog
                     await _dialogManager.ShowDialogAsync(dialog);
@@ -221,7 +221,7 @@ namespace YoutubeDownloader.ViewModels
             catch (Exception ex)
             {
                 // Create dialog
-                var dialog = _viewModelFactory.CreateMessageBoxViewModel("Error", ex.Message);
+                var dialog = _viewModelFactory.CreateMessageBoxViewModel("Fehler", ex.Message);
 
                 // Show dialog
                 await _dialogManager.ShowDialogAsync(dialog);

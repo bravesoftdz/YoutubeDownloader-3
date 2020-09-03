@@ -1,12 +1,12 @@
 ﻿#define AppName "YoutubeDownloader"
-#define AppVersion "1.3.1"
+#define AppVersion "1.3.2"
 
 [Setup]
 AppId={{5A9BE5B6-CE10-45E2-AC95-68524D1109E5}
 AppName={#AppName}
 AppVersion={#AppVersion}
 AppVerName={#AppName} {#AppVersion}
-AppPublisher="Thomas 'derech1e' Nürk"
+AppPublisher="Thomas Nuerk"
 AppPublisherURL="https://github.com/derech1e/YoutubeDownloader"
 AppSupportURL="https://github.com/derech1e/YoutubeDownloader/issues"
 AppUpdatesURL="https://github.com/derech1e/YoutubeDownloader/releases"

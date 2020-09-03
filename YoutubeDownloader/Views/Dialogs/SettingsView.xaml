@@ -18,14 +18,11 @@
             Margin="16"
             FontSize="17"
             Foreground="{DynamicResource PrimaryTextBrush}"
-            Text="Settings" />
+            Text="Einstellungen" />
 
         <!--  Max concurrent downloads  -->
-        <StackPanel Background="Transparent" ToolTip="How many downloads can be active at one time">
-            <TextBlock Margin="16,8">
-                <Run Text="Maximum concurrent downloads:" />
-                <Run Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding MaxConcurrentDownloads, Mode=OneWay}" />
-            </TextBlock>
+        <StackPanel Background="Transparent" ToolTip="Lege die Anzahl der gleichzeitig aktiven Downloads fest">
+            <TextBlock Margin="16,8" Text="Maximale gleichzeitige Downloads:" />
             <Slider
                 Margin="16,8"
                 IsSnapToTickEnabled="True"
@@ -38,27 +35,27 @@
         <!--  Default file name template  -->
         <TextBox
             Margin="16,8"
-            materialDesign:HintAssist.Hint="File name template"
+            materialDesign:HintAssist.Hint="Dateinamenvorlage"
             materialDesign:HintAssist.IsFloating="True"
             Text="{Binding FileNameTemplate}">
             <TextBox.ToolTip>
                 <TextBlock>
-                    <Run Text="Template used for generating file names for downloaded videos" />
+                    <Run Text="Diese Vorlage wird zur Generierung des Dateinamen der Downloads benutzt" />
                     <LineBreak />
                     <LineBreak />
-                    <Run Text="Available variables:" />
+                    <Run Text="Mögliche Variablen:" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="$num" />
-                    <Run Text="- video's position in the list (if applicable)" />
+                    <Run FontWeight="SemiBold" Text="$nummer" />
+                    <Run Text="- Position des Videos in einer Playlist (falls vorhanden)" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="$title" />
-                    <Run Text="- video title" />
+                    <Run FontWeight="SemiBold" Text="$titel" />
+                    <Run Text="- Videotitel" />
                     <LineBreak />
                     <Run FontWeight="SemiBold" Text="$author" />
-                    <Run Text="- video author" />
+                    <Run Text="- Videoautor" />
                     <LineBreak />
                     <Run FontWeight="SemiBold" Text="$uploadDate" />
-                    <Run Text="- video upload date" />
+                    <Run Text="- Veröffentlichungsdatum" />
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
@@ -76,7 +73,7 @@
             <TextBlock
                 Margin="16,8"
                 DockPanel.Dock="Left"
-                Text="Auto-updates" />
+                Text="Automatische Updates" />
             <ToggleButton
                 Margin="16,8"
                 DockPanel.Dock="Right"
@@ -91,7 +88,7 @@
             <TextBlock
                 Margin="16,8"
                 DockPanel.Dock="Left"
-                Text="Automatically inject media tags" />
+                Text="Medien-Tags automatisch einfügen" />
             <ToggleButton
                 Margin="16,8"
                 DockPanel.Dock="Right"
@@ -103,10 +100,7 @@
             Background="Transparent"
             LastChildFill="False"
             ToolTip="When selecting multiple videos to download, skip those that already have a matching file in the directory">
-            <TextBlock
-                Margin="16,8"
-                DockPanel.Dock="Left"
-                Text="Skip downloads for files that already exist" />
+            <TextBlock Margin="16,8" DockPanel.Dock="Left"><Run Language="de-de" Text="Vorhandene Downloads überspringen" /></TextBlock>
             <ToggleButton
                 Margin="16,8"
                 DockPanel.Dock="Right"

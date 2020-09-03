@@ -2446,12 +2446,11 @@
       ]
     },
     "Onova/2.6.1": {
-      "sha512": "NdMIxYLRDY55VaSvYBuA2+grFUwEotQFe61VD8eWwgt+J4EWjt30+7Dxh+eSU3FH067r+7v1bZMc173oHtJVKg==",
+      "sha512": "eYot4La1+fTtsEKUKT90rA+GrFVjwRwc8H/Iw0Q+vskPzQPBhIh/wJdLHTRIB9HoGLU1vDcOyfI/j90xEjl7Zw==",
       "type": "package",
       "path": "onova/2.6.1",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "favicon.png",
         "lib/net461/Onova.dll",
         "lib/net461/Onova.xml",
@@ -6832,13 +6831,13 @@
     "C:\\Users\\XMG-Privat\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.3.1",
+    "version": "1.3.2",
     "restore": {
-      "projectUniqueName": "K:\\YoutubeDownloader\\YoutubeDownloader\\YoutubeDownloader.csproj",
+      "projectUniqueName": "K:\\YoutubeDownloader1\\YoutubeDownloader\\YoutubeDownloader.csproj",
       "projectName": "YoutubeDownloader",
-      "projectPath": "K:\\YoutubeDownloader\\YoutubeDownloader\\YoutubeDownloader.csproj",
+      "projectPath": "K:\\YoutubeDownloader1\\YoutubeDownloader\\YoutubeDownloader.csproj",
       "packagesPath": "C:\\Users\\XMG-Privat\\.nuget\\packages\\",
-      "outputPath": "K:\\YoutubeDownloader\\YoutubeDownloader\\obj\\",
+      "outputPath": "K:\\YoutubeDownloader1\\YoutubeDownloader\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\XMG-Privat\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6849,6 +6848,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "K:\\Onova\\Onova\\bin\\Release": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

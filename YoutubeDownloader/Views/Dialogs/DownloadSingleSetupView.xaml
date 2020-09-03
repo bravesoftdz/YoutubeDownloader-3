@@ -102,7 +102,7 @@
                 Grid.Column="2"
                 Margin="8"
                 Command="{s:Action Confirm}"
-                Content="DOWNLOAD"
+                Content="HERUNTERLADEN"
                 IsDefault="True"
                 Style="{DynamicResource MaterialDesignFlatButton}" />
 
@@ -111,7 +111,7 @@
                 Grid.Column="3"
                 Margin="8"
                 Command="{s:Action Close}"
-                Content="CANCEL"
+                Content="ABBRECHEN"
                 IsCancel="True"
                 Style="{DynamicResource MaterialDesignFlatButton}" />
         </Grid>

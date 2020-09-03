@@ -42,7 +42,7 @@
             Margin="8"
             HorizontalAlignment="Right"
             Command="{s:Action Close}"
-            Content="CLOSE"
+            Content="SCHLIEßEN"
             IsCancel="True"
             IsDefault="True"
             Style="{DynamicResource MaterialDesignFlatButton}" />

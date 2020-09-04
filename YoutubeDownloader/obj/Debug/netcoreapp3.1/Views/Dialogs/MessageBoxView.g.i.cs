@@ -54,7 +54,7 @@ namespace YoutubeDownloader.Views.Dialogs {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/YoutubeDownloader;V1.3.2.0;component/views/dialogs/messageboxview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/YoutubeDownloader;V1.3.3.0;component/views/dialogs/messageboxview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\Dialogs\MessageBoxView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

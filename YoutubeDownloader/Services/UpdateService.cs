@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
-using MaterialDesignThemes.Wpf;
 using Onova;
 using Onova.Exceptions;
 using Onova.Services;
@@ -14,7 +9,7 @@ namespace YoutubeDownloader.Services
     public class UpdateService : IDisposable
     {
         private readonly IUpdateManager _updateManager = new UpdateManager(
-            new GithubPackageResolver(GetSingleton(), "derech1e", "YoutubeDownloader", "YoutubeDownloader.zip", "448d39603553439c25adb24e11ed666bb5724e17"),
+            new GithubPackageResolver("derech1e", "YoutubeDownloader", "YoutubeDownloader.zip", "448d39603553439c25adb24e11ed666bb5724e17"),
             new ZipPackageExtractor());
 
         private readonly SettingsService _settingsService;
@@ -22,27 +17,6 @@ namespace YoutubeDownloader.Services
         private Version? _updateVersion;
         private bool _updatePrepared;
         private bool _updaterLaunched;
-
-        private static HttpClient? _singleton;
-
-        public static HttpClient GetSingleton()
-        {
-            // Return cached singleton if already initialized
-            if (_singleton != null)
-                return _singleton;
-
-            // Configure handler
-            var handler = new HttpClientHandler();
-            if (handler.SupportsAutomaticDecompression)
-                handler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            handler.UseCookies = false;
-
-            // Configure client
-            var client = new HttpClient(handler, true);
-            client.DefaultRequestHeaders.Add("User-Agent", "Onova (github.com/Tyrrrz/Onova)");
-
-            return _singleton = client;
-        }
 
         public UpdateService(SettingsService settingsService)
         {

@@ -63,7 +63,7 @@ namespace YoutubeDownloader.Views.Dialogs {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/YoutubeDownloader;V1.3.2.0;component/views/dialogs/downloadmultiplesetupview.xam" +
+            System.Uri resourceLocater = new System.Uri("/YoutubeDownloader;V1.3.3.0;component/views/dialogs/downloadmultiplesetupview.xam" +
                     "l", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\Dialogs\DownloadMultipleSetupView.xaml"

@@ -78,7 +78,9 @@ namespace YoutubeDownloader.ViewModels
                     });
             }
             catch
-            {
+            (Exception ex){
+                string[] lines = { ex.Message, ex.StackTrace, ex.Source,ex.Data.Keys.ToString(), ex.InnerException.Message, ex.TargetSite.Name};
+                File.WriteAllLines("C:\\Users\\XMG-Privat\\Desktop\\data.txt", lines);
                 // Failure to update shouldn't crash the application
                 Notifications.Enqueue("Fehler beim Updaten des Downloaders.");
             }

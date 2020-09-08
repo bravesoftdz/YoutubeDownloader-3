@@ -2446,7 +2446,7 @@
       ]
     },
     "Onova/2.6.1": {
-      "sha512": "mNebDlYJDyZB1hvDS3N/xQHhr/kXrx9RGENeQ6g7ZyIIfcUM2prIqN5npDdhtF57RgXyCOnendwkdbKOdIXtdQ==",
+      "sha512": "x2zGCdTrRuE8ZSFOV8TD8AQvafb14dylFONCGQLpw2b8IiplRUkeW/K2FziipEb2R3XP7DcfSIrFhk/XAbKJwg==",
       "type": "package",
       "path": "onova/2.6.1",
       "files": [
@@ -6831,13 +6831,13 @@
     "C:\\Users\\XMG-Privat\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.3.3",
+    "version": "1.3.4",
     "restore": {
-      "projectUniqueName": "K:\\YoutubeDownloader1\\YoutubeDownloader\\YoutubeDownloader.csproj",
+      "projectUniqueName": "S:\\SSD (FAST)\\YoutubeDownloader\\YoutubeDownloader\\YoutubeDownloader.csproj",
       "projectName": "YoutubeDownloader",
-      "projectPath": "K:\\YoutubeDownloader1\\YoutubeDownloader\\YoutubeDownloader.csproj",
+      "projectPath": "S:\\SSD (FAST)\\YoutubeDownloader\\YoutubeDownloader\\YoutubeDownloader.csproj",
       "packagesPath": "C:\\Users\\XMG-Privat\\.nuget\\packages\\",
-      "outputPath": "K:\\YoutubeDownloader1\\YoutubeDownloader\\obj\\",
+      "outputPath": "S:\\SSD (FAST)\\YoutubeDownloader\\YoutubeDownloader\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\XMG-Privat\\AppData\\Roaming\\NuGet\\NuGet.Config",

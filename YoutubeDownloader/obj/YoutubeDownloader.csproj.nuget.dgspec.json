@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "K:\\YoutubeDownloader1\\YoutubeDownloader\\YoutubeDownloader.csproj": {}
+    "S:\\SSD (FAST)\\YoutubeDownloader\\YoutubeDownloader\\YoutubeDownloader.csproj": {}
   },
   "projects": {
-    "K:\\YoutubeDownloader1\\YoutubeDownloader\\YoutubeDownloader.csproj": {
-      "version": "1.3.3",
+    "S:\\SSD (FAST)\\YoutubeDownloader\\YoutubeDownloader\\YoutubeDownloader.csproj": {
+      "version": "1.3.4",
       "restore": {
-        "projectUniqueName": "K:\\YoutubeDownloader1\\YoutubeDownloader\\YoutubeDownloader.csproj",
+        "projectUniqueName": "S:\\SSD (FAST)\\YoutubeDownloader\\YoutubeDownloader\\YoutubeDownloader.csproj",
         "projectName": "YoutubeDownloader",
-        "projectPath": "K:\\YoutubeDownloader1\\YoutubeDownloader\\YoutubeDownloader.csproj",
+        "projectPath": "S:\\SSD (FAST)\\YoutubeDownloader\\YoutubeDownloader\\YoutubeDownloader.csproj",
         "packagesPath": "C:\\Users\\XMG-Privat\\.nuget\\packages\\",
-        "outputPath": "K:\\YoutubeDownloader1\\YoutubeDownloader\\obj\\",
+        "outputPath": "S:\\SSD (FAST)\\YoutubeDownloader\\YoutubeDownloader\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\XMG-Privat\\AppData\\Roaming\\NuGet\\NuGet.Config",

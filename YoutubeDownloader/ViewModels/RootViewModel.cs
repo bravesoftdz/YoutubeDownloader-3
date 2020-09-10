@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using Gress;
 using MaterialDesignThemes.Wpf;
 using Stylet;
@@ -79,8 +80,7 @@ namespace YoutubeDownloader.ViewModels
             }
             catch
             (Exception ex){
-                string[] lines = { ex.Message, ex.StackTrace, ex.Source,ex.Data.Keys.ToString(), ex.InnerException.Message, ex.TargetSite.Name};
-                File.WriteAllLines("C:\\Users\\XMG-Privat\\Desktop\\data.txt", lines);
+                MessageBox.Show(ex.ToString(), "Fehler beim updaten!", MessageBoxButton.OK, MessageBoxImage.Warning);
                 // Failure to update shouldn't crash the application
                 Notifications.Enqueue("Fehler beim Updaten des Downloaders.");
             }

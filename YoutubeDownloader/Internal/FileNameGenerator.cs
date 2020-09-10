@@ -4,13 +4,15 @@ namespace YoutubeDownloader.Internal
 {
     internal static class FileNameGenerator
     {
-        private static string NumberToken { get; } = "$num";
+        private static string NumberToken { get; } = "$nummer";
 
-        private static string TitleToken { get; } = "$title";
+        private static string TitleToken { get; } = "$titel";
 
-        private static string AuthorToken { get; } = "$author";
+        private static string AuthorToken { get; } = "$autor";
 
-        private static string UploadDateToken { get; } = "$uploadDate";
+        private static string UploadDateToken { get; } = "$datum";
+
+        private static string LengthToken { get; } = "$länge";
 
         public static string DefaultTemplate { get; } = $"{TitleToken}";
 
@@ -22,6 +24,7 @@ namespace YoutubeDownloader.Internal
             result = result.Replace(TitleToken, video.Title);
             result = result.Replace(AuthorToken, video.Author);
             result = result.Replace(UploadDateToken, video.UploadDate.ToString("yyyy-MM-dd"));
+            result = result.Replace(LengthToken, video.Duration.ToString());
 
             result = result.Trim();
 

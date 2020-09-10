@@ -2446,7 +2446,7 @@
       ]
     },
     "Onova/2.6.1": {
-      "sha512": "TYVI2pdfGtv6HD67r++gxDyvkaYme9L0MBM4RMU1ZIgquIfwU/hZBQEjoWoWo1H6HtUbGo3pRcFWclXtv3wtwQ==",
+      "sha512": "Bx+mTLObg727vlN2heCL0zE13tiNyeA+wsQJ5lV7ngE8hlF4gc/nhk2S7VRWkbumVUet3oxxwWVRXGilgoVdkA==",
       "type": "package",
       "path": "onova/2.6.1",
       "files": [
@@ -6831,7 +6831,7 @@
     "C:\\Users\\XMG-Privat\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.3.4",
+    "version": "1.3.7",
     "restore": {
       "projectUniqueName": "F:\\YoutubeDownloader\\YoutubeDownloader\\YoutubeDownloader.csproj",
       "projectName": "YoutubeDownloader",

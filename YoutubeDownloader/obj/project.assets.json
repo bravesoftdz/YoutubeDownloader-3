@@ -1993,7 +1993,7 @@
           "lib/netstandard2.0/Tyrrrz.Settings.dll": {}
         }
       },
-      "YoutubeExplode/5.1.4": {
+      "YoutubeExplode/5.1.5": {
         "type": "package",
         "dependencies": {
           "AngleSharp": "0.14.0"
@@ -2446,7 +2446,7 @@
       ]
     },
     "Onova/2.6.1": {
-      "sha512": "Bx+mTLObg727vlN2heCL0zE13tiNyeA+wsQJ5lV7ngE8hlF4gc/nhk2S7VRWkbumVUet3oxxwWVRXGilgoVdkA==",
+      "sha512": "FYv6IZf6T2JA2VvNpUy4DOyYJ/KFNJ7CbWJ117hbGtaODc/Zd4mQJfthDzWbRARBCFS6ahXOuG4jI2ncVdYaUg==",
       "type": "package",
       "path": "onova/2.6.1",
       "files": [
@@ -6771,10 +6771,10 @@
         "tyrrrz.settings.nuspec"
       ]
     },
-    "YoutubeExplode/5.1.4": {
-      "sha512": "pdZ1NBAw542ghcvXVn8KdVS7/5AKem5UpuTwQpVJkTvkmXjO9648Rbm2OIHWoDJ2Fumny/Tx32YxzbNGANQUyA==",
+    "YoutubeExplode/5.1.5": {
+      "sha512": "nYCN8jPdNwDVgbSODAfIREskeHkvxrg9XoclOqwaCVw5gMHqLUMiQND6/GfAbVRp9neNl7ipWqmknH1VpSc32Q==",
       "type": "package",
-      "path": "youtubeexplode/5.1.4",
+      "path": "youtubeexplode/5.1.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6787,7 +6787,7 @@
         "lib/netstandard2.0/YoutubeExplode.xml",
         "lib/netstandard2.1/YoutubeExplode.dll",
         "lib/netstandard2.1/YoutubeExplode.xml",
-        "youtubeexplode.5.1.4.nupkg.sha512",
+        "youtubeexplode.5.1.5.nupkg.sha512",
         "youtubeexplode.nuspec"
       ]
     },
@@ -6822,7 +6822,7 @@
       "Stylet >= 1.3.4",
       "Tyrrrz.Extensions >= 1.6.5",
       "Tyrrrz.Settings >= 1.3.4",
-      "YoutubeExplode >= 5.1.4",
+      "YoutubeExplode >= 5.1.5",
       "YoutubeExplode.Converter >= 1.5.1",
       "taglib >= 2.1.0"
     ]
@@ -6915,7 +6915,7 @@
           },
           "YoutubeExplode": {
             "target": "Package",
-            "version": "[5.1.4, )"
+            "version": "[5.1.5, )"
           },
           "YoutubeExplode.Converter": {
             "target": "Package",
@@ -6944,7 +6944,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   },

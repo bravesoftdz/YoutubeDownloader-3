@@ -50,5 +50,12 @@ namespace YoutubeDownloader.ViewModels.Framework
 
             return viewModel;
         }
+
+        public static TokenVerifyViewModel CreateTokenVerifyViewModel(this IViewModelFactory factory, string token)
+        {
+            var viewModel = factory.CreateTokenVerifyViewModel();
+            viewModel.Token = token;
+            return viewModel;
+        }
     }
 }

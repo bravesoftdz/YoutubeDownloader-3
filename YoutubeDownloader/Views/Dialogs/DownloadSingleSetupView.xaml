@@ -103,6 +103,7 @@
                 Margin="8"
                 Command="{s:Action Confirm}"
                 Content="HERUNTERLADEN"
+                Cursor="Hand"
                 IsDefault="True"
                 Style="{DynamicResource MaterialDesignFlatButton}" />
 

@@ -128,7 +128,7 @@ namespace YoutubeDownloader.Services
                 var channel = await _youtube.Channels.GetAsync(query.Value);
                 var videos = await _youtube.Channels.GetUploadsAsync(query.Value).BufferAsync();
 
-                return new ExecutedQuery(query, $"Channel uploads: {channel.Title}", videos);
+                return new ExecutedQuery(query, $"Kanal uploads: {channel.Title}", videos);
             }
 
             // User
@@ -137,7 +137,7 @@ namespace YoutubeDownloader.Services
                 var channel = await _youtube.Channels.GetByUserAsync(query.Value);
                 var videos = await _youtube.Channels.GetUploadsAsync(channel.Id).BufferAsync();
 
-                return new ExecutedQuery(query, $"Channel uploads: {channel.Title}", videos);
+                return new ExecutedQuery(query, $"Kanal uploads: {channel.Title}", videos);
             }
 
             // Search
@@ -145,10 +145,10 @@ namespace YoutubeDownloader.Services
             {
                 var videos = await _youtube.Search.GetVideosAsync(query.Value).BufferAsync(200);
 
-                return new ExecutedQuery(query, $"Search: {query.Value}", videos);
+                return new ExecutedQuery(query, $"Suche: {query.Value}", videos);
             }
 
-            throw new ArgumentException($"Could not parse query '{query}'.", nameof(query));
+            throw new ArgumentException($"Es konnten keine Ergebnisse zu '{query}' gefunden werden.", nameof(query));
         }
     }
 }

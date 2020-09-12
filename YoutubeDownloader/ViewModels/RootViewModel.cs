@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Gress;
@@ -22,6 +23,7 @@ namespace YoutubeDownloader.ViewModels
         private readonly UpdateService _updateService;
         private readonly QueryService _queryService;
         private readonly DownloadService _downloadService;
+        private readonly TokenService _tokenService;
 
         public ISnackbarMessageQueue Notifications { get; } = new SnackbarMessageQueue(TimeSpan.FromSeconds(5));
 
@@ -37,7 +39,7 @@ namespace YoutubeDownloader.ViewModels
 
         public RootViewModel(IViewModelFactory viewModelFactory, DialogManager dialogManager,
             SettingsService settingsService, UpdateService updateService, QueryService queryService,
-            DownloadService downloadService)
+            DownloadService downloadService, TokenService tokenService)
         {
             _viewModelFactory = viewModelFactory;
             _dialogManager = dialogManager;
@@ -45,6 +47,7 @@ namespace YoutubeDownloader.ViewModels
             _updateService = updateService;
             _queryService = queryService;
             _downloadService = downloadService;
+            _tokenService = tokenService;
 
             // Title
             DisplayName = $"{App.Name} v{App.VersionString}";
@@ -54,8 +57,10 @@ namespace YoutubeDownloader.ViewModels
                 (sender, args) => IsProgressIndeterminate = ProgressManager.IsActive && ProgressManager.Progress.IsEither(0, 1));
             ProgressManager.Bind(o => o.Progress,
                 (sender, args) => IsProgressIndeterminate = ProgressManager.IsActive && ProgressManager.Progress.IsEither(0, 1));
+
+            //ShowTokenVerfiy();
         }
-        
+
         private async Task HandleAutoUpdateAsync()
         {
             try
@@ -79,7 +84,8 @@ namespace YoutubeDownloader.ViewModels
                     });
             }
             catch
-            (Exception ex){
+            (Exception ex)
+            {
                 MessageBox.Show(ex.ToString(), "Fehler beim updaten!", MessageBoxButton.OK, MessageBoxImage.Warning);
                 // Failure to update shouldn't crash the application
                 Notifications.Enqueue("Fehler beim Updaten des Downloaders.");
@@ -95,6 +101,17 @@ namespace YoutubeDownloader.ViewModels
 
             // Check and prepare update
             await HandleAutoUpdateAsync();
+
+            if (_settingsService.Token.IsNullOrEmpty())
+                ShowTokenVerify();
+            else
+            {
+                var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token!, new CancellationTokenSource().Token);
+                if (!isVaild.Value)
+                {
+                    ShowTokenVerify();
+                }
+            }
         }
 
         protected override void OnClose()
@@ -123,6 +140,13 @@ namespace YoutubeDownloader.ViewModels
             await _dialogManager.ShowDialogAsync(dialog);
         }
 
+        public async void ShowTokenVerify()
+        {
+            //Create dialog
+            var dialog = _viewModelFactory.CreateTokenVerifyViewModel();
+            await _dialogManager.ShowDialogAsync(dialog);
+        }
+
         private void EnqueueAndStartDownload(DownloadViewModel download)
         {
             // Cancel and remove downloads with the same file path
@@ -147,7 +171,17 @@ namespace YoutubeDownloader.ViewModels
 
         public async void ProcessQuery()
         {
-            // Small operation weight to not offset any existing download operations
+            var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token!, new CancellationTokenSource().Token);
+            if (!isVaild.Value)
+            {
+                var errorDialog = _viewModelFactory.CreateMessageBoxViewModel("Fehler", "Der Token ist ungültig oder gesperrt!");
+                await _dialogManager.ShowDialogAsync(errorDialog);
+
+                var verifyDialog = _viewModelFactory.CreateTokenVerifyViewModel();
+                await _dialogManager.ShowDialogAsync(verifyDialog);
+                return;
+            }
+            //Small operation weight to not offset any existing download operations
             var operation = ProgressManager.CreateOperation(0.01);
 
             // Lock this method for re-entry

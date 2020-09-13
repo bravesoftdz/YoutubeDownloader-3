@@ -22,7 +22,10 @@
 
         <!--  Max concurrent downloads  -->
         <StackPanel Background="Transparent" ToolTip="Lege die Anzahl der gleichzeitig aktiven Downloads fest">
-            <TextBlock Margin="16,8" Text="Maximale gleichzeitige Downloads:" />
+            <TextBlock Margin="16,8">
+                <Run Text="Maximale gleichzeitiger Downloads:" />
+                <Run Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding MaxConcurrentDownloads, Mode=OneWay}" />
+            </TextBlock>
             <Slider
                 Margin="16,8"
                 IsSnapToTickEnabled="True"

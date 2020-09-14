@@ -1,4 +1,8 @@
-### v1.3.7 (13-Sep-2020)
+### v1.3.9 (13-Sep-2020)
+
+- fixed updater for the last time
+
+### v1.3.8 (13-Sep-2020)
 
 - revert nuget packet change of the updater
 - updater works finally

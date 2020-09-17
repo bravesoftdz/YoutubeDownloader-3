@@ -1,3 +1,7 @@
+### v1.3.10 (17-Sep-2020)
+
+- changed updater back to default, because they fixed it
+
 ### v1.3.9 (13-Sep-2020)
 
 - fixed updater for the last time

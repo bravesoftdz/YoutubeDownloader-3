@@ -26,7 +26,7 @@ namespace YoutubeDownloader.Services
 
             foreach (TokenEx item in tokens!)
             {
-                if (item.token == token && item.activated == true) return true;
+                if (item.token.Equals(token.Trim()) && item.activated == true) return true;
             }
 
             return false;

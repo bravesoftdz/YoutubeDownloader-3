@@ -1,3 +1,7 @@
+### v1.3.13 (25-Okt-2020)
+
+- Fixed bug that prevented download of videos
+
 ### v1.3.12 (29-Sep-2020)
 
 - Fixed various YouTube-related issues. Updated to YoutubeExplode v5.1.6.

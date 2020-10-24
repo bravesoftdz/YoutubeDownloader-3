@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using Gress;
 using MaterialDesignThemes.Wpf;
 using Stylet;
@@ -106,7 +107,7 @@ namespace YoutubeDownloader.ViewModels
                 ShowTokenVerify();
             else
             {
-                var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token!, new CancellationTokenSource().Token);
+                var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token!);
                 if (!isVaild.Value)
                 {
                     ShowTokenVerify();
@@ -144,7 +145,7 @@ namespace YoutubeDownloader.ViewModels
         {
             //Create dialog
             var dialog = _viewModelFactory.CreateTokenVerifyViewModel();
-            await _dialogManager.ShowDialogAsync(dialog);
+            await _dialogManager.ShowDialogAsyncNoClose(dialog);
         }
 
         private void EnqueueAndStartDownload(DownloadViewModel download)
@@ -171,16 +172,6 @@ namespace YoutubeDownloader.ViewModels
 
         public async void ProcessQuery()
         {
-            var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token!, new CancellationTokenSource().Token);
-            if (!isVaild.Value)
-            {
-                var errorDialog = _viewModelFactory.CreateMessageBoxViewModel("Fehler", "Der Token ist ungültig oder gesperrt!");
-                await _dialogManager.ShowDialogAsync(errorDialog);
-
-                var verifyDialog = _viewModelFactory.CreateTokenVerifyViewModel();
-                await _dialogManager.ShowDialogAsync(verifyDialog);
-                return;
-            }
             //Small operation weight to not offset any existing download operations
             var operation = ProgressManager.CreateOperation(0.01);
 

@@ -19,26 +19,26 @@ namespace YoutubeDownloader.Services
             _httpClient.DefaultRequestHeaders.Add("Authorization", "token 448d39603553439c25adb24e11ed666bb5724e17");
         }
 
-        public async Task<bool?> IsTokenVaild(string token, CancellationToken cancellationToken)
+        public async Task<bool?> IsTokenVaild(string token)
         {
-            var response = await TryGetTokenJsonAsync(cancellationToken);
+            var response = await TryGetTokenJsonAsync();
             var tokens = JsonConvert.DeserializeObject(response!, typeof(List<TokenEx>)) as List<TokenEx>;
 
             foreach (TokenEx item in tokens!)
             {
-                if (item.token.Equals(token.Trim()) && item.activated == true) return true;
+                if (item.token.Equals(token.Trim()) && item.activated && !item.used) return true;
             }
 
             return false;
         }
 
-        private async Task<string?> TryGetTokenJsonAsync(CancellationToken cancellationToken)
+        private async Task<string?> TryGetTokenJsonAsync()
         {
             try
             {
                 var url = Uri.EscapeUriString("https://raw.githubusercontent.com/derech1e/YoutubeDownloader/master/tokens.json");
 
-                using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+                using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
 
                 if (!response.IsSuccessStatusCode)
                     return null;

@@ -1,14 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace YoutubeDownloader.Internal
+﻿namespace YoutubeDownloader.Internal
 {
     public class TokenEx
     {
+        public string name { get; set; }
         public string token { get; set; }
         public bool activated { get; set; }
-        public string name { get; set; }
+        public bool used { get; set; }
     }
 }

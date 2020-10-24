@@ -1,18 +1,12 @@
 ﻿using YoutubeDownloader.ViewModels.Framework;
 using YoutubeDownloader.Services;
-using System.IO;
 using System.Threading.Tasks;
-using System.Net.Http;
-using Newtonsoft.Json;
-using YoutubeDownloader.Internal;
-using System;
-using System.Collections.Generic;
-using System.Threading;
 
 namespace YoutubeDownloader.ViewModels.Dialogs
 {
     public class TokenVerifyViewModel : DialogScreen
     {
+        public static bool VerifyTask = false;
         private readonly SettingsService _settingsService;
         private readonly IViewModelFactory _viewModelFactory;
         private readonly DialogManager _dialogManager;
@@ -33,21 +27,22 @@ namespace YoutubeDownloader.ViewModels.Dialogs
         }
         public async Task Verify()
         {
-            var isVaild = await _tokenService.IsTokenVaild(Token, new CancellationTokenSource().Token);
+            VerifyTask = true;
+            var isVaild = await _tokenService.IsTokenVaild(Token);
             if (isVaild.Value)
             {
                 Close();
                 var errorDialog = _viewModelFactory.CreateMessageBoxViewModel("Aktiviert!", "Der Token wurde erfolgreich Aktiviert!");
-                await _dialogManager.ShowDialogAsync(errorDialog);
+                await _dialogManager.ShowDialogAsyncNoClose(errorDialog);
             }
             else
             {
                 Close();
                 var errorDialog = _viewModelFactory.CreateMessageBoxViewModel("Fehler", "Bitte aktiviere den Downloader mit einem gültigen Token!");
-                await _dialogManager.ShowDialogAsync(errorDialog);
+                await _dialogManager.ShowDialogAsyncNoClose(errorDialog);
 
                 var verifyDialog = _viewModelFactory.CreateTokenVerifyViewModel();
-                await _dialogManager.ShowDialogAsync(verifyDialog);
+                await _dialogManager.ShowDialogAsyncNoClose(verifyDialog);
             }
         }
     }

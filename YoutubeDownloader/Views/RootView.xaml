@@ -32,10 +32,7 @@
             </Grid.RowDefinitions>
 
             <!--  Toolbar  -->
-            <Grid
-                Grid.Row="0"
-                Background="{DynamicResource PrimaryHueMidBrush}"
-                TextElement.Foreground="{DynamicResource SecondaryInverseTextBrush}">
+            <Grid Grid.Row="0" Background="{DynamicResource MaterialDesignDarkBackground}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
@@ -88,8 +85,12 @@
                     Margin="6"
                     Padding="4"
                     Command="{s:Action ShowSettings}"
-                    Style="{DynamicResource MaterialDesignFlatDarkButton}"
+                    Foreground="{DynamicResource MaterialDesignDarkForeground}"
+                    Style="{DynamicResource MaterialDesignFlatButton}"
                     ToolTip="Einstellungen">
+                    <Button.Resources>
+                        <SolidColorBrush x:Key="MaterialDesignFlatButtonClick" Color="#4C4C4C" />
+                    </Button.Resources>
                     <materialDesign:PackIcon
                         Width="24"
                         Height="24"
@@ -100,16 +101,17 @@
             <!--  Progress  -->
             <ProgressBar
                 Grid.Row="1"
-                Background="Transparent"
+                Background="{DynamicResource MaterialDesignDarkBackground}"
                 IsIndeterminate="{Binding IsProgressIndeterminate}"
                 Value="{Binding ProgressManager.Progress, Mode=OneWay}" />
 
             <!--  Content  -->
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="2" Background="{DynamicResource MaterialDesignCardBackground}">
                 <!--  Placeholder  -->
                 <TextBlock
                     Margin="32"
                     FontSize="18"
+                    FontWeight="Light"
                     Text="URL oder einen Suchbegriff eingeben um den Download zu starten"
                     TextAlignment="Center"
                     TextWrapping="Wrap"
@@ -179,6 +181,7 @@
                                     <TextBlock
                                         VerticalAlignment="Center"
                                         FontSize="14"
+                                        Foreground="{DynamicResource MaterialDesignBody}"
                                         Text="{Binding FileName}"
                                         TextTrimming="CharacterEllipsis"
                                         ToolTip="{Binding FileName}" />
@@ -193,47 +196,81 @@
                             SortMemberPath="ProgressOperation.Progress">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="{x:Type components:DownloadViewModel}">
-                                    <TextBlock VerticalAlignment="Center" TextTrimming="CharacterEllipsis">
-                                        <TextBlock.Style>
-                                            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
-                                                <Style.Triggers>
-                                                    <!--  Downloading  -->
-                                                    <DataTrigger Binding="{Binding IsActive}" Value="True">
-                                                        <Setter Property="Text" Value="{Binding ProgressOperation.Progress, StringFormat=\{0:P1\}}" />
-                                                    </DataTrigger>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
 
-                                                    <!--  Pending  -->
-                                                    <MultiDataTrigger>
-                                                        <MultiDataTrigger.Conditions>
-                                                            <Condition Binding="{Binding IsActive}" Value="True" />
-                                                            <Condition Binding="{Binding ProgressOperation.Progress}" Value="0" />
-                                                        </MultiDataTrigger.Conditions>
-                                                        <Setter Property="Foreground" Value="{DynamicResource DimTextBrush}" />
-                                                        <Setter Property="Text" Value="Warten..." />
-                                                    </MultiDataTrigger>
+                                        <!--  Progress  -->
+                                        <ProgressBar
+                                            Grid.Column="0"
+                                            Margin="0,0,6,0"
+                                            Foreground="{DynamicResource SecondaryAccentBrush}"
+                                            Maximum="1"
+                                            Minimum="0"
+                                            Value="{Binding ProgressOperation.Progress, Mode=OneWay}">
+                                            <ProgressBar.Style>
+                                                <Style BasedOn="{StaticResource MaterialDesignCircularProgressBar}" TargetType="{x:Type ProgressBar}">
+                                                    <Style.Triggers>
+                                                        <!--  Hide when not downloading  -->
+                                                        <DataTrigger Binding="{Binding IsActive}" Value="False">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
 
-                                                    <!--  Successful  -->
-                                                    <DataTrigger Binding="{Binding IsSuccessful}" Value="True">
-                                                        <Setter Property="Foreground" Value="DarkGreen" />
-                                                        <Setter Property="Text" Value="✓ Fertig" />
-                                                    </DataTrigger>
+                                                        <!--  Hide when progress is zero  -->
+                                                        <DataTrigger Binding="{Binding ProgressOperation.Progress}" Value="0">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </ProgressBar.Style>
+                                        </ProgressBar>
 
-                                                    <!--  Canceled  -->
-                                                    <DataTrigger Binding="{Binding IsCanceled}" Value="True">
-                                                        <Setter Property="Foreground" Value="DarkOrange" />
-                                                        <Setter Property="Text" Value="✗ Abgebrochen" />
-                                                    </DataTrigger>
+                                        <!--  Status  -->
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            TextTrimming="CharacterEllipsis">
+                                            <TextBlock.Style>
+                                                <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+                                                    <Style.Triggers>
+                                                        <!--  Downloading  -->
+                                                        <DataTrigger Binding="{Binding IsActive}" Value="True">
+                                                            <Setter Property="Text" Value="{Binding ProgressOperation.Progress, StringFormat=\{0:P1\}}" />
+                                                        </DataTrigger>
 
-                                                    <!--  Failed  -->
-                                                    <DataTrigger Binding="{Binding IsFailed}" Value="True">
-                                                        <Setter Property="Foreground" Value="DarkRed" />
-                                                        <Setter Property="Text" Value="✗ Fehlschlagen" />
-                                                        <Setter Property="ToolTip" Value="{Binding FailReason}" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
+                                                        <!--  Pending  -->
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding IsActive}" Value="True" />
+                                                                <Condition Binding="{Binding ProgressOperation.Progress}" Value="0" />
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter Property="Text" Value="Warten..." />
+                                                        </MultiDataTrigger>
+
+                                                        <!--  Successful  -->
+                                                        <DataTrigger Binding="{Binding IsSuccessful}" Value="True">
+                                                            <Setter Property="Foreground" Value="{DynamicResource SuccessBrush}" />
+                                                            <Setter Property="Text" Value="✓ Fertig" />
+                                                        </DataTrigger>
+
+                                                        <!--  Canceled  -->
+                                                        <DataTrigger Binding="{Binding IsCanceled}" Value="True">
+                                                            <Setter Property="Foreground" Value="{DynamicResource CanceledBrush}" />
+                                                            <Setter Property="Text" Value="✗ Abbgeborchen" />
+                                                        </DataTrigger>
+                                                        <!--  Failed  -->
+                                                        <DataTrigger Binding="{Binding IsFailed}" Value="True">
+                                                            <Setter Property="Foreground" Value="{DynamicResource FailedBrush}" />
+                                                            <Setter Property="Text" Value="✗ Fehlgeschlagen" />
+                                                            <Setter Property="ToolTip" Value="{Binding FailReason}" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

@@ -17,25 +17,76 @@
         <TextBlock
             Margin="16"
             FontSize="17"
-            Foreground="{DynamicResource PrimaryTextBrush}"
             Text="Einstellungen" />
 
-        <!--  Max concurrent downloads  -->
-        <StackPanel Background="Transparent" ToolTip="Lege die Anzahl der gleichzeitig aktiven Downloads fest">
-            <TextBlock Margin="16,8">
-                <Run Text="Maximale gleichzeitiger Downloads:" />
-                <Run Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding MaxConcurrentDownloads, Mode=OneWay}" />
-            </TextBlock>
-            <Slider
+        <!--  Auto-updates  -->
+        <DockPanel Background="Transparent" LastChildFill="False">
+            <DockPanel.ToolTip>
+                <TextBlock>
+                    <Run Text="Führt automatische Updates nach jedem Start durch." />
+                    <LineBreak />
+                    <Run FontWeight="SemiBold" Text="Warnung:" />
+                    <Run Text="Diese Funktion zu deaktivieren ist NICHT empfohlen, da der Downloader" />
+                    <LineBreak />
+                    <Run Text="bei neunen Änderungen von Youtube möglicherweise nicht mehr funktioniert!" />
+                </TextBlock>
+            </DockPanel.ToolTip>
+            <TextBlock
                 Margin="16,8"
-                IsSnapToTickEnabled="True"
-                Maximum="10"
-                Minimum="1"
-                TickFrequency="1"
-                Value="{Binding MaxConcurrentDownloads}" />
-        </StackPanel>
+                DockPanel.Dock="Left"
+                Text="Automatische Updates" />
+            <ToggleButton
+                Margin="16,8"
+                DockPanel.Dock="Right"
+                IsChecked="{Binding IsAutoUpdateEnabled}" />
+        </DockPanel>
 
-        <!--  Default file name template  -->
+        <!--  Dark mode  -->
+        <DockPanel
+            Background="Transparent"
+            LastChildFill="False"
+            ToolTip="Benutzt dunkle Farben im Interface">
+            <TextBlock
+                Margin="16,8"
+                DockPanel.Dock="Left"
+                Text="Dunkles Design" />
+            <ToggleButton
+                x:Name="DarkModeToggleButton"
+                Margin="16,8"
+                Checked="DarkModeToggleButton_Checked"
+                DockPanel.Dock="Right"
+                IsChecked="{Binding IsDarkModeEnabled}"
+                Unchecked="DarkModeToggleButton_Unchecked" />
+        </DockPanel>
+
+        <!--  Inject tags  -->
+        <DockPanel
+            Background="Transparent"
+            LastChildFill="False"
+            ToolTip="Medien-Tags können automatisch aus dem Videotitel abgeleitet und in die gespeicherte Datei eingefügt werden.">
+            <TextBlock
+                Margin="16,8"
+                DockPanel.Dock="Left"
+                Text="Medien-Tags automatisch einfügen" />
+            <ToggleButton
+                Margin="16,8"
+                DockPanel.Dock="Right"
+                IsChecked="{Binding ShouldInjectTags}" />
+        </DockPanel>
+
+        <!--  Skip existing files  -->
+        <DockPanel
+            Background="Transparent"
+            LastChildFill="False"
+            ToolTip="Bei mehreren Videodownloads, werden gleichnaminge Datein in einem Ordner nicht erneut heruntergeladen">
+            <TextBlock Margin="16,8" DockPanel.Dock="Left"><Run Language="de-de" Text="Vorhandene Downloads überspringen" /></TextBlock>
+            <ToggleButton
+                Margin="16,8"
+                DockPanel.Dock="Right"
+                IsChecked="{Binding ShouldSkipExistingFiles}" />
+        </DockPanel>
+
+        <!--  File name template  -->
         <TextBox
             Margin="16,8"
             materialDesign:HintAssist.Hint="Dateinamenvorlage"
@@ -66,54 +117,36 @@
             </TextBox.ToolTip>
         </TextBox>
 
-        <!--  Auto-updates  -->
-        <DockPanel Background="Transparent" LastChildFill="False">
-            <DockPanel.ToolTip>
+        <!--  Excluded container formats  -->
+        <TextBox
+            Margin="16,8"
+            materialDesign:HintAssist.Hint="Ausgeschlossene Formate"
+            materialDesign:HintAssist.IsFloating="True"
+            Text="{Binding ExcludedContainerFormats}">
+            <TextBox.ToolTip>
                 <TextBlock>
-                    <Run Text="Führt automatische Updates nach jedem Start durch." />
+                    <Run Text="Eine durch Kommas getrennte Liste der Formate, die beim Herunterladen eines Videos von der Formatliste ausgeschlossen wird" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="Warnung:" />
-                    <Run Text="Diese Funktion zu deaktivieren ist NICHT empfohlen, da der Downloader" />
                     <LineBreak />
-                    <Run Text="bei neunen Änderungen von Youtube möglicherweise nicht mehr funktioniert!" />
+                    <Run Text="z.B.: webm,ogg" />
                 </TextBlock>
-            </DockPanel.ToolTip>
-            <TextBlock
-                Margin="16,8"
-                DockPanel.Dock="Left"
-                Text="Automatische Updates" />
-            <ToggleButton
-                Margin="16,8"
-                DockPanel.Dock="Right"
-                IsChecked="{Binding IsAutoUpdateEnabled}" />
-        </DockPanel>
+            </TextBox.ToolTip>
+        </TextBox>
 
-        <!--  Tag injection  -->
-        <DockPanel
-            Background="Transparent"
-            LastChildFill="False"
-            ToolTip="Media-Tags wie Künstler, Album und Albumcover können automatische aus dem Videotitel abgeleitet und in die Datei eingefügt werden.">
-            <TextBlock
+        <!--  Max concurrent downloads  -->
+        <StackPanel Background="Transparent" ToolTip="Anzahl der gleichzeitig aktiven Downloads">
+            <TextBlock Margin="16,8">
+                <Run Text="Maximale gleichzeitiger Downloads:" />
+                <Run Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding MaxConcurrentDownloads, Mode=OneWay}" />
+            </TextBlock>
+            <Slider
                 Margin="16,8"
-                DockPanel.Dock="Left"
-                Text="Medien-Tags automatisch einfügen" />
-            <ToggleButton
-                Margin="16,8"
-                DockPanel.Dock="Right"
-                IsChecked="{Binding ShouldInjectTags}" />
-        </DockPanel>
-
-        <!--  Skip existing files  -->
-        <DockPanel
-            Background="Transparent"
-            LastChildFill="False"
-            ToolTip="Bei mehreren Videodownloads, werden gleichnaminge Datein in einem Ordner nicht erneut heruntergeladen">
-            <TextBlock Margin="16,8" DockPanel.Dock="Left"><Run Language="de-de" Text="Vorhandene Downloads überspringen" /></TextBlock>
-            <ToggleButton
-                Margin="16,8"
-                DockPanel.Dock="Right"
-                IsChecked="{Binding ShouldSkipExistingFiles}" />
-        </DockPanel>
+                IsSnapToTickEnabled="True"
+                Maximum="10"
+                Minimum="1"
+                TickFrequency="1"
+                Value="{Binding MaxConcurrentDownloads}" />
+        </StackPanel>
 
         <!--  Save button  -->
         <Button

@@ -2,33 +2,27 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using YoutubeDownloader.Models;
 using YoutubeExplode;
 using YoutubeExplode.Converter;
-using YoutubeExplode.Videos.ClosedCaptions;
 using YoutubeExplode.Videos.Streams;
 
 namespace YoutubeDownloader.Services
 {
     public class DownloadService
     {
+        private readonly YoutubeClient _youtube = new YoutubeClient();
+        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+
         private readonly SettingsService _settingsService;
 
-        private readonly YoutubeClient _youtube = new YoutubeClient();
-        private readonly IYoutubeConverter _youtubeConverter = new YoutubeConverter();
-
-        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
         private int _concurrentDownloadCount;
 
         public DownloadService(SettingsService settingsService)
         {
             _settingsService = settingsService;
-
-            // Increase maximum concurrent connections
-            ServicePointManager.DefaultConnectionLimit = 20;
         }
 
         private async Task EnsureThrottlingAsync(CancellationToken cancellationToken)
@@ -49,16 +43,41 @@ namespace YoutubeDownloader.Services
             }
         }
 
-        public async Task DownloadVideoAsync(DownloadOption downloadOption, string filePath,
-            IProgress<double> progress, CancellationToken cancellationToken)
+        public async Task DownloadAsync(
+            VideoDownloadOption videoDownloadOption,
+            SubtitleDownloadOption? subtitleDownloadOption,
+            string filePath,
+            IProgress<double>? progress = null,
+            CancellationToken cancellationToken = default)
         {
             await EnsureThrottlingAsync(cancellationToken);
 
             try
             {
-                await _youtubeConverter.DownloadAndProcessMediaStreamsAsync(downloadOption.StreamInfos,
-                    filePath, downloadOption.Format, ConversionPreset.Medium,
-                    progress, cancellationToken);
+                var conversion = new ConversionRequestBuilder(filePath)
+                    .SetFormat(videoDownloadOption.Format)
+                    .SetPreset(ConversionPreset.Medium)
+                    .Build();
+
+                await _youtube.Videos.DownloadAsync(
+                    videoDownloadOption.StreamInfos,
+                    conversion,
+                    progress,
+                    cancellationToken
+                );
+
+                if (subtitleDownloadOption != null)
+                {
+                    var subtitleFilePath = Path.ChangeExtension(filePath, "srt");
+
+                    // Not passing progress because it's insignificant and would require splitting
+                    await _youtube.Videos.ClosedCaptions.DownloadAsync(
+                        subtitleDownloadOption.TrackInfo,
+                        subtitleFilePath,
+                        null,
+                        cancellationToken
+                    );
+                }
             }
             finally
             {
@@ -66,18 +85,12 @@ namespace YoutubeDownloader.Services
             }
         }
 
-        public async Task DownloadSubtitleAsync(SubtitleOption subtitleOption, string filePath)
-        {
-            await _youtube.Videos.ClosedCaptions.DownloadAsync(subtitleOption.ClosedCaptionTrackInfos.FirstOrDefault(),
-                $"{Path.GetDirectoryName(filePath)}{Path.DirectorySeparatorChar}{Path.GetFileNameWithoutExtension(filePath)}.srt");
-        }
-
-        public async Task<IReadOnlyList<DownloadOption>> GetDownloadOptionsAsync(string videoId)
+        public async Task<IReadOnlyList<VideoDownloadOption>> GetVideoDownloadOptionsAsync(string videoId)
         {
             var streamManifest = await _youtube.Videos.Streams.GetManifestAsync(videoId);
 
             // Using a set ensures only one download option per format/quality is provided
-            var options = new HashSet<DownloadOption>(DownloadOptionEqualityComparer.Instance);
+            var options = new HashSet<VideoDownloadOption>();
 
             // Video+audio options
             var videoStreams = streamManifest
@@ -93,7 +106,7 @@ namespace YoutubeDownloader.Services
                 // Muxed streams are standalone
                 if (streamInfo is MuxedStreamInfo)
                 {
-                    options.Add(new DownloadOption(format, label, streamInfo));
+                    options.Add(new VideoDownloadOption(format, label, streamInfo));
                     continue;
                 }
 
@@ -106,7 +119,7 @@ namespace YoutubeDownloader.Services
 
                 if (audioStreamInfo != null)
                 {
-                    options.Add(new DownloadOption(format, label, streamInfo, audioStreamInfo));
+                    options.Add(new VideoDownloadOption(format, label, streamInfo, audioStreamInfo));
                 }
             }
 
@@ -119,37 +132,74 @@ namespace YoutubeDownloader.Services
 
             if (bestAudioOnlyStreamInfo != null)
             {
-                options.Add(new DownloadOption("mp3", "Audio", bestAudioOnlyStreamInfo));
-                options.Add(new DownloadOption("ogg", "Audio", bestAudioOnlyStreamInfo));
+                options.Add(new VideoDownloadOption("mp3", "Audio", bestAudioOnlyStreamInfo));
+                options.Add(new VideoDownloadOption("ogg", "Audio", bestAudioOnlyStreamInfo));
+            }
+
+            // Drop excluded formats
+            if (_settingsService.ExcludedContainerFormats != null)
+            {
+                options.RemoveWhere(o =>
+                    _settingsService.ExcludedContainerFormats.Contains(o.Format, StringComparer.OrdinalIgnoreCase)
+                );
             }
 
             return options.ToArray();
         }
 
-        public async Task<IReadOnlyList<SubtitleOption>> GetSubtitleOptionsAsync(string videoId)
+        public async Task<IReadOnlyList<SubtitleDownloadOption>> GetSubtitleDownloadOptionsAsync(string videoId)
         {
             var closedCaptionManifest = await _youtube.Videos.ClosedCaptions.GetManifestAsync(videoId);
 
-            var options = new HashSet<SubtitleOption>();
-
-            options.Add(new SubtitleOption(new Language(string.Empty, "Keine Untertitel")));
-
-            foreach (var closedCaptionTrackInfo in closedCaptionManifest.Tracks)
-            {
-                options.Add(new SubtitleOption(closedCaptionTrackInfo.Language, closedCaptionTrackInfo));
-            }
-
-            return options.ToArray();
+            return closedCaptionManifest.Tracks
+                .Select(t => new SubtitleDownloadOption(t))
+                .ToArray();
         }
 
-
-        public async Task<DownloadOption> GetBestDownloadOptionAsync(string videoId, string format)
+        public async Task<VideoDownloadOption?> TryGetBestVideoDownloadOptionAsync(
+            string videoId,
+            string format,
+            VideoQualityPreference qualityPreference)
         {
-            // Get all download options
-            var downloadOptions = await GetDownloadOptionsAsync(videoId);
+            var options = await GetVideoDownloadOptionsAsync(videoId);
 
-            // Get first download option for this format
-            return downloadOptions.FirstOrDefault(o => o.Format == format);
+            // TODO: generalize supported formats
+            // Short-circuit for audio-only formats
+            if (string.Equals(format, "mp3", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(format, "ogg", StringComparison.OrdinalIgnoreCase))
+            {
+                return options.FirstOrDefault(o => string.Equals(o.Format, format, StringComparison.OrdinalIgnoreCase));
+            }
+
+            var orderedOptions = options
+                .OrderBy(o => o.Quality)
+                .ThenBy(o => o.Framerate)
+                .ToArray();
+
+            var preferredOption = qualityPreference switch
+            {
+                VideoQualityPreference.Maximum => orderedOptions
+                    .LastOrDefault(o => string.Equals(o.Format, format, StringComparison.OrdinalIgnoreCase)),
+
+                VideoQualityPreference.High => orderedOptions
+                    .Where(o => o.Quality <= VideoQuality.High1080)
+                    .LastOrDefault(o => string.Equals(o.Format, format, StringComparison.OrdinalIgnoreCase)),
+
+                VideoQualityPreference.Medium => orderedOptions
+                    .Where(o => o.Quality <= VideoQuality.High720)
+                    .LastOrDefault(o => string.Equals(o.Format, format, StringComparison.OrdinalIgnoreCase)),
+
+                VideoQualityPreference.Low => orderedOptions
+                    .Where(o => o.Quality <= VideoQuality.Medium480)
+                    .LastOrDefault(o => string.Equals(o.Format, format, StringComparison.OrdinalIgnoreCase)),
+
+                VideoQualityPreference.Minimum => orderedOptions
+                    .FirstOrDefault(o => string.Equals(o.Format, format, StringComparison.OrdinalIgnoreCase)),
+
+                _ => throw new ArgumentOutOfRangeException(nameof(qualityPreference))
+            };
+
+            return preferredOption ?? orderedOptions.FirstOrDefault();
         }
     }
 }

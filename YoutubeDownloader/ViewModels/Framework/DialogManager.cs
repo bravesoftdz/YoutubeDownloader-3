@@ -19,7 +19,7 @@ namespace YoutubeDownloader.ViewModels.Framework
             _viewManager = viewManager;
         }
 
-        public async Task<T> ShowDialogAsyncNoClose<T>(DialogScreen<T> dialogScreen)
+        public async Task<T> ShowDialogAsync<T>(DialogScreen<T> dialogScreen, bool cancelVerify = false)
         {
             // Get the view that renders this viewmodel
             var view = _viewManager.CreateAndBindViewForModelIfNecessary(dialogScreen);
@@ -36,41 +36,24 @@ namespace YoutubeDownloader.ViewModels.Framework
 
                 dialogScreen.Closed += OnScreenClosed;
             }
-
-            void OnDialogClosing(object closeSender, DialogClosingEventArgs closeArgs)
+            if (cancelVerify)
             {
-                if (!TokenVerifyViewModel.VerifyTask)
-                    closeArgs.Cancel();
-                TokenVerifyViewModel.VerifyTask = false;
-            }
 
-            // Show view
-            await DialogHost.Show(view, OnDialogOpened, OnDialogClosing);
-
-            // Return the result
-            return dialogScreen.DialogResult;
-        }
-
-        public async Task<T> ShowDialogAsync<T>(DialogScreen<T> dialogScreen)
-        {
-            // Get the view that renders this viewmodel
-            var view = _viewManager.CreateAndBindViewForModelIfNecessary(dialogScreen);
-
-            // Set up event routing that will close the view when called from viewmodel
-            void OnDialogOpened(object? openSender, DialogOpenedEventArgs openArgs)
-            {
-                // Delegate to close the dialog and unregister event handler
-                void OnScreenClosed(object? closeSender, EventArgs closeArgs)
+                void OnDialogClosing(object closeSender, DialogClosingEventArgs closeArgs)
                 {
-                    openArgs.Session.Close();
-                    dialogScreen.Closed -= OnScreenClosed;
+                    if (!TokenVerifyViewModel.VerifyTask)
+                        closeArgs.Cancel();
+                    TokenVerifyViewModel.VerifyTask = false;
                 }
 
-                dialogScreen.Closed += OnScreenClosed;
+                // Show view
+                await DialogHost.Show(view, OnDialogOpened, OnDialogClosing);
             }
-
-            // Show view
-            await DialogHost.Show(view, OnDialogOpened);
+            else
+            {
+                // Show view
+                await DialogHost.Show(view, OnDialogOpened);
+            }
 
             // Return the result
             return dialogScreen.DialogResult;

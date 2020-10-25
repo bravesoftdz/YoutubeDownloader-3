@@ -5,7 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using TagLib;
+using TagLib.Mpeg4;
 using YoutubeExplode.Videos;
+using File = TagLib.File;
 
 namespace YoutubeDownloader.Services
 {
@@ -22,7 +24,9 @@ namespace YoutubeDownloader.Services
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"{App.Name} ({App.GitHubProjectUrl})");
         }
 
-        private async Task MaintainRateLimitAsync(TimeSpan interval, CancellationToken cancellationToken)
+        private async Task MaintainRateLimitAsync(
+            TimeSpan interval,
+            CancellationToken cancellationToken = default)
         {
             // Gain lock
             await _requestRateSemaphore.WaitAsync(cancellationToken);
@@ -44,7 +48,10 @@ namespace YoutubeDownloader.Services
             }
         }
 
-        private async Task<JToken?> TryGetTagsJsonAsync(string artist, string title, CancellationToken cancellationToken)
+        private async Task<JToken?> TryGetMusicBrainzTagsJsonAsync(
+            string artist,
+            string title,
+            CancellationToken cancellationToken = default)
         {
             var url = Uri.EscapeUriString(
                 "http://musicbrainz.org/ws/2/recording/?fmt=json&query=" +
@@ -70,12 +77,20 @@ namespace YoutubeDownloader.Services
             }
         }
 
-        private async Task<IPicture?> TryGetPictureAsync(Video video, CancellationToken cancellationToken)
+        private async Task<IPicture?> TryGetPictureAsync(
+            Video video,
+            CancellationToken cancellationToken = default)
         {
             try
             {
-                using var response = await _httpClient.GetAsync(video.Thumbnails.HighResUrl,
-                    HttpCompletionOption.ResponseContentRead, cancellationToken);
+                using var response = await _httpClient.GetAsync(
+                    video.Thumbnails.HighResUrl,
+                    HttpCompletionOption.ResponseContentRead,
+                    cancellationToken
+                );
+
+                if (!response.IsSuccessStatusCode)
+                    return null;
 
                 var data = await response.Content.ReadAsByteArrayAsync();
 
@@ -87,7 +102,10 @@ namespace YoutubeDownloader.Services
             }
         }
 
-        private bool TryExtractArtistAndTitle(string videoTitle, out string? artist, out string? title)
+        private bool TryExtractArtistAndTitle(
+            string videoTitle,
+            out string? artist,
+            out string? title)
         {
             // Get rid of common rubbish in music video titles
             videoTitle = videoTitle.Replace("(official video)", "", StringComparison.OrdinalIgnoreCase);
@@ -103,7 +121,7 @@ namespace YoutubeDownloader.Services
             videoTitle = videoTitle.Replace("(animated video)", "", StringComparison.OrdinalIgnoreCase);
 
             // Split by common artist/title separator characters
-            var split = videoTitle.Split(new[] {" - ", " ~ ", " — ", " – "}, StringSplitOptions.RemoveEmptyEntries);
+            var split = videoTitle.Split(new[] { " - ", " ~ ", " — ", " – " }, StringSplitOptions.RemoveEmptyEntries);
 
             // Extract artist and title
             if (split.Length >= 2)
@@ -125,35 +143,73 @@ namespace YoutubeDownloader.Services
             return false;
         }
 
-        public async Task InjectTagsAsync(Video video, string format, string filePath, CancellationToken cancellationToken)
+        private async Task InjectVideoTagsAsync(
+            Video video,
+            string filePath,
+            CancellationToken cancellationToken = default)
         {
-            // Only audio files are supported at the moment
-            if (!string.Equals(format, "mp3", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(format, "ogg", StringComparison.OrdinalIgnoreCase))
-                return;
+            var picture = await TryGetPictureAsync(video, cancellationToken);
 
-            // Try to extract artist/title from video title
+            var file = File.Create(filePath);
+
+            var appleTag = (AppleTag)file.GetTag(TagTypes.Apple);
+            appleTag.SetDashBox("Upload Date", "    Upload Date", video.UploadDate.ToString("yyyy-MM-dd"));
+            appleTag.SetDashBox("Channel", "    Channel", video.Author);
+
+            file.Tag.Pictures = picture != null
+                ? new[] { picture }
+                : Array.Empty<IPicture>();
+
+            file.Save();
+        }
+
+        private async Task InjectAudioTagsAsync(
+            Video video,
+            string filePath,
+            CancellationToken cancellationToken = default)
+        {
             if (!TryExtractArtistAndTitle(video.Title, out var artist, out var title))
                 return;
 
-            // Try to get tags
-            var tagsJson = await TryGetTagsJsonAsync(artist!, title!, cancellationToken);
+            var tagsJson = await TryGetMusicBrainzTagsJsonAsync(artist!, title!, cancellationToken);
 
-            // Try to get picture
             var picture = await TryGetPictureAsync(video, cancellationToken);
 
-            // Extract information
             var resolvedArtist = tagsJson?["artist-credit"]?.FirstOrDefault()?["name"]?.Value<string>();
             var resolvedTitle = tagsJson?["title"]?.Value<string>();
             var resolvedAlbumName = tagsJson?["releases"]?.FirstOrDefault()?["title"]?.Value<string>();
 
-            // Inject tags
-            var taggedFile = File.Create(filePath);
-            taggedFile.Tag.Performers = new[] {resolvedArtist ?? artist ?? ""};
-            taggedFile.Tag.Title = resolvedTitle ?? title ?? "";
-            taggedFile.Tag.Album = resolvedAlbumName ?? "";
-            taggedFile.Tag.Pictures = picture != null ? new[] {picture} : Array.Empty<IPicture>();
-            taggedFile.Save();
+            var file = File.Create(filePath);
+
+            file.Tag.Performers = new[] { resolvedArtist ?? artist ?? "" };
+            file.Tag.Title = resolvedTitle ?? title ?? "";
+            file.Tag.Album = resolvedAlbumName ?? "";
+
+            file.Tag.Pictures = picture != null
+                ? new[] { picture }
+                : Array.Empty<IPicture>();
+
+            file.Save();
+        }
+
+        public async Task InjectTagsAsync(
+            Video video,
+            string format,
+            string filePath,
+            CancellationToken cancellationToken = default)
+        {
+            if (string.Equals(format, "mp4", StringComparison.OrdinalIgnoreCase))
+            {
+                await InjectVideoTagsAsync(video, filePath, cancellationToken);
+            }
+            else if (
+                string.Equals(format, "mp3", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(format, "ogg", StringComparison.OrdinalIgnoreCase))
+            {
+                await InjectAudioTagsAsync(video, filePath, cancellationToken);
+            }
+
+            // Other formats are not supported for tagging
         }
     }
 }

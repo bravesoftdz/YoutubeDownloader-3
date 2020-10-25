@@ -25,6 +25,7 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             _dialogManager = dialogManager;
             _tokenService = tokenService;
         }
+
         public async Task Verify()
         {
             VerifyTask = true;
@@ -33,16 +34,16 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             {
                 Close();
                 var errorDialog = _viewModelFactory.CreateMessageBoxViewModel("Aktiviert!", "Der Token wurde erfolgreich Aktiviert!");
-                await _dialogManager.ShowDialogAsyncNoClose(errorDialog);
+                await _dialogManager.ShowDialogAsync(errorDialog, true);
             }
             else
             {
                 Close();
                 var errorDialog = _viewModelFactory.CreateMessageBoxViewModel("Fehler", "Bitte aktiviere den Downloader mit einem gültigen Token!");
-                await _dialogManager.ShowDialogAsyncNoClose(errorDialog);
+                await _dialogManager.ShowDialogAsync(errorDialog, true);
 
                 var verifyDialog = _viewModelFactory.CreateTokenVerifyViewModel();
-                await _dialogManager.ShowDialogAsyncNoClose(verifyDialog);
+                await _dialogManager.ShowDialogAsync(verifyDialog, true);
             }
         }
     }

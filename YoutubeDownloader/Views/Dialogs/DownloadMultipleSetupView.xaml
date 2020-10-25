@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:behaviors="clr-namespace:YoutubeDownloader.Behaviors"
+    xmlns:converters="clr-namespace:YoutubeDownloader.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:dialogs="clr-namespace:YoutubeDownloader.ViewModels.Dialogs"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
@@ -18,6 +19,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -40,7 +42,7 @@
         <!--  Videos  -->
         <Border
             Grid.Row="1"
-            BorderBrush="{DynamicResource DividerBrush}"
+            BorderBrush="{DynamicResource MaterialDesignDivider}"
             BorderThickness="0,1">
             <ListView
                 Padding="8"
@@ -91,7 +93,7 @@
                                 <!--  Misc  -->
                                 <TextBlock
                                     Margin="0,4,0,0"
-                                    Foreground="{DynamicResource SecondaryTextBrush}"
+                                    FontWeight="Light"
                                     TextTrimming="CharacterEllipsis">
                                     <Run Text="{Binding Duration, Mode=OneWay}" />
                                     <Run Text="/" />
@@ -121,13 +123,12 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <!--  Format  -->
             <StackPanel Grid.Column="0" Orientation="Horizontal">
                 <TextBlock
-                    Margin="8,8,0,8"
+                    Margin="8"
                     VerticalAlignment="Center"
                     Text="Format:" />
                 <ComboBox
@@ -139,9 +140,38 @@
                     SelectedItem="{Binding SelectedFormat}" />
             </StackPanel>
 
+            <!--  Video quality preference  -->
+            <StackPanel
+                Grid.Column="2"
+                IsEnabled="{Binding IsAudioOnlyFormatSelected, Converter={x:Static converters:InverseBoolConverter.Instance}}"
+                Orientation="Horizontal">
+                <TextBlock
+                    Margin="8"
+                    VerticalAlignment="Center"
+                    Text="Video Qualität:" />
+                <ComboBox
+                    MinWidth="150"
+                    Margin="8"
+                    VerticalAlignment="Center"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding AvailableQualityPreferences}"
+                    SelectedItem="{Binding SelectedVideoQualityPreference}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={x:Static converters:VideoQualityPreferenceToStringConverter.Instance}}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel
+            Grid.Row="3"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+
             <!--  OK  -->
             <Button
-                Grid.Column="2"
                 Margin="8"
                 Command="{s:Action Confirm}"
                 IsDefault="True"
@@ -156,12 +186,11 @@
 
             <!--  Cancel  -->
             <Button
-                Grid.Column="3"
                 Margin="8"
                 Command="{s:Action Close}"
                 Content="ABBRECHEN"
                 IsCancel="True"
                 Style="{DynamicResource MaterialDesignFlatButton}" />
-        </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>

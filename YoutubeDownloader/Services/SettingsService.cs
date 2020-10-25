@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Tyrrrz.Settings;
 using YoutubeDownloader.Internal;
 
@@ -8,17 +9,23 @@ namespace YoutubeDownloader.Services
     {
         public bool IsAutoUpdateEnabled { get; set; } = true;
 
-        public int MaxConcurrentDownloadCount { get; set; } = 2;
-
-        public string FileNameTemplate { get; set; } = FileNameGenerator.DefaultTemplate;
+        public bool IsDarkModeEnabled { get; set; }
 
         public bool ShouldInjectTags { get; set; } = true;
 
-        public bool ShouldSkipExistingFiles { get; set; } = false;
+        public bool ShouldSkipExistingFiles { get; set; }
+
+        public string FileNameTemplate { get; set; } = FileNameGenerator.DefaultTemplate;
+
+        public IReadOnlyList<string>? ExcludedContainerFormats { get; set; }
+
+        public int MaxConcurrentDownloadCount { get; set; } = 2;
 
         public string? LastFormat { get; set; }
 
         public string? LastSubtitleLanguageCode { get; set; }
+
+        public VideoQualityPreference LastVideoQualityPreference { get; set; } = VideoQualityPreference.Maximum;
 
         public string Token { get; set; } = "";
 

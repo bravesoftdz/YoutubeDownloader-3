@@ -10,7 +10,7 @@ namespace YoutubeDownloader.Services
     public class TokenService
     {
         private readonly HttpClient _httpClient = new HttpClient();
-        private List<TokenEx> tokens = new List<TokenEx>();
+        private List<TokenEx> _tokens = new List<TokenEx>();
 
         public TokenService()
         {
@@ -19,17 +19,17 @@ namespace YoutubeDownloader.Services
             _httpClient.DefaultRequestHeaders.Add("Authorization", "token 448d39603553439c25adb24e11ed666bb5724e17");
         }
 
-        public void cacheJson()
+        public void CacheJson()
         {
             var response = TryGetTokenJsonAsync();
             var tokens = JsonConvert.DeserializeObject(response!, typeof(List<TokenEx>)) as List<TokenEx>;
-            this.tokens.AddRange(tokens!);
+            _tokens.AddRange(tokens!);
         }
 
         public bool IsTokenVaild(string token)
         {
-            cacheJson();
-            foreach (TokenEx item in tokens!)
+            CacheJson();
+            foreach (TokenEx item in _tokens!)
             {
                 bool vaild = item.token.Equals(token.Trim()) && item.activated && !item.used;
                 return vaild;
@@ -37,27 +37,6 @@ namespace YoutubeDownloader.Services
 
             return false;
         }
-
-        //public async Task<bool?> IsTokenVaild(string token)
-        //{
-        //    if (!await containsCache(token))
-        //    {
-        //        var response = await TryGetTokenJsonAsync();
-        //        var tokens = JsonConvert.DeserializeObject(response!, typeof(List<TokenEx>)) as List<TokenEx>;
-
-        //        foreach (TokenEx item in tokens!)
-        //        {
-        //            bool vaild = item.token.Equals(token.Trim()) && item.activated && !item.used;
-        //            tokenCache.Add(token, vaild);
-        //            return vaild;
-        //        }
-        //    } else
-        //    {
-        //        return await isAktivInCache(token);
-        //    }
-
-        //    return false;
-        //}
 
         private string TryGetTokenJsonAsync()
         {

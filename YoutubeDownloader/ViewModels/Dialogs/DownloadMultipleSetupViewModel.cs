@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using YoutubeDownloader.Internal;
+using YoutubeDownloader.Models;
 using YoutubeDownloader.Services;
 using YoutubeDownloader.ViewModels.Components;
 using YoutubeDownloader.ViewModels.Framework;
@@ -16,17 +18,28 @@ namespace YoutubeDownloader.ViewModels.Dialogs
         private readonly SettingsService _settingsService;
         private readonly DialogManager _dialogManager;
 
-        public string Title { get; set; }
+        public string Title { get; set; } = default!;
 
-        public IReadOnlyList<Video> AvailableVideos { get; set; }
+        public IReadOnlyList<Video> AvailableVideos { get; set; } = Array.Empty<Video>();
 
-        public IReadOnlyList<Video> SelectedVideos { get; set; }
+        public IReadOnlyList<Video> SelectedVideos { get; set; } = Array.Empty<Video>();
 
-        public IReadOnlyList<string> AvailableFormats { get; } = new[] {"mp4", "mp3", "ogg"};
+        public IReadOnlyList<string> AvailableFormats { get; } = new[] { "mp4", "mp3", "ogg" };
 
-        public string SelectedFormat { get; set; }
+        public IReadOnlyList<VideoQualityPreference> AvailableQualityPreferences { get; } =
+            Enum.GetValues(typeof(VideoQualityPreference)).Cast<VideoQualityPreference>().ToArray();
 
-        public DownloadMultipleSetupViewModel(IViewModelFactory viewModelFactory, SettingsService settingsService,
+        public string? SelectedFormat { get; set; }
+
+        public VideoQualityPreference SelectedVideoQualityPreference { get; set; } = VideoQualityPreference.Maximum;
+
+        public bool IsAudioOnlyFormatSelected =>
+            string.Equals(SelectedFormat, "mp3", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(SelectedFormat, "ogg", StringComparison.OrdinalIgnoreCase);
+
+        public DownloadMultipleSetupViewModel(
+            IViewModelFactory viewModelFactory,
+            SettingsService settingsService,
             DialogManager dialogManager)
         {
             _viewModelFactory = viewModelFactory;
@@ -36,38 +49,42 @@ namespace YoutubeDownloader.ViewModels.Dialogs
 
         public void OnViewLoaded()
         {
-            // Select last used format
-            SelectedFormat = !string.IsNullOrWhiteSpace(_settingsService.LastFormat) && AvailableFormats.Contains(_settingsService.LastFormat)
-                ? _settingsService.LastFormat
-                : AvailableFormats.FirstOrDefault();
+            SelectedFormat =
+                !string.IsNullOrWhiteSpace(_settingsService.LastFormat) &&
+                AvailableFormats.Contains(_settingsService.LastFormat, StringComparer.OrdinalIgnoreCase)
+                    ? _settingsService.LastFormat
+                    : AvailableFormats.FirstOrDefault();
+
+            SelectedVideoQualityPreference = _settingsService.LastVideoQualityPreference;
         }
 
-        public bool CanConfirm => SelectedVideos != null && SelectedVideos.Any();
+        public bool CanConfirm => SelectedVideos.Any() && !string.IsNullOrWhiteSpace(SelectedFormat);
 
         public void Confirm()
         {
-            // Prompt user for output directory path
+            // Prompt for output directory path
             var dirPath = _dialogManager.PromptDirectoryPath();
-
-            // If canceled - return
             if (string.IsNullOrWhiteSpace(dirPath))
                 return;
 
-            // Save last used format
             _settingsService.LastFormat = SelectedFormat;
+            _settingsService.LastVideoQualityPreference = SelectedVideoQualityPreference;
 
             // Make sure selected videos are ordered in the same way as available videos
             var orderedSelectedVideos = AvailableVideos.Where(v => SelectedVideos.Contains(v)).ToArray();
 
-            // Create download view models
             var downloads = new List<DownloadViewModel>();
             for (var i = 0; i < orderedSelectedVideos.Length; i++)
             {
                 var video = orderedSelectedVideos[i];
 
-                // Generate file path
-                var number = (i + 1).ToString().PadLeft(orderedSelectedVideos.Length.ToString().Length, '0');
-                var fileName = FileNameGenerator.GenerateFileName(_settingsService.FileNameTemplate, video, SelectedFormat, number);
+                var fileName = FileNameGenerator.GenerateFileName(
+                    _settingsService.FileNameTemplate,
+                    video,
+                    SelectedFormat!,
+                    (i + 1).ToString().PadLeft(orderedSelectedVideos.Length.ToString().Length, '0')
+                );
+
                 var filePath = Path.Combine(dirPath, fileName);
 
                 // If file exists - either skip it or generate a unique file path, depending on user settings
@@ -79,21 +96,41 @@ namespace YoutubeDownloader.ViewModels.Dialogs
                     filePath = PathEx.MakeUniqueFilePath(filePath);
                 }
 
-                // Create empty file to "lock in" the file path
+                // Create empty file to "lock in" the file path.
+                // This is necessary as there may be other downloads with the same file name
+                // which would otherwise overwrite the file.
                 PathEx.CreateDirectoryForFile(filePath);
                 PathEx.CreateEmptyFile(filePath);
 
-                // Create download view model
-                var download = _viewModelFactory.CreateDownloadViewModel(video, filePath, SelectedFormat);
+                var download = _viewModelFactory.CreateDownloadViewModel(
+                    video,
+                    filePath,
+                    SelectedFormat!,
+                    SelectedVideoQualityPreference
+                );
 
-                // Add to list
                 downloads.Add(download);
             }
 
-            // Close dialog
             Close(downloads);
         }
 
         public void CopyTitle() => Clipboard.SetText(Title);
+    }
+
+    public static class DownloadMultipleSetupViewModelExtensions
+    {
+        public static DownloadMultipleSetupViewModel CreateDownloadMultipleSetupViewModel(
+            this IViewModelFactory factory,
+            string title,
+            IReadOnlyList<Video> availableVideos)
+        {
+            var viewModel = factory.CreateDownloadMultipleSetupViewModel();
+
+            viewModel.Title = title;
+            viewModel.AvailableVideos = availableVideos;
+
+            return viewModel;
+        }
     }
 }

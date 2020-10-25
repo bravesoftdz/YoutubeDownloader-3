@@ -71,7 +71,7 @@ namespace YoutubeDownloader.ViewModels
         {
             try
             {
-                // Check for updates#
+                // Check for updates
                 var updateVersion = await _updateService.CheckForUpdatesAsync();
                 if (updateVersion == null)
                     return;
@@ -90,9 +90,7 @@ namespace YoutubeDownloader.ViewModels
                     });
             }
             catch
-            (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Fehler beim updaten!", MessageBoxButton.OK, MessageBoxImage.Warning);
                 // Failure to update shouldn't crash the application
                 Notifications.Enqueue("Fehler beim Updaten des Downloaders.");
             }
@@ -167,6 +165,8 @@ namespace YoutubeDownloader.ViewModels
             // Bind progress manager
             download.ProgressManager = ProgressManager;
             download.Start();
+
+            Downloads.Insert(0, download);
         }
 
         public bool CanProcessQuery => !IsBusy && !string.IsNullOrWhiteSpace(Query);

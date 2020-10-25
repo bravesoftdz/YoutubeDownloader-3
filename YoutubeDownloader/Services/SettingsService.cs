@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Tyrrrz.Settings;
 using YoutubeDownloader.Internal;
+using YoutubeDownloader.Models;
 
 namespace YoutubeDownloader.Services
 {

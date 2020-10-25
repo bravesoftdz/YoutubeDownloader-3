@@ -31,7 +31,9 @@ namespace YoutubeDownloader.Services
             CacheJson();
             foreach (TokenEx item in _tokens!)
             {
-                bool vaild = item.token.Equals(token.Trim()) && item.activated && !item.used;
+                string itemToken = item.Token!;
+
+                bool vaild = (item.Token!).Equals(token.Trim()) && (bool)item.Activated! && !(bool)item.Used!;
                 return vaild;
             }
 

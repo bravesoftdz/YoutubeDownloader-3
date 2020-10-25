@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
-using System.Threading.Tasks;
-using Tyrrrz.Extensions;
 using YoutubeDownloader.Internal;
 
 namespace YoutubeDownloader.Services
@@ -12,60 +10,72 @@ namespace YoutubeDownloader.Services
     public class TokenService
     {
         private readonly HttpClient _httpClient = new HttpClient();
-        private Dictionary<string, bool> tokenCache;
+        private List<TokenEx> tokens = new List<TokenEx>();
 
         public TokenService()
         {
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"{App.Name} ({App.GitHubProjectUrl})");
             _httpClient.DefaultRequestHeaders.Add("User-Agent", "YoutubeDownloader (github.com/derech1e/YoutubeDownloader)");
             _httpClient.DefaultRequestHeaders.Add("Authorization", "token 448d39603553439c25adb24e11ed666bb5724e17");
-            tokenCache = new Dictionary<string, bool>();
         }
 
-        public async Task<bool?> IsTokenVaild(string token)
+        public void cacheJson()
         {
-            if(!tokenCache.IsNullOrEmpty() && tokenCache != null)
-                if(tokenCache.ContainsKey(token))
-                    return tokenCache.GetValueOrDefault(token);
-                
-            var response = await TryGetTokenJsonAsync();
+            var response = TryGetTokenJsonAsync();
             var tokens = JsonConvert.DeserializeObject(response!, typeof(List<TokenEx>)) as List<TokenEx>;
+            this.tokens.AddRange(tokens!);
+        }
 
+        public bool IsTokenVaild(string token)
+        {
+            cacheJson();
             foreach (TokenEx item in tokens!)
             {
-                if (item.token.Equals(token.Trim()) && item.activated && !item.used)
-                {
-                    if (tokenCache.ContainsKey(token))
-                        tokenCache.Remove(token);
-
-                    tokenCache.Add(token, true);
-                    return true;
-                }
+                bool vaild = item.token.Equals(token.Trim()) && item.activated && !item.used;
+                return vaild;
             }
-            if (tokenCache.ContainsKey(token))
-                tokenCache.Remove(token);
 
-            tokenCache.Add(token, false);
             return false;
         }
 
-        private async Task<string?> TryGetTokenJsonAsync()
+        //public async Task<bool?> IsTokenVaild(string token)
+        //{
+        //    if (!await containsCache(token))
+        //    {
+        //        var response = await TryGetTokenJsonAsync();
+        //        var tokens = JsonConvert.DeserializeObject(response!, typeof(List<TokenEx>)) as List<TokenEx>;
+
+        //        foreach (TokenEx item in tokens!)
+        //        {
+        //            bool vaild = item.token.Equals(token.Trim()) && item.activated && !item.used;
+        //            tokenCache.Add(token, vaild);
+        //            return vaild;
+        //        }
+        //    } else
+        //    {
+        //        return await isAktivInCache(token);
+        //    }
+
+        //    return false;
+        //}
+
+        private string TryGetTokenJsonAsync()
         {
             try
             {
                 var url = Uri.EscapeUriString("https://raw.githubusercontent.com/derech1e/YoutubeDownloader/master/tokens.json");
 
-                using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, new CancellationTokenSource().Token);
+                using var response = _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, new CancellationTokenSource().Token);
 
-                if (!response.IsSuccessStatusCode)
-                    return null;
+                if (!response.Result.IsSuccessStatusCode)
+                    return "";
 
-                var raw = await response.Content.ReadAsStringAsync();
-                return raw;
+                var raw = response.Result.Content.ReadAsStringAsync();
+                return raw.Result;
             }
             catch
             {
-                return null;
+                return "";
             }
         }
     }

@@ -105,8 +105,8 @@ namespace YoutubeDownloader.ViewModels
                 await ShowTokenVerify();
             else
             {
-                var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token!);
-                if (!isVaild.Value)
+                var isVaild = _tokenService.IsTokenVaild(_settingsService.Token!);
+                if (!isVaild)
                 {
                     await ShowTokenVerify();
                 }
@@ -208,8 +208,11 @@ namespace YoutubeDownloader.ViewModels
                     // Get download options
                     var downloadOptions = await _downloadService.GetDownloadOptionsAsync(video.Id);
 
+                    // Get subtitle options
+                    var subtitleOptions = await _downloadService.GetSubtitleOptionsAsync(video.Id);
+
                     // Create dialog
-                    var dialog = _viewModelFactory.CreateDownloadSingleSetupViewModel(dialogTitle, video, downloadOptions);
+                    var dialog = _viewModelFactory.CreateDownloadSingleSetupViewModel(dialogTitle, video, downloadOptions, subtitleOptions);
 
                     // Show dialog and get download
                     var download = await _dialogManager.ShowDialogAsync(dialog);

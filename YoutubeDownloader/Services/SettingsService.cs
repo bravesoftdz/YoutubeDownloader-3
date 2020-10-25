@@ -18,6 +18,8 @@ namespace YoutubeDownloader.Services
 
         public string? LastFormat { get; set; }
 
+        public string? LastSubtitleLanguageCode { get; set; }
+
         public string Token { get; set; } = "";
 
         public SettingsService()

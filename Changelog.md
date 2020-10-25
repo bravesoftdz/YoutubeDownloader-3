@@ -1,3 +1,8 @@
+### v1.3.14 (25-Okt-2020)
+
+- Fixed bug agagin that prevented download of videos
+- Added Token Chache
+
 ### v1.3.13 (25-Okt-2020)
 
 - Fixed bug that prevented download of videos

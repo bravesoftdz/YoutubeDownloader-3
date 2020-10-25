@@ -58,8 +58,6 @@ namespace YoutubeDownloader.ViewModels
                 (sender, args) => IsProgressIndeterminate = ProgressManager.IsActive && ProgressManager.Progress.IsEither(0, 1));
             ProgressManager.Bind(o => o.Progress,
                 (sender, args) => IsProgressIndeterminate = ProgressManager.IsActive && ProgressManager.Progress.IsEither(0, 1));
-
-            //ShowTokenVerfiy();
         }
 
         private async Task HandleAutoUpdateAsync()
@@ -104,13 +102,13 @@ namespace YoutubeDownloader.ViewModels
             await HandleAutoUpdateAsync();
 
             if (_settingsService.Token.IsNullOrEmpty())
-                ShowTokenVerify();
+                await ShowTokenVerify();
             else
             {
                 var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token!);
                 if (!isVaild.Value)
                 {
-                    ShowTokenVerify();
+                    await ShowTokenVerify();
                 }
             }
         }
@@ -141,7 +139,7 @@ namespace YoutubeDownloader.ViewModels
             await _dialogManager.ShowDialogAsync(dialog);
         }
 
-        public async void ShowTokenVerify()
+        public async Task ShowTokenVerify()
         {
             //Create dialog
             var dialog = _viewModelFactory.CreateTokenVerifyViewModel();

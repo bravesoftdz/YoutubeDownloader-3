@@ -6,7 +6,7 @@ on:
     - '*'
 
 jobs:
-  build:
+  Build Project:
     runs-on: windows-latest
 
     steps:

@@ -135,12 +135,12 @@
 
         <!--  Max concurrent downloads  -->
         <StackPanel Background="Transparent" ToolTip="Anzahl der gleichzeitig aktiven Downloads">
-            <TextBlock Margin="16,8">
+            <TextBlock Margin="16,8,16,4">
                 <Run Text="Maximale gleichzeitiger Downloads:" />
-                <Run Foreground="{DynamicResource PrimaryTextBrush}" Text="{Binding MaxConcurrentDownloads, Mode=OneWay}" />
+                <Run FontWeight="DemiBold" Text="{Binding MaxConcurrentDownloads, Mode=OneWay}" />
             </TextBlock>
             <Slider
-                Margin="16,8"
+                Margin="16,4,16,8"
                 IsSnapToTickEnabled="True"
                 Maximum="10"
                 Minimum="1"

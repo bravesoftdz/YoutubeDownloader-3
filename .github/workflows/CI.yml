@@ -3,7 +3,7 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  remove-old-artifacts:
+  Remove old artifacts:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -14,7 +14,7 @@ jobs:
         age: '1 month'
         skip-tags: true
         skip-recent: 3
-  build:
+  Build Project:
     runs-on: windows-latest
 
     steps:
@@ -37,9 +37,3 @@ jobs:
       with:
         name: YoutubeDownloader
         path: YoutubeDownloader/bin/Publish/
-
-    - name: Upload build artifact (installer)
-      uses: actions/upload-artifact@v1
-      with:
-        name: YoutubeDownloader-Installer
-        path: Installer/bin/YoutubeDownloader-Installer.exe

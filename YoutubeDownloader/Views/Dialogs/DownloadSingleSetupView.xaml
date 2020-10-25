@@ -32,7 +32,7 @@
             ToolTip="{Binding Title}">
             <TextBlock.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Command="{s:Action CopyTitle}" Header="Copy" />
+                    <MenuItem Command="{s:Action CopyTitle}" Header="Kopieren" />
                 </ContextMenu>
             </TextBlock.ContextMenu>
         </TextBlock>

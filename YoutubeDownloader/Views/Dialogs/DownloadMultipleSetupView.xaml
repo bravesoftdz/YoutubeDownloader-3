@@ -28,13 +28,12 @@
             Grid.Row="0"
             Margin="8,16"
             FontSize="19"
-            Foreground="{DynamicResource PrimaryTextBrush}"
             Text="{Binding Title}"
             TextTrimming="CharacterEllipsis"
             ToolTip="{Binding Title}">
             <TextBlock.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Command="{s:Action CopyTitle}" Header="Copy" />
+                    <MenuItem Command="{s:Action CopyTitle}" Header="Kopieren" />
                 </ContextMenu>
             </TextBlock.ContextMenu>
         </TextBlock>
@@ -148,7 +147,7 @@
                 <TextBlock
                     Margin="8"
                     VerticalAlignment="Center"
-                    Text="Video Qualität:" />
+                    Text="Videoqualität:" />
                 <ComboBox
                     Width="150"
                     Margin="8"

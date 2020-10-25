@@ -3,7 +3,7 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  Remove old artifacts:
+  Remove-old-artifacts:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -14,7 +14,7 @@ jobs:
         age: '1 month'
         skip-tags: true
         skip-recent: 3
-  Build Project:
+  Build-Project:
     runs-on: windows-latest
 
     steps:

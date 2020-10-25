@@ -117,8 +117,8 @@ namespace YoutubeDownloader.ViewModels
                 await ShowTokenVerify();
             else
             {
-                var isVaild = _tokenService.IsTokenVaild(_settingsService.Token!);
-                if (!isVaild)
+                var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token!);
+                if (!isVaild.Value)
                 {
                     await ShowTokenVerify();
                 }

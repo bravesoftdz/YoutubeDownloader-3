@@ -1,8 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
+using Tyrrrz.Extensions;
 using YoutubeDownloader.Internal;
 
 namespace YoutubeDownloader.Services
@@ -19,44 +22,44 @@ namespace YoutubeDownloader.Services
             _httpClient.DefaultRequestHeaders.Add("Authorization", "token 448d39603553439c25adb24e11ed666bb5724e17");
         }
 
-        public void CacheJson()
+        public async Task CacheJson()
         {
-            var response = TryGetTokenJsonAsync();
-            var tokens = JsonConvert.DeserializeObject(response!, typeof(List<TokenEx>)) as List<TokenEx>;
-            _tokens.AddRange(tokens!);
+            if (!_tokens.IsNullOrEmpty()) return;
+            var response = await TryGetTokenJsonAsync();
+            var tokens = JsonConvert.DeserializeObject<List<TokenEx>>(response!);
+            _tokens!.AddRange(tokens);
         }
 
-        public bool IsTokenVaild(string token)
-        {
-            CacheJson();
-            foreach (TokenEx item in _tokens!)
-            {
-                string itemToken = item.Token!;
 
-                bool vaild = (item.Token!).Equals(token.Trim()) && (bool)item.Activated! && !(bool)item.Used!;
-                return vaild;
+        public async Task<bool?> IsTokenVaild(string token)
+        {
+            await CacheJson();
+            foreach (TokenEx item in _tokens)
+            {
+                if (item.Token!.Equals(token.Trim()))
+                    return (bool)item.Activated! && !(bool)item.Used!;
             }
 
             return false;
         }
 
-        private string TryGetTokenJsonAsync()
+        private async Task<string?> TryGetTokenJsonAsync()
         {
             try
             {
                 var url = Uri.EscapeUriString("https://raw.githubusercontent.com/derech1e/YoutubeDownloader/master/tokens.json");
 
-                using var response = _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, new CancellationTokenSource().Token);
+                using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, new CancellationTokenSource().Token);
 
-                if (!response.Result.IsSuccessStatusCode)
-                    return "";
+                if (!response.IsSuccessStatusCode)
+                    return null;
 
-                var raw = response.Result.Content.ReadAsStringAsync();
-                return raw.Result;
+                var raw = await response.Content.ReadAsStringAsync();
+                return raw;
             }
             catch
             {
-                return "";
+                return null;
             }
         }
     }

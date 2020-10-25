@@ -29,8 +29,8 @@ namespace YoutubeDownloader.ViewModels.Dialogs
         public async Task Verify()
         {
             VerifyTask = true;
-            var isVaild = _tokenService.IsTokenVaild(Token);
-            if (isVaild)
+            var isVaild = await _tokenService.IsTokenVaild(Token)!;
+            if (isVaild.Value)
             {
                 Close();
                 var errorDialog = _viewModelFactory.CreateMessageBoxViewModel("Aktiviert!", "Der Token wurde erfolgreich Aktiviert!");

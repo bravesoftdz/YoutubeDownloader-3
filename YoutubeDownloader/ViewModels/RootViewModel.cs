@@ -117,6 +117,7 @@ namespace YoutubeDownloader.ViewModels
                 await ShowTokenVerify();
             else
             {
+                TokenService.hasPcToken = true;
                 var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token!);
                 if (!isVaild.Value)
                 {

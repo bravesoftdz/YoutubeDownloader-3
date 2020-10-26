@@ -14,6 +14,7 @@ namespace YoutubeDownloader.Services
     {
         private readonly HttpClient _httpClient = new HttpClient();
         private List<TokenEx> _tokens = new List<TokenEx>();
+        public static bool hasPcToken = false;
 
         public TokenService()
         {
@@ -30,14 +31,15 @@ namespace YoutubeDownloader.Services
             _tokens!.AddRange(tokens);
         }
 
-
-        public async Task<bool?> IsTokenVaild(string token)
+        public async Task<bool?> IsTokenVaild(string tokenFromInput)
         {
             await CacheJson();
-            foreach (TokenEx item in _tokens)
+            foreach (TokenEx tokenEx in _tokens)
             {
-                if (item.Token!.Equals(token.Trim()))
-                    return (bool)item.Activated! && !(bool)item.Used!;
+                if (tokenEx.Token!.Equals(tokenFromInput.Trim()))
+                    if (hasPcToken)
+                        return (bool)tokenEx.Activated!;
+                    else return (bool)tokenEx.Activated! && !(bool)tokenEx.Used!;
             }
 
             return false;

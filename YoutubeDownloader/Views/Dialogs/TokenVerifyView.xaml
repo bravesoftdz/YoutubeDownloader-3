@@ -18,7 +18,7 @@
         <TextBlock
             Margin="16"
             FontSize="17"
-            Foreground="{DynamicResource PrimaryTextBrush}"
+            FontWeight="SemiBold"
             Text="Token verifizieren" />
 
         <!--  Default file name template  -->

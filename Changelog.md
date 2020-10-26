@@ -1,4 +1,10 @@
-﻿### v1.4.0 (25-Oct-2020)
+﻿### v1.4.2 (26-Oct-2020)
+- Hotfix for Token-Login, when Token is used
+
+### v1.4.1 (25-Oct-2020)
+- Hotfix for Token-Login
+
+### v1.4.0 (25-Oct-2020)
 
 - Added subtitle download option when downloading single videos. (Thanks [@beawolf](https://github.com/beawolf))
 - Added format exclusion list. You can configure in settings a list of containers which you would like to not see, and they will be filtered out in the format selection dropdown. (Thanks [@beawolf](https://github.com/beawolf))

@@ -1,4 +1,7 @@
-﻿### v1.4.2 (26-Oct-2020)
+﻿### v1.4.4 (28-Nov-2020)
+- Fixed Format exlude option
+
+### v1.4.2 (26-Oct-2020)
 - Hotfix for Token-Login, when Token is used
 
 ### v1.4.1 (25-Oct-2020)

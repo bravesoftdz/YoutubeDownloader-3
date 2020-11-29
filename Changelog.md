@@ -1,4 +1,7 @@
 ﻿### v1.4.4 (28-Nov-2020)
+- Fixed various YouTube-related issues. Updated to YoutubeExplode v5.1.9.
+
+### v1.4.3 (28-Nov-2020)
 - Fixed Format exlude option
 
 ### v1.4.2 (26-Oct-2020)

@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System.Globalization;
+using System.Windows.Input;
+using System.Windows.Markup;
 
 namespace YoutubeDownloader.Views
 {
@@ -7,6 +9,7 @@ namespace YoutubeDownloader.Views
         public RootView()
         {
             InitializeComponent();
+            Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
         }
 
         private void QueryTextBox_OnPreviewKeyDown(object sender, KeyEventArgs e)

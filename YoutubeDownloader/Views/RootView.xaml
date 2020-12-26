@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:components="clr-namespace:YoutubeDownloader.ViewModels.Components"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:language="clr-namespace:YoutubeDownloader.Language"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:s="https://github.com/canton7/Stylet"
@@ -52,7 +53,7 @@
                             Grid.Column="0"
                             Margin="6"
                             VerticalAlignment="Bottom"
-                            materialDesign:HintAssist.Hint="URL oder Suchen (Shift+Enter für Zeilenumbruch)"
+                            materialDesign:HintAssist.Hint="{x:Static language:Resources.RootView_TextBox_Query}"
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                             AcceptsReturn="True"
                             BorderThickness="0"
@@ -70,7 +71,7 @@
                             Command="{s:Action ProcessQuery}"
                             IsDefault="True"
                             Style="{DynamicResource MaterialDesignFlatButton}"
-                            ToolTip="Suchen (Enter)">
+                            ToolTip="{x:Static language:Resources.RootView_Button_Query}">
                             <materialDesign:PackIcon
                                 Width="24"
                                 Height="24"
@@ -87,7 +88,7 @@
                     Command="{s:Action ShowSettings}"
                     Foreground="{DynamicResource MaterialDesignDarkForeground}"
                     Style="{DynamicResource MaterialDesignFlatButton}"
-                    ToolTip="Einstellungen">
+                    ToolTip="{x:Static language:Resources.Name_Settings}">
                     <Button.Resources>
                         <SolidColorBrush x:Key="MaterialDesignFlatButtonClick" Color="#4C4C4C" />
                     </Button.Resources>
@@ -112,7 +113,7 @@
                     Margin="32"
                     FontSize="18"
                     FontWeight="Light"
-                    Text="URL oder einen Suchbegriff eingeben um den Download zu starten"
+                    Text="{x:Static language:Resources.RootView_ContentPlaceholder}"
                     TextAlignment="Center"
                     TextWrapping="Wrap"
                     Visibility="{Binding Downloads.Count, Converter={x:Static s:BoolToVisibilityConverter.InverseInstance}}" />
@@ -135,10 +136,10 @@
                                         <MenuItem
                                             Command="{s:Action RemoveDownload}"
                                             CommandParameter="{Binding}"
-                                            Header="Download entfernen" />
-                                        <MenuItem Command="{s:Action RemoveInactiveDownloads}" Header="Alle inaktiven Downloads entfernen" />
-                                        <MenuItem Command="{s:Action RemoveSuccessfulDownloads}" Header="Alle erfolgreichen Downloads entfernen" />
-                                        <MenuItem Command="{s:Action RestartFailedDownloads}" Header="Alle fehlgeschlagenen Downloads neustarten" />
+                                            Header="{x:Static language:Resources.RootView_ContextMenu_RemoveDownload}" />
+                                        <MenuItem Command="{s:Action RemoveInactiveDownloads}" Header="{x:Static language:Resources.RootView_ContextMenu_RemoveInactiveDownloads}" />
+                                        <MenuItem Command="{s:Action RemoveSuccessfulDownloads}" Header="{x:Static language:Resources.RootView_ContextMenu_RemoveSuccessfulDownloads}" />
+                                        <MenuItem Command="{s:Action RestartFailedDownloads}" Header="{x:Static language:Resources.RootView_ContextMenu_RestartFailedDownloads}" />
                                     </ContextMenu>
                                 </Setter.Value>
                             </Setter>
@@ -174,7 +175,7 @@
                         <!--  File name  -->
                         <DataGridTemplateColumn
                             Width="*"
-                            Header="Datei"
+                            Header="{x:Static language:Resources.RootView_FileName_Header}"
                             SortMemberPath="FileName">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="{x:Type components:DownloadViewModel}">
@@ -192,7 +193,7 @@
                         <!--  Status  -->
                         <DataGridTemplateColumn
                             MinWidth="100"
-                            Header="Status"
+                            Header="{x:Static language:Resources.RootView_Status}"
                             SortMemberPath="ProgressOperation.Progress">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate DataType="{x:Type components:DownloadViewModel}">
@@ -246,24 +247,24 @@
                                                                 <Condition Binding="{Binding IsActive}" Value="True" />
                                                                 <Condition Binding="{Binding ProgressOperation.Progress}" Value="0" />
                                                             </MultiDataTrigger.Conditions>
-                                                            <Setter Property="Text" Value="Warten..." />
+                                                            <Setter Property="Text" Value="{x:Static language:Resources.RootView_Status_Pending}" />
                                                         </MultiDataTrigger>
 
                                                         <!--  Successful  -->
                                                         <DataTrigger Binding="{Binding IsSuccessful}" Value="True">
                                                             <Setter Property="Foreground" Value="{DynamicResource SuccessBrush}" />
-                                                            <Setter Property="Text" Value="✓ Fertig" />
+                                                            <Setter Property="Text" Value="{x:Static language:Resources.RootView_Status_Successful}" />
                                                         </DataTrigger>
 
                                                         <!--  Canceled  -->
                                                         <DataTrigger Binding="{Binding IsCanceled}" Value="True">
                                                             <Setter Property="Foreground" Value="{DynamicResource CanceledBrush}" />
-                                                            <Setter Property="Text" Value="✗ Abbgeborchen" />
+                                                            <Setter Property="Text" Value="{x:Static language:Resources.RootView_Status_Canceled}" />
                                                         </DataTrigger>
                                                         <!--  Failed  -->
                                                         <DataTrigger Binding="{Binding IsFailed}" Value="True">
                                                             <Setter Property="Foreground" Value="{DynamicResource FailedBrush}" />
-                                                            <Setter Property="Text" Value="✗ Fehlgeschlagen" />
+                                                            <Setter Property="Text" Value="{x:Static language:Resources.RootView_Status_Failed}" />
                                                             <Setter Property="ToolTip" Value="{Binding FailReason}" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
@@ -290,7 +291,7 @@
                                             VerticalAlignment="Center"
                                             Command="{s:Action Cancel}"
                                             Style="{DynamicResource MaterialDesignFlatButton}"
-                                            ToolTip="Download abbrechen"
+                                            ToolTip="{x:Static language:Resources.RootView_Button_Cancel_ToolTip}"
                                             Visibility="{Binding CanCancel, Converter={x:Static s:BoolToVisibilityConverter.Instance}}">
                                             <materialDesign:PackIcon
                                                 Width="24"
@@ -304,7 +305,7 @@
                                             VerticalAlignment="Center"
                                             Command="{s:Action Restart}"
                                             Style="{DynamicResource MaterialDesignFlatButton}"
-                                            ToolTip="Download neustarten"
+                                            ToolTip="{x:Static language:Resources.RootView_Button_Restart_ToolTip}"
                                             Visibility="{Binding CanRestart, Converter={x:Static s:BoolToVisibilityConverter.Instance}}">
                                             <materialDesign:PackIcon
                                                 Width="24"
@@ -318,7 +319,7 @@
                                             VerticalAlignment="Center"
                                             Command="{s:Action ShowFile}"
                                             Style="{DynamicResource MaterialDesignFlatButton}"
-                                            ToolTip="Zur Datei navigieren"
+                                            ToolTip="{x:Static language:Resources.RootView_Button_ShowFile_ToolTip}"
                                             Visibility="{Binding CanShowFile, Converter={x:Static s:BoolToVisibilityConverter.Instance}}">
                                             <materialDesign:PackIcon
                                                 Width="24"
@@ -332,7 +333,7 @@
                                             VerticalAlignment="Center"
                                             Command="{s:Action OpenFile}"
                                             Style="{DynamicResource MaterialDesignFlatButton}"
-                                            ToolTip="Abspielen"
+                                            ToolTip="{x:Static language:Resources.RootView_Button_OpenFile_ToolTip}"
                                             Visibility="{Binding CanOpenFile, Converter={x:Static s:BoolToVisibilityConverter.Instance}}">
                                             <materialDesign:PackIcon
                                                 Width="24"

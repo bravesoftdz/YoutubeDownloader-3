@@ -12,7 +12,7 @@ namespace YoutubeDownloader.Services
 {
     public class TokenService
     {
-        private readonly HttpClient _httpClient = new HttpClient();
+        private readonly HttpClient _httpClient = new ();
         private List<TokenEx> _tokens = new List<TokenEx>();
         public static bool hasPcToken = false;
 

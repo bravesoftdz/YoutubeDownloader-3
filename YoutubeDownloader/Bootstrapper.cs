@@ -22,6 +22,9 @@ namespace YoutubeDownloader
             // (preferred theme will be chosen later, once the settings are loaded)
             App.SetLightTheme();
 
+            // Set App Language
+            App.SetLanguageDictionary();
+
             // Increase maximum concurrent connections
             ServicePointManager.DefaultConnectionLimit = 20;
         }

@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:dialogs="clr-namespace:YoutubeDownloader.ViewModels.Dialogs"
+    xmlns:language="clr-namespace:YoutubeDownloader.Language"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:s="https://github.com/canton7/Stylet"
@@ -32,7 +33,7 @@
             ToolTip="{Binding Title}">
             <TextBlock.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Command="{s:Action CopyTitle}" Header="Kopieren" />
+                    <MenuItem Command="{s:Action CopyTitle}" Header="{x:Static language:Resources.ContextMenu_Copy}" />
                 </ContextMenu>
             </TextBlock.ContextMenu>
         </TextBlock>
@@ -88,7 +89,7 @@
                 <TextBlock
                     Margin="8"
                     VerticalAlignment="Center"
-                    Text="Format:" />
+                    Text="{x:Static language:Resources.Download_Video_Format}" />
                 <ComboBox
                     Width="150"
                     Margin="8"
@@ -107,7 +108,7 @@
                 <CheckBox
                     Margin="8"
                     VerticalAlignment="Center"
-                    Content="Untertitel:"
+                    Content="{x:Static language:Resources.Download_Video_Subtitles}"
                     IsChecked="{Binding ShouldDownloadSubtitles}" />
                 <ComboBox
                     Width="150"
@@ -128,7 +129,7 @@
             <Button
                 Margin="8"
                 Command="{s:Action Confirm}"
-                Content="HERUNTERLADEN"
+                Content="{x:Static language:Resources.Download_Video_Button_Download}"
                 Cursor="Hand"
                 IsDefault="True"
                 Style="{DynamicResource MaterialDesignFlatButton}" />
@@ -137,7 +138,7 @@
             <Button
                 Margin="8"
                 Command="{s:Action Close}"
-                Content="ABBRECHEN"
+                Content="{x:Static language:Resources.Download_Video_Button_Cancel}"
                 IsCancel="True"
                 Style="{DynamicResource MaterialDesignFlatButton}" />
         </StackPanel>

@@ -1,6 +1,8 @@
 ﻿
 using System;
+using System.Globalization;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Media;
 using MaterialDesignThemes.Wpf;
 using YoutubeDownloader.Internal;
@@ -22,6 +24,8 @@ namespace YoutubeDownloader
 
     public partial class App
     {
+
+
         private static Theme LightTheme { get; } = Theme.Create(
             new MaterialDesignLightTheme(),
             MediaColor.FromHex("#343838"),
@@ -52,6 +56,19 @@ namespace YoutubeDownloader
             Current.Resources["SuccessBrush"] = new SolidColorBrush(Colors.LightGreen);
             Current.Resources["CanceledBrush"] = new SolidColorBrush(Colors.Orange);
             Current.Resources["FailedBrush"] = new SolidColorBrush(Colors.OrangeRed);
+        }
+
+        public static void SetLanguageDictionary()
+        {
+            switch(CultureInfo.CurrentUICulture.Name)
+            {
+                case "de-DE":
+                    Language.Resources.Culture = new CultureInfo("de-DE");
+                    break;
+                default:
+                    Language.Resources.Culture = new CultureInfo("en-US");
+                    break;
+            }
         }
     }
 }

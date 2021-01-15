@@ -1,20 +1,24 @@
-﻿using Newtonsoft.Json;
+﻿using MySqlConnector;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Tyrrrz.Extensions;
 using YoutubeDownloader.Internal;
+using YoutubeDownloader.Internal.HWID;
+using YoutubeDownloader.Internal.Token;
+using System.Linq;
 
 namespace YoutubeDownloader.Services
 {
     public class TokenService
     {
-        private readonly HttpClient _httpClient = new ();
+        private readonly HttpClient _httpClient = new();
         private List<TokenEx> _tokens = new List<TokenEx>();
-        public static bool hasPcToken = false;
+        private string connectionString = "Server=95.156.227.125;User ID=ytclient;Password=YTDL-2021;Database=YTDL_TOKENS";
+
 
         public TokenService()
         {
@@ -23,46 +27,68 @@ namespace YoutubeDownloader.Services
             _httpClient.DefaultRequestHeaders.Add("Authorization", "token 448d39603553439c25adb24e11ed666bb5724e17");
         }
 
-        public async Task CacheJson()
+        public async Task CacheJsonMariaDB()
         {
-            if (!_tokens.IsNullOrEmpty()) return;
-            var response = await TryGetTokenJsonAsync();
-            var tokens = JsonConvert.DeserializeObject<List<TokenEx>>(response!);
-            _tokens!.AddRange(tokens);
+            using var connection = new MySqlConnection(connectionString);
+            await connection.OpenAsync();
+
+            if (connection.State != System.Data.ConnectionState.Open)
+                return;
+
+            using var command = new MySqlCommand("SELECT * FROM Tokens;", connection);
+            using var reader = command.ExecuteReader();
+            while (await reader.ReadAsync())
+                _tokens.Add(new TokenEx(reader.GetInt16(0), reader.GetInt16(2) != 0, reader.GetInt16(3), reader.GetString(4), await reader.IsDBNullAsync(5) ? DateTime.MaxValue : reader.GetDateTime(5), await reader.IsDBNullAsync(6) ? string.Empty : reader.GetString(6)));
+
+            await connection.CloseAsync();
         }
 
-        public async Task<bool?> IsTokenVaild(string tokenFromInput)
-        {
-            await CacheJson();
-            foreach (TokenEx tokenEx in _tokens)
-            {
-                if (tokenEx.Token!.Equals(tokenFromInput.Trim()))
-                    if (hasPcToken)
-                        return (bool)tokenEx.Activated!;
-                    else return (bool)tokenEx.Activated! && !(bool)tokenEx.Used!;
-            }
-
-            return false;
-        }
-
-        private async Task<string?> TryGetTokenJsonAsync()
+        public async Task<bool?> IsTokenVaild(string tokenFromInput, SettingsService settingsService)
         {
             try
             {
-                var url = Uri.EscapeUriString("https://raw.githubusercontent.com/derech1e/YoutubeDownloader/master/tokens.json");
-
-                using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, new CancellationTokenSource().Token);
-
-                if (!response.IsSuccessStatusCode)
-                    return null;
-
-                var raw = await response.Content.ReadAsStringAsync();
-                return raw;
+                await CacheJsonMariaDB();
             }
-            catch
+            catch (MySqlException)
             {
-                return null;
+                return !settingsService.Token.IsNullOrEmpty();
             }
+
+            TokenEx token = _tokens.Where(token => token.Token!.Equals(tokenFromInput.Trim())).FirstOrDefault();
+
+            if (token.Token!.IsNullOrEmpty())
+                throw new TokenException("Bitte benutze einen gültigen Token!");
+            if (!(bool)token.Enabled!)
+                throw new TokenException("Dieser Token wurde deaktiviert!");
+            if (token.Amount == 0)
+                if (token.HWID != HWIDGenerator.UID)
+                    throw new TokenException("Dieser Token wurde bereits eingelöst!");
+            if (token.ExpiryDate < DateTime.Now)
+                throw new TokenException("Dieser Token ist abgelaufen! Bitte aktivieren Sie einen neuen!");
+
+            if (token.Amount != 0)
+            {
+                using var connection = new MySqlConnection(connectionString);
+                await connection.OpenAsync();
+
+                if (connection.State != System.Data.ConnectionState.Open)
+                    throw new TokenException("Es konnte keine Verbindung zur Datenbank hergestellt werden!");
+
+                // Insert some data
+                using (var cmd = new MySqlCommand())
+                {
+                    cmd.Connection = connection;
+                    cmd.CommandText = "UPDATE `YTDL_TOKENS`.`Tokens` SET `Amount`=@amount, `HWID`=@hwid WHERE  `id`=@id;";
+                    cmd.Parameters.AddWithValue("amount", (token.Amount - 1));
+                    cmd.Parameters.AddWithValue("hwid", HWIDGenerator.UID);
+                    cmd.Parameters.AddWithValue("id", token.ID);
+                    await cmd.ExecuteNonQueryAsync();
+
+                }
+
+                await connection.CloseAsync();
+            }
+            return true;
         }
     }
 }

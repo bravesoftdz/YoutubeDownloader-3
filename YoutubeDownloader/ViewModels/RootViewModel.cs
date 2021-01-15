@@ -1,15 +1,12 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using Gress;
 using MaterialDesignThemes.Wpf;
 using Stylet;
 using Tyrrrz.Extensions;
 using YoutubeDownloader.Internal.Extensions;
+using YoutubeDownloader.Internal.Token;
 using YoutubeDownloader.Models;
 using YoutubeDownloader.Services;
 using YoutubeDownloader.ViewModels.Components;
@@ -39,7 +36,7 @@ namespace YoutubeDownloader.ViewModels
 
         public string? Query { get; set; }
 
-        public BindableCollection<DownloadViewModel> Downloads { get; } = new ();
+        public BindableCollection<DownloadViewModel> Downloads { get; } = new();
 
         public RootViewModel(IViewModelFactory viewModelFactory, DialogManager dialogManager,
             SettingsService settingsService, UpdateService updateService, QueryService queryService,
@@ -117,10 +114,19 @@ namespace YoutubeDownloader.ViewModels
                 await ShowTokenVerify();
             else
             {
-                TokenService.hasPcToken = true;
-                var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token!);
-                if (!isVaild.Value)
+                try
                 {
+                    var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token!, _settingsService);
+                    if (!isVaild.Value)
+                    {
+                        await ShowTokenVerify();
+                    }
+                }
+                catch (TokenException ex)
+                {
+                    var errorDialog = _viewModelFactory.CreateMessageBoxViewModel("Fehler!", ex.Message);
+                    await _dialogManager.ShowDialogAsync(errorDialog);
+                    _settingsService.Token = string.Empty;
                     await ShowTokenVerify();
                 }
             }

@@ -1,9 +1,7 @@
 ﻿using MySqlConnector;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using Tyrrrz.Extensions;
 using YoutubeDownloader.Internal;

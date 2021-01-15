@@ -4,15 +4,15 @@ namespace YoutubeDownloader.Internal
 {
     internal static class FileNameGenerator
     {
-        private static string NumberToken { get; } = "$nummer";
+        private static string NumberToken { get; } = Language.Resources.SettingsView_FileNameTemplate_Desc_Var_num;
 
-        private static string TitleToken { get; } = "$titel";
+        private static string TitleToken { get; } = Language.Resources.SettingsView_FileNameTemplate_Desc_Var_title;
 
-        private static string AuthorToken { get; } = "$autor";
+        private static string AuthorToken { get; } = Language.Resources.SettingsView_FileNameTemplate_Desc_Var_author;
 
-        private static string UploadDateToken { get; } = "$datum";
+        private static string UploadDateToken { get; } = Language.Resources.SettingsView_FileNameTemplate_Desc_Var_uploadDate;
 
-        private static string LengthToken { get; } = "$länge";
+        private static string LengthToken { get; } = Language.Resources.SettingsView_FileNameTemplate_Desc_Var_length;
 
         public static string DefaultTemplate { get; } = $"{TitleToken}";
 

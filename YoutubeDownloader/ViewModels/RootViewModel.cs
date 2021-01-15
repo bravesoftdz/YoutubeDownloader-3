@@ -124,7 +124,7 @@ namespace YoutubeDownloader.ViewModels
                 }
                 catch (TokenException ex)
                 {
-                    var errorDialog = _viewModelFactory.CreateMessageBoxViewModel("Fehler!", ex.Message);
+                    var errorDialog = _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.MessageBoxView_Error, ex.Message);
                     await _dialogManager.ShowDialogAsync(errorDialog);
                     _settingsService.Token = string.Empty;
                     await ShowTokenVerify();

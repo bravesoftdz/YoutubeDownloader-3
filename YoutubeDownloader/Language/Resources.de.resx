@@ -246,19 +246,19 @@
   <data name="SettingsView_FileNameTemplate_Desc_7" xml:space="preserve">
     <value>- Länge des Videos</value>
   </data>
-  <data name="SettingsView_FileNameTemplate_Desc_Var_1" xml:space="preserve">
+  <data name="SettingsView_FileNameTemplate_Desc_Var_num" xml:space="preserve">
     <value>$nummer</value>
   </data>
-  <data name="SettingsView_FileNameTemplate_Desc_Var_2" xml:space="preserve">
+  <data name="SettingsView_FileNameTemplate_Desc_Var_title" xml:space="preserve">
     <value>$titel</value>
   </data>
-  <data name="SettingsView_FileNameTemplate_Desc_Var_3" xml:space="preserve">
+  <data name="SettingsView_FileNameTemplate_Desc_Var_author" xml:space="preserve">
     <value>$autor</value>
   </data>
-  <data name="SettingsView_FileNameTemplate_Desc_Var_4" xml:space="preserve">
+  <data name="SettingsView_FileNameTemplate_Desc_Var_uploadDate" xml:space="preserve">
     <value>$datum</value>
   </data>
-  <data name="SettingsView_FileNameTemplate_Desc_Var_5" xml:space="preserve">
+  <data name="SettingsView_FileNameTemplate_Desc_Var_length" xml:space="preserve">
     <value>$länge</value>
   </data>
   <data name="SettingsView_ExcludedContainer_Desc_1" xml:space="preserve">
@@ -287,5 +287,14 @@
   </data>
   <data name="MessageBoxView_Button_Activate" xml:space="preserve">
     <value>AKTIVIEREN</value>
+  </data>
+  <data name="MessageBoxView_Search" xml:space="preserve">
+    <value>Suche:</value>
+  </data>
+  <data name="MessageBoxView_Not_Found" xml:space="preserve">
+    <value>Es konnten keine Ergebnisse für % gefunden werden</value>
+  </data>
+  <data name="MessageBoxView_Error" xml:space="preserve">
+    <value>Fehler!</value>
   </data>
 </root>

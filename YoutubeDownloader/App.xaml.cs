@@ -62,7 +62,7 @@ namespace YoutubeDownloader
         {
             switch(CultureInfo.CurrentUICulture.Name)
             {
-                case "de-DE":
+                case "de-as":
                     Language.Resources.Culture = new CultureInfo("de-DE");
                     break;
                 default:

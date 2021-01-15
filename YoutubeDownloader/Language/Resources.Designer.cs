@@ -142,6 +142,33 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error! ähnelt.
+        /// </summary>
+        public static string MessageBoxView_Error {
+            get {
+                return ResourceManager.GetString("MessageBoxView_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Could not parse query ähnelt.
+        /// </summary>
+        public static string MessageBoxView_Not_Found {
+            get {
+                return ResourceManager.GetString("MessageBoxView_Not_Found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Search: ähnelt.
+        /// </summary>
+        public static string MessageBoxView_Search {
+            get {
+                return ResourceManager.GetString("MessageBoxView_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Settings ähnelt.
         /// </summary>
         public static string Name_Settings {
@@ -448,47 +475,47 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die $num ähnelt.
-        /// </summary>
-        public static string SettingsView_FileNameTemplate_Desc_Var_1 {
-            get {
-                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die $title ähnelt.
-        /// </summary>
-        public static string SettingsView_FileNameTemplate_Desc_Var_2 {
-            get {
-                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die $author ähnelt.
         /// </summary>
-        public static string SettingsView_FileNameTemplate_Desc_Var_3 {
+        public static string SettingsView_FileNameTemplate_Desc_Var_author {
             get {
-                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die $uploadDate ähnelt.
-        /// </summary>
-        public static string SettingsView_FileNameTemplate_Desc_Var_4 {
-            get {
-                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_4", resourceCulture);
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_author", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die $length ähnelt.
         /// </summary>
-        public static string SettingsView_FileNameTemplate_Desc_Var_5 {
+        public static string SettingsView_FileNameTemplate_Desc_Var_length {
             get {
-                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_5", resourceCulture);
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_length", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die $num ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_Var_num {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_num", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die $title ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_Var_title {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die $uploadDate ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_Var_uploadDate {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_uploadDate", resourceCulture);
             }
         }
         

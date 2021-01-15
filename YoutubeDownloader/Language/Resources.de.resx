@@ -297,4 +297,34 @@
   <data name="MessageBoxView_Error" xml:space="preserve">
     <value>Fehler!</value>
   </data>
+  <data name="Update_Button" xml:space="preserve">
+    <value>JETZT INSTALLIEREN</value>
+  </data>
+  <data name="Update_Desc_1" xml:space="preserve">
+    <value>Update von % herunterladen...</value>
+  </data>
+  <data name="Update_Desc_2" xml:space="preserve">
+    <value>Das Update wurde heruntergeladen und wird beim Beenden installiert</value>
+  </data>
+  <data name="Update_Error_Desc" xml:space="preserve">
+    <value>Fehler beim Updaten des Downloaders</value>
+  </data>
+  <data name="MultipleDownloads_Text" xml:space="preserve">
+    <value>Mehrfachauswahl</value>
+  </data>
+  <data name="Download_Nothing_Found_1" xml:space="preserve">
+    <value>Nichts gefunden</value>
+  </data>
+  <data name="Download_Nothing_Found_2" xml:space="preserve">
+    <value>Basierend auf dem angegebenen Suchbegriff oder der URL konnten keine Videos gefunden werden</value>
+  </data>
+  <data name="Download_Nothing_Found_3" xml:space="preserve">
+    <value>Das Video % enthält keine Streams</value>
+  </data>
+  <data name="TokenVerifyView_Activated_Text" xml:space="preserve">
+    <value>Aktiviert!</value>
+  </data>
+  <data name="TokenVerifyView_Activated_Desc" xml:space="preserve">
+    <value>Der Token wurde erfolgreich Aktiviert!</value>
+  </data>
 </root>

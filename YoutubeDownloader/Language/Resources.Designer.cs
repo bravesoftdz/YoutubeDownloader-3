@@ -70,6 +70,33 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nothing found ähnelt.
+        /// </summary>
+        public static string Download_Nothing_Found_1 {
+            get {
+                return ResourceManager.GetString("Download_Nothing_Found_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Couldn&apos;t find any videos based on the query or URL you provided ähnelt.
+        /// </summary>
+        public static string Download_Nothing_Found_2 {
+            get {
+                return ResourceManager.GetString("Download_Nothing_Found_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Video % contains no streams ähnelt.
+        /// </summary>
+        public static string Download_Nothing_Found_3 {
+            get {
+                return ResourceManager.GetString("Download_Nothing_Found_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die CANCEL ähnelt.
         /// </summary>
         public static string Download_Video_Button_Cancel {
@@ -165,6 +192,15 @@ namespace YoutubeDownloader.Language {
         public static string MessageBoxView_Search {
             get {
                 return ResourceManager.GetString("MessageBoxView_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Multiple queries ähnelt.
+        /// </summary>
+        public static string MultipleDownloads_Text {
+            get {
+                return ResourceManager.GetString("MultipleDownloads_Text", resourceCulture);
             }
         }
         
@@ -583,6 +619,24 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Token successfully activated! ähnelt.
+        /// </summary>
+        public static string TokenVerifyView_Activated_Desc {
+            get {
+                return ResourceManager.GetString("TokenVerifyView_Activated_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Activated! ähnelt.
+        /// </summary>
+        public static string TokenVerifyView_Activated_Text {
+            get {
+                return ResourceManager.GetString("TokenVerifyView_Activated_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a Token! ähnelt.
         /// </summary>
         public static string TokenVerifyView_Desc_1 {
@@ -597,6 +651,42 @@ namespace YoutubeDownloader.Language {
         public static string TokenVerifyView_Title {
             get {
                 return ResourceManager.GetString("TokenVerifyView_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die INSTALL NOW ähnelt.
+        /// </summary>
+        public static string Update_Button {
+            get {
+                return ResourceManager.GetString("Update_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Downloading update to % ... ähnelt.
+        /// </summary>
+        public static string Update_Desc_1 {
+            get {
+                return ResourceManager.GetString("Update_Desc_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Update has been downloaded and will be installed when you exit ähnelt.
+        /// </summary>
+        public static string Update_Desc_2 {
+            get {
+                return ResourceManager.GetString("Update_Desc_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Failed to perform application update ähnelt.
+        /// </summary>
+        public static string Update_Error_Desc {
+            get {
+                return ResourceManager.GetString("Update_Error_Desc", resourceCulture);
             }
         }
     }

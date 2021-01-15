@@ -74,13 +74,13 @@ namespace YoutubeDownloader.ViewModels
                     return;
 
                 // Notify user of an update and prepare it
-                Notifications.Enqueue($"Update von {App.Name} v{updateVersion} herunterladen...");
+                Notifications.Enqueue(Language.Resources.Update_Desc_1.Replace("%", $"{App.Name} v{updateVersion}"));
                 await _updateService.PrepareUpdateAsync(updateVersion);
 
                 // Prompt user to install update (otherwise install it when application exits)
                 Notifications.Enqueue(
-                    "Das Update wurde heruntergeladen und wird beim Beenden installiert",
-                    "JETZT INSTALLIEREN", () =>
+                    Language.Resources.Update_Desc_2,
+                    Language.Resources.Update_Button, () =>
                     {
                         _updateService.FinalizeUpdate(true);
                         RequestClose();
@@ -89,7 +89,7 @@ namespace YoutubeDownloader.ViewModels
             catch
             {
                 // Failure to update shouldn't crash the application
-                Notifications.Enqueue("Fehler beim Updaten des Downloaders.");
+                Notifications.Enqueue(Language.Resources.Update_Error_Desc);
             }
         }
 
@@ -194,15 +194,15 @@ namespace YoutubeDownloader.ViewModels
 
                 var dialogTitle = executedQueries.Count == 1
                     ? executedQueries.Single().Title
-                    : "Mehrfachauswahl";
+                    : Language.Resources.MultipleDownloads_Text;
 
                 // No videos found
                 if (videos.Length <= 0)
                 {
                     var dialog = _viewModelFactory.CreateMessageBoxViewModel(
-                        "Nichts gefunden",
-                        "Basierend auf dem angegebenen Suchbegriff oder der URL konnten keine Videos gefunden werden"
-                    );
+                        Language.Resources.Download_Nothing_Found_1,
+                        Language.Resources.Download_Nothing_Found_2
+                    ); ;
                     await _dialogManager.ShowDialogAsync(dialog);
                 }
 
@@ -253,7 +253,7 @@ namespace YoutubeDownloader.ViewModels
             catch (Exception ex)
             {
                 var dialog = _viewModelFactory.CreateMessageBoxViewModel(
-                    "Fehler",
+                    Language.Resources.MessageBoxView_Error,
                     // Short error message for expected errors, full for unexpected
                     ex is YoutubeExplodeException
                         ? ex.Message

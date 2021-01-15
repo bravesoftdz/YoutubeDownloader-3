@@ -37,7 +37,7 @@ namespace YoutubeDownloader.ViewModels.Dialogs
                 if(isVaild.Value)
                 {
                     Close();
-                    var errorDialog = _viewModelFactory.CreateMessageBoxViewModel("Aktiviert!", "Der Token wurde erfolgreich Aktiviert!");
+                    var errorDialog = _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.TokenVerifyView_Activated_Text, Language.Resources.TokenVerifyView_Activated_Desc);
                     await _dialogManager.ShowDialogAsync(errorDialog, true);
                 }
 
@@ -45,7 +45,7 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             catch (TokenException ex)
             {
                 Close();
-                var errorDialog = _viewModelFactory.CreateMessageBoxViewModel("Fehler!", ex.Message);
+                var errorDialog = _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.MessageBoxView_Error, ex.Message);
                 await _dialogManager.ShowDialogAsync(errorDialog, true);
 
                 _settingsService.Token = string.Empty;

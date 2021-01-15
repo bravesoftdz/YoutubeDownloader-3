@@ -297,4 +297,34 @@
   <data name="MessageBoxView_Error" xml:space="preserve">
     <value>Error!</value>
   </data>
+  <data name="Update_Desc_1" xml:space="preserve">
+    <value>Downloading update to % ...</value>
+  </data>
+  <data name="Update_Button" xml:space="preserve">
+    <value>INSTALL NOW</value>
+  </data>
+  <data name="Update_Error_Desc" xml:space="preserve">
+    <value>Failed to perform application update</value>
+  </data>
+  <data name="Update_Desc_2" xml:space="preserve">
+    <value>Update has been downloaded and will be installed when you exit</value>
+  </data>
+  <data name="MultipleDownloads_Text" xml:space="preserve">
+    <value>Multiple queries</value>
+  </data>
+  <data name="Download_Nothing_Found_1" xml:space="preserve">
+    <value>Nothing found</value>
+  </data>
+  <data name="Download_Nothing_Found_2" xml:space="preserve">
+    <value>Couldn't find any videos based on the query or URL you provided</value>
+  </data>
+  <data name="Download_Nothing_Found_3" xml:space="preserve">
+    <value>Video % contains no streams</value>
+  </data>
+  <data name="TokenVerifyView_Activated_Text" xml:space="preserve">
+    <value>Activated!</value>
+  </data>
+  <data name="TokenVerifyView_Activated_Desc" xml:space="preserve">
+    <value>Token successfully activated!</value>
+  </data>
 </root>

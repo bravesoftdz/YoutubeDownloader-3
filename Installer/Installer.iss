@@ -1,5 +1,5 @@
 ﻿#define AppName "YoutubeDownloader"
-#define AppVersion "1.4.4"
+#define AppVersion "1.5.0"
 
 [Setup]
 AppId={{5A9BE5B6-CE10-45E2-AC95-68524D1109E5}

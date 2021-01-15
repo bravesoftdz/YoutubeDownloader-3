@@ -54,7 +54,7 @@ namespace YoutubeDownloader.Services
 
             TokenEx token = _tokens.Where(token => token.Token!.Equals(tokenFromInput.Trim())).FirstOrDefault();
 
-            if (token.Token!.IsNullOrEmpty())
+            if (token == null)
                 throw new TokenException(Language.Resources.TokenVerifyView_Invaild_Ex);
             if (!(bool)token.Enabled!)
                 throw new TokenException(Language.Resources.TokenVerifyView_Disabled_Ex);

@@ -55,14 +55,14 @@ namespace YoutubeDownloader.Services
             TokenEx token = _tokens.Where(token => token.Token!.Equals(tokenFromInput.Trim())).FirstOrDefault();
 
             if (token.Token!.IsNullOrEmpty())
-                throw new TokenException("Bitte benutze einen gültigen Token!");
+                throw new TokenException(Language.Resources.TokenVerifyView_Invaild_Ex);
             if (!(bool)token.Enabled!)
-                throw new TokenException("Dieser Token wurde deaktiviert!");
+                throw new TokenException(Language.Resources.TokenVerifyView_Disabled_Ex);
             if (token.Amount == 0)
                 if (token.HWID != HWIDGenerator.UID)
-                    throw new TokenException("Dieser Token wurde bereits eingelöst!");
+                    throw new TokenException(Language.Resources.TokenVerifyView_Amount_Ex);
             if (token.ExpiryDate < DateTime.Now)
-                throw new TokenException("Dieser Token ist abgelaufen! Bitte aktivieren Sie einen neuen!");
+                throw new TokenException(Language.Resources.TokenVerifyView_Expired_Ex);
 
             if (token.Amount != 0)
             {
@@ -70,7 +70,7 @@ namespace YoutubeDownloader.Services
                 await connection.OpenAsync();
 
                 if (connection.State != System.Data.ConnectionState.Open)
-                    throw new TokenException("Es konnte keine Verbindung zur Datenbank hergestellt werden!");
+                    throw new TokenException(Language.Resources.TokenVerifyView_NoConnection_Ex);
 
                 // Insert some data
                 using (var cmd = new MySqlCommand())

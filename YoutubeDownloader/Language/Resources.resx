@@ -327,4 +327,19 @@
   <data name="TokenVerifyView_Activated_Desc" xml:space="preserve">
     <value>Token successfully activated!</value>
   </data>
+  <data name="TokenVerifyView_Invaild_Ex" xml:space="preserve">
+    <value>Please enter a vaild token!</value>
+  </data>
+  <data name="TokenVerifyView_Disabled_Ex" xml:space="preserve">
+    <value>The token is disabled!</value>
+  </data>
+  <data name="TokenVerifyView_Amount_Ex" xml:space="preserve">
+    <value>Token already used!</value>
+  </data>
+  <data name="TokenVerifyView_Expired_Ex" xml:space="preserve">
+    <value>Token expired! Please enter a new one!</value>
+  </data>
+  <data name="TokenVerifyView_NoConnection_Ex" xml:space="preserve">
+    <value>Failed connection to databse!</value>
+  </data>
 </root>

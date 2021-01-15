@@ -637,11 +637,56 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Token already used! ähnelt.
+        /// </summary>
+        public static string TokenVerifyView_Amount_Ex {
+            get {
+                return ResourceManager.GetString("TokenVerifyView_Amount_Ex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a Token! ähnelt.
         /// </summary>
         public static string TokenVerifyView_Desc_1 {
             get {
                 return ResourceManager.GetString("TokenVerifyView_Desc_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The token is disabled! ähnelt.
+        /// </summary>
+        public static string TokenVerifyView_Disabled_Ex {
+            get {
+                return ResourceManager.GetString("TokenVerifyView_Disabled_Ex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Token expired! Please enter a new one! ähnelt.
+        /// </summary>
+        public static string TokenVerifyView_Expired_Ex {
+            get {
+                return ResourceManager.GetString("TokenVerifyView_Expired_Ex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a vaild token! ähnelt.
+        /// </summary>
+        public static string TokenVerifyView_Invaild_Ex {
+            get {
+                return ResourceManager.GetString("TokenVerifyView_Invaild_Ex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Failed connection to databse! ähnelt.
+        /// </summary>
+        public static string TokenVerifyView_NoConnection_Ex {
+            get {
+                return ResourceManager.GetString("TokenVerifyView_NoConnection_Ex", resourceCulture);
             }
         }
         

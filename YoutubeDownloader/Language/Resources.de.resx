@@ -327,4 +327,19 @@
   <data name="TokenVerifyView_Activated_Desc" xml:space="preserve">
     <value>Der Token wurde erfolgreich Aktiviert!</value>
   </data>
+  <data name="TokenVerifyView_Invaild_Ex" xml:space="preserve">
+    <value>Bitte benutze einen gültigen Token!</value>
+  </data>
+  <data name="TokenVerifyView_Disabled_Ex" xml:space="preserve">
+    <value>Dieser Token wurde deaktiviert!</value>
+  </data>
+  <data name="TokenVerifyView_Amount_Ex" xml:space="preserve">
+    <value>Dieser Token wurde bereits eingelöst!</value>
+  </data>
+  <data name="TokenVerifyView_Expired_Ex" xml:space="preserve">
+    <value>Dieser Token ist abgelaufen! Bitte aktivieren Sie einen neuen!</value>
+  </data>
+  <data name="TokenVerifyView_NoConnection_Ex" xml:space="preserve">
+    <value>Es konnte keine Verbindung zur Datenbank hergestellt werden!</value>
+  </data>
 </root>

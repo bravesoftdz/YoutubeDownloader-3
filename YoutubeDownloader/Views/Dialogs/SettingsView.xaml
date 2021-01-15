@@ -24,18 +24,16 @@
         <DockPanel Background="Transparent" LastChildFill="False">
             <DockPanel.ToolTip>
                 <TextBlock>
-                    <Run Text="Führt automatische Updates nach jedem Start durch." />
+                    <Run Text="{x:Static language:Resources.SettingsView_AutoUpdates_Desc_1}" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="Warnung:" />
-                    <Run Text="Diese Funktion zu deaktivieren ist NICHT empfohlen, da der Downloader" />
-                    <LineBreak />
-                    <Run Text="bei neunen Änderungen von Youtube möglicherweise nicht mehr funktioniert!" />
+                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_AutoUpdates_Desc_2}" />
+                    <Run Text="{x:Static language:Resources.SettingsView_AutoUpdates_Desc_3}" />
                 </TextBlock>
             </DockPanel.ToolTip>
             <TextBlock
                 Margin="16,8"
                 DockPanel.Dock="Left"
-                Text="Automatische Updates" />
+                Text="{x:Static language:Resources.SettingsView_AutoUpdates_Text}" />
             <ToggleButton
                 Margin="16,8"
                 DockPanel.Dock="Right"
@@ -46,11 +44,11 @@
         <DockPanel
             Background="Transparent"
             LastChildFill="False"
-            ToolTip="Benutzt dunkle Farben im Interface">
+            ToolTip="{x:Static language:Resources.SettingsView_DarkMode_Desc_1}">
             <TextBlock
                 Margin="16,8"
                 DockPanel.Dock="Left"
-                Text="Dunkles Design" />
+                Text="{x:Static language:Resources.SettingsView_DarkMode_Text}" />
             <ToggleButton
                 x:Name="DarkModeToggleButton"
                 Margin="16,8"
@@ -64,11 +62,11 @@
         <DockPanel
             Background="Transparent"
             LastChildFill="False"
-            ToolTip="Medien-Tags können automatisch aus dem Videotitel abgeleitet und in die gespeicherte Datei eingefügt werden.">
+            ToolTip="{x:Static language:Resources.SettingsView_InjectTags_Desc_1}">
             <TextBlock
                 Margin="16,8"
                 DockPanel.Dock="Left"
-                Text="Medien-Tags automatisch einfügen" />
+                Text="{x:Static language:Resources.SettingsView_InjectTags_Text}" />
             <ToggleButton
                 Margin="16,8"
                 DockPanel.Dock="Right"
@@ -79,8 +77,11 @@
         <DockPanel
             Background="Transparent"
             LastChildFill="False"
-            ToolTip="Bei mehreren Videodownloads, werden gleichnaminge Datein in einem Ordner nicht erneut heruntergeladen">
-            <TextBlock Margin="16,8" DockPanel.Dock="Left"><Run Language="de-de" Text="Vorhandene Downloads überspringen" /></TextBlock>
+            ToolTip="{x:Static language:Resources.SettingsView_SkipExistingFiles_Desc_1}">
+            <TextBlock
+                Margin="16,8"
+                DockPanel.Dock="Left"
+                Text="{x:Static language:Resources.SettingsView_SkipExistingFiles_Text}" />
             <ToggleButton
                 Margin="16,8"
                 DockPanel.Dock="Right"
@@ -90,30 +91,30 @@
         <!--  File name template  -->
         <TextBox
             Margin="16,8"
-            materialDesign:HintAssist.Hint="Dateinamenvorlage"
+            materialDesign:HintAssist.Hint="{x:Static language:Resources.SettingsView_FileNameTemplate_Hint}"
             materialDesign:HintAssist.IsFloating="True"
             Text="{Binding FileNameTemplate}">
             <TextBox.ToolTip>
                 <TextBlock>
-                    <Run Text="Diese Vorlage wird zur Generierung des Dateinamen der Downloads benutzt" />
+                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_1}" />
                     <LineBreak />
                     <LineBreak />
-                    <Run Text="Mögliche Variablen:" />
+                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_2}" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="$nummer" />
-                    <Run Text="- Position des Videos in einer Playlist (falls vorhanden)" />
+                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_1}" />
+                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_3}" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="$titel" />
-                    <Run Text="- Videotitel" />
+                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_2}" />
+                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_4}" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="$autor" />
-                    <Run Text="- Videoautor" />
+                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_3}" />
+                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_5}" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="$datum" />
-                    <Run Text="- Veröffentlichungsdatum" />
+                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_4}" />
+                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_6}" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="$länge" />
-                    <Run Text="- Länge des Videos" />
+                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_5}" />
+                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_7}" />
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
@@ -121,23 +122,23 @@
         <!--  Excluded container formats  -->
         <TextBox
             Margin="16,8"
-            materialDesign:HintAssist.Hint="Ausgeschlossene Formate"
+            materialDesign:HintAssist.Hint="{x:Static language:Resources.SettingsView_ExcludedContainer_Text}"
             materialDesign:HintAssist.IsFloating="True"
             Text="{Binding ExcludedContainerFormats}">
             <TextBox.ToolTip>
                 <TextBlock>
-                    <Run Text="Eine durch Kommas getrennte Liste der Formate, die beim Herunterladen eines Videos von der Formatliste ausgeschlossen wird" />
+                    <Run Text="{x:Static language:Resources.SettingsView_ExcludedContainer_Desc_1}" />
                     <LineBreak />
                     <LineBreak />
-                    <Run Text="z.B.: webm,ogg" />
+                    <Run Text="{x:Static language:Resources.SettingsView_ExcludedContainer_Desc_2}" />
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
 
         <!--  Max concurrent downloads  -->
-        <StackPanel Background="Transparent" ToolTip="Anzahl der gleichzeitig aktiven Downloads">
+        <StackPanel Background="Transparent" ToolTip="{x:Static language:Resources.SettingsView_MaxDownloads_Desc_1}">
             <TextBlock Margin="16,8,16,4">
-                <Run Text="Maximale gleichzeitiger Downloads:" />
+                <Run Text="{x:Static language:Resources.SettingsView_MaxDownloads_Text}" />
                 <Run FontWeight="DemiBold" Text="{Binding MaxConcurrentDownloads, Mode=OneWay}" />
             </TextBlock>
             <Slider
@@ -154,7 +155,7 @@
             Margin="8"
             HorizontalAlignment="Right"
             Command="{s:Action Close}"
-            Content="SPEICHERN"
+            Content="{x:Static language:Resources.MessageBoxView_Button_Save}"
             IsCancel="True"
             IsDefault="True"
             Style="{DynamicResource MaterialDesignFlatButton}" />

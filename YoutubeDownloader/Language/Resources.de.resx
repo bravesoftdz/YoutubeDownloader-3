@@ -192,4 +192,100 @@
   <data name="MessageBoxView_Button_Close" xml:space="preserve">
     <value>SCHLIEßEN</value>
   </data>
+  <data name="SettingsView_AutoUpdates_Desc_1" xml:space="preserve">
+    <value>Führt automatische Updates nach jedem Start durch</value>
+  </data>
+  <data name="SettingsView_AutoUpdates_Desc_2" xml:space="preserve">
+    <value>Warnung:</value>
+  </data>
+  <data name="SettingsView_AutoUpdates_Desc_3" xml:space="preserve">
+    <value>Diese Funktion zu deaktivieren ist NICHT empfohlen, da der Downloader bei neunen Änderungen von Youtube möglicherweise nicht mehr funktioniert</value>
+  </data>
+  <data name="SettingsView_AutoUpdates_Text" xml:space="preserve">
+    <value>Automatische Updates</value>
+  </data>
+  <data name="SettingsView_DarkMode_Desc_1" xml:space="preserve">
+    <value>Benutzt dunkle Farben im Interface</value>
+  </data>
+  <data name="SettingsView_DarkMode_Text" xml:space="preserve">
+    <value>Dunkles Design</value>
+  </data>
+  <data name="SettingsView_InjectTags_Desc_1" xml:space="preserve">
+    <value>Medien-Tags können automatisch aus dem Videotitel abgeleitet und in die gespeicherte Datei eingefügt werden</value>
+  </data>
+  <data name="SettingsView_InjectTags_Text" xml:space="preserve">
+    <value>Medien-Tags automatisch einbinden</value>
+  </data>
+  <data name="SettingsView_SkipExistingFiles_Desc_1" xml:space="preserve">
+    <value>Bei mehreren Videodownloads, werden gleichnaminge Datein in einem Ordner nicht erneut heruntergeladen</value>
+  </data>
+  <data name="SettingsView_SkipExistingFiles_Text" xml:space="preserve">
+    <value>Vorhandene Downloads überspringen</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Hint" xml:space="preserve">
+    <value>Dateinamenvorlage</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_1" xml:space="preserve">
+    <value>Diese Vorlage wird zur Generierung des Dateinamen der Downloads benutzt</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_2" xml:space="preserve">
+    <value>Mögliche Variablen:</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_3" xml:space="preserve">
+    <value>- Position des Videos in einer Playlist (falls vorhanden)</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_4" xml:space="preserve">
+    <value>- Videotitel</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_5" xml:space="preserve">
+    <value>- Videoautor</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_6" xml:space="preserve">
+    <value>- Veröffentlichungsdatum</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_7" xml:space="preserve">
+    <value>- Länge des Videos</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_Var_1" xml:space="preserve">
+    <value>$nummer</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_Var_2" xml:space="preserve">
+    <value>$titel</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_Var_3" xml:space="preserve">
+    <value>$autor</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_Var_4" xml:space="preserve">
+    <value>$datum</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_Var_5" xml:space="preserve">
+    <value>$länge</value>
+  </data>
+  <data name="SettingsView_ExcludedContainer_Desc_1" xml:space="preserve">
+    <value>Eine durch Kommas getrennte Liste der Formate, die beim Herunterladen eines Videos von der Formatliste ausgeschlossen wird</value>
+  </data>
+  <data name="SettingsView_ExcludedContainer_Desc_2" xml:space="preserve">
+    <value>z.B.: webm,ogg</value>
+  </data>
+  <data name="SettingsView_ExcludedContainer_Text" xml:space="preserve">
+    <value>Ausgeschlossene Formate</value>
+  </data>
+  <data name="SettingsView_MaxDownloads_Text" xml:space="preserve">
+    <value>Maximale gleichzeitiger Downloads:</value>
+  </data>
+  <data name="SettingsView_MaxDownloads_Desc_1" xml:space="preserve">
+    <value>Anzahl der gleichzeitig aktiven Downloads</value>
+  </data>
+  <data name="MessageBoxView_Button_Save" xml:space="preserve">
+    <value>SPEICHERN</value>
+  </data>
+  <data name="TokenVerifyView_Title" xml:space="preserve">
+    <value>Token verifizieren</value>
+  </data>
+  <data name="TokenVerifyView_Desc_1" xml:space="preserve">
+    <value>Bitte gib den Token zur Aktivierung  ein!</value>
+  </data>
+  <data name="MessageBoxView_Button_Activate" xml:space="preserve">
+    <value>AKTIVIEREN</value>
+  </data>
 </root>

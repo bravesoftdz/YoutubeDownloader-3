@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:dialogs="clr-namespace:YoutubeDownloader.ViewModels.Dialogs"
+    xmlns:language="clr-namespace:YoutubeDownloader.Language"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:s="https://github.com/canton7/Stylet"
@@ -19,7 +20,7 @@
             Margin="16"
             FontSize="17"
             FontWeight="SemiBold"
-            Text="Token verifizieren" />
+            Text="{x:Static language:Resources.TokenVerifyView_Title}" />
 
         <!--  Default file name template  -->
         <TextBox
@@ -30,7 +31,7 @@
             Text="{Binding Token}">
             <TextBox.ToolTip>
                 <TextBlock>
-                    <Run Text="Bitte gib deinen Token ein!" />
+                    <Run Text="{x:Static language:Resources.TokenVerifyView_Desc_1}" />
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
@@ -40,7 +41,7 @@
             Margin="8"
             HorizontalAlignment="Right"
             Command="{s:Action Verify}"
-            Content="AKTIVIEREN"
+            Content="{x:Static language:Resources.MessageBoxView_Button_Activate}"
             Cursor="Hand"
             IsDefault="True"
             IsEnabled="{Binding ElementName=tokenString, Path=Text.Length, Mode=OneWay}"

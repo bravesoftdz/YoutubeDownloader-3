@@ -115,11 +115,29 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ACTIVATE ähnelt.
+        /// </summary>
+        public static string MessageBoxView_Button_Activate {
+            get {
+                return ResourceManager.GetString("MessageBoxView_Button_Activate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die CLOSE ähnelt.
         /// </summary>
         public static string MessageBoxView_Button_Close {
             get {
                 return ResourceManager.GetString("MessageBoxView_Button_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die SAVE ähnelt.
+        /// </summary>
+        public static string MessageBoxView_Button_Save {
+            get {
+                return ResourceManager.GetString("MessageBoxView_Button_Save", resourceCulture);
             }
         }
         
@@ -286,7 +304,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Perform automatic updates on every launch ähnelt.
         /// </summary>
         public static string SettingsView_AutoUpdates_Desc_1 {
             get {
@@ -295,11 +313,263 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Warning: ähnelt.
         /// </summary>
         public static string SettingsView_AutoUpdates_Desc_2 {
             get {
                 return ResourceManager.GetString("SettingsView_AutoUpdates_Desc_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die disabling this is NOT recommended because the application will stop working when integration with YouTube inevitably breaks in the future ähnelt.
+        /// </summary>
+        public static string SettingsView_AutoUpdates_Desc_3 {
+            get {
+                return ResourceManager.GetString("SettingsView_AutoUpdates_Desc_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Auto-updates ähnelt.
+        /// </summary>
+        public static string SettingsView_AutoUpdates_Text {
+            get {
+                return ResourceManager.GetString("SettingsView_AutoUpdates_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use darker colors in the UI ähnelt.
+        /// </summary>
+        public static string SettingsView_DarkMode_Desc_1 {
+            get {
+                return ResourceManager.GetString("SettingsView_DarkMode_Desc_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dark mode ähnelt.
+        /// </summary>
+        public static string SettingsView_DarkMode_Text {
+            get {
+                return ResourceManager.GetString("SettingsView_DarkMode_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Comma separated list of container formats excluded from format list when downloading a video ähnelt.
+        /// </summary>
+        public static string SettingsView_ExcludedContainer_Desc_1 {
+            get {
+                return ResourceManager.GetString("SettingsView_ExcludedContainer_Desc_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ex: webm,ogg ähnelt.
+        /// </summary>
+        public static string SettingsView_ExcludedContainer_Desc_2 {
+            get {
+                return ResourceManager.GetString("SettingsView_ExcludedContainer_Desc_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Excluded container formats ähnelt.
+        /// </summary>
+        public static string SettingsView_ExcludedContainer_Text {
+            get {
+                return ResourceManager.GetString("SettingsView_ExcludedContainer_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Template used for generating file names for downloaded videos ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_1 {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Available variables: ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_2 {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die - video&apos;s position in the list (if applicable) ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_3 {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die - video title ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_4 {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die - video author ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_5 {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die - video upload date ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_6 {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die - video length ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_7 {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die $num ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_Var_1 {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die $title ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_Var_2 {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die $author ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_Var_3 {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die $uploadDate ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_Var_4 {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die $length ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_Var_5 {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File name template ähnelt.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Hint {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Media tags can be automatically inferred from video title and injected into output file ähnelt.
+        /// </summary>
+        public static string SettingsView_InjectTags_Desc_1 {
+            get {
+                return ResourceManager.GetString("SettingsView_InjectTags_Desc_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Automatically inject media tags ähnelt.
+        /// </summary>
+        public static string SettingsView_InjectTags_Text {
+            get {
+                return ResourceManager.GetString("SettingsView_InjectTags_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die How many downloads can be active at one time ähnelt.
+        /// </summary>
+        public static string SettingsView_MaxDownloads_Desc_1 {
+            get {
+                return ResourceManager.GetString("SettingsView_MaxDownloads_Desc_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Maximum concurrent downloads: ähnelt.
+        /// </summary>
+        public static string SettingsView_MaxDownloads_Text {
+            get {
+                return ResourceManager.GetString("SettingsView_MaxDownloads_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die When selecting multiple videos to download, skip those that already have a matching file in the directory ähnelt.
+        /// </summary>
+        public static string SettingsView_SkipExistingFiles_Desc_1 {
+            get {
+                return ResourceManager.GetString("SettingsView_SkipExistingFiles_Desc_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Skip downloads for files that already exist ähnelt.
+        /// </summary>
+        public static string SettingsView_SkipExistingFiles_Text {
+            get {
+                return ResourceManager.GetString("SettingsView_SkipExistingFiles_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please enter a Token! ähnelt.
+        /// </summary>
+        public static string TokenVerifyView_Desc_1 {
+            get {
+                return ResourceManager.GetString("TokenVerifyView_Desc_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Verify token ähnelt.
+        /// </summary>
+        public static string TokenVerifyView_Title {
+            get {
+                return ResourceManager.GetString("TokenVerifyView_Title", resourceCulture);
             }
         }
     }

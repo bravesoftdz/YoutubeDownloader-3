@@ -193,9 +193,99 @@
     <value>CLOSE</value>
   </data>
   <data name="SettingsView_AutoUpdates_Desc_1" xml:space="preserve">
-    <value></value>
+    <value>Perform automatic updates on every launch</value>
   </data>
   <data name="SettingsView_AutoUpdates_Desc_2" xml:space="preserve">
-    <value></value>
+    <value>Warning:</value>
+  </data>
+  <data name="SettingsView_AutoUpdates_Desc_3" xml:space="preserve">
+    <value>disabling this is NOT recommended because the application will stop working when integration with YouTube inevitably breaks in the future</value>
+  </data>
+  <data name="SettingsView_AutoUpdates_Text" xml:space="preserve">
+    <value>Auto-updates</value>
+  </data>
+  <data name="SettingsView_DarkMode_Desc_1" xml:space="preserve">
+    <value>Use darker colors in the UI</value>
+  </data>
+  <data name="SettingsView_DarkMode_Text" xml:space="preserve">
+    <value>Dark mode</value>
+  </data>
+  <data name="SettingsView_InjectTags_Desc_1" xml:space="preserve">
+    <value>Media tags can be automatically inferred from video title and injected into output file</value>
+  </data>
+  <data name="SettingsView_InjectTags_Text" xml:space="preserve">
+    <value>Automatically inject media tags</value>
+  </data>
+  <data name="SettingsView_SkipExistingFiles_Desc_1" xml:space="preserve">
+    <value>When selecting multiple videos to download, skip those that already have a matching file in the directory</value>
+  </data>
+  <data name="SettingsView_SkipExistingFiles_Text" xml:space="preserve">
+    <value>Skip downloads for files that already exist</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Hint" xml:space="preserve">
+    <value>File name template</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_1" xml:space="preserve">
+    <value>Template used for generating file names for downloaded videos</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_2" xml:space="preserve">
+    <value>Available variables:</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_3" xml:space="preserve">
+    <value>- video's position in the list (if applicable)</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_4" xml:space="preserve">
+    <value>- video title</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_5" xml:space="preserve">
+    <value>- video author</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_6" xml:space="preserve">
+    <value>- video upload date</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_7" xml:space="preserve">
+    <value>- video length</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_Var_1" xml:space="preserve">
+    <value>$num</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_Var_2" xml:space="preserve">
+    <value>$title</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_Var_3" xml:space="preserve">
+    <value>$author</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_Var_4" xml:space="preserve">
+    <value>$uploadDate</value>
+  </data>
+  <data name="SettingsView_FileNameTemplate_Desc_Var_5" xml:space="preserve">
+    <value>$length</value>
+  </data>
+  <data name="SettingsView_ExcludedContainer_Desc_1" xml:space="preserve">
+    <value>Comma separated list of container formats excluded from format list when downloading a video</value>
+  </data>
+  <data name="SettingsView_ExcludedContainer_Desc_2" xml:space="preserve">
+    <value>Ex: webm,ogg</value>
+  </data>
+  <data name="SettingsView_ExcludedContainer_Text" xml:space="preserve">
+    <value>Excluded container formats</value>
+  </data>
+  <data name="SettingsView_MaxDownloads_Desc_1" xml:space="preserve">
+    <value>How many downloads can be active at one time</value>
+  </data>
+  <data name="SettingsView_MaxDownloads_Text" xml:space="preserve">
+    <value>Maximum concurrent downloads:</value>
+  </data>
+  <data name="MessageBoxView_Button_Save" xml:space="preserve">
+    <value>SAVE</value>
+  </data>
+  <data name="TokenVerifyView_Title" xml:space="preserve">
+    <value>Verify token</value>
+  </data>
+  <data name="TokenVerifyView_Desc_1" xml:space="preserve">
+    <value>Please enter a Token!</value>
+  </data>
+  <data name="MessageBoxView_Button_Activate" xml:space="preserve">
+    <value>ACTIVATE</value>
   </data>
 </root>

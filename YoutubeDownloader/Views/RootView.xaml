@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:s="https://github.com/canton7/Stylet"
     xmlns:viewModels="clr-namespace:YoutubeDownloader.ViewModels"
-    Width="620"
+    Width="630"
     Height="550"
     d:DataContext="{d:DesignInstance Type=viewModels:RootViewModel}"
     Background="{DynamicResource MaterialDesignBackground}"
@@ -348,7 +348,10 @@
                 </DataGrid>
 
                 <!--  Notifications  -->
-                <materialDesign:Snackbar MessageQueue="{Binding Notifications}" />
+                <materialDesign:Snackbar
+                    ActionButtonPlacement="Inline"
+                    ActionButtonStyle="{DynamicResource SnackBar}"
+                    MessageQueue="{Binding Notifications}" />
             </Grid>
         </Grid>
     </materialDesign:DialogHost>

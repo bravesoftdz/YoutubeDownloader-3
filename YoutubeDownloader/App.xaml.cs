@@ -2,7 +2,6 @@
 using System;
 using System.Globalization;
 using System.Reflection;
-using System.Threading;
 using System.Windows.Media;
 using MaterialDesignThemes.Wpf;
 using YoutubeDownloader.Internal;
@@ -25,7 +24,6 @@ namespace YoutubeDownloader
     public partial class App
     {
 
-
         private static Theme LightTheme { get; } = Theme.Create(
             new MaterialDesignLightTheme(),
             MediaColor.FromHex("#343838"),
@@ -34,8 +32,8 @@ namespace YoutubeDownloader
 
         private static Theme DarkTheme { get; } = Theme.Create(
             new MaterialDesignDarkTheme(),
-            MediaColor.FromHex("#E8E8E8"),
-            MediaColor.FromHex("#F9A825")
+            MediaColor.FromHex("#E8E8E8"), //Primary Color Button Colors
+            MediaColor.FromHex("#F9A825") //Accent Color (Progressbar Top-below)
         );
 
         public static void SetLightTheme()

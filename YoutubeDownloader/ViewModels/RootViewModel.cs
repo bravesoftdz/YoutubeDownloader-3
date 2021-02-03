@@ -110,26 +110,20 @@ namespace YoutubeDownloader.ViewModels
 
             await CheckForUpdatesAsync();
 
-            if (_settingsService.Token.IsNullOrEmpty())
-                await ShowTokenVerify();
-            else
+            try
             {
-                try
-                {
-                    var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token!, _settingsService);
-                    if (!isVaild.Value)
-                    {
-                        await ShowTokenVerify();
-                    }
-                }
-                catch (TokenException ex)
-                {
-                    var errorDialog = _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.MessageBoxView_Error, ex.Message);
-                    await _dialogManager.ShowDialogAsync(errorDialog);
-                    _settingsService.Token = string.Empty;
+                var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token, _settingsService, true);
+                if (!isVaild.Value)
                     await ShowTokenVerify();
-                }
             }
+            catch (TokenException ex)
+            {
+                var errorDialog = _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.MessageBoxView_Error, ex.Message);
+                await _dialogManager.ShowDialogAsync(errorDialog);
+                _settingsService.Token = string.Empty;
+                await ShowTokenVerify();
+            }
+
         }
 
         protected override void OnClose()

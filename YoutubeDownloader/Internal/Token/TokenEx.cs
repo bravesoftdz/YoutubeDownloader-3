@@ -4,13 +4,14 @@ namespace YoutubeDownloader.Internal
 {
     public class TokenEx
     {
-        public TokenEx(int? id, bool? enabled, int? amount, string? token, DateTime expiryDate, string? hwid)
+        public TokenEx(int? id, bool? enabled, int? amount, string? token, DateTime expiryDate, bool? systemBind, string? hwid)
         {
             ID = id;
             Enabled = enabled;
             Amount = amount;
             Token = token;
             ExpiryDate = expiryDate;
+            SystemBind = systemBind;
             HWID = hwid;
         }
 
@@ -19,6 +20,7 @@ namespace YoutubeDownloader.Internal
         public int? Amount { get; set; } = default;
         public string? Token { get; set; } = default;
         public DateTime ExpiryDate  { get; set; } = default;
+        public bool? SystemBind { get; set; } = default;
         public string? HWID { get; set; } = default;
 
     }

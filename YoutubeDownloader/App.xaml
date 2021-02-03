@@ -94,10 +94,10 @@
             </Style>
 
             <Style
-                x:Key="SnackBar"
+                x:Key="Snackbar"
                 BasedOn="{StaticResource MaterialDesignFlatButton}"
                 TargetType="{x:Type Button}">
-                <Setter Property="Foreground" Value="#FF8C00 " />
+                <Setter Property="Foreground" Value="#F9A825" />
             </Style>
         </s:ApplicationLoader>
     </Application.Resources>

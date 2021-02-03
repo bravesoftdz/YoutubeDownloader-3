@@ -350,7 +350,9 @@
                 <!--  Notifications  -->
                 <materialDesign:Snackbar
                     ActionButtonPlacement="Inline"
-                    ActionButtonStyle="{DynamicResource SnackBar}"
+                    ActionButtonStyle="{DynamicResource Snackbar}"
+                    Background="{DynamicResource MaterialDesignDarkBackground}"
+                    Foreground="{DynamicResource MaterialDesignDarkForeground}"
                     MessageQueue="{Binding Notifications}" />
             </Grid>
         </Grid>

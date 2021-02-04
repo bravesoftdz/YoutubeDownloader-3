@@ -37,7 +37,7 @@ namespace YoutubeDownloader.Services
             using var command = new MySqlCommand("SELECT * FROM Tokens;", connection);
             using var reader = command.ExecuteReader();
             while (await reader.ReadAsync())
-                _tokens.Add(new TokenEx(reader.GetInt16(0), reader.GetInt16(2) != 0, reader.GetInt32(3), reader.GetString(4), await reader.IsDBNullAsync(5) ? DateTime.MaxValue : reader.GetDateTime(5), reader.GetInt16(6) != 0, await reader.IsDBNullAsync(7) ? string.Empty : reader.GetString(7)));
+                _tokens.Add(new TokenEx(reader.GetInt16(0), reader.GetInt16(2) != 0, reader.GetInt32(3), reader.GetString(4), await reader.IsDBNullAsync(5) ? DateTime.MaxValue : reader.GetDateTime(5), await reader.IsDBNullAsync(6) ? string.Empty : reader.GetString(6), reader.GetInt16(7) != 0));
 
             await connection.CloseAsync();
         }

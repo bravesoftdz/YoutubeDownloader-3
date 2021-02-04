@@ -348,6 +348,7 @@
   <data name="News" xml:space="preserve">
     <value>+ Entfernen-Knopf des Suchfelds auf Anfrage hinzugefügt
 + Mehrsprachensystem
++ News Benachrichtigung 
 
 * Snackbar Farben angepasst (Danke @Nick für die Erinnerung und den Designvorschlag)
 * Probleme im Zusammenhang mit YouTube wurden behoben

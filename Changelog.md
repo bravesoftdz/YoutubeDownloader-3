@@ -1,4 +1,12 @@
-﻿### v1.5.0 (15-Jan-2021)
+﻿### v1.5.1 (15-Jan-2021)
+- Added clear Query Text Button by request
+- Added News Message
+- Added Stats
+- Fixed Issues related to Youtube
+- Fixed Issues with the Token verification
+- Updated Snackbar color. Thanks @Nick for the reminder and new design.
+
+### v1.5.0 (15-Jan-2021)
 - Added Multilanguage System
 - Moved Token activation to MariaDB to an external Server
 

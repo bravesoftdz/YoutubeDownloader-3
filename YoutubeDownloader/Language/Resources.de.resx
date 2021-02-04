@@ -342,4 +342,16 @@
   <data name="TokenVerifyView_NoConnection_Ex" xml:space="preserve">
     <value>Es konnte keine Verbindung zur Datenbank hergestellt werden!</value>
   </data>
+  <data name="RootView_Button_Delete_Query" xml:space="preserve">
+    <value>Suche löschen (Entf)</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>+ Entfernen-Knopf des Suchfelds auf Anfrage hinzugefügt
++ Mehrsprachensystem
+
+* Snackbar Farben angepasst (Danke @Nick für die Erinnerung und den Designvorschlag)
+* Probleme im Zusammenhang mit YouTube wurden behoben
+* Fehler mit der Token Überprüfung wurden behoben
+* Performance Verbesserung der UI-Animationen</value>
+  </data>
 </root>

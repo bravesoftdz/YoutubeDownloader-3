@@ -1,12 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
 using Ookii.Dialogs.Wpf;
 using Stylet;
 using YoutubeDownloader.ViewModels.Dialogs;
-using YoutubeDownloader.Views.Dialogs;
 
 namespace YoutubeDownloader.ViewModels.Framework
 {

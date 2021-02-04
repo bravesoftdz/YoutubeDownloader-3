@@ -342,4 +342,15 @@
   <data name="TokenVerifyView_NoConnection_Ex" xml:space="preserve">
     <value>Failed connection to databse!</value>
   </data>
+  <data name="RootView_Button_Delete_Query" xml:space="preserve">
+    <value>Clear Query Text (Del)</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>+ Added clear Query Text Button by request
++ Multilanguagesystem
+
+* Fixed Issues related to Youtube
+* Fixed Issues with the Token verification
+* Updated Snackbar color. Thanks @Nick for the reminder and new design.</value>
+  </data>
 </root>

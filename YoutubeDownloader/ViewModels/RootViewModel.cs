@@ -124,6 +124,12 @@ namespace YoutubeDownloader.ViewModels
                 await ShowTokenVerify();
             }
 
+            if (_settingsService.CurrentVersion == null || _settingsService.CurrentVersion < App.Version)
+            {
+                _settingsService.CurrentVersion = App.Version;
+                var news = _viewModelFactory.CreateMessageBoxViewModel($"News - v" + App.VersionString, Language.Resources.News);
+                await _dialogManager.ShowDialogAsync(news);
+            }
         }
 
         protected override void OnClose()
@@ -172,6 +178,10 @@ namespace YoutubeDownloader.ViewModels
 
         public bool CanProcessQuery => !IsBusy && !string.IsNullOrWhiteSpace(Query);
 
+        public string QueryContainsContent => CanProcessQuery ? "Visible" : "Collapsed";
+
+        public void DeleteQuery() => Query = string.Empty;
+        
         public async void ProcessQuery()
         {
             //Small operation weight to not offset any existing download operations

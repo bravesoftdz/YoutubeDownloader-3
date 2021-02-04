@@ -214,11 +214,34 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die + Added clear Query Text Button by request
+        ///+ Multilanguagesystem
+        ///
+        ///* Fixed Issues related to Youtube
+        ///* Fixed Issues with the Token verification
+        ///* Updated Snackbar color. Thanks @Nick for the reminder and new design. ähnelt.
+        /// </summary>
+        public static string News {
+            get {
+                return ResourceManager.GetString("News", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cancel download ähnelt.
         /// </summary>
         public static string RootView_Button_Cancel_ToolTip {
             get {
                 return ResourceManager.GetString("RootView_Button_Cancel_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Clear Query Text (Del) ähnelt.
+        /// </summary>
+        public static string RootView_Button_Delete_Query {
+            get {
+                return ResourceManager.GetString("RootView_Button_Delete_Query", resourceCulture);
             }
         }
         

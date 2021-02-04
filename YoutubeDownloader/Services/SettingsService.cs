@@ -30,6 +30,12 @@ namespace YoutubeDownloader.Services
 
         public string Token { get; set; } = "";
 
+        public Version? CurrentVersion { get; set; }
+
+        public int? VideoDownloads { get; set; }
+
+        public long VideoDownloadsLength { get; set; }
+
         public SettingsService()
         {
             Configuration.StorageSpace = StorageSpace.Instance;

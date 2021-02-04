@@ -115,6 +115,8 @@ namespace YoutubeDownloader.ViewModels.Components
                     }
 
                     IsSuccessful = true;
+                    _settingsService.VideoDownloads++;
+                    _settingsService.VideoDownloadsLength += (long)Video.Duration.TotalMilliseconds;
                 }
                 catch (OperationCanceledException)
                 {

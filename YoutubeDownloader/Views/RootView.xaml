@@ -45,6 +45,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <!--  Query  -->
@@ -58,17 +59,36 @@
                             AcceptsReturn="True"
                             BorderThickness="0"
                             FontSize="16"
+                            IsTabStop="True"
                             MaxLines="4"
                             PreviewKeyDown="QueryTextBox_OnPreviewKeyDown"
                             Text="{Binding Query, UpdateSourceTrigger=PropertyChanged}"
                             VerticalScrollBarVisibility="Auto" />
 
-                        <!--  Process query button  -->
+                        <!--  Delete query button  -->
                         <Button
                             Grid.Column="1"
+                            Margin="0,3,3,3"
+                            Padding="4"
+                            Command="{s:Action DeleteQuery}"
+                            Cursor="Hand"
+                            IsDefault="False"
+                            Style="{DynamicResource MaterialDesignFlatButton}"
+                            ToolTip="{x:Static language:Resources.RootView_Button_Delete_Query}"
+                            Visibility="{Binding QueryContainsContent}">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                Kind="Close" />
+                        </Button>
+
+                        <!--  Process query button  -->
+                        <Button
+                            Grid.Column="2"
                             Margin="0,6,6,6"
                             Padding="4"
                             Command="{s:Action ProcessQuery}"
+                            Cursor="Hand"
                             IsDefault="True"
                             Style="{DynamicResource MaterialDesignFlatButton}"
                             ToolTip="{x:Static language:Resources.RootView_Button_Query}">
@@ -192,7 +212,7 @@
 
                         <!--  Status  -->
                         <DataGridTemplateColumn
-                            MinWidth="100"
+                            MinWidth="130"
                             Header="{x:Static language:Resources.RootView_Status}"
                             SortMemberPath="ProgressOperation.Progress">
                             <DataGridTemplateColumn.CellTemplate>

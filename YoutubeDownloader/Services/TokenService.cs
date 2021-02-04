@@ -8,7 +8,6 @@ using YoutubeDownloader.Internal;
 using YoutubeDownloader.Internal.HWID;
 using YoutubeDownloader.Internal.Token;
 using System.Linq;
-using System.Diagnostics;
 
 namespace YoutubeDownloader.Services
 {
@@ -17,6 +16,7 @@ namespace YoutubeDownloader.Services
         private readonly HttpClient _httpClient = new();
         private List<TokenEx> _tokens = new List<TokenEx>();
         private string connectionString = "Server=95.156.227.125;User ID=ytclient;Password=YTDL-2021;Database=YTDL_TOKENS";
+        private bool IsReady { get; set; } = false;
 
 
         public TokenService()
@@ -55,16 +55,18 @@ namespace YoutubeDownloader.Services
             TokenEx? token = _tokens.Where(token => token.HWID!.Equals(HWIDGenerator.UID)).FirstOrDefault();
 
             //Check if HWID is already Registerd
-            if (tokenFromInput == null || tokenFromInput.Trim().IsNullOrEmpty())
+            if (tokenFromInput == null || tokenFromInput.Trim().IsNullOrEmpty() || settingsService.Token.IsNullOrEmpty())
             {
-                if (token != null)
-                {
-                    if ((bool)!token.Enabled!)
-                        throw new TokenException(Language.Resources.TokenVerifyView_Disabled_Ex);
-                    if (token.ExpiryDate < DateTime.Now)
-                        throw new TokenException(Language.Resources.TokenVerifyView_Expired_Ex);
-                    return true; //When HWID is registred and Parameters matches
-                }
+                if (token == null)
+                    throw new TokenException(Language.Resources.TokenVerifyView_Invaild_Ex);
+                if ((bool)!token.Enabled!)
+                    throw new TokenException(Language.Resources.TokenVerifyView_Disabled_Ex);
+                if (token.ExpiryDate < DateTime.Now)
+                    throw new TokenException(Language.Resources.TokenVerifyView_Expired_Ex);
+                settingsService.Token = token.Token!;
+                IsReady = true;
+                return true; //When HWID is registred and Parameters matches
+
             }
 
             token = _tokens.Where(token => token.Token!.Equals(tokenFromInput!.Trim())).FirstOrDefault();
@@ -76,7 +78,10 @@ namespace YoutubeDownloader.Services
                 throw new TokenException(Language.Resources.TokenVerifyView_Disabled_Ex);
 
             if (token.Amount >= 999 && !(bool)token.SystemBind!)
+            {
+                IsReady = true;
                 return true; //Admin Token
+            }
 
             if (token.ExpiryDate < DateTime.Now)
                 throw new TokenException(Language.Resources.TokenVerifyView_Expired_Ex);
@@ -88,10 +93,14 @@ namespace YoutubeDownloader.Services
             if (token.Amount == 0 && !(bool)token.SystemBind!)
                 throw new TokenException(Language.Resources.TokenVerifyView_Amount_Ex);
 
-            if (startUp) //Startup check, to avoid unnessasary subtraction
+            if (startUp)//Startup check, to avoid unnessasary subtraction
+            {
+                IsReady = true;
                 return true;
+            }
 
             await updateDatabase(token!);
+            IsReady = true;
             return true;
         }
 
@@ -128,5 +137,7 @@ namespace YoutubeDownloader.Services
 
             await connection.CloseAsync();
         }
+
+        public bool IsReadyToShowNews() => this.IsReady;
     }
 }

@@ -114,22 +114,18 @@ namespace YoutubeDownloader.ViewModels
             {
                 var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token, _settingsService, true);
                 if (!isVaild.Value)
-                    await ShowTokenVerify();
+                    ShowTokenVerify();
             }
             catch (TokenException ex)
             {
                 var errorDialog = _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.MessageBoxView_Error, ex.Message);
                 await _dialogManager.ShowDialogAsync(errorDialog);
                 _settingsService.Token = string.Empty;
-                await ShowTokenVerify();
+                ShowTokenVerify();
             }
 
-            if (_settingsService.CurrentVersion == null || _settingsService.CurrentVersion < App.Version)
-            {
-                _settingsService.CurrentVersion = App.Version;
-                var news = _viewModelFactory.CreateMessageBoxViewModel($"News - v" + App.VersionString, Language.Resources.News);
-                await _dialogManager.ShowDialogAsync(news);
-            }
+            if(_tokenService.IsReadyToShowNews())
+                ShowNews();
         }
 
         protected override void OnClose()
@@ -153,7 +149,17 @@ namespace YoutubeDownloader.ViewModels
             await _dialogManager.ShowDialogAsync(dialog);
         }
 
-        public async Task ShowTokenVerify()
+        public async void ShowNews()
+        {
+            if (_settingsService.CurrentVersion == null || _settingsService.CurrentVersion < App.Version)
+            {
+                _settingsService.CurrentVersion = App.Version;
+                var dialog = _viewModelFactory.CreateMessageBoxViewModel($"News - v" + App.VersionString, Language.Resources.News);
+                await _dialogManager.ShowDialogAsync(dialog);
+            }
+        }
+
+        public async void ShowTokenVerify()
         {
             var dialog = _viewModelFactory.CreateTokenVerifyViewModel();
             await _dialogManager.ShowDialogAsync(dialog, true);

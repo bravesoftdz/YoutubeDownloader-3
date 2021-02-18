@@ -39,7 +39,8 @@ namespace YoutubeDownloader.Services
         public SettingsService()
         {
             Configuration.StorageSpace = StorageSpace.Instance;
-            Configuration.SubDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\YoutubeDownloader";
+            Configuration.SubDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                                             "\\YoutubeDownloader";
             Configuration.FileName = "Settings.dat";
         }
     }

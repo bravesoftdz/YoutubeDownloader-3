@@ -34,9 +34,9 @@ namespace YoutubeDownloader.ViewModels.Framework
 
                 dialogScreen.Closed += OnScreenClosed;
             }
+
             if (cancelVerify)
             {
-
                 void OnDialogClosing(object closeSender, DialogClosingEventArgs closeArgs)
                 {
                     if (!TokenVerifyViewModel.VerifyTask)

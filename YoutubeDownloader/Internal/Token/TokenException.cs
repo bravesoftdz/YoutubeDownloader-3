@@ -4,7 +4,6 @@ namespace YoutubeDownloader.Internal.Token
 {
     class TokenException : Exception
     {
-
         public TokenException()
         {
         }

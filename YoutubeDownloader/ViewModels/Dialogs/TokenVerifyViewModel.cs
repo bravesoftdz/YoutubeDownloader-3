@@ -19,7 +19,8 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             set => _settingsService.Token = value;
         }
 
-        public TokenVerifyViewModel(SettingsService settingsService, IViewModelFactory viewModelFactory, DialogManager dialogManager, TokenService tokenService)
+        public TokenVerifyViewModel(SettingsService settingsService, IViewModelFactory viewModelFactory,
+            DialogManager dialogManager, TokenService tokenService)
         {
             _settingsService = settingsService;
             _viewModelFactory = viewModelFactory;
@@ -33,32 +34,34 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             try
             {
                 var isVaild = await _tokenService.IsTokenVaild(Token, _settingsService, false);
-                if (isVaild.Value)
+                if (isVaild!.Value)
                 {
                     Close();
-                    var errorDialog = _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.TokenVerifyView_Activated_Text, Language.Resources.TokenVerifyView_Activated_Desc);
+                    var errorDialog = _viewModelFactory.CreateMessageBoxViewModel(
+                        Language.Resources.TokenVerifyView_Activated_Text,
+                        Language.Resources.TokenVerifyView_Activated_Desc);
                     await _dialogManager.ShowDialogAsync(errorDialog, true);
 
                     if (_settingsService.CurrentVersion == null || _settingsService.CurrentVersion < App.Version)
                     {
                         _settingsService.CurrentVersion = App.Version;
-                        var dialog = _viewModelFactory.CreateMessageBoxViewModel($"News - v" + App.VersionString, Language.Resources.News);
+                        var dialog = _viewModelFactory.CreateMessageBoxViewModel($"News - v" + App.VersionString,
+                            Language.Resources.News);
                         await _dialogManager.ShowDialogAsync(dialog);
                     }
                 }
-
             }
             catch (TokenException ex)
             {
                 Close();
-                var errorDialog = _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.MessageBoxView_Error, ex.Message);
+                var errorDialog =
+                    _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.MessageBoxView_Error, ex.Message);
                 await _dialogManager.ShowDialogAsync(errorDialog, true);
 
                 _settingsService.Token = string.Empty;
 
                 var verifyDialog = _viewModelFactory.CreateTokenVerifyViewModel();
                 await _dialogManager.ShowDialogAsync(verifyDialog, true);
-
             }
         }
     }

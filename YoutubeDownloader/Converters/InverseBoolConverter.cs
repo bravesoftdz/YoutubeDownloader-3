@@ -25,5 +25,4 @@ namespace YoutubeDownloader.Converters
             return default(bool);
         }
     }
-
 }

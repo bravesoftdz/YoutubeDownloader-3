@@ -18,10 +18,12 @@ namespace YoutubeDownloader.Internal.HWID
 
             foreach (var o in managCollec)
             {
-                var managObj = (ManagementObject)o;
-                windowsInfo = managObj.Properties["Caption"].Value + Environment.UserName + (string)managObj.Properties["Version"].Value;
+                var managObj = (ManagementObject) o;
+                windowsInfo = managObj.Properties["Caption"].Value + Environment.UserName +
+                              (string) managObj.Properties["Version"].Value;
                 break;
             }
+
             windowsInfo = windowsInfo.Replace(" ", "");
             windowsInfo = windowsInfo.Replace("Windows", "");
             windowsInfo = windowsInfo.Replace("windows", "");

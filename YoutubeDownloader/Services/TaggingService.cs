@@ -13,9 +13,9 @@ namespace YoutubeDownloader.Services
 {
     public class TaggingService
     {
-        private readonly HttpClient _httpClient = new ();
+        private readonly HttpClient _httpClient = new();
 
-        private readonly SemaphoreSlim _requestRateSemaphore = new (1, 1);
+        private readonly SemaphoreSlim _requestRateSemaphore = new(1, 1);
         private DateTimeOffset _lastRequestInstant = DateTimeOffset.MinValue;
 
         public TaggingService()
@@ -62,7 +62,8 @@ namespace YoutubeDownloader.Services
                 // 4 requests per second
                 await MaintainRateLimitAsync(TimeSpan.FromSeconds(1.0 / 4), cancellationToken);
 
-                using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+                using var response =
+                    await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
 
                 if (!response.IsSuccessStatusCode)
                     return null;
@@ -121,7 +122,7 @@ namespace YoutubeDownloader.Services
             videoTitle = videoTitle.Replace("(animated video)", "", StringComparison.OrdinalIgnoreCase);
 
             // Split by common artist/title separator characters
-            var split = videoTitle.Split(new[] { " - ", " ~ ", " — ", " – " }, StringSplitOptions.RemoveEmptyEntries);
+            var split = videoTitle.Split(new[] {" - ", " ~ ", " — ", " – "}, StringSplitOptions.RemoveEmptyEntries);
 
             // Extract artist and title
             if (split.Length >= 2)
@@ -152,12 +153,12 @@ namespace YoutubeDownloader.Services
 
             var file = File.Create(filePath);
 
-            var appleTag = (AppleTag)file.GetTag(TagTypes.Apple);
+            var appleTag = (AppleTag) file.GetTag(TagTypes.Apple);
             appleTag.SetDashBox("Upload Date", "    Upload Date", video.UploadDate.ToString("yyyy-MM-dd"));
             appleTag.SetDashBox("Channel", "    Channel", video.Author);
 
             file.Tag.Pictures = picture != null
-                ? new[] { picture }
+                ? new[] {picture}
                 : Array.Empty<IPicture>();
 
             file.Save();
@@ -181,12 +182,12 @@ namespace YoutubeDownloader.Services
 
             var file = File.Create(filePath);
 
-            file.Tag.Performers = new[] { resolvedArtist ?? artist ?? "" };
+            file.Tag.Performers = new[] {resolvedArtist ?? artist ?? ""};
             file.Tag.Title = resolvedTitle ?? title ?? "";
             file.Tag.Album = resolvedAlbumName ?? "";
 
             file.Tag.Pictures = picture != null
-                ? new[] { picture }
+                ? new[] {picture}
                 : Array.Empty<IPicture>();
 
             file.Save();

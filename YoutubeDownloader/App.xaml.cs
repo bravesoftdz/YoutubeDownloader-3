@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Globalization;
 using System.Reflection;
 using System.Windows.Media;
@@ -23,7 +22,6 @@ namespace YoutubeDownloader
 
     public partial class App
     {
-
         private static Theme LightTheme { get; } = Theme.Create(
             new MaterialDesignLightTheme(),
             MediaColor.FromHex("#343838"),
@@ -58,7 +56,7 @@ namespace YoutubeDownloader
 
         public static void SetLanguageDictionary()
         {
-            switch(CultureInfo.CurrentUICulture.Name)
+            switch (CultureInfo.CurrentUICulture.Name)
             {
                 case "de-DE":
                     Language.Resources.Culture = new CultureInfo("de-DE");

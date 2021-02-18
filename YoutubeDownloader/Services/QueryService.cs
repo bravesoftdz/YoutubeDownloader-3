@@ -12,7 +12,7 @@ namespace YoutubeDownloader.Services
 {
     public partial class QueryService
     {
-        private readonly YoutubeClient _youtube = new ();
+        private readonly YoutubeClient _youtube = new();
 
         public Query ParseQuery(string query)
         {
@@ -62,7 +62,7 @@ namespace YoutubeDownloader.Services
             {
                 var video = await _youtube.Videos.GetAsync(query.Value);
 
-                return new ExecutedQuery(query, video.Title, new[] { video });
+                return new ExecutedQuery(query, video.Title, new[] {video});
             }
 
             // Playlist
@@ -100,7 +100,8 @@ namespace YoutubeDownloader.Services
                 return new ExecutedQuery(query, Language.Resources.MessageBoxView_Search + $"'{query.Value}'", videos);
             }
 
-            throw new ArgumentException(Language.Resources.MessageBoxView_Not_Found.Replace("%", $"'{query}'") + ".", nameof(query));
+            throw new ArgumentException(Language.Resources.MessageBoxView_Not_Found.Replace("%", $"'{query}'") + ".",
+                nameof(query));
         }
 
         public async Task<IReadOnlyList<ExecutedQuery>> ExecuteQueriesAsync(

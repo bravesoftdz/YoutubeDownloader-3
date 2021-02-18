@@ -15,14 +15,18 @@ namespace YoutubeDownloader.Services
     {
         private readonly HttpClient _httpClient = new();
         private List<TokenEx> _tokens = new List<TokenEx>();
-        private string connectionString = "Server=95.156.227.125;User ID=ytclient;Password=YTDL-2021;Database=YTDL_TOKENS";
+
+        private string connectionString =
+            "Server=95.156.227.125;User ID=ytclient;Password=YTDL-2021;Database=YTDL_TOKENS";
+
         private bool IsReady { get; set; } = false;
 
 
         public TokenService()
         {
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"{App.Name} ({App.GitHubProjectUrl})");
-            _httpClient.DefaultRequestHeaders.Add("User-Agent", "YoutubeDownloader (github.com/derech1e/YoutubeDownloader)");
+            _httpClient.DefaultRequestHeaders.Add("User-Agent",
+                "YoutubeDownloader (github.com/derech1e/YoutubeDownloader)");
             _httpClient.DefaultRequestHeaders.Add("Authorization", "token 448d39603553439c25adb24e11ed666bb5724e17");
         }
 
@@ -37,7 +41,9 @@ namespace YoutubeDownloader.Services
             using var command = new MySqlCommand("SELECT * FROM Tokens;", connection);
             using var reader = command.ExecuteReader();
             while (await reader.ReadAsync())
-                _tokens.Add(new TokenEx(reader.GetInt16(0), reader.GetInt16(2) != 0, reader.GetInt32(3), reader.GetString(4), await reader.IsDBNullAsync(5) ? DateTime.MaxValue : reader.GetDateTime(5), await reader.IsDBNullAsync(6) ? string.Empty : reader.GetString(6), reader.GetInt16(7) != 0));
+                _tokens.Add(new TokenEx(reader.GetInt16(0), reader.GetInt16(2) != 0, reader.GetInt32(3),
+                    reader.GetString(4), await reader.IsDBNullAsync(5) ? DateTime.MaxValue : reader.GetDateTime(5),
+                    await reader.IsDBNullAsync(6) ? string.Empty : reader.GetString(6), reader.GetInt16(7) != 0));
 
             await connection.CloseAsync();
         }
@@ -52,21 +58,22 @@ namespace YoutubeDownloader.Services
             {
                 return !settingsService.Token.IsNullOrEmpty();
             }
+
             TokenEx? token = _tokens.Where(token => token.HWID!.Equals(HWIDGenerator.UID)).FirstOrDefault();
 
             //Check if HWID is already Registerd
-            if (tokenFromInput == null || tokenFromInput.Trim().IsNullOrEmpty() || settingsService.Token.IsNullOrEmpty())
+            if (tokenFromInput == null || tokenFromInput.Trim().IsNullOrEmpty() ||
+                settingsService.Token.IsNullOrEmpty())
             {
                 if (token == null)
                     throw new TokenException(Language.Resources.TokenVerifyView_Invaild_Ex);
-                if ((bool)!token.Enabled!)
+                if ((bool) !token.Enabled!)
                     throw new TokenException(Language.Resources.TokenVerifyView_Disabled_Ex);
                 if (token.ExpiryDate < DateTime.Now)
                     throw new TokenException(Language.Resources.TokenVerifyView_Expired_Ex);
                 settingsService.Token = token.Token!;
                 IsReady = true;
                 return true; //When HWID is registred and Parameters matches
-
             }
 
             token = _tokens.Where(token => token.Token!.Equals(tokenFromInput!.Trim())).FirstOrDefault();
@@ -74,10 +81,10 @@ namespace YoutubeDownloader.Services
             if (token == null)
                 throw new TokenException(Language.Resources.TokenVerifyView_Invaild_Ex);
 
-            if (!(bool)token.Enabled!)
+            if (!(bool) token.Enabled!)
                 throw new TokenException(Language.Resources.TokenVerifyView_Disabled_Ex);
 
-            if (token.Amount >= 999 && !(bool)token.SystemBind!)
+            if (token.Amount >= 999 && !(bool) token.SystemBind!)
             {
                 IsReady = true;
                 return true; //Admin Token
@@ -86,14 +93,14 @@ namespace YoutubeDownloader.Services
             if (token.ExpiryDate < DateTime.Now)
                 throw new TokenException(Language.Resources.TokenVerifyView_Expired_Ex);
 
-            if (token.Amount == 0 && (bool)token.SystemBind!)
+            if (token.Amount == 0 && (bool) token.SystemBind!)
                 if (token.HWID != HWIDGenerator.UID)
                     throw new TokenException(Language.Resources.TokenVerifyView_Amount_Ex);
 
-            if (token.Amount == 0 && !(bool)token.SystemBind!)
+            if (token.Amount == 0 && !(bool) token.SystemBind!)
                 throw new TokenException(Language.Resources.TokenVerifyView_Amount_Ex);
 
-            if (startUp)//Startup check, to avoid unnessasary subtraction
+            if (startUp) //Startup check, to avoid unnessasary subtraction
             {
                 IsReady = true;
                 return true;
@@ -113,16 +120,17 @@ namespace YoutubeDownloader.Services
             if (connection.State != System.Data.ConnectionState.Open)
                 throw new TokenException(Language.Resources.TokenVerifyView_NoConnection_Ex);
 
-            if ((tokenEx.Amount >= 999 && !(bool)tokenEx.SystemBind!) || tokenEx.Amount <= 0)
+            if ((tokenEx.Amount >= 999 && !(bool) tokenEx.SystemBind!) || tokenEx.Amount <= 0)
                 return;
 
             // Insert some data
             using (var cmd = new MySqlCommand())
             {
                 cmd.Connection = connection;
-                if ((bool)tokenEx.SystemBind!)
+                if ((bool) tokenEx.SystemBind!)
                 {
-                    cmd.CommandText = "UPDATE `YTDL_TOKENS`.`Tokens` SET `Amount`=@amount, `HWID`=@hwid WHERE  `id`=@id;";
+                    cmd.CommandText =
+                        "UPDATE `YTDL_TOKENS`.`Tokens` SET `Amount`=@amount, `HWID`=@hwid WHERE  `id`=@id;";
                     cmd.Parameters.AddWithValue("hwid", HWIDGenerator.UID);
                     cmd.Parameters.AddWithValue("amount", 0);
                 }
@@ -131,6 +139,7 @@ namespace YoutubeDownloader.Services
                     cmd.CommandText = "UPDATE `YTDL_TOKENS`.`Tokens` SET `Amount`=@amount WHERE  `id`=@id;";
                     cmd.Parameters.AddWithValue("amount", (tokenEx.Amount - 1));
                 }
+
                 cmd.Parameters.AddWithValue("id", tokenEx.ID);
                 await cmd.ExecuteNonQueryAsync();
             }

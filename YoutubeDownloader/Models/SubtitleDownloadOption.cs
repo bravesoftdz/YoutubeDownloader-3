@@ -31,7 +31,7 @@ namespace YoutubeDownloader.Models
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != GetType()) return false;
 
-            return Equals((SubtitleDownloadOption)obj);
+            return Equals((SubtitleDownloadOption) obj);
         }
 
         public override int GetHashCode() => StringComparer.Ordinal.GetHashCode(TrackInfo.Url);

@@ -10,7 +10,8 @@ namespace YoutubeDownloader.Internal
 
         private static string AuthorToken { get; } = Language.Resources.SettingsView_FileNameTemplate_Desc_Var_author;
 
-        private static string UploadDateToken { get; } = Language.Resources.SettingsView_FileNameTemplate_Desc_Var_uploadDate;
+        private static string UploadDateToken { get; } =
+            Language.Resources.SettingsView_FileNameTemplate_Desc_Var_uploadDate;
 
         private static string LengthToken { get; } = Language.Resources.SettingsView_FileNameTemplate_Desc_Var_length;
 

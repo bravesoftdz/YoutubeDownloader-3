@@ -7,7 +7,8 @@ namespace YoutubeDownloader.Internal
     internal static class PathEx
     {
         public static string EscapeFileName(string fileName) =>
-            Path.GetInvalidFileNameChars().Aggregate(fileName, (current, invalidChar) => current.Replace(invalidChar, '_'));
+            Path.GetInvalidFileNameChars()
+                .Aggregate(fileName, (current, invalidChar) => current.Replace(invalidChar, '_'));
 
         public static string MakeUniqueFilePath(string baseFilePath, int maxAttempts = 100)
         {

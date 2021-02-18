@@ -21,7 +21,8 @@ namespace YoutubeDownloader.Views
 
                 // We handle the event here so we have to directly "press" the default button
                 AccessKeyManager.ProcessKey(null, "\x000D", false);
-            } else if(e.Key == Key.Delete && e.KeyboardDevice.Modifiers != ModifierKeys.Shift)
+            }
+            else if (e.Key == Key.Delete && e.KeyboardDevice.Modifiers != ModifierKeys.Shift)
             {
                 QueryTextBox.Clear();
             }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Gress;
@@ -7,6 +8,7 @@ using Stylet;
 using Tyrrrz.Extensions;
 using YoutubeDownloader.Internal.Extensions;
 using YoutubeDownloader.Internal.Token;
+using YoutubeDownloader.Language;
 using YoutubeDownloader.Models;
 using YoutubeDownloader.Services;
 using YoutubeDownloader.ViewModels.Components;
@@ -18,25 +20,13 @@ namespace YoutubeDownloader.ViewModels
 {
     public class RootViewModel : Screen
     {
-        private readonly IViewModelFactory _viewModelFactory;
         private readonly DialogManager _dialogManager;
-        private readonly SettingsService _settingsService;
-        private readonly UpdateService _updateService;
-        private readonly QueryService _queryService;
         private readonly DownloadService _downloadService;
+        private readonly QueryService _queryService;
+        private readonly SettingsService _settingsService;
         private readonly TokenService _tokenService;
-
-        public ISnackbarMessageQueue Notifications { get; } = new SnackbarMessageQueue(TimeSpan.FromSeconds(5));
-
-        public IProgressManager ProgressManager { get; } = new ProgressManager();
-
-        public bool IsBusy { get; private set; }
-
-        public bool IsProgressIndeterminate { get; private set; }
-
-        public string? Query { get; set; }
-
-        public BindableCollection<DownloadViewModel> Downloads { get; } = new();
+        private readonly UpdateService _updateService;
+        private readonly IViewModelFactory _viewModelFactory;
 
         public RootViewModel(IViewModelFactory viewModelFactory, DialogManager dialogManager,
             SettingsService settingsService, UpdateService updateService, QueryService queryService,
@@ -55,7 +45,7 @@ namespace YoutubeDownloader.ViewModels
 
             // Update busy state when progress manager changes
             ProgressManager.Bind(o => o.IsActive,
-                 (_, _) => IsProgressIndeterminate =
+                (_, _) => IsProgressIndeterminate =
                     ProgressManager.IsActive && ProgressManager.Progress.IsEither(0, 1)
             );
             ProgressManager.Bind(o => o.Progress,
@@ -63,6 +53,24 @@ namespace YoutubeDownloader.ViewModels
                     ProgressManager.IsActive && ProgressManager.Progress.IsEither(0, 1)
             );
         }
+
+        public ISnackbarMessageQueue Notifications { get; } = new SnackbarMessageQueue(TimeSpan.FromSeconds(5));
+
+        public IProgressManager ProgressManager { get; } = new ProgressManager();
+
+        public bool IsBusy { get; private set; }
+
+        public bool IsProgressIndeterminate { get; private set; }
+
+        public string? Query { get; set; }
+
+        public BindableCollection<DownloadViewModel> Downloads { get; } = new();
+
+        public bool CanShowSettings => !IsBusy;
+
+        public bool CanProcessQuery => !IsBusy && !string.IsNullOrWhiteSpace(Query);
+
+        public string QueryContainsContent => CanProcessQuery ? "Visible" : "Collapsed";
 
         private async Task CheckForUpdatesAsync()
         {
@@ -74,13 +82,13 @@ namespace YoutubeDownloader.ViewModels
                     return;
 
                 // Notify user of an update and prepare it
-                Notifications.Enqueue(Language.Resources.Update_Desc_1.Replace("%", $"{App.Name} v{updateVersion}"));
+                Notifications.Enqueue(Resources.Update_Desc_1.Replace("%", $"{App.Name} v{updateVersion}"));
                 await _updateService.PrepareUpdateAsync(updateVersion);
 
                 // Prompt user to install update (otherwise install it when application exits)
                 Notifications.Enqueue(
-                    Language.Resources.Update_Desc_2,
-                    Language.Resources.Update_Button, () =>
+                    Resources.Update_Desc_2,
+                    Resources.Update_Button, () =>
                     {
                         _updateService.FinalizeUpdate(true);
                         RequestClose();
@@ -89,7 +97,7 @@ namespace YoutubeDownloader.ViewModels
             catch
             {
                 // Failure to update shouldn't crash the application
-                Notifications.Enqueue(Language.Resources.Update_Error_Desc);
+                Notifications.Enqueue(Resources.Update_Error_Desc);
             }
         }
 
@@ -100,31 +108,28 @@ namespace YoutubeDownloader.ViewModels
             _settingsService.Load();
 
             if (_settingsService.IsDarkModeEnabled)
-            {
                 App.SetDarkTheme();
-            }
             else
-            {
                 App.SetLightTheme();
-            }
 
             await CheckForUpdatesAsync();
 
             try
             {
                 var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token, _settingsService, true);
-                if (!isVaild.Value)
+                if (!isVaild!.Value)
                     ShowTokenVerify();
             }
             catch (TokenException ex)
             {
-                var errorDialog = _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.MessageBoxView_Error, ex.Message);
+                var errorDialog =
+                    _viewModelFactory.CreateMessageBoxViewModel(Resources.MessageBoxView_Error, ex.Message);
                 await _dialogManager.ShowDialogAsync(errorDialog);
                 _settingsService.Token = string.Empty;
                 ShowTokenVerify();
             }
 
-            if(_tokenService.IsReadyToShowNews())
+            if (_tokenService.IsReadyToShowNews())
                 ShowNews();
         }
 
@@ -141,8 +146,6 @@ namespace YoutubeDownloader.ViewModels
             _updateService.FinalizeUpdate(false);
         }
 
-        public bool CanShowSettings => !IsBusy;
-
         public async void ShowSettings()
         {
             var dialog = _viewModelFactory.CreateSettingsViewModel();
@@ -154,7 +157,9 @@ namespace YoutubeDownloader.ViewModels
             if (_settingsService.CurrentVersion == null || _settingsService.CurrentVersion < App.Version)
             {
                 _settingsService.CurrentVersion = App.Version;
-                var dialog = _viewModelFactory.CreateMessageBoxViewModel($"News - v" + App.VersionString, Language.Resources.News);
+                var dialog =
+                    _viewModelFactory.CreateMessageBoxViewModel("News - v" + App.VersionString,
+                        Resources.News);
                 await _dialogManager.ShowDialogAsync(dialog);
             }
         }
@@ -182,12 +187,11 @@ namespace YoutubeDownloader.ViewModels
             Downloads.Insert(0, download);
         }
 
-        public bool CanProcessQuery => !IsBusy && !string.IsNullOrWhiteSpace(Query);
+        public void DeleteQuery()
+        {
+            Query = string.Empty;
+        }
 
-        public string QueryContainsContent => CanProcessQuery ? "Visible" : "Collapsed";
-
-        public void DeleteQuery() => Query = string.Empty;
-        
         public async void ProcessQuery()
         {
             //Small operation weight to not offset any existing download operations
@@ -204,15 +208,16 @@ namespace YoutubeDownloader.ViewModels
 
                 var dialogTitle = executedQueries.Count == 1
                     ? executedQueries.Single().Title
-                    : Language.Resources.MultipleDownloads_Text;
+                    : Resources.MultipleDownloads_Text;
 
                 // No videos found
                 if (videos.Length <= 0)
                 {
                     var dialog = _viewModelFactory.CreateMessageBoxViewModel(
-                        Language.Resources.Download_Nothing_Found_1,
-                        Language.Resources.Download_Nothing_Found_2
-                    ); ;
+                        Resources.Download_Nothing_Found_1,
+                        Resources.Download_Nothing_Found_2
+                    );
+                    ;
                     await _dialogManager.ShowDialogAsync(dialog);
                 }
 
@@ -263,7 +268,7 @@ namespace YoutubeDownloader.ViewModels
             catch (Exception ex)
             {
                 var dialog = _viewModelFactory.CreateMessageBoxViewModel(
-                    Language.Resources.MessageBoxView_Error,
+                    Resources.MessageBoxView_Error,
                     // Short error message for expected errors, full for unexpected
                     ex is YoutubeExplodeException
                         ? ex.Message
@@ -285,11 +290,15 @@ namespace YoutubeDownloader.ViewModels
             Downloads.Remove(download);
         }
 
-        public void RemoveInactiveDownloads() =>
+        public void RemoveInactiveDownloads()
+        {
             Downloads.RemoveWhere(d => !d.IsActive);
+        }
 
-        public void RemoveSuccessfulDownloads() =>
+        public void RemoveSuccessfulDownloads()
+        {
             Downloads.RemoveWhere(d => d.IsSuccessful);
+        }
 
         public void RestartFailedDownloads()
         {

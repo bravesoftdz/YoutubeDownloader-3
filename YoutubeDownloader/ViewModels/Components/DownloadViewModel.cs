@@ -94,7 +94,8 @@ namespace YoutubeDownloader.ViewModels.Components
 
                     // It's possible that video has no streams
                     if (VideoOption == null)
-                        throw new InvalidOperationException(Language.Resources.Download_Nothing_Found_3.Replace("%", $"'{Video.Id}'"));
+                        throw new InvalidOperationException(
+                            Language.Resources.Download_Nothing_Found_3.Replace("%", $"'{Video.Id}'"));
 
                     await _downloadService.DownloadAsync(
                         VideoOption,
@@ -116,7 +117,7 @@ namespace YoutubeDownloader.ViewModels.Components
 
                     IsSuccessful = true;
                     _settingsService.VideoDownloads++;
-                    _settingsService.VideoDownloadsLength += (long)Video.Duration.TotalMilliseconds;
+                    _settingsService.VideoDownloadsLength += (long) Video.Duration.TotalMilliseconds;
                 }
                 catch (OperationCanceledException)
                 {
@@ -164,7 +165,8 @@ namespace YoutubeDownloader.ViewModels.Components
             }
             catch (Exception ex)
             {
-                var dialog = _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.MessageBoxView_Error, ex.Message);
+                var dialog =
+                    _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.MessageBoxView_Error, ex.Message);
                 await _dialogManager.ShowDialogAsync(dialog);
             }
         }
@@ -182,7 +184,8 @@ namespace YoutubeDownloader.ViewModels.Components
             }
             catch (Exception ex)
             {
-                var dialog = _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.MessageBoxView_Error, ex.Message);
+                var dialog =
+                    _viewModelFactory.CreateMessageBoxViewModel(Language.Resources.MessageBoxView_Error, ex.Message);
                 await _dialogManager.ShowDialogAsync(dialog);
             }
         }

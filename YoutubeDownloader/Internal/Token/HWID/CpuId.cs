@@ -5,7 +5,6 @@ namespace YoutubeDownloader.Internal.HWID
 {
     internal static class CpuId
     {
-
         [DllImport("user32", EntryPoint = "CallWindowProcW", CharSet = CharSet.Unicode, SetLastError = true,
             ExactSpelling = true)]
         private static extern IntPtr CallWindowProcW([In] byte[] bytes, IntPtr hWnd, int msg, [In, Out] byte[] wParam,
@@ -21,7 +20,9 @@ namespace YoutubeDownloader.Internal.HWID
         {
             var sn = new byte[8];
 
-            return !ExecuteCode(ref sn) ? "ND" : string.Format("{0:X8}{1:X8}", BitConverter.ToUInt32(sn, 4), BitConverter.ToUInt32(sn, 0));
+            return !ExecuteCode(ref sn)
+                ? "ND"
+                : string.Format("{0:X8}{1:X8}", BitConverter.ToUInt32(sn, 4), BitConverter.ToUInt32(sn, 0));
         }
 
         private static bool ExecuteCode(ref byte[] result)
@@ -76,7 +77,6 @@ namespace YoutubeDownloader.Internal.HWID
 
             ptr = new IntPtr(result.Length);
             return CallWindowProcW(code, IntPtr.Zero, 0, result, ptr) != IntPtr.Zero;
-
         }
     }
 }

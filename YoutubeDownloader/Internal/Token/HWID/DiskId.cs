@@ -9,6 +9,7 @@ namespace YoutubeDownloader.Internal.HWID
         {
             return GetDiskId("");
         }
+
         private static string GetDiskId(string diskLetter)
         {
             //Find first drive
@@ -23,11 +24,13 @@ namespace YoutubeDownloader.Internal.HWID
                     }
                 }
             }
+
             if (!string.IsNullOrEmpty(diskLetter) && diskLetter.EndsWith(":\\"))
             {
                 //C:\ -> C
                 diskLetter = diskLetter.Substring(0, diskLetter.Length - 2);
             }
+
             var disk = new ManagementObject(@"win32_logicaldisk.deviceid=""" + diskLetter + @":""");
             disk.Get();
 

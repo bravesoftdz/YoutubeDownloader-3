@@ -1,13 +1,13 @@
 ﻿<Project>
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>1.5.1</Version>
-    <Company>Thomas Nürk</Company>
-    <Copyright>Copyright (C) Thomas Nürk</Copyright>
-    <LangVersion>preview</LangVersion>
-    <Nullable>enable</Nullable>
-    <WarningsAsErrors>nullable</WarningsAsErrors>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <Version>1.5.1</Version>
+        <Company>Thomas Nürk</Company>
+        <Copyright>Copyright (C) Thomas Nürk</Copyright>
+        <LangVersion>preview</LangVersion>
+        <Nullable>enable</Nullable>
+        <WarningsAsErrors>nullable</WarningsAsErrors>
+    </PropertyGroup>
 
 </Project>

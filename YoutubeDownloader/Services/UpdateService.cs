@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Onova;
@@ -25,8 +26,9 @@ namespace YoutubeDownloader.Services
         {
             _settingsService = settingsService;
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"{App.Name} ({App.GitHubProjectUrl})");
-            _httpClient.DefaultRequestHeaders.Add("User-Agent", "YoutubeDownloader (github.com/derech1e/YoutubeDownloader)");
-            _httpClient.DefaultRequestHeaders.Add("Authorization", "token 448d39603553439c25adb24e11ed666bb5724e17");
+            _httpClient.DefaultRequestHeaders.Add("User-Agent",
+                "YoutubeDownloader (github.com/derech1e/YoutubeDownloader)");
+            _httpClient.DefaultRequestHeaders.Add("Authorization", "token 9113f495aa0e501f27cfefcdf8b6b3cee10d578b");
         }
 
         public async Task<Version?> CheckForUpdatesAsync()
@@ -34,8 +36,18 @@ namespace YoutubeDownloader.Services
             if (!_settingsService.IsAutoUpdateEnabled)
                 return null;
 
-            var check = await _updateManager.CheckForUpdatesAsync();
-            return check.CanUpdate ? check.LastVersion : null;
+
+            try
+            {
+                var check = await _updateManager.CheckForUpdatesAsync();
+                return check.CanUpdate ? check.LastVersion : null;
+            }
+            catch
+            {
+                _httpClient.DefaultRequestHeaders.Remove("Authorization");
+                var check = await _updateManager.CheckForUpdatesAsync();
+                return check.CanUpdate ? check.LastVersion : null;
+            }
         }
 
         public async Task PrepareUpdateAsync(Version version)

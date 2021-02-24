@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Catel.Extensions.Controls" Version="4.5.4" />
-    <PackageReference Include="GitHubActionsTestLogger" Version="1.1.2" />
+    <PackageReference Include="GitHubActionsTestLogger" Version="1.2.0" />
     <PackageReference Include="Gress" Version="1.2.0" />
     <PackageReference Include="Gu.Localization" Version="6.7.0" />
     <PackageReference Include="MaterialDesignThemes" Version="3.0.1" />

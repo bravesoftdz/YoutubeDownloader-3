@@ -29,15 +29,15 @@ jobs:
     - name: Build & publish
       run: dotnet publish YoutubeDownloader/ -o YoutubeDownloader/bin/Publish --configuration Release
 
-    - name: Pack
-      run: Compress-Archive -Path YoutubeDownloader/bin/Publish/* -DestinationPath YoutubeDownloader/bin/Publish/Archive.zip -Force
-      shell: pwsh
-
     - name: Create installer
       run: |
-        choco install innosetup --no-progress
+        choco install innosetup
         Copy-Item -Path YoutubeDownloader/bin/Publish/ -Recurse -Destination Installer/Source/
         & "c:\Program Files (x86)\Inno Setup 6\ISCC.exe" Installer/Installer.iss
+      shell: pwsh
+      
+    - name: Pack
+      run: Compress-Archive -Path YoutubeDownloader/bin/Publish/* -DestinationPath YoutubeDownloader/bin/Publish/Archive.zip -Force
       shell: pwsh
 
     - name: Upload build artifacts

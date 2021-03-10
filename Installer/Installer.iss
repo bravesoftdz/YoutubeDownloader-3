@@ -33,7 +33,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: ".installed"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\License.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Source\*"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Source\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 Source: "Install-Dotnet.ps1"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]

@@ -5,7 +5,7 @@
 AppId={{5A9BE5B6-CE10-45E2-AC95-68524D1109E5}
 AppName={#AppName}
 AppVersion={#AppVersion}
-AppVerName={#AppName}
+AppVerName={#AppName} {#AppVersion}
 AppPublisher="Thomas Nuerk"
 AppPublisherURL="https://github.com/derech1e/YoutubeDownloader"
 AppSupportURL="https://github.com/derech1e/YoutubeDownloader/issues"
@@ -25,10 +25,6 @@ OutputBaseFilename=YoutubeDownloader-Installer
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
-Name: "german"; MessagesFile: "compiler:Languages\German.isl"
-
-[Tasks]
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
 Source: ".installed"; DestDir: "{app}"; Flags: ignoreversion

@@ -36,7 +36,6 @@ Source: "Install-Dotnet.ps1"; DestDir: "{app}"; Flags: ignoreversion
 Name: "{group}\{#AppName}"; Filename: "{app}\YoutubeDownloader.exe"
 Name: "{group}\{cm:UninstallProgram,{#AppName}}"; Filename: "{uninstallexe}"
 Name: "{group}\{#AppName} on Github"; Filename: "https://github.com/derech1e/YoutubeDownloader"
-Name: "{autodesktop}\{#AppName}"; Filename: "{app}\YoutubeDownloader.exe"; Tasks: desktopicon
 
 [Registry]
 Root: HKLM; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\ICM"; ValueType: dword; ValueName: "GdiICMGammaRange"; ValueData: "256"

@@ -101,19 +101,24 @@
                     <LineBreak />
                     <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_2}" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_num}" />
+                    <Run FontWeight="SemiBold"
+                         Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_num}" />
                     <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_3}" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_title}" />
+                    <Run FontWeight="SemiBold"
+                         Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_title}" />
                     <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_4}" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_author}" />
+                    <Run FontWeight="SemiBold"
+                         Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_author}" />
                     <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_5}" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_uploadDate}" />
+                    <Run FontWeight="SemiBold"
+                         Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_uploadDate}" />
                     <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_6}" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_length}" />
+                    <Run FontWeight="SemiBold"
+                         Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_length}" />
                     <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_7}" />
                 </TextBlock>
             </TextBox.ToolTip>

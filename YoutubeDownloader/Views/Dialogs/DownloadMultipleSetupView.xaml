@@ -180,8 +180,7 @@
                 <Button.Content>
                     <TextBlock>
                         <Run Text="{x:Static language:Resources.Download_Video_Button_Download}" />
-                        <Run Text="(" /><Run Text="{Binding SelectedVideos.Count, FallbackValue=0, Mode=OneWay}" />
-                        <Run Text=")" />
+                        <Run Text="(" /><Run Text="{Binding SelectedVideos.Count, FallbackValue=0, Mode=OneWay}" /><Run Text=")" />
                     </TextBlock>
                 </Button.Content>
             </Button>

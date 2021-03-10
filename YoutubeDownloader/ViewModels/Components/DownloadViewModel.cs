@@ -93,7 +93,7 @@ namespace YoutubeDownloader.ViewModels.Components
                     );
 
                     // It's possible that video has no streams
-                    if (VideoOption == null)
+                    if (VideoOption is null)
                         throw new InvalidOperationException(
                             Language.Resources.Download_Nothing_Found_3.Replace("%", $"'{Video.Id}'"));
 

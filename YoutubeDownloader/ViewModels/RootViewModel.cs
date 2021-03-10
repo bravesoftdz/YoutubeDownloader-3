@@ -78,7 +78,7 @@ namespace YoutubeDownloader.ViewModels
             {
                 // Check for updates
                 var updateVersion = await _updateService.CheckForUpdatesAsync();
-                if (updateVersion == null)
+                if (updateVersion is null)
                     return;
 
                 // Notify user of an update and prepare it
@@ -154,7 +154,7 @@ namespace YoutubeDownloader.ViewModels
 
         public async void ShowNews()
         {
-            if (_settingsService.CurrentVersion == null || _settingsService.CurrentVersion < App.Version)
+            if (_settingsService.CurrentVersion is null || _settingsService.CurrentVersion < App.Version)
             {
                 _settingsService.CurrentVersion = App.Version;
                 var dialog =
@@ -238,7 +238,7 @@ namespace YoutubeDownloader.ViewModels
 
                     var download = await _dialogManager.ShowDialogAsync(dialog);
 
-                    if (download == null) // generics + NRTs issue
+                    if (download is null) // generics + NRTs issue
                         return;
 
                     EnqueueDownload(download);

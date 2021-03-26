@@ -95,7 +95,7 @@ namespace YoutubeDownloader.ViewModels.Dialogs
                 var filePath = Path.Combine(dirPath, fileName);
 
                 // If file exists or is no empty - either skip it or generate a unique file path, depending on user settings
-                FileInfo fileInfo = new FileInfo(fileName);
+                FileInfo fileInfo = new FileInfo(filePath);
 
                 if (fileInfo.Exists && fileInfo.Length > 0)
                 {

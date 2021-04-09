@@ -24,7 +24,7 @@ namespace YoutubeDownloader.ViewModels.Components
 
         private CancellationTokenSource? _cancellationTokenSource;
 
-        public Video Video { get; set; } = default!;
+        public VideoInformation Video { get; set; } = default!;
 
         public string FilePath { get; set; } = default!;
 
@@ -199,7 +199,7 @@ namespace YoutubeDownloader.ViewModels.Components
     {
         public static DownloadViewModel CreateDownloadViewModel(
             this IViewModelFactory factory,
-            Video video,
+            VideoInformation video,
             string filePath,
             string format,
             VideoDownloadOption videoOption,
@@ -218,7 +218,7 @@ namespace YoutubeDownloader.ViewModels.Components
 
         public static DownloadViewModel CreateDownloadViewModel(
             this IViewModelFactory factory,
-            Video video,
+            VideoInformation video,
             string filePath,
             string format,
             VideoQualityPreference qualityPreference)

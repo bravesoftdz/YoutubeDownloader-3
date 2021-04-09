@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using TagLib;
 using TagLib.Mpeg4;
-using YoutubeExplode.Videos;
+using YoutubeDownloader.Models;
 using File = TagLib.File;
 
 namespace YoutubeDownloader.Services
@@ -79,7 +79,7 @@ namespace YoutubeDownloader.Services
         }
 
         private async Task<IPicture?> TryGetPictureAsync(
-            Video video,
+            VideoInformation video,
             CancellationToken cancellationToken = default)
         {
             try
@@ -145,7 +145,7 @@ namespace YoutubeDownloader.Services
         }
 
         private async Task InjectVideoTagsAsync(
-            Video video,
+            VideoInformation video,
             string filePath,
             CancellationToken cancellationToken = default)
         {
@@ -154,7 +154,7 @@ namespace YoutubeDownloader.Services
             var file = File.Create(filePath);
 
             var appleTag = (AppleTag) file.GetTag(TagTypes.Apple);
-            appleTag.SetDashBox("Upload Date", "    Upload Date", video.UploadDate.ToString("yyyy-MM-dd"));
+            appleTag.SetDashBox("Upload Date", "    Upload Date", video.UploadDate?.ToString("yyyy-MM-dd"));
             appleTag.SetDashBox("Channel", "    Channel", video.Author);
 
             file.Tag.Pictures = picture is not null
@@ -165,7 +165,7 @@ namespace YoutubeDownloader.Services
         }
 
         private async Task InjectAudioTagsAsync(
-            Video video,
+            VideoInformation video,
             string filePath,
             CancellationToken cancellationToken = default)
         {
@@ -194,7 +194,7 @@ namespace YoutubeDownloader.Services
         }
 
         public async Task InjectTagsAsync(
-            Video video,
+            VideoInformation video,
             string format,
             string filePath,
             CancellationToken cancellationToken = default)

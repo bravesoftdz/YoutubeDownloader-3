@@ -28,7 +28,7 @@ namespace YoutubeDownloader.Services
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"{App.Name} ({App.GitHubProjectUrl})");
             _httpClient.DefaultRequestHeaders.Add("User-Agent",
                 "YoutubeDownloader (github.com/derech1e/YoutubeDownloader)");
-            _httpClient.DefaultRequestHeaders.Add("Authorization", "token 9113f495aa0e501f27cfefcdf8b6b3cee10d578b");
+            _httpClient.DefaultRequestHeaders.Add("Authorization", "token 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");
         }
 
         public async Task<Version?> CheckForUpdatesAsync()

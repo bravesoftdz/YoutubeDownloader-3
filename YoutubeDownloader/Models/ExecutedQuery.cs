@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using YoutubeDownloader.Services;
+using YoutubeExplode.Playlists;
 using YoutubeExplode.Videos;
 
 namespace YoutubeDownloader.Models
@@ -9,9 +12,9 @@ namespace YoutubeDownloader.Models
 
         public string Title { get; }
 
-        public IReadOnlyList<Video> Videos { get; }
+        public IReadOnlyList<VideoInformation> Videos { get; }
 
-        public ExecutedQuery(Query query, string title, IReadOnlyList<Video> videos)
+        public ExecutedQuery(Query query, string title, IReadOnlyList<VideoInformation> videos)
         {
             Query = query;
             Title = title;

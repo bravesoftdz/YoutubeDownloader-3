@@ -116,8 +116,8 @@ namespace YoutubeDownloader.ViewModels
 
             try
             {
-                var isVaild = await _tokenService.IsTokenVaild(_settingsService.Token, _settingsService, true);
-                if (!isVaild!.Value)
+                var isTokenValid = await _tokenService.IsTokenValid(_settingsService.Token, _settingsService, true);
+                if (!isTokenValid!.Value)
                     ShowTokenVerify();
             }
             catch (TokenException ex)
@@ -129,7 +129,7 @@ namespace YoutubeDownloader.ViewModels
                 ShowTokenVerify();
             }
 
-            if (_tokenService.IsReadyToShowNews())
+            if (_tokenService.IsReady)
                 ShowNews();
         }
 

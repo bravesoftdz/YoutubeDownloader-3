@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Management;
 
-namespace YoutubeDownloader.Internal.HWID
+namespace YoutubeDownloader.Internal.Token.HWID
 {
     internal class DiskId
     {

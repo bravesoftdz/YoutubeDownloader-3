@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace YoutubeDownloader.Internal.HWID
+namespace YoutubeDownloader.Internal.Token.HWID
 {
     internal static class CpuId
     {

@@ -1,8 +1,8 @@
-﻿namespace YoutubeDownloader.Internal.HWID
+﻿namespace YoutubeDownloader.Internal.Token.HWID
 {
     static class HWIDGenerator
     {
-        public static string UID { get; private set; }
+        public static string UID { get; }
 
 
         static HWIDGenerator()

@@ -38,6 +38,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Language\Resources.de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.de.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

@@ -346,13 +346,9 @@
     <value>Suche löschen (Entf)</value>
   </data>
   <data name="News" xml:space="preserve">
-    <value>+ Entfernen-Knopf des Suchfelds auf Anfrage hinzugefügt
-+ Mehrsprachensystem
-+ News Benachrichtigung 
-
-* Snackbar Farben angepasst (Danke @Nick für die Erinnerung und den Designvorschlag)
-* Probleme im Zusammenhang mit YouTube wurden behoben
-* Fehler mit der Token Überprüfung wurden behoben
-* Performance Verbesserung der UI-Animationen</value>
+    <value>* Verschiedene Probleme im Zusammenhang mit YouTube wurden behoben.
+Hinweis: Es können immernoch Fehler auftreten!
+* Ein Fehler wurde behoben, bei dem die Überprüfung des Token nicht richtig stattfand.
+* Ein Fehler wurde behoben, durch den die aktualisieren der Anwendung nicht mehr funktionierte.</value>
   </data>
 </root>

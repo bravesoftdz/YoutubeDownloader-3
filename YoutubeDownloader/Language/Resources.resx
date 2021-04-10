@@ -346,11 +346,7 @@
     <value>Clear Query Text (Del)</value>
   </data>
   <data name="News" xml:space="preserve">
-    <value>+ Added clear Query Text Button by request
-+ Multilanguagesystem
-
-* Fixed Issues related to Youtube
-* Fixed Issues with the Token verification
-* Updated Snackbar color. Thanks @Nick for the reminder and new design.</value>
+    <value>* Fixed Youtube related errors
+* Improved Token System</value>
   </data>
 </root>

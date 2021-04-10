@@ -21,7 +21,7 @@ namespace YoutubeDownloader.Models
         }
 
         /// <summary>
-        ///     Video ID.
+        ///     Video Id.
         /// </summary>
         public VideoId Id { get; }
 

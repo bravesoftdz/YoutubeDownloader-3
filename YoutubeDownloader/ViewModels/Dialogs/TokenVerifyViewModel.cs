@@ -7,11 +7,11 @@ namespace YoutubeDownloader.ViewModels.Dialogs
 {
     public class TokenVerifyViewModel : DialogScreen
     {
-        public static bool VerifyTask = false;
+        public static bool VerifyTask;
         private readonly SettingsService _settingsService;
         private readonly IViewModelFactory _viewModelFactory;
         private readonly DialogManager _dialogManager;
-        private TokenService _tokenService;
+        private readonly TokenService _tokenService;
 
         public string Token
         {
@@ -33,8 +33,8 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             VerifyTask = true;
             try
             {
-                var isVaild = await _tokenService.IsTokenVaild(Token, _settingsService, false);
-                if (isVaild!.Value)
+                var isTokenValid = await _tokenService.IsTokenValid(Token, _settingsService, false);
+                if (isTokenValid!.Value)
                 {
                     Close();
                     var errorDialog = _viewModelFactory.CreateMessageBoxViewModel(

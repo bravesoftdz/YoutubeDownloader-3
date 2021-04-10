@@ -1,4 +1,9 @@
-﻿### v1.5.1 (15-Jan-2021)
+﻿### v1.5.2.15 (10-Apr-2021)
+- Fixed various YouTube-related issues. Updated to YoutubeExplode v6.0.0-alpha2.
+- Improved Token System
+- Reworked update System
+
+### v1.5.1 (15-Jan-2021)
 - Added clear Query Text Button by request
 - Added News Message
 - Added Stats

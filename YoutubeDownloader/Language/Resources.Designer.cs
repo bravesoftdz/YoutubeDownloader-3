@@ -214,8 +214,10 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to * Fixed Youtube related errors
-        ///* Improved Token System.
+        ///   Looks up a localized string similar to + Added support for 360 ° videos
+        ///
+        ///* Various problems related to YouTube have been fixed. 
+        ///Note: Errors can still occur!.
         /// </summary>
         public static string News {
             get {

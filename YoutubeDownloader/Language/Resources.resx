@@ -346,7 +346,9 @@
     <value>Clear Query Text (Del)</value>
   </data>
   <data name="News" xml:space="preserve">
-    <value>* Fixed Youtube related errors
-* Improved Token System</value>
+    <value>+ Added support for 360 ° videos
+
+* Various problems related to YouTube have been fixed. 
+Note: Errors can still occur!</value>
   </data>
 </root>

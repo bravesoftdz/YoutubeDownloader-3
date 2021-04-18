@@ -7,18 +7,6 @@ namespace YoutubeDownloader.Models
 {
     public partial class VideoDownloadOption
     {
-        public string Format { get; }
-
-        public string Label { get; }
-
-        public IReadOnlyList<IStreamInfo> StreamInfos { get; }
-
-        public VideoQuality? Quality =>
-            StreamInfos.OfType<IVideoStreamInfo>()
-                .Select(s => s.VideoQuality)
-                .OrderByDescending(q => q)
-                .FirstOrDefault();
-        
         public VideoDownloadOption(
             string format,
             string label,
@@ -37,7 +25,22 @@ namespace YoutubeDownloader.Models
         {
         }
 
-        public override string ToString() => $"{Label} / {Format}";
+        public string Format { get; }
+
+        public string Label { get; }
+
+        public IReadOnlyList<IStreamInfo> StreamInfos { get; }
+
+        public VideoQuality? Quality =>
+            StreamInfos.OfType<IVideoStreamInfo>()
+                .Select(s => s.VideoQuality)
+                .OrderByDescending(q => q)
+                .FirstOrDefault();
+
+        public override string ToString()
+        {
+            return $"{Label} / {Format}";
+        }
     }
 
     public partial class VideoDownloadOption : IEquatable<VideoDownloadOption>
@@ -61,9 +64,12 @@ namespace YoutubeDownloader.Models
             return Equals((VideoDownloadOption) obj);
         }
 
-        public override int GetHashCode() => HashCode.Combine(
-            StringComparer.OrdinalIgnoreCase.GetHashCode(Format),
-            StringComparer.OrdinalIgnoreCase.GetHashCode(Label)
-        );
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(
+                StringComparer.OrdinalIgnoreCase.GetHashCode(Format),
+                StringComparer.OrdinalIgnoreCase.GetHashCode(Label)
+            );
+        }
     }
 }

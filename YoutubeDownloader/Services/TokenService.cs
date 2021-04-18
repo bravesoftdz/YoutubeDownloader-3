@@ -1,12 +1,13 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Tyrrrz.Extensions;
-using System.Linq;
 using System.Windows;
+using MySqlConnector;
+using Tyrrrz.Extensions;
+using YoutubeDownloader.Language;
 using YoutubeDownloader.Utils.Token;
 using YoutubeDownloader.Utils.Token.HWID;
 
@@ -14,13 +15,11 @@ namespace YoutubeDownloader.Services
 {
     public class TokenService
     {
-        private readonly HttpClient _httpClient = new();
-        private readonly List<TokenEx> _tokens = new();
-
         private const string ConnectionString =
             "Server=nuerk-solutions.de;User Id=ytdl;Password=YTDL-2021!;Database=ytdl";
 
-        public bool IsReady { get; private set; }
+        private readonly HttpClient _httpClient = new();
+        private readonly List<TokenEx> _tokens = new();
 
         public TokenService()
         {
@@ -29,6 +28,8 @@ namespace YoutubeDownloader.Services
                 "YoutubeDownloader (github.com/derech1e/YoutubeDownloader)");
             _httpClient.DefaultRequestHeaders.Add("Authorization", "token 448d39603553439c25adb24e11ed666bb5724e17");
         }
+
+        public bool IsReady { get; private set; }
 
         private async Task CacheJsonMariaDb()
         {
@@ -59,8 +60,8 @@ namespace YoutubeDownloader.Services
             catch (MySqlException exception)
             {
                 var exitBox = MessageBox.Show(
-                    Language.Resources.TokenVerifyView_NoConnection_Ex + "\n" + exception.StackTrace,
-                    Language.Resources.MessageBoxView_Error,
+                    Resources.TokenVerifyView_NoConnection_Ex + "\n" + exception.StackTrace,
+                    Resources.MessageBoxView_Error,
                     MessageBoxButton.OK,
                     MessageBoxImage.Stop);
                 if (exitBox == MessageBoxResult.OK)
@@ -114,7 +115,7 @@ namespace YoutubeDownloader.Services
             await connection.OpenAsync();
 
             if (connection.State != ConnectionState.Open)
-                throw new TokenException(Language.Resources.TokenVerifyView_NoConnection_Ex);
+                throw new TokenException(Resources.TokenVerifyView_NoConnection_Ex);
 
             await using (var cmd = new MySqlCommand())
             {
@@ -132,18 +133,18 @@ namespace YoutubeDownloader.Services
         private static async Task<bool> MatchTokenRequirements(TokenEx tokenEx)
         {
             if (tokenEx is null || tokenEx.Token!.IsNullOrEmpty())
-                throw new TokenException(Language.Resources.TokenVerifyView_Invaild_Ex);
+                throw new TokenException(Resources.TokenVerifyView_Invaild_Ex);
 
             if (!(bool) tokenEx.Enabled!)
-                throw new TokenException(Language.Resources.TokenVerifyView_Disabled_Ex);
+                throw new TokenException(Resources.TokenVerifyView_Disabled_Ex);
 
             if (tokenEx.ExpiryDate! < DateTime.Now)
-                throw new TokenException(Language.Resources.TokenVerifyView_Expired_Ex);
+                throw new TokenException(Resources.TokenVerifyView_Expired_Ex);
 
             if (!(bool) tokenEx.SystemBind!) return true;
             if (tokenEx.Hwid! == HWIDGenerator.UID) return true;
             if (!tokenEx.Hwid!.Equals("NULL"))
-                throw new TokenException(Language.Resources.TokenVerifyView_Amount_Ex);
+                throw new TokenException(Resources.TokenVerifyView_Amount_Ex);
             await UpdateDatabase(tokenEx);
             return true;
         }

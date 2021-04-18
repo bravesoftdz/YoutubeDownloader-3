@@ -204,15 +204,11 @@ namespace YoutubeDownloader.Services
             CancellationToken cancellationToken = default)
         {
             if (string.Equals(format, "mp4", StringComparison.OrdinalIgnoreCase))
-            {
                 await InjectVideoTagsAsync(video, filePath, cancellationToken);
-            }
             else if (
                 string.Equals(format, "mp3", StringComparison.OrdinalIgnoreCase) ||
                 string.Equals(format, "ogg", StringComparison.OrdinalIgnoreCase))
-            {
                 await InjectAudioTagsAsync(video, filePath, cancellationToken);
-            }
 
             // Other formats are not supported for tagging
         }

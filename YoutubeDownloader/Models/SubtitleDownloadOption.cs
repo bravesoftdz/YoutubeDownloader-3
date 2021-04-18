@@ -5,14 +5,17 @@ namespace YoutubeDownloader.Models
 {
     public partial class SubtitleDownloadOption
     {
-        public ClosedCaptionTrackInfo TrackInfo { get; }
-
         public SubtitleDownloadOption(ClosedCaptionTrackInfo trackInfo)
         {
             TrackInfo = trackInfo;
         }
 
-        public override string ToString() => TrackInfo.Language.ToString();
+        public ClosedCaptionTrackInfo TrackInfo { get; }
+
+        public override string ToString()
+        {
+            return TrackInfo.Language.ToString();
+        }
     }
 
     public partial class SubtitleDownloadOption : IEquatable<SubtitleDownloadOption>
@@ -34,6 +37,9 @@ namespace YoutubeDownloader.Models
             return Equals((SubtitleDownloadOption) obj);
         }
 
-        public override int GetHashCode() => StringComparer.Ordinal.GetHashCode(TrackInfo.Url);
+        public override int GetHashCode()
+        {
+            return StringComparer.Ordinal.GetHashCode(TrackInfo.Url);
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Onova;
@@ -10,17 +9,18 @@ namespace YoutubeDownloader.Services
 {
     public class UpdateService : IDisposable
     {
-        private readonly static HttpClient _httpClient = new HttpClient();
+        private static readonly HttpClient _httpClient = new();
+
+        private readonly SettingsService _settingsService;
 
         private readonly IUpdateManager _updateManager = new UpdateManager(
             new GithubPackageResolver(_httpClient, "derech1e", "YoutubeDownloader", "YoutubeDownloader.zip"),
             new ZipPackageExtractor());
 
-        private readonly SettingsService _settingsService;
-
-        private Version? _updateVersion;
         private bool _updatePrepared;
         private bool _updaterLaunched;
+
+        private Version? _updateVersion;
 
         public UpdateService(SettingsService settingsService)
         {
@@ -29,6 +29,11 @@ namespace YoutubeDownloader.Services
             _httpClient.DefaultRequestHeaders.Add("User-Agent",
                 "YoutubeDownloader (github.com/derech1e/YoutubeDownloader)");
             _httpClient.DefaultRequestHeaders.Add("Authorization", "token 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");
+        }
+
+        public void Dispose()
+        {
+            _updateManager.Dispose();
         }
 
         public async Task<Version?> CheckForUpdatesAsync()
@@ -92,7 +97,5 @@ namespace YoutubeDownloader.Services
                 // Ignore race conditions
             }
         }
-
-        public void Dispose() => _updateManager.Dispose();
     }
 }

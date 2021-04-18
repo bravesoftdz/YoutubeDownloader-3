@@ -14,22 +14,16 @@ namespace YoutubeDownloader.Utils.Token.HWID
         {
             //Find first drive
             if (string.IsNullOrEmpty(diskLetter))
-            {
                 foreach (var compDrive in DriveInfo.GetDrives())
-                {
                     if (compDrive.IsReady)
                     {
                         diskLetter = compDrive.RootDirectory.ToString();
                         break;
                     }
-                }
-            }
 
             if (!string.IsNullOrEmpty(diskLetter) && diskLetter.EndsWith(":\\"))
-            {
                 //C:\ -> C
                 diskLetter = diskLetter.Substring(0, diskLetter.Length - 2);
-            }
 
             var disk = new ManagementObject(@"win32_logicaldisk.deviceid=""" + diskLetter + @":""");
             disk.Get();

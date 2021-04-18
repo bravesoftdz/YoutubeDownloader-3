@@ -6,9 +6,11 @@ namespace YoutubeDownloader.Utils
 {
     internal static class PathEx
     {
-        public static string EscapeFileName(string fileName) =>
-            Path.GetInvalidFileNameChars()
+        public static string EscapeFileName(string fileName)
+        {
+            return Path.GetInvalidFileNameChars()
                 .Aggregate(fileName, (current, invalidChar) => current.Replace(invalidChar, '_'));
+        }
 
         public static string MakeUniqueFilePath(string baseFilePath, int maxAttempts = 100)
         {
@@ -32,8 +34,10 @@ namespace YoutubeDownloader.Utils
             return baseFilePath;
         }
 
-        public static void CreateEmptyFile(string filePath) =>
+        public static void CreateEmptyFile(string filePath)
+        {
             File.WriteAllBytes(filePath, Array.Empty<byte>());
+        }
 
         public static void CreateDirectoryForFile(string filePath)
         {

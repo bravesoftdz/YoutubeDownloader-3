@@ -5,16 +5,16 @@ namespace YoutubeDownloader.Utils.Token.HWID
 {
     internal static class CpuId
     {
+        private const int PAGE_EXECUTE_READWRITE = 0x40;
+
         [DllImport("user32", EntryPoint = "CallWindowProcW", CharSet = CharSet.Unicode, SetLastError = true,
             ExactSpelling = true)]
-        private static extern IntPtr CallWindowProcW([In] byte[] bytes, IntPtr hWnd, int msg, [In, Out] byte[] wParam,
+        private static extern IntPtr CallWindowProcW([In] byte[] bytes, IntPtr hWnd, int msg, [In] [Out] byte[] wParam,
             IntPtr lParam);
 
         [return: MarshalAs(UnmanagedType.Bool)]
         [DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern bool VirtualProtect([In] byte[] bytes, IntPtr size, int newProtect, out int oldProtect);
-
-        const int PAGE_EXECUTE_READWRITE = 0x40;
 
         public static string GetCpuId()
         {
@@ -36,7 +36,6 @@ namespace YoutubeDownloader.Utils.Token.HWID
             byte[] code;
 
             if (isX64Process)
-            {
                 code = new byte[]
                 {
                     0x53, /* push rbx */
@@ -45,11 +44,9 @@ namespace YoutubeDownloader.Utils.Token.HWID
                     0x41, 0x89, 0x00, /* mov [r8], eax */
                     0x41, 0x89, 0x50, 0x04, /* mov [r8+0x4], edx */
                     0x5b, /* pop rbx */
-                    0xc3, /* ret */
+                    0xc3 /* ret */
                 };
-            }
             else
-            {
                 code = new byte[]
                 {
                     0x55, /* push ebp */
@@ -66,9 +63,8 @@ namespace YoutubeDownloader.Utils.Token.HWID
                     0x5f, /* pop  edi */
                     0x89, 0xec, /* mov  esp, ebp */
                     0x5d, /* pop  ebp */
-                    0xc2, 0x10, 0x00, /* ret  0x10 */
+                    0xc2, 0x10, 0x00 /* ret  0x10 */
                 };
-            }
 
             var ptr = new IntPtr(code.Length);
 

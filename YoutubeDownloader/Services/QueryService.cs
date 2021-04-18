@@ -21,24 +21,15 @@ namespace YoutubeDownloader.Services
 
             // Playlist
             var playlistId = PlaylistId.TryParse(query);
-            if (playlistId is not null)
-            {
-                return new Query(QueryKind.Playlist, playlistId.Value);
-            }
+            if (playlistId is not null) return new Query(QueryKind.Playlist, playlistId.Value);
 
             // Video
             var videoId = VideoId.TryParse(query);
-            if (videoId is not null)
-            {
-                return new Query(QueryKind.Video, videoId.Value);
-            }
+            if (videoId is not null) return new Query(QueryKind.Video, videoId.Value);
 
             // Channel
             var channelId = ChannelId.TryParse(query);
-            if (channelId is not null)
-            {
-                return new Query(QueryKind.Channel, channelId.Value);
-            }
+            if (channelId is not null) return new Query(QueryKind.Channel, channelId.Value);
 
             // Search
             {
@@ -46,8 +37,10 @@ namespace YoutubeDownloader.Services
             }
         }
 
-        public IReadOnlyList<Query> ParseMultilineQuery(string query) =>
-            query.Split(Environment.NewLine).Select(ParseQuery).ToArray();
+        public IReadOnlyList<Query> ParseMultilineQuery(string query)
+        {
+            return query.Split(Environment.NewLine).Select(ParseQuery).ToArray();
+        }
 
         public async Task<ExecutedQuery> ExecuteQueryAsync(Query query)
         {

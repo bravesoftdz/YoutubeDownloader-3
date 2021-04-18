@@ -13,10 +13,10 @@ namespace YoutubeDownloader.Services
 {
     public class DownloadService
     {
-        private readonly YoutubeClient _youtube = new();
         private readonly SemaphoreSlim _semaphore = new(1, 1);
 
         private readonly SettingsService _settingsService;
+        private readonly YoutubeClient _youtube = new();
 
         private int _concurrentDownloadCount;
 
@@ -124,9 +124,7 @@ namespace YoutubeDownloader.Services
                         .FirstOrDefault();
 
                 if (audioStreamInfo is not null)
-                {
                     options.Add(new VideoDownloadOption(format, label, streamInfo, audioStreamInfo));
-                }
             }
 
             // Audio-only options
@@ -144,11 +142,9 @@ namespace YoutubeDownloader.Services
 
             // Drop excluded formats
             if (_settingsService.ExcludedContainerFormats is not null)
-            {
                 options.RemoveWhere(o =>
                     _settingsService.ExcludedContainerFormats.Contains(o.Format, StringComparer.OrdinalIgnoreCase)
                 );
-            }
 
             return options.ToArray();
         }
@@ -173,9 +169,7 @@ namespace YoutubeDownloader.Services
             // Short-circuit for audio-only formats
             if (string.Equals(format, "mp3", StringComparison.OrdinalIgnoreCase) ||
                 string.Equals(format, "ogg", StringComparison.OrdinalIgnoreCase))
-            {
                 return options.FirstOrDefault(o => string.Equals(o.Format, format, StringComparison.OrdinalIgnoreCase));
-            }
 
             var orderedOptions = options
                 .OrderBy(o => o.Quality)

@@ -14,9 +14,19 @@ namespace YoutubeDownloader.ViewModels.Dialogs
 {
     public class DownloadMultipleSetupViewModel : DialogScreen<IReadOnlyList<DownloadViewModel>>
     {
-        private readonly IViewModelFactory _viewModelFactory;
-        private readonly SettingsService _settingsService;
         private readonly DialogManager _dialogManager;
+        private readonly SettingsService _settingsService;
+        private readonly IViewModelFactory _viewModelFactory;
+
+        public DownloadMultipleSetupViewModel(
+            IViewModelFactory viewModelFactory,
+            SettingsService settingsService,
+            DialogManager dialogManager)
+        {
+            _viewModelFactory = viewModelFactory;
+            _settingsService = settingsService;
+            _dialogManager = dialogManager;
+        }
 
         public string Title { get; set; } = default!;
 
@@ -37,23 +47,14 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             string.Equals(SelectedFormat, "mp3", StringComparison.OrdinalIgnoreCase) ||
             string.Equals(SelectedFormat, "ogg", StringComparison.OrdinalIgnoreCase);
 
-        public DownloadMultipleSetupViewModel(
-            IViewModelFactory viewModelFactory,
-            SettingsService settingsService,
-            DialogManager dialogManager)
-        {
-            _viewModelFactory = viewModelFactory;
-            _settingsService = settingsService;
-            _dialogManager = dialogManager;
-        }
+        public bool CanConfirm => SelectedVideos.Any() && !string.IsNullOrWhiteSpace(SelectedFormat);
 
         public void OnViewLoaded()
         {
             if (_settingsService.ExcludedContainerFormats is not null)
                 AvailableFormats = new[] {"mp4", "mp3", "ogg"}
                     .Where(f =>
-                        !_settingsService.ExcludedContainerFormats.Contains(f, StringComparer.OrdinalIgnoreCase) ==
-                        true)
+                        !_settingsService.ExcludedContainerFormats.Contains(f, StringComparer.OrdinalIgnoreCase))
                     .ToArray();
 
             SelectedFormat =
@@ -64,8 +65,6 @@ namespace YoutubeDownloader.ViewModels.Dialogs
 
             SelectedVideoQualityPreference = _settingsService.LastVideoQualityPreference;
         }
-
-        public bool CanConfirm => SelectedVideos.Any() && !string.IsNullOrWhiteSpace(SelectedFormat);
 
         public void Confirm()
         {
@@ -95,7 +94,7 @@ namespace YoutubeDownloader.ViewModels.Dialogs
                 var filePath = Path.Combine(dirPath, fileName);
 
                 // If file exists or is no empty - either skip it or generate a unique file path, depending on user settings
-                FileInfo fileInfo = new FileInfo(filePath);
+                FileInfo fileInfo = new(filePath);
 
                 if (fileInfo.Exists && fileInfo.Length > 0)
                 {
@@ -124,7 +123,10 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             Close(downloads);
         }
 
-        public void CopyTitle() => Clipboard.SetText(Title);
+        public void CopyTitle()
+        {
+            Clipboard.SetText(Title);
+        }
     }
 
     public static class DownloadMultipleSetupViewModelExtensions

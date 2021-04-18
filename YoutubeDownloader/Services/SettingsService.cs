@@ -8,6 +8,14 @@ namespace YoutubeDownloader.Services
 {
     public class SettingsService : SettingsManager
     {
+        public SettingsService()
+        {
+            Configuration.StorageSpace = StorageSpace.Instance;
+            Configuration.SubDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                                             "\\YoutubeDownloader";
+            Configuration.FileName = "Settings.dat";
+        }
+
         public bool IsAutoUpdateEnabled { get; set; } = true;
 
         public bool IsDarkModeEnabled { get; set; }
@@ -35,13 +43,5 @@ namespace YoutubeDownloader.Services
         public int VideoDownloads { get; set; }
 
         public long VideoDownloadsLength { get; set; }
-
-        public SettingsService()
-        {
-            Configuration.StorageSpace = StorageSpace.Instance;
-            Configuration.SubDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
-                                             "\\YoutubeDownloader";
-            Configuration.FileName = "Settings.dat";
-        }
     }
 }

@@ -1,19 +1,20 @@
-﻿using YoutubeExplode.Videos;
+﻿using YoutubeDownloader.Language;
+using YoutubeExplode.Videos;
 
 namespace YoutubeDownloader.Utils
 {
     internal static class FileNameGenerator
     {
-        private static string NumberToken { get; } = Language.Resources.SettingsView_FileNameTemplate_Desc_Var_num;
+        private static string NumberToken { get; } = Resources.SettingsView_FileNameTemplate_Desc_Var_num;
 
-        private static string TitleToken { get; } = Language.Resources.SettingsView_FileNameTemplate_Desc_Var_title;
+        private static string TitleToken { get; } = Resources.SettingsView_FileNameTemplate_Desc_Var_title;
 
-        private static string AuthorToken { get; } = Language.Resources.SettingsView_FileNameTemplate_Desc_Var_author;
+        private static string AuthorToken { get; } = Resources.SettingsView_FileNameTemplate_Desc_Var_author;
 
         private static string UploadDateToken { get; } =
-            Language.Resources.SettingsView_FileNameTemplate_Desc_Var_uploadDate;
+            Resources.SettingsView_FileNameTemplate_Desc_Var_uploadDate;
 
-        private static string LengthToken { get; } = Language.Resources.SettingsView_FileNameTemplate_Desc_Var_length;
+        private static string LengthToken { get; } = Resources.SettingsView_FileNameTemplate_Desc_Var_length;
 
         public static string DefaultTemplate { get; } = $"{TitleToken}";
 

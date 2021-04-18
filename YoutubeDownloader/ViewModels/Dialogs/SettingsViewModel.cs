@@ -9,6 +9,11 @@ namespace YoutubeDownloader.ViewModels.Dialogs
     {
         private readonly SettingsService _settingsService;
 
+        public SettingsViewModel(SettingsService settingsService)
+        {
+            _settingsService = settingsService;
+        }
+
         public bool IsAutoUpdateEnabled
         {
             get => _settingsService.IsAutoUpdateEnabled;
@@ -56,11 +61,6 @@ namespace YoutubeDownloader.ViewModels.Dialogs
         {
             get => _settingsService.MaxConcurrentDownloadCount;
             set => _settingsService.MaxConcurrentDownloadCount = value.Clamp(1, 10);
-        }
-
-        public SettingsViewModel(SettingsService settingsService)
-        {
-            _settingsService = settingsService;
         }
     }
 }

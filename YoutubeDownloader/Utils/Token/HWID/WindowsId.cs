@@ -27,7 +27,7 @@ namespace YoutubeDownloader.Utils.Token.HWID
             windowsInfo = windowsInfo.Replace(" ", "");
             windowsInfo = windowsInfo.Replace("Windows", "");
             windowsInfo = windowsInfo.Replace("windows", "");
-            windowsInfo += (is64Bits) ? " 64bit" : " 32bit";
+            windowsInfo += is64Bits ? " 64bit" : " 32bit";
 
             //md5 hash of the windows version
             var md5Hasher = MD5.Create();

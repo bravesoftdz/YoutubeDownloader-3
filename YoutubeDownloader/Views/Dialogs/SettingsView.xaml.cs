@@ -9,10 +9,14 @@ namespace YoutubeDownloader.Views.Dialogs
             InitializeComponent();
         }
 
-        private void DarkModeToggleButton_Checked(object sender, RoutedEventArgs args) =>
+        private void DarkModeToggleButton_Checked(object sender, RoutedEventArgs args)
+        {
             App.SetDarkTheme();
+        }
 
-        private void DarkModeToggleButton_Unchecked(object sender, RoutedEventArgs args) =>
+        private void DarkModeToggleButton_Unchecked(object sender, RoutedEventArgs args)
+        {
             App.SetLightTheme();
+        }
     }
 }

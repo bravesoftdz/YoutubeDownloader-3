@@ -13,9 +13,19 @@ namespace YoutubeDownloader.ViewModels.Dialogs
 {
     public class DownloadSingleSetupViewModel : DialogScreen<DownloadViewModel>
     {
-        private readonly IViewModelFactory _viewModelFactory;
-        private readonly SettingsService _settingsService;
         private readonly DialogManager _dialogManager;
+        private readonly SettingsService _settingsService;
+        private readonly IViewModelFactory _viewModelFactory;
+
+        public DownloadSingleSetupViewModel(
+            IViewModelFactory viewModelFactory,
+            SettingsService settingsService,
+            DialogManager dialogManager)
+        {
+            _viewModelFactory = viewModelFactory;
+            _settingsService = settingsService;
+            _dialogManager = dialogManager;
+        }
 
         public string Title { get; set; } = default!;
 
@@ -33,15 +43,7 @@ namespace YoutubeDownloader.ViewModels.Dialogs
 
         public bool ShouldDownloadSubtitles { get; set; }
 
-        public DownloadSingleSetupViewModel(
-            IViewModelFactory viewModelFactory,
-            SettingsService settingsService,
-            DialogManager dialogManager)
-        {
-            _viewModelFactory = viewModelFactory;
-            _settingsService = settingsService;
-            _dialogManager = dialogManager;
-        }
+        public bool CanConfirm => SelectedVideoOption is not null;
 
         public void OnViewLoaded()
         {
@@ -56,8 +58,6 @@ namespace YoutubeDownloader.ViewModels.Dialogs
                     o.TrackInfo.Language.Code == _settingsService.LastSubtitleLanguageCode) ??
                 AvailableSubtitleOptions.FirstOrDefault();
         }
-
-        public bool CanConfirm => SelectedVideoOption is not null;
 
         public void Confirm()
         {
@@ -96,7 +96,10 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             Close(download);
         }
 
-        public void CopyTitle() => Clipboard.SetText(Title);
+        public void CopyTitle()
+        {
+            Clipboard.SetText(Title);
+        }
     }
 
     public static class DownloadSingleSetupViewModelExtensions

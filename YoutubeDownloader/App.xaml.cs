@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Windows.Media;
 using MaterialDesignThemes.Wpf;
-using YoutubeDownloader.Internal;
+using YoutubeDownloader.Utils;
 
 namespace YoutubeDownloader
 {

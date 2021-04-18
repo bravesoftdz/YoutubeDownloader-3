@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace YoutubeDownloader.Internal.Token
+namespace YoutubeDownloader.Utils.Token
 {
     public class TokenEx
     {

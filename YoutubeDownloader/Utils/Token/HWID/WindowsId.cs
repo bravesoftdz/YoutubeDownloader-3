@@ -3,7 +3,7 @@ using System.Management;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace YoutubeDownloader.Internal.Token.HWID
+namespace YoutubeDownloader.Utils.Token.HWID
 {
     internal class WindowsId
     {

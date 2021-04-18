@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Tyrrrz.Settings;
-using YoutubeDownloader.Internal;
 using YoutubeDownloader.Models;
+using YoutubeDownloader.Utils;
 
 namespace YoutubeDownloader.Services
 {

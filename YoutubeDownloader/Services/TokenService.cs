@@ -5,10 +5,10 @@ using System.Data;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Tyrrrz.Extensions;
-using YoutubeDownloader.Internal.Token;
 using System.Linq;
 using System.Windows;
-using YoutubeDownloader.Internal.Token.HWID;
+using YoutubeDownloader.Utils.Token;
+using YoutubeDownloader.Utils.Token.HWID;
 
 namespace YoutubeDownloader.Services
 {

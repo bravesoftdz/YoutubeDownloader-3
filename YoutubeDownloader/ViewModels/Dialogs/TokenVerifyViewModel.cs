@@ -1,7 +1,7 @@
 ﻿using YoutubeDownloader.ViewModels.Framework;
 using YoutubeDownloader.Services;
 using System.Threading.Tasks;
-using YoutubeDownloader.Internal.Token;
+using YoutubeDownloader.Utils.Token;
 
 namespace YoutubeDownloader.ViewModels.Dialogs
 {

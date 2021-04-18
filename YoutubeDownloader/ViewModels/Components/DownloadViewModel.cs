@@ -24,7 +24,7 @@ namespace YoutubeDownloader.ViewModels.Components
 
         private CancellationTokenSource? _cancellationTokenSource;
 
-        public VideoInformation Video { get; set; } = default!;
+        public IVideo Video { get; set; } = default!;
 
         public string FilePath { get; set; } = default!;
 
@@ -116,8 +116,8 @@ namespace YoutubeDownloader.ViewModels.Components
                     }
 
                     IsSuccessful = true;
-                    _settingsService.VideoDownloads++;
-                    _settingsService.VideoDownloadsLength += (long) Video.Duration.TotalMilliseconds;
+                    _settingsService.VideoDownloads += 1;
+                    _settingsService.VideoDownloadsLength += (long) Video!.Duration!.Value.TotalMilliseconds;
                 }
                 catch (OperationCanceledException)
                 {
@@ -199,7 +199,7 @@ namespace YoutubeDownloader.ViewModels.Components
     {
         public static DownloadViewModel CreateDownloadViewModel(
             this IViewModelFactory factory,
-            VideoInformation video,
+            IVideo video,
             string filePath,
             string format,
             VideoDownloadOption videoOption,
@@ -218,7 +218,7 @@ namespace YoutubeDownloader.ViewModels.Components
 
         public static DownloadViewModel CreateDownloadViewModel(
             this IViewModelFactory factory,
-            VideoInformation video,
+            IVideo video,
             string filePath,
             string format,
             VideoQualityPreference qualityPreference)

@@ -20,9 +20,9 @@ namespace YoutubeDownloader.ViewModels.Dialogs
 
         public string Title { get; set; } = default!;
 
-        public IReadOnlyList<VideoInformation> AvailableVideos { get; set; } = Array.Empty<VideoInformation>();
+        public IReadOnlyList<IVideo> AvailableVideos { get; set; } = Array.Empty<IVideo>();
 
-        public IReadOnlyList<VideoInformation> SelectedVideos { get; set; } = Array.Empty<VideoInformation>();
+        public IReadOnlyList<IVideo> SelectedVideos { get; set; } = Array.Empty<IVideo>();
 
         public IReadOnlyList<string> AvailableFormats { get; set; } = new[] {"mp4", "mp3", "ogg"};
 
@@ -132,7 +132,7 @@ namespace YoutubeDownloader.ViewModels.Dialogs
         public static DownloadMultipleSetupViewModel CreateDownloadMultipleSetupViewModel(
             this IViewModelFactory factory,
             string title,
-            IReadOnlyList<VideoInformation> availableVideos)
+            IReadOnlyList<IVideo> availableVideos)
         {
             var viewModel = factory.CreateDownloadMultipleSetupViewModel();
 

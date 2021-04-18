@@ -110,9 +110,6 @@
                     <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_author}" />
                     <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_5}" />
                     <LineBreak />
-                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_uploadDate}" />
-                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_6}" />
-                    <LineBreak />
                     <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_length}" />
                     <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_7}" />
                 </TextBlock>

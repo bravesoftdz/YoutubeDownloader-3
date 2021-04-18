@@ -240,9 +240,6 @@
   <data name="SettingsView_FileNameTemplate_Desc_5" xml:space="preserve">
     <value>- Videoautor</value>
   </data>
-  <data name="SettingsView_FileNameTemplate_Desc_6" xml:space="preserve">
-    <value>- Veröffentlichungsdatum</value>
-  </data>
   <data name="SettingsView_FileNameTemplate_Desc_7" xml:space="preserve">
     <value>- Länge des Videos</value>
   </data>

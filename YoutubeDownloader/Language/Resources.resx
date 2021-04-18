@@ -240,9 +240,6 @@
   <data name="SettingsView_FileNameTemplate_Desc_5" xml:space="preserve">
     <value>- video author</value>
   </data>
-  <data name="SettingsView_FileNameTemplate_Desc_6" xml:space="preserve">
-    <value>- video upload date</value>
-  </data>
   <data name="SettingsView_FileNameTemplate_Desc_7" xml:space="preserve">
     <value>- video length</value>
   </data>

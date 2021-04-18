@@ -22,14 +22,14 @@ namespace YoutubeDownloader.Language {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    public class Resources_de {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Resources_de() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace YoutubeDownloader.Language {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("YoutubeDownloader.Language.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("YoutubeDownloader.Language.Resources.de", typeof(Resources_de).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy.
+        ///   Looks up a localized string similar to Kopieren.
         /// </summary>
         public static string ContextMenu_Copy {
             get {
@@ -70,7 +70,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nothing found.
+        ///   Looks up a localized string similar to Nichts gefunden.
         /// </summary>
         public static string Download_Nothing_Found_1 {
             get {
@@ -79,7 +79,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Couldn&apos;t find any videos based on the query or URL you provided.
+        ///   Looks up a localized string similar to Basierend auf dem angegebenen Suchbegriff oder der URL konnten keine Videos gefunden werden.
         /// </summary>
         public static string Download_Nothing_Found_2 {
             get {
@@ -88,7 +88,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Video % contains no streams.
+        ///   Looks up a localized string similar to Das Video % enthält keine Streams.
         /// </summary>
         public static string Download_Nothing_Found_3 {
             get {
@@ -97,7 +97,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CANCEL.
+        ///   Looks up a localized string similar to ABBRECHEN.
         /// </summary>
         public static string Download_Video_Button_Cancel {
             get {
@@ -106,7 +106,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DOWNLOAD.
+        ///   Looks up a localized string similar to HERUNTERLADEN.
         /// </summary>
         public static string Download_Video_Button_Download {
             get {
@@ -124,7 +124,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Video quality:.
+        ///   Looks up a localized string similar to Videoqualität:.
         /// </summary>
         public static string Download_Video_Quality {
             get {
@@ -133,7 +133,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subtitles:.
+        ///   Looks up a localized string similar to Untertitel:.
         /// </summary>
         public static string Download_Video_Subtitles {
             get {
@@ -142,7 +142,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ACTIVATE.
+        ///   Looks up a localized string similar to AKTIVIEREN.
         /// </summary>
         public static string MessageBoxView_Button_Activate {
             get {
@@ -151,7 +151,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CLOSE.
+        ///   Looks up a localized string similar to SCHLIEßEN.
         /// </summary>
         public static string MessageBoxView_Button_Close {
             get {
@@ -160,7 +160,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SAVE.
+        ///   Looks up a localized string similar to SPEICHERN.
         /// </summary>
         public static string MessageBoxView_Button_Save {
             get {
@@ -169,7 +169,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error!.
+        ///   Looks up a localized string similar to Fehler!.
         /// </summary>
         public static string MessageBoxView_Error {
             get {
@@ -178,7 +178,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not parse query.
+        ///   Looks up a localized string similar to Es konnten keine Ergebnisse für % gefunden werden.
         /// </summary>
         public static string MessageBoxView_Not_Found {
             get {
@@ -187,7 +187,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search:.
+        ///   Looks up a localized string similar to Suche:.
         /// </summary>
         public static string MessageBoxView_Search {
             get {
@@ -196,7 +196,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Multiple queries.
+        ///   Looks up a localized string similar to Mehrfachauswahl.
         /// </summary>
         public static string MultipleDownloads_Text {
             get {
@@ -205,7 +205,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings.
+        ///   Looks up a localized string similar to Einstellungen.
         /// </summary>
         public static string Name_Settings {
             get {
@@ -214,10 +214,9 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to + Added support for 360 ° videos
-        ///
-        ///* Various problems related to YouTube have been fixed. 
-        ///Note: Errors can still occur!.
+        ///   Looks up a localized string similar to + Unterstützung für 360° Videos hinzugefügt
+        ///* Verschiedene Probleme im Zusammenhang mit YouTube wurden behoben.
+        ///Hinweis: Es können immer noch Fehler auftreten!.
         /// </summary>
         public static string News {
             get {
@@ -226,7 +225,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel download.
+        ///   Looks up a localized string similar to Download abbrechen.
         /// </summary>
         public static string RootView_Button_Cancel_ToolTip {
             get {
@@ -235,7 +234,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear Query Text (Del).
+        ///   Looks up a localized string similar to Suche löschen (Entf).
         /// </summary>
         public static string RootView_Button_Delete_Query {
             get {
@@ -244,7 +243,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Play.
+        ///   Looks up a localized string similar to Abspielen.
         /// </summary>
         public static string RootView_Button_OpenFile_ToolTip {
             get {
@@ -253,7 +252,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Process query (Enter).
+        ///   Looks up a localized string similar to Suchen (Enter).
         /// </summary>
         public static string RootView_Button_Query {
             get {
@@ -262,7 +261,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restart download.
+        ///   Looks up a localized string similar to Download neustarten.
         /// </summary>
         public static string RootView_Button_Restart_ToolTip {
             get {
@@ -271,7 +270,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Navigate to file.
+        ///   Looks up a localized string similar to Zu Datei navigieren.
         /// </summary>
         public static string RootView_Button_ShowFile_ToolTip {
             get {
@@ -280,7 +279,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy-paste URL or type in a search query to start downloading.
+        ///   Looks up a localized string similar to URL oder einen Suchbegriff eingeben um den Download zu starten.
         /// </summary>
         public static string RootView_ContentPlaceholder {
             get {
@@ -289,7 +288,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove download.
+        ///   Looks up a localized string similar to Download entfernen.
         /// </summary>
         public static string RootView_ContextMenu_RemoveDownload {
             get {
@@ -298,7 +297,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove all inactive downloads.
+        ///   Looks up a localized string similar to Alle inaktiven Downloads entfernen.
         /// </summary>
         public static string RootView_ContextMenu_RemoveInactiveDownloads {
             get {
@@ -307,7 +306,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove all successful downloads.
+        ///   Looks up a localized string similar to Alle erfolgreichen Downloads entfernen.
         /// </summary>
         public static string RootView_ContextMenu_RemoveSuccessfulDownloads {
             get {
@@ -316,7 +315,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restart all failed downloads.
+        ///   Looks up a localized string similar to Alle fehlgeschlagenen Downloads neustarten.
         /// </summary>
         public static string RootView_ContextMenu_RestartFailedDownloads {
             get {
@@ -325,7 +324,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File.
+        ///   Looks up a localized string similar to Datei.
         /// </summary>
         public static string RootView_FileName_Header {
             get {
@@ -343,7 +342,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ✗ Canceled.
+        ///   Looks up a localized string similar to ✗ Abbgeborchen.
         /// </summary>
         public static string RootView_Status_Canceled {
             get {
@@ -352,7 +351,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ✗ Failed.
+        ///   Looks up a localized string similar to ✗ Fehlgeschlagen.
         /// </summary>
         public static string RootView_Status_Failed {
             get {
@@ -361,7 +360,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pending....
+        ///   Looks up a localized string similar to Warten....
         /// </summary>
         public static string RootView_Status_Pending {
             get {
@@ -370,7 +369,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ✓ Done.
+        ///   Looks up a localized string similar to ✓ Fertig.
         /// </summary>
         public static string RootView_Status_Successful {
             get {
@@ -379,7 +378,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to URL or search query (press Shift+Enter to add multiple).
+        ///   Looks up a localized string similar to URL oder Suchen (Shift+Enter für Zeilenumbruch).
         /// </summary>
         public static string RootView_TextBox_Query {
             get {
@@ -388,7 +387,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Perform automatic updates on every launch.
+        ///   Looks up a localized string similar to Führt automatische Updates nach jedem Start durch.
         /// </summary>
         public static string SettingsView_AutoUpdates_Desc_1 {
             get {
@@ -397,7 +396,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Warning:.
+        ///   Looks up a localized string similar to Warnung:.
         /// </summary>
         public static string SettingsView_AutoUpdates_Desc_2 {
             get {
@@ -406,7 +405,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to disabling this is NOT recommended because the application will stop working when integration with YouTube inevitably breaks in the future.
+        ///   Looks up a localized string similar to Diese Funktion zu deaktivieren ist NICHT empfohlen, da der Downloader bei neunen Änderungen von Youtube möglicherweise nicht mehr funktioniert.
         /// </summary>
         public static string SettingsView_AutoUpdates_Desc_3 {
             get {
@@ -415,7 +414,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto-updates.
+        ///   Looks up a localized string similar to Automatische Updates.
         /// </summary>
         public static string SettingsView_AutoUpdates_Text {
             get {
@@ -424,7 +423,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use darker colors in the UI.
+        ///   Looks up a localized string similar to Benutzt dunkle Farben im Interface.
         /// </summary>
         public static string SettingsView_DarkMode_Desc_1 {
             get {
@@ -433,7 +432,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dark mode.
+        ///   Looks up a localized string similar to Dunkles Design.
         /// </summary>
         public static string SettingsView_DarkMode_Text {
             get {
@@ -442,7 +441,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comma separated list of container formats excluded from format list when downloading a video.
+        ///   Looks up a localized string similar to Eine durch Kommas getrennte Liste der Formate, die beim Herunterladen eines Videos von der Formatliste ausgeschlossen wird.
         /// </summary>
         public static string SettingsView_ExcludedContainer_Desc_1 {
             get {
@@ -451,7 +450,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ex: webm,ogg.
+        ///   Looks up a localized string similar to z.B.: webm,ogg.
         /// </summary>
         public static string SettingsView_ExcludedContainer_Desc_2 {
             get {
@@ -460,7 +459,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Excluded container formats.
+        ///   Looks up a localized string similar to Ausgeschlossene Formate.
         /// </summary>
         public static string SettingsView_ExcludedContainer_Text {
             get {
@@ -469,7 +468,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Template used for generating file names for downloaded videos.
+        ///   Looks up a localized string similar to Diese Vorlage wird zur Generierung des Dateinamen der Downloads benutzt.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_1 {
             get {
@@ -478,7 +477,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Available variables:.
+        ///   Looks up a localized string similar to Mögliche Variablen:.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_2 {
             get {
@@ -487,7 +486,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - video&apos;s position in the list (if applicable).
+        ///   Looks up a localized string similar to - Position des Videos in einer Playlist (falls vorhanden).
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_3 {
             get {
@@ -496,7 +495,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - video title.
+        ///   Looks up a localized string similar to - Videotitel.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_4 {
             get {
@@ -505,7 +504,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - video author.
+        ///   Looks up a localized string similar to - Videoautor.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_5 {
             get {
@@ -514,7 +513,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - video length.
+        ///   Looks up a localized string similar to - Länge des Videos.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_7 {
             get {
@@ -523,7 +522,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $author.
+        ///   Looks up a localized string similar to $autor.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_Var_author {
             get {
@@ -532,7 +531,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $length.
+        ///   Looks up a localized string similar to $länge.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_Var_length {
             get {
@@ -541,7 +540,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $num.
+        ///   Looks up a localized string similar to $nummer.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_Var_num {
             get {
@@ -550,7 +549,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $title.
+        ///   Looks up a localized string similar to $titel.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_Var_title {
             get {
@@ -559,7 +558,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $uploadDate.
+        ///   Looks up a localized string similar to $datum.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_Var_uploadDate {
             get {
@@ -568,7 +567,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File name template.
+        ///   Looks up a localized string similar to Dateinamenvorlage.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Hint {
             get {
@@ -577,7 +576,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Media tags can be automatically inferred from video title and injected into output file.
+        ///   Looks up a localized string similar to Medien-Tags können automatisch aus dem Videotitel abgeleitet und in die gespeicherte Datei eingefügt werden.
         /// </summary>
         public static string SettingsView_InjectTags_Desc_1 {
             get {
@@ -586,7 +585,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically inject media tags.
+        ///   Looks up a localized string similar to Medien-Tags automatisch einbinden.
         /// </summary>
         public static string SettingsView_InjectTags_Text {
             get {
@@ -595,7 +594,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How many downloads can be active at one time.
+        ///   Looks up a localized string similar to Anzahl der gleichzeitig aktiven Downloads.
         /// </summary>
         public static string SettingsView_MaxDownloads_Desc_1 {
             get {
@@ -604,7 +603,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum concurrent downloads:.
+        ///   Looks up a localized string similar to Maximale gleichzeitiger Downloads:.
         /// </summary>
         public static string SettingsView_MaxDownloads_Text {
             get {
@@ -613,7 +612,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When selecting multiple videos to download, skip those that already have a matching file in the directory.
+        ///   Looks up a localized string similar to Bei mehreren Videodownloads, werden gleichnaminge Datein in einem Ordner nicht erneut heruntergeladen.
         /// </summary>
         public static string SettingsView_SkipExistingFiles_Desc_1 {
             get {
@@ -622,7 +621,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skip downloads for files that already exist.
+        ///   Looks up a localized string similar to Vorhandene Downloads überspringen.
         /// </summary>
         public static string SettingsView_SkipExistingFiles_Text {
             get {
@@ -631,7 +630,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Token successfully activated!.
+        ///   Looks up a localized string similar to Der Token wurde erfolgreich Aktiviert!.
         /// </summary>
         public static string TokenVerifyView_Activated_Desc {
             get {
@@ -640,7 +639,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activated!.
+        ///   Looks up a localized string similar to Aktiviert!.
         /// </summary>
         public static string TokenVerifyView_Activated_Text {
             get {
@@ -649,7 +648,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Token already used!.
+        ///   Looks up a localized string similar to Dieser Token wurde bereits eingelöst!.
         /// </summary>
         public static string TokenVerifyView_Amount_Ex {
             get {
@@ -658,7 +657,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter a Token!.
+        ///   Looks up a localized string similar to Bitte gib den Token zur Aktivierung  ein!.
         /// </summary>
         public static string TokenVerifyView_Desc_1 {
             get {
@@ -667,7 +666,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The token is disabled!.
+        ///   Looks up a localized string similar to Dieser Token wurde deaktiviert!.
         /// </summary>
         public static string TokenVerifyView_Disabled_Ex {
             get {
@@ -676,7 +675,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Token expired! Please enter a new one!.
+        ///   Looks up a localized string similar to Dieser Token ist abgelaufen! Bitte aktivieren Sie einen neuen!.
         /// </summary>
         public static string TokenVerifyView_Expired_Ex {
             get {
@@ -685,7 +684,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter a vaild token!.
+        ///   Looks up a localized string similar to Bitte benutze einen gültigen Token!.
         /// </summary>
         public static string TokenVerifyView_Invaild_Ex {
             get {
@@ -694,7 +693,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed connection to databse!.
+        ///   Looks up a localized string similar to Es konnte keine Verbindung zur Datenbank hergestellt werden!.
         /// </summary>
         public static string TokenVerifyView_NoConnection_Ex {
             get {
@@ -703,7 +702,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verify token.
+        ///   Looks up a localized string similar to Token verifizieren.
         /// </summary>
         public static string TokenVerifyView_Title {
             get {
@@ -712,7 +711,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSTALL NOW.
+        ///   Looks up a localized string similar to JETZT INSTALLIEREN.
         /// </summary>
         public static string Update_Button {
             get {
@@ -721,7 +720,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Downloading update to % ....
+        ///   Looks up a localized string similar to Update von % herunterladen....
         /// </summary>
         public static string Update_Desc_1 {
             get {
@@ -730,7 +729,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update has been downloaded and will be installed when you exit.
+        ///   Looks up a localized string similar to Das Update wurde heruntergeladen und wird beim Beenden installiert.
         /// </summary>
         public static string Update_Desc_2 {
             get {
@@ -739,7 +738,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to perform application update.
+        ///   Looks up a localized string similar to Fehler beim Updaten des Downloaders.
         /// </summary>
         public static string Update_Error_Desc {
             get {

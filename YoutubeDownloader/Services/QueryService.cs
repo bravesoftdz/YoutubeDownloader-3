@@ -76,10 +76,11 @@ namespace YoutubeDownloader.Services
             {
                 var videos = await _youtube.Search.GetVideosAsync(query.Value).CollectAsync(100);
 
-                return new ExecutedQuery(query, $"Search: {query.Value}", videos);
+                return new ExecutedQuery(query, Language.Resources.MessageBoxView_Search + $" {query.Value}", videos);
             }
 
-            throw new ArgumentException($"Could not parse query '{query}'.", nameof(query));
+            throw new ArgumentException(Language.Resources.MessageBoxView_Not_Found.Replace("%", $"'{query}'"),
+                nameof(query));
         }
 
         public async Task<IReadOnlyList<ExecutedQuery>> ExecuteQueriesAsync(

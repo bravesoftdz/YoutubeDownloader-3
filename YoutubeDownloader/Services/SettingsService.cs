@@ -32,7 +32,7 @@ namespace YoutubeDownloader.Services
 
         public Version? CurrentVersion { get; set; }
 
-        public int? VideoDownloads { get; set; }
+        public int VideoDownloads { get; set; }
 
         public long VideoDownloadsLength { get; set; }
 

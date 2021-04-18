@@ -215,8 +215,16 @@ namespace YoutubeDownloader.Language {
         
         /// <summary>
         ///   Looks up a localized string similar to + Unterstützung für 360° Videos hinzugefügt
-        ///* Verschiedene Probleme im Zusammenhang mit YouTube wurden behoben.
-        ///Hinweis: Es können immer noch Fehler auftreten!.
+        ///
+        ///- Unterstützung für das Veröffentlichungsdatum eingestellt
+        ///
+        ///* Ein Fehler mit dem Download von alterbeschränkten Videos wurde behoben
+        ///* Ein Fehler mit dem Download von Playlisten wurde behoben
+        ///* Ein Fehler mit dem Download von Vorschaubildern wurde behoben
+        ///* Ein Fehler mit der Suchfunktion wurde behoben
+        ///* Ein Fehler mit dem Download von 360° Videos wurde behoben
+        ///* Ein Fehler beim Injizieren von Video bezogenen Informationen wurde behoben
+        ///* Weitere Youtub [rest of string was truncated]&quot;;.
         /// </summary>
         public static string News {
             get {

@@ -1,4 +1,15 @@
-﻿### v1.5.2.15 (10-Apr-2021)
+﻿### v1.6 (18-Apr-2021)
++ Unterstützung für 360° Videos hinzugefügt
+- Unterstützung für das Veröffentlichungsdatum eingestellt
+* Ein Fehler mit dem Download von alterbeschränkten Videos wurde behoben
+* Ein Fehler mit dem Download von Playlisten wurde behoben
+* Ein Fehler mit dem Download von Vorschaubildern wurde behoben
+* Ein Fehler mit der Suchfunktion wurde behoben
+* Ein Fehler mit dem Download von 360° Videos wurde behoben
+* Ein Fehler beim Injizieren von Video bezogenen Informationen wurde behoben
+* Weitere Youtube bezogene Fehler wurden behoben
+
+### v1.5.2.15 (10-Apr-2021)
 - Fixed various YouTube-related issues. Updated to YoutubeExplode v6.0.0-alpha2.
 - Improved Token System
 - Reworked update System

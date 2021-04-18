@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <Version>1.5.2.21</Version>
+        <Version>1.6</Version>
         <Company>Thomas Nürk</Company>
         <Copyright>Copyright (C) Thomas Nürk</Copyright>
         <LangVersion>preview</LangVersion>

@@ -344,7 +344,15 @@
   </data>
   <data name="News" xml:space="preserve">
     <value>+ Unterstützung für 360° Videos hinzugefügt
-* Verschiedene Probleme im Zusammenhang mit YouTube wurden behoben.
-Hinweis: Es können immer noch Fehler auftreten!</value>
+
+- Unterstützung für das Veröffentlichungsdatum eingestellt
+
+* Ein Fehler mit dem Download von alterbeschränkten Videos wurde behoben
+* Ein Fehler mit dem Download von Playlisten wurde behoben
+* Ein Fehler mit dem Download von Vorschaubildern wurde behoben
+* Ein Fehler mit der Suchfunktion wurde behoben
+* Ein Fehler mit dem Download von 360° Videos wurde behoben
+* Ein Fehler beim Injizieren von Video bezogenen Informationen wurde behoben
+* Weitere Youtube bezogene Fehler wurden behoben</value>
   </data>
 </root>

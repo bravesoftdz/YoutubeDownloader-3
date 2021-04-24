@@ -18,7 +18,8 @@
                     BaseTheme="Light"
                     PrimaryColor="Blue"
                     SecondaryColor="Blue" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <Color x:Key="SuccessColor">#006400</Color>
@@ -107,7 +108,8 @@
                             <Setter Property="Margin" Value="8,-10,-8,-10" />
                             <Setter Property="Padding" Value="8" />
                             <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}" />
-                            <Setter Property="materialDesign:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignSnackbarRipple}" />
+                            <Setter Property="materialDesign:RippleAssist.Feedback"
+                                    Value="{DynamicResource MaterialDesignSnackbarRipple}" />
                         </Style>
                     </Setter.Value>
                 </Setter>

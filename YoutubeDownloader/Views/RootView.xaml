@@ -156,9 +156,12 @@
                                             Command="{s:Action RemoveDownload}"
                                             CommandParameter="{Binding}"
                                             Header="{x:Static language:Resources.RootView_ContextMenu_RemoveDownload}" />
-                                        <MenuItem Command="{s:Action RemoveInactiveDownloads}" Header="{x:Static language:Resources.RootView_ContextMenu_RemoveInactiveDownloads}" />
-                                        <MenuItem Command="{s:Action RemoveSuccessfulDownloads}" Header="{x:Static language:Resources.RootView_ContextMenu_RemoveSuccessfulDownloads}" />
-                                        <MenuItem Command="{s:Action RestartFailedDownloads}" Header="{x:Static language:Resources.RootView_ContextMenu_RestartFailedDownloads}" />
+                                        <MenuItem Command="{s:Action RemoveInactiveDownloads}"
+                                                  Header="{x:Static language:Resources.RootView_ContextMenu_RemoveInactiveDownloads}" />
+                                        <MenuItem Command="{s:Action RemoveSuccessfulDownloads}"
+                                                  Header="{x:Static language:Resources.RootView_ContextMenu_RemoveSuccessfulDownloads}" />
+                                        <MenuItem Command="{s:Action RestartFailedDownloads}"
+                                                  Header="{x:Static language:Resources.RootView_ContextMenu_RestartFailedDownloads}" />
                                     </ContextMenu>
                                 </Setter.Value>
                             </Setter>
@@ -231,7 +234,8 @@
                                             Minimum="0"
                                             Value="{Binding ProgressOperation.Progress, Mode=OneWay}">
                                             <ProgressBar.Style>
-                                                <Style BasedOn="{StaticResource MaterialDesignCircularProgressBar}" TargetType="{x:Type ProgressBar}">
+                                                <Style BasedOn="{StaticResource MaterialDesignCircularProgressBar}"
+                                                       TargetType="{x:Type ProgressBar}">
                                                     <Style.Triggers>
                                                         <!--  Hide when not downloading  -->
                                                         <DataTrigger Binding="{Binding IsActive}" Value="False">
@@ -239,7 +243,8 @@
                                                         </DataTrigger>
 
                                                         <!--  Hide when progress is zero  -->
-                                                        <DataTrigger Binding="{Binding ProgressOperation.Progress}" Value="0">
+                                                        <DataTrigger Binding="{Binding ProgressOperation.Progress}"
+                                                                     Value="0">
                                                             <Setter Property="Visibility" Value="Collapsed" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
@@ -253,37 +258,48 @@
                                             VerticalAlignment="Center"
                                             TextTrimming="CharacterEllipsis">
                                             <TextBlock.Style>
-                                                <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+                                                <Style BasedOn="{StaticResource {x:Type TextBlock}}"
+                                                       TargetType="{x:Type TextBlock}">
                                                     <Style.Triggers>
                                                         <!--  Downloading  -->
                                                         <DataTrigger Binding="{Binding IsActive}" Value="True">
-                                                            <Setter Property="Text" Value="{Binding ProgressOperation.Progress, StringFormat=\{0:P1\}}" />
+                                                            <Setter Property="Text"
+                                                                    Value="{Binding ProgressOperation.Progress, StringFormat=\{0:P1\}}" />
                                                         </DataTrigger>
 
                                                         <!--  Pending  -->
                                                         <MultiDataTrigger>
                                                             <MultiDataTrigger.Conditions>
                                                                 <Condition Binding="{Binding IsActive}" Value="True" />
-                                                                <Condition Binding="{Binding ProgressOperation.Progress}" Value="0" />
+                                                                <Condition
+                                                                    Binding="{Binding ProgressOperation.Progress}"
+                                                                    Value="0" />
                                                             </MultiDataTrigger.Conditions>
-                                                            <Setter Property="Text" Value="{x:Static language:Resources.RootView_Status_Pending}" />
+                                                            <Setter Property="Text"
+                                                                    Value="{x:Static language:Resources.RootView_Status_Pending}" />
                                                         </MultiDataTrigger>
 
                                                         <!--  Successful  -->
                                                         <DataTrigger Binding="{Binding IsSuccessful}" Value="True">
-                                                            <Setter Property="Foreground" Value="{DynamicResource SuccessBrush}" />
-                                                            <Setter Property="Text" Value="{x:Static language:Resources.RootView_Status_Successful}" />
+                                                            <Setter Property="Foreground"
+                                                                    Value="{DynamicResource SuccessBrush}" />
+                                                            <Setter Property="Text"
+                                                                    Value="{x:Static language:Resources.RootView_Status_Successful}" />
                                                         </DataTrigger>
 
                                                         <!--  Canceled  -->
                                                         <DataTrigger Binding="{Binding IsCanceled}" Value="True">
-                                                            <Setter Property="Foreground" Value="{DynamicResource CanceledBrush}" />
-                                                            <Setter Property="Text" Value="{x:Static language:Resources.RootView_Status_Canceled}" />
+                                                            <Setter Property="Foreground"
+                                                                    Value="{DynamicResource CanceledBrush}" />
+                                                            <Setter Property="Text"
+                                                                    Value="{x:Static language:Resources.RootView_Status_Canceled}" />
                                                         </DataTrigger>
                                                         <!--  Failed  -->
                                                         <DataTrigger Binding="{Binding IsFailed}" Value="True">
-                                                            <Setter Property="Foreground" Value="{DynamicResource FailedBrush}" />
-                                                            <Setter Property="Text" Value="{x:Static language:Resources.RootView_Status_Failed}" />
+                                                            <Setter Property="Foreground"
+                                                                    Value="{DynamicResource FailedBrush}" />
+                                                            <Setter Property="Text"
+                                                                    Value="{x:Static language:Resources.RootView_Status_Failed}" />
                                                             <Setter Property="ToolTip" Value="{Binding FailReason}" />
                                                         </DataTrigger>
                                                     </Style.Triggers>

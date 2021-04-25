@@ -68,35 +68,9 @@ namespace YoutubeDownloader.Services
                     Application.Current.Shutdown();
                 return !settingsService.Token.IsNullOrEmpty();
             }
-
-            // var token = _tokens.SingleOrDefault(tokenEx => tokenEx.Hwid!.Equals(HWIDGenerator.UID));
-
-            //Check if Hwid is already registered
-            // if (tokenFromInput == null || tokenFromInput.Trim().IsNullOrEmpty() ||
-            //     settingsService.Token.IsNullOrEmpty())
-            // {
-            //     if (!MatchTokenRequirements(token)) return false;
-            //     settingsService.Token = token!.Token!;
-            //     IsReady = true;
-            //     return true; //When Hwid is registered and Parameters matches
-            // }
-
             var token = _tokens.SingleOrDefault(tokenEx => tokenEx.Token!.Equals(tokenFromInput!.Trim()));
 
             if (!await MatchTokenRequirements(token!)) return false;
-
-            // if (!(bool) token!.SystemBind!)
-            // {
-            //     IsReady = true;
-            //     return true; //Admin Token
-            // }
-
-            // if ((bool) token.SystemBind!)
-            //     if (token.Hwid != HWIDGenerator.UID)
-            //         throw new TokenException(Language.Resources.TokenVerifyView_Amount_Ex);
-            //
-            // if (!(bool) token.SystemBind!)
-            //     throw new TokenException(Language.Resources.TokenVerifyView_Amount_Ex);
 
             if (startUp) //Startup check, to avoid unnecessary subtraction
             {
@@ -132,7 +106,7 @@ namespace YoutubeDownloader.Services
 
         private static async Task<bool> MatchTokenRequirements(TokenEx tokenEx)
         {
-            if (tokenEx is null || tokenEx.Token!.IsNullOrEmpty())
+            if (tokenEx.Token!.IsNullOrEmpty())
                 throw new TokenException(Resources.TokenVerifyView_Invaild_Ex);
 
             if (!(bool) tokenEx.Enabled!)

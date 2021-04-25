@@ -5,11 +5,14 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Markup;
 using Tyrrrz.Extensions;
+using YoutubeDownloader.Services;
 
 namespace YoutubeDownloader.Views
 {
     public partial class RootView
     {
+        public static SettingsService? SettingsService { get; set; }
+
         public RootView()
         {
             InitializeComponent();
@@ -20,7 +23,7 @@ namespace YoutubeDownloader.Views
         {
             try
             {
-                if (!Clipboard.ContainsText()) return;
+                if (!Clipboard.ContainsText() || !SettingsService!.AutoImportClipboard) return;
                 var clipboardText = Clipboard.GetText();
 
                 if (!clipboardText!.IsNullOrEmpty() && !QueryTextBox.Text.Contains(clipboardText!) &&

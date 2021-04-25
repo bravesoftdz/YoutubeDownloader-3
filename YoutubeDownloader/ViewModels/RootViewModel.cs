@@ -13,6 +13,7 @@ using YoutubeDownloader.Utils.Token;
 using YoutubeDownloader.ViewModels.Components;
 using YoutubeDownloader.ViewModels.Dialogs;
 using YoutubeDownloader.ViewModels.Framework;
+using YoutubeDownloader.Views;
 using YoutubeExplode.Exceptions;
 
 namespace YoutubeDownloader.ViewModels
@@ -51,6 +52,8 @@ namespace YoutubeDownloader.ViewModels
                 (_, _) => IsProgressIndeterminate =
                     ProgressManager.IsActive && ProgressManager.Progress.IsEither(0, 1)
             );
+
+            RootView.SettingsService = settingsService;
         }
 
         public ISnackbarMessageQueue Notifications { get; } = new SnackbarMessageQueue(TimeSpan.FromSeconds(5));
@@ -64,8 +67,6 @@ namespace YoutubeDownloader.ViewModels
         public string? Query { get; set; }
 
         public BindableCollection<DownloadViewModel> Downloads { get; } = new();
-
-        public bool CanShowSettings => !IsBusy;
 
         public bool CanProcessQuery => !IsBusy && !string.IsNullOrWhiteSpace(Query);
 

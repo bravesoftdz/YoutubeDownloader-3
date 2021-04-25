@@ -88,6 +88,21 @@
                 IsChecked="{Binding ShouldSkipExistingFiles}" />
         </DockPanel>
 
+        <!--  Skip existing files  -->
+        <DockPanel
+            Background="Transparent"
+            LastChildFill="False"
+            ToolTip="{x:Static language:Resources.SettingsView_AutoImportClipboard_Desc}">
+            <TextBlock
+                Margin="16,8"
+                DockPanel.Dock="Left"
+                Text="{x:Static language:Resources.SettingsView_AutoImportClipboard_Text}" />
+            <ToggleButton
+                Margin="16,8"
+                DockPanel.Dock="Right"
+                IsChecked="{Binding AutoImportClipboard}" />
+        </DockPanel>
+
         <!--  File name template  -->
         <TextBox
             Margin="16,8"

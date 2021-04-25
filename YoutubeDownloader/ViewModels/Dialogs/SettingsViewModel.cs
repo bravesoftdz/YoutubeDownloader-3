@@ -38,6 +38,12 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             set => _settingsService.ShouldSkipExistingFiles = value;
         }
 
+        public bool AutoImportClipboard
+        {
+            get => _settingsService.AutoImportClipboard;
+            set => _settingsService.AutoImportClipboard = value;
+        }
+
         public string FileNameTemplate
         {
             get => _settingsService.FileNameTemplate;

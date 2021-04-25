@@ -53,6 +53,7 @@ namespace YoutubeDownloader.Utils.Clipboard
             {
                 this.ClipboardUpdate?.Invoke(this, new EventArgs());
             }
+
             handled = false;
             return IntPtr.Zero;
         }

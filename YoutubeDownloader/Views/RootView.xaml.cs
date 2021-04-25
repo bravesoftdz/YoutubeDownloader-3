@@ -1,6 +1,9 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Markup;
+using Tyrrrz.Extensions;
 
 namespace YoutubeDownloader.Views
 {
@@ -10,6 +13,29 @@ namespace YoutubeDownloader.Views
         {
             InitializeComponent();
             Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
+        }
+
+        protected override void OnClipboardUpdate()
+        {
+            try
+            {
+                if (!Clipboard.ContainsText()) return;
+                var clipboard = Clipboard.GetText();
+                if (clipboard.IsNullOrEmpty() || QueryTextBox.Text.Contains(clipboard!) ||
+                    QueryTextBox.IsKeyboardFocused) return;
+                if (!clipboard!.Contains("www.youtube.com") && !clipboard!.Contains("?") &&
+                    !clipboard!.Contains("="))
+                    if (!clipboard.Contains("youtu.be"))
+                        return;
+                if (!QueryTextBox.Text.IsNullOrEmpty())
+                    QueryTextBox.Text += Environment.NewLine;
+                QueryTextBox.Text += clipboard!;
+                Clipboard.Clear();
+            }
+            catch
+            {
+                // ignored
+            }
         }
 
         private void QueryTextBox_OnPreviewKeyDown(object sender, KeyEventArgs e)

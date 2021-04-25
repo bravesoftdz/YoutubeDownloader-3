@@ -51,8 +51,7 @@
             HorizontalAlignment="Stretch"
             Background="Black">
             <!--  Thumbnail  -->
-            <Image
-                Source="{Binding Video, Converter={x:Static converters:VideoToHighestQualityThumbnailUrlConverter.Instance}}" />
+            <Image Source="{Binding Video, Converter={x:Static converters:VideoToHighestQualityThumbnailUrlConverter.Instance}}" />
 
             <!--  Duration  -->
             <TextBlock

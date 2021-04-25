@@ -6,6 +6,8 @@ using YoutubeDownloader.ViewModels;
 using YoutubeDownloader.ViewModels.Framework;
 
 #if !DEBUG
+using System.Windows;
+using System.Windows.Threading;
 #endif
 
 namespace YoutubeDownloader

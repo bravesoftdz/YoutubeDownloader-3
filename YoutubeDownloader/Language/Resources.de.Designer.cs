@@ -395,6 +395,24 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fügt automatisch Youtubelinks aus der Zwiscenablage in die Suchleiste ein.
+        /// </summary>
+        public static string SettingsView_AutoImportClipboard_Desc {
+            get {
+                return ResourceManager.GetString("SettingsView_AutoImportClipboard_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zwischenablage automatisch einfügen.
+        /// </summary>
+        public static string SettingsView_AutoImportClipboard_Text {
+            get {
+                return ResourceManager.GetString("SettingsView_AutoImportClipboard_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Führt automatische Updates nach jedem Start durch.
         /// </summary>
         public static string SettingsView_AutoUpdates_Desc_1 {

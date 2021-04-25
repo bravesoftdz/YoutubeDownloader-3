@@ -388,6 +388,24 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically inserts Youtube links from the clipboard into the search bar.
+        /// </summary>
+        public static string SettingsView_AutoImportClipboard_Desc {
+            get {
+                return ResourceManager.GetString("SettingsView_AutoImportClipboard_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Paste Clipboard.
+        /// </summary>
+        public static string SettingsView_AutoImportClipboard_Text {
+            get {
+                return ResourceManager.GetString("SettingsView_AutoImportClipboard_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Perform automatic updates on every launch.
         /// </summary>
         public static string SettingsView_AutoUpdates_Desc_1 {

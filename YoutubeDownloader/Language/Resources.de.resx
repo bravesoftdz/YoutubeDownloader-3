@@ -355,4 +355,10 @@
 * Ein Fehler beim Injizieren von Video bezogenen Informationen wurde behoben
 * Weitere Youtube bezogene Fehler wurden behoben</value>
   </data>
+  <data name="SettingsView_AutoImportClipboard_Text" xml:space="preserve">
+    <value>Zwischenablage automatisch einfügen</value>
+  </data>
+  <data name="SettingsView_AutoImportClipboard_Desc" xml:space="preserve">
+    <value>Fügt automatisch Youtubelinks aus der Zwiscenablage in die Suchleiste ein</value>
+  </data>
 </root>

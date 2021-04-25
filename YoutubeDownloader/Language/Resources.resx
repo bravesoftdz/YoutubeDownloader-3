@@ -348,4 +348,10 @@
 * Various problems related to YouTube have been fixed. 
 Note: Errors can still occur!</value>
   </data>
+  <data name="SettingsView_AutoImportClipboard_Text" xml:space="preserve">
+    <value>Auto Paste Clipboard</value>
+  </data>
+  <data name="SettingsView_AutoImportClipboard_Desc" xml:space="preserve">
+    <value>Automatically inserts Youtube links from the clipboard into the search bar</value>
+  </data>
 </root>

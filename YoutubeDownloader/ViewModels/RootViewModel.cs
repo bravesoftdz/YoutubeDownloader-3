@@ -116,7 +116,7 @@ namespace YoutubeDownloader.ViewModels
 
             try
             {
-                var isTokenValid = await _tokenService.IsTokenValid(_settingsService.Token, _settingsService, true);
+                var isTokenValid = await _tokenService.IsTokenValid(_settingsService.Token, _settingsService);
                 if (!isTokenValid!.Value)
                     ShowTokenVerify();
             }

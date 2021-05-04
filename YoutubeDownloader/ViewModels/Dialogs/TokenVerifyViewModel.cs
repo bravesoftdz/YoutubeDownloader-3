@@ -34,7 +34,7 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             VerifyTask = true;
             try
             {
-                var isTokenValid = await _tokenService.IsTokenValid(Token, _settingsService, false);
+                var isTokenValid = await _tokenService.IsTokenValid(Token, _settingsService);
                 if (isTokenValid!.Value)
                 {
                     Close();

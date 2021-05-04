@@ -43,7 +43,7 @@ namespace YoutubeDownloader.Services
             await _databaseHelper.CloseConnection();
         }
 
-        public async Task<bool?> IsTokenValid(string? tokenFromInput, SettingsService settingsService, bool startUp)
+        public async Task<bool?> IsTokenValid(string? tokenFromInput, SettingsService settingsService)
         {
             try
             {
@@ -64,14 +64,7 @@ namespace YoutubeDownloader.Services
 
             if (!await MatchTokenRequirements(token!)) return false;
 
-            if (startUp) //Startup check, to avoid unnecessary subtraction
-            {
-                IsReady = true;
-                return true;
-            }
-
-            IsReady = true;
-            return true;
+            return IsReady = true;
         }
 
 

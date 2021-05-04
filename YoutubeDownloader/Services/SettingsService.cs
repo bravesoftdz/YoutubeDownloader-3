@@ -24,7 +24,6 @@ namespace YoutubeDownloader.Services
 
         public bool ShouldSkipExistingFiles { get; set; }
         
-        
         public bool AutoImportClipboard { get; set; }
 
         public string FileNameTemplate { get; set; } = FileNameGenerator.DefaultTemplate;

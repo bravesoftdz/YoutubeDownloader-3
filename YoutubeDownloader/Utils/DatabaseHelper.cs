@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Threading.Tasks;
 using MySqlConnector;
 using YoutubeDownloader.Language;
@@ -12,7 +11,7 @@ namespace YoutubeDownloader.Utils
         private const string ConnectionString =
             "Server=nuerk-solutions.de;User Id=ytdl;Password=YTDL-2021!;Database=ytdl";
 
-        public MySqlConnection MySqlConnection { get; }
+        private MySqlConnection MySqlConnection { get; }
 
         public DatabaseHelper()
         {
@@ -23,7 +22,7 @@ namespace YoutubeDownloader.Utils
         {
             if (MySqlConnection.State == ConnectionState.Open)
                 return MySqlConnection;
-            
+
             await MySqlConnection.OpenAsync();
             if (MySqlConnection.State == ConnectionState.Open)
                 return MySqlConnection;

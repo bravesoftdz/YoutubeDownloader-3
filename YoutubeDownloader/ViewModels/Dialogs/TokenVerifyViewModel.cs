@@ -23,11 +23,7 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             _tokenService = tokenService;
         }
 
-        public string Token
-        {
-            get => _settingsService.Token;
-            set => _settingsService.Token = value;
-        }
+        private string Token => _settingsService.Token;
 
         public async Task Verify()
         {
@@ -35,7 +31,7 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             try
             {
                 var isTokenValid = await _tokenService.IsTokenValid(Token, _settingsService);
-                if (isTokenValid!.Value)
+                if (isTokenValid!)
                 {
                     Close();
                     var errorDialog = _viewModelFactory.CreateMessageBoxViewModel(

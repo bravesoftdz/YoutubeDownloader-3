@@ -23,7 +23,7 @@ namespace YoutubeDownloader.Services
         public bool ShouldInjectTags { get; set; } = true;
 
         public bool ShouldSkipExistingFiles { get; set; }
-        
+
         public bool AutoImportClipboard { get; set; }
 
         public string FileNameTemplate { get; set; } = FileNameGenerator.DefaultTemplate;

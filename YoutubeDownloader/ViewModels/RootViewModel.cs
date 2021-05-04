@@ -112,13 +112,12 @@ namespace YoutubeDownloader.ViewModels
             else
                 App.SetLightTheme();
 
-            await CheckForUpdatesAsync();
 
             try
             {
                 var isTokenValid = await _tokenService.IsTokenValid(_settingsService.Token, _settingsService);
-                if (!isTokenValid!.Value)
-                    ShowTokenVerify();
+                if (!isTokenValid!)
+                    await ShowTokenVerify();
             }
             catch (TokenException ex)
             {
@@ -126,11 +125,15 @@ namespace YoutubeDownloader.ViewModels
                     _viewModelFactory.CreateMessageBoxViewModel(Resources.MessageBoxView_Error, ex.Message);
                 await _dialogManager.ShowDialogAsync(errorDialog);
                 _settingsService.Token = string.Empty;
-                ShowTokenVerify();
+                await ShowTokenVerify();
+            }
+            finally
+            {
+                if (_tokenService.IsReady)
+                    ShowNews();
             }
 
-            if (_tokenService.IsReady)
-                ShowNews();
+            await CheckForUpdatesAsync();
         }
 
         protected override void OnClose()
@@ -152,19 +155,17 @@ namespace YoutubeDownloader.ViewModels
             await _dialogManager.ShowDialogAsync(dialog);
         }
 
-        public async void ShowNews()
+        private async void ShowNews()
         {
-            if (_settingsService.CurrentVersion is null || _settingsService.CurrentVersion < App.Version)
-            {
-                _settingsService.CurrentVersion = App.Version;
-                var dialog =
-                    _viewModelFactory.CreateMessageBoxViewModel("News - v" + App.VersionString,
-                        Resources.News);
-                await _dialogManager.ShowDialogAsync(dialog);
-            }
+            if (_settingsService.CurrentVersion is not null && _settingsService.CurrentVersion >= App.Version) return;
+            _settingsService.CurrentVersion = App.Version;
+            var dialog =
+                _viewModelFactory.CreateMessageBoxViewModel("News - v" + App.VersionString,
+                    Resources.News);
+            await _dialogManager.ShowDialogAsync(dialog);
         }
 
-        public async void ShowTokenVerify()
+        private async Task ShowTokenVerify()
         {
             var dialog = _viewModelFactory.CreateTokenVerifyViewModel();
             await _dialogManager.ShowDialogAsync(dialog, true);

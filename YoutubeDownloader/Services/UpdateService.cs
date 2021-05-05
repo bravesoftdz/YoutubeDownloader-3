@@ -28,7 +28,7 @@ namespace YoutubeDownloader.Services
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"{App.Name} ({App.GitHubProjectUrl})");
             _httpClient.DefaultRequestHeaders.Add("User-Agent",
                 "YoutubeDownloader (github.com/derech1e/YoutubeDownloader)");
-            _httpClient.DefaultRequestHeaders.Add("Authorization", "token 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");
+            _httpClient.DefaultRequestHeaders.Add("Authorization", "token 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");
         }
 
         public void Dispose()
@@ -40,8 +40,7 @@ namespace YoutubeDownloader.Services
         {
             if (!_settingsService.IsAutoUpdateEnabled)
                 return null;
-
-
+            
             try
             {
                 var check = await _updateManager.CheckForUpdatesAsync();

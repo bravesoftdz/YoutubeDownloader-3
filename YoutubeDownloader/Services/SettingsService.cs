@@ -5,6 +5,7 @@ using MySqlConnector;
 using Tyrrrz.Settings;
 using YoutubeDownloader.Models;
 using YoutubeDownloader.Utils;
+using YoutubeDownloader.Utils.Token.HWID;
 
 namespace YoutubeDownloader.Services
 {
@@ -55,11 +56,24 @@ namespace YoutubeDownloader.Services
             using var cmd = new MySqlCommand
             {
                 Connection = _mySqlConnection.Result,
-                CommandText = "UPDATE `ytdl`.`Tokens` SET `VideosDownloaded`=@videosdownloaded, `VideosLength`=@videoslength WHERE `Token`=@token;"
+                CommandText = "REPLACE INTO ytdl.Settings (Token, AutoUpdate, DarkMode, InjectTags, SkipExistingFiles, AutoImportClipboard, FileNameTemplate, ExcludedContainerFormats, MaxConcurrentDownload, LastFormat, LastSubtitleCode, LastVideoQuality, VideoDownloads, VideoDownloadLength, CurrentVersion, HWID) VALUES (@Token, @AutoUpdate, @DarkMode, @InjectTags, @SkipExistingFiles, @AutoImportClipboard, @FileNameTemplate, @ExcludedContainerFormats, @MaxConcurrentDownloads, @LastFormat, @LastSubtitleCode, @LastVideoQuality, @VideoDownloads, @VideoDownloadLength, @CurrentVersion, @HWID);"
             };
-            cmd.Parameters.AddWithValue("token", Token);
-            cmd.Parameters.AddWithValue("videosdownloaded", VideoDownloads);
-            cmd.Parameters.AddWithValue("videoslength", VideoDownloadsLength);
+            cmd.Parameters.AddWithValue("Token", Token);
+            cmd.Parameters.AddWithValue("AutoUpdate", IsAutoUpdateEnabled);
+            cmd.Parameters.AddWithValue("DarkMode", IsDarkModeEnabled);
+            cmd.Parameters.AddWithValue("InjectTags", ShouldInjectTags);
+            cmd.Parameters.AddWithValue("SkipExistingFiles", ShouldSkipExistingFiles);
+            cmd.Parameters.AddWithValue("AutoImportClipboard", AutoImportClipboard);
+            cmd.Parameters.AddWithValue("FileNameTemplate", FileNameTemplate);
+            cmd.Parameters.AddWithValue("ExcludedContainerFormats", ExcludedContainerFormats?.ToString());
+            cmd.Parameters.AddWithValue("MaxConcurrentDownloads", MaxConcurrentDownloadCount);
+            cmd.Parameters.AddWithValue("LastFormat", LastFormat);
+            cmd.Parameters.AddWithValue("LastSubtitleCode", LastSubtitleLanguageCode);
+            cmd.Parameters.AddWithValue("LastVideoQuality", LastVideoQualityPreference.GetType().ToString());
+            cmd.Parameters.AddWithValue("VideoDownloads", VideoDownloads);
+            cmd.Parameters.AddWithValue("VideoDownloadLength", VideoDownloadsLength);
+            cmd.Parameters.AddWithValue("CurrentVersion", CurrentVersion?.ToString());
+            cmd.Parameters.AddWithValue("HWID", HWIDGenerator.UID);
             cmd.ExecuteNonQuery();
             _mySqlConnection.Result.Close();
         }

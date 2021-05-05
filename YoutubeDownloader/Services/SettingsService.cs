@@ -69,7 +69,7 @@ namespace YoutubeDownloader.Services
             cmd.Parameters.AddWithValue("MaxConcurrentDownloads", MaxConcurrentDownloadCount);
             cmd.Parameters.AddWithValue("LastFormat", LastFormat);
             cmd.Parameters.AddWithValue("LastSubtitleCode", LastSubtitleLanguageCode);
-            cmd.Parameters.AddWithValue("LastVideoQuality", LastVideoQualityPreference.GetType().ToString());
+            cmd.Parameters.AddWithValue("LastVideoQuality", (int)LastVideoQualityPreference);
             cmd.Parameters.AddWithValue("VideoDownloads", VideoDownloads);
             cmd.Parameters.AddWithValue("VideoDownloadLength", VideoDownloadsLength);
             cmd.Parameters.AddWithValue("CurrentVersion", CurrentVersion?.ToString());

@@ -141,6 +141,7 @@ namespace YoutubeDownloader.ViewModels
             base.OnClose();
 
             _settingsService.Save();
+            _settingsService.UpdateDatabase();
 
             // Cancel all downloads
             foreach (var download in Downloads)

@@ -23,7 +23,11 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             _tokenService = tokenService;
         }
 
-        private string Token => _settingsService.Token;
+        public string Token
+        {
+            get => _settingsService.Token;
+            set => _settingsService.Token = value;
+        }
 
         public async Task Verify()
         {

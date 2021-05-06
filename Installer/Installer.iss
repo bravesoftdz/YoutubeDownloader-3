@@ -18,7 +18,7 @@ DisableWelcomePage=yes
 DisableProgramGroupPage=no
 DisableReadyPage=yes
 SetupIconFile=..\favicon.ico
-UninstallDisplayIcon=..\favicon.ico
+UninstallDisplayIcon={app}\YoutubeDownloader.exe
 LicenseFile=..\License.txt
 OutputDir=bin\
 OutputBaseFilename=YoutubeDownloader-Installer
@@ -43,7 +43,9 @@ Name: "{group}\{#AppName} on Github"; Filename: "https://github.com/derech1e/You
 Name: "{autodesktop}\{#AppName}"; Filename: "{app}\YoutubeDownloader.exe"; Tasks: desktopicon
 
 [Registry]
-Root: HKLM; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\ICM"; ValueType: dword; ValueName: "GdiICMGammaRange"; ValueData: "256"
+Root: HKCU; Subkey: "SOFTWARE\Classes\x-youtube-client"; ValueType: string; ValueData: "URL:x-youtube-client"   
+Root: HKCU; Subkey: "SOFTWARE\Classes\x-youtube-client"; ValueType: string; ValueName: "URL Protocol"
+Root: HKCU; Subkey: "SOFTWARE\Classes\x-youtube-client\shell\open\command"; ValueType: string; ValueData: """{app}\YoutubeDownloader.exe"" --protocol-launcher ""%1"""
 
 [Run]
 Filename: "{app}\YoutubeDownloader.exe"; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent

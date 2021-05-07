@@ -1,9 +1,20 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Windows;
 using System.Windows.Media;
+using System.Windows.Navigation;
+using AngleSharp.Text;
+using CliWrap;
 using MaterialDesignThemes.Wpf;
+using TagLib;
+using Tyrrrz.Extensions;
 using YoutubeDownloader.Utils;
+using YoutubeDownloader.Views;
+using File = System.IO.File;
 
 namespace YoutubeDownloader
 {
@@ -17,11 +28,29 @@ namespace YoutubeDownloader
 
         public static string VersionString { get; } = Version.ToString(3);
 
-        public static string GitHubProjectUrl { get; } = "https://github.com/derech1e/YoutubeDownloader";
+        public static string GitHubProjectUrl => "https://github.com/derech1e/YoutubeDownloader";
     }
 
     public partial class App
     {
+        
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            string[] args = Environment.GetCommandLineArgs();
+            if (SingleInstance.AlreadyRunning())
+                Current.Shutdown();
+            
+            foreach (Window? w in Current.Windows)
+                if (w is RootView view)
+                {
+                    view.Activate();
+                    var match = Array.Find(args, text => text.Contains("x-youtube-client"));
+                    if(match == null) return;
+                    view.QueryTextBox.Text = match!.Split("//", 2)[1];
+                }
+        }
+        
         private static Theme LightTheme { get; } = Theme.Create(
             new MaterialDesignLightTheme(),
             MediaColor.FromHex("#343838"),
@@ -56,15 +85,11 @@ namespace YoutubeDownloader
 
         public static void SetLanguageDictionary()
         {
-            switch (CultureInfo.CurrentUICulture.Name)
+            Language.Resources.Culture = CultureInfo.CurrentUICulture.Name switch
             {
-                case "de-DE":
-                    Language.Resources.Culture = new CultureInfo("de-DE");
-                    break;
-                default:
-                    Language.Resources.Culture = new CultureInfo("en-US");
-                    break;
-            }
+                "de-DE" => new CultureInfo("de-DE"),
+                _ => new CultureInfo("en-US")
+            };
         }
     }
 }

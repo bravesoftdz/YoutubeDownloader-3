@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Markup;
 using Tyrrrz.Extensions;
 using YoutubeDownloader.Services;
+using YoutubeDownloader.Utils;
 
 namespace YoutubeDownloader.Views
 {
@@ -16,7 +19,44 @@ namespace YoutubeDownloader.Views
         public RootView()
         {
             InitializeComponent();
+            Loaded += (sender, args) =>
+            {
+                WindowHandle = new WindowInteropHelper(Application.Current.MainWindow).Handle;
+                HwndSource.FromHwnd(WindowHandle)?.AddHook(new HwndSourceHook(HandleMessages));
+            };
             Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
+        }
+        
+        public static IntPtr WindowHandle { get; private set; }
+
+        internal static void HandleParameter(string[] args)
+        {
+            Trace.WriteLine(args);
+            // Do stuff with the args
+        }
+        
+        private static IntPtr HandleMessages
+            (IntPtr handle, int message, IntPtr wParameter, IntPtr lParameter, ref Boolean handled)
+        {
+            var data = UnsafeNative.GetMessage(message, lParameter);
+
+            if (data != null)
+            {
+                if (Application.Current.MainWindow == null)
+                    return IntPtr.Zero;
+
+                if (Application.Current.MainWindow.WindowState == WindowState.Minimized)
+                    Application.Current.MainWindow.WindowState = WindowState.Normal;
+
+                UnsafeNative.SetForegroundWindow(new WindowInteropHelper
+                    (Application.Current.MainWindow).Handle);
+
+                var args = data.Split(' ');
+                HandleParameter(args);
+                handled = true;
+            }
+
+            return IntPtr.Zero;
         }
 
         protected override void OnClipboardUpdate()

@@ -1,9 +1,13 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Linq;
+using System.Net;
 using Stylet;
 using StyletIoC;
 using YoutubeDownloader.Services;
+using YoutubeDownloader.Utils;
 using YoutubeDownloader.ViewModels;
 using YoutubeDownloader.ViewModels.Framework;
+using YoutubeDownloader.Views;
 
 #if !DEBUG
 using System.Windows;
@@ -14,6 +18,7 @@ namespace YoutubeDownloader
 {
     public class Bootstrapper : Bootstrapper<RootViewModel>
     {
+        
         protected override void OnStart()
         {
             base.OnStart();
@@ -29,6 +34,26 @@ namespace YoutubeDownloader
             ServicePointManager.DefaultConnectionLimit = 20;
         }
 
+        protected override void Configure()
+        {
+            base.Configure();
+            var proc = Process.GetCurrentProcess();
+            var processName = proc.ProcessName.Replace(".vshost", "");
+            var runningProcess = Process.GetProcesses()
+                .FirstOrDefault(x => (x.ProcessName == processName || 
+                                      x.ProcessName == proc.ProcessName || 
+                                      x.ProcessName == proc.ProcessName + ".vshost") && x.Id != proc.Id);
+
+            if (runningProcess == null)
+            {
+                // Application.Run(GetActiveWindow());
+                return; // In this case we just proceed on loading the program
+            }
+
+            if (Args.Length > 0)
+                UnsafeNative.SendMessage(runningProcess.MainWindowHandle, string.Join(" ", Args));
+        }
+
         protected override void ConfigureIoC(IStyletIoCBuilder builder)
         {
             base.ConfigureIoC(builder);
@@ -37,6 +62,7 @@ namespace YoutubeDownloader
             builder.Bind<DownloadService>().ToSelf().InSingletonScope();
             builder.Bind<SettingsService>().ToSelf().InSingletonScope();
             builder.Bind<TaggingService>().ToSelf().InSingletonScope();
+            builder.Bind<TokenService>().ToSelf().InSingletonScope();
 
             // Bind view model factory
             builder.Bind<IViewModelFactory>().ToAbstractFactory();

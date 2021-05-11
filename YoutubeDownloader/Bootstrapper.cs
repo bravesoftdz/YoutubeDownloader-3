@@ -4,7 +4,6 @@ using System.Net;
 using Stylet;
 using StyletIoC;
 using YoutubeDownloader.Services;
-using YoutubeDownloader.Utils;
 using YoutubeDownloader.Utils.Cli;
 using YoutubeDownloader.ViewModels;
 using YoutubeDownloader.ViewModels.Framework;
@@ -38,16 +37,15 @@ namespace YoutubeDownloader
         {
             var proc = Process.GetCurrentProcess();
             var processName = proc.ProcessName.Replace(".vshost", "");
-            var runningProcess = Process.GetProcesses()
-                .FirstOrDefault(x => (x.ProcessName == processName ||
-                                      x.ProcessName == proc.ProcessName ||
-                                      x.ProcessName == proc.ProcessName + ".vshost") && x.Id != proc.Id);
+            var runningProcess = Process.GetProcesses().FirstOrDefault(x =>
+                (x.ProcessName == processName || x.ProcessName == proc.ProcessName ||
+                 x.ProcessName == proc.ProcessName + ".vshost") && x.Id != proc.Id);
 
             if (runningProcess == null)
             {
                 base.Start(args);
-                RootView rootView = (RootView)Application.MainWindow!;
-                rootView.HandleCliParameter(args);
+                RootView rootView = (RootView) Application.MainWindow!;
+                rootView.HandleCliParameter(args.ToList());
                 return; // In this case we just proceed on loading the program
             }
 

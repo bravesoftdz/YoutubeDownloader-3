@@ -7,54 +7,47 @@ namespace YoutubeDownloader.Utils.Cli
 {
     public static class UnsafeNative
     {
+        private const int WM_COPYDATA = 0x004A;
+        
         [DllImport("user32.dll")]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
         
         [DllImport("User32.dll", EntryPoint = "SendMessage")]
-        private static extern int SendMessage(IntPtr hWnd, int Msg, IntPtr wParam, ref COPYDATASTRUCT lParam);
+        private static extern int SendMessage(IntPtr hWnd, int message, IntPtr wParam, ref Copydatastruct lParam);
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct COPYDATASTRUCT
+        private struct Copydatastruct
         {
             public IntPtr dwData;
             public int cbData;
 
             [MarshalAs(UnmanagedType.LPWStr)] public string lpData;
         }
-
-        private const int WM_COPYDATA = 0x004A;
-
+        
         public static string? GetMessage(int message, IntPtr lParam)
         {
-            if (message == UnsafeNative.WM_COPYDATA)
+            if (message != WM_COPYDATA) return null;
+            try
             {
-                try
-                {
-                    var data = Marshal.PtrToStructure<UnsafeNative.COPYDATASTRUCT>(lParam);
-                    var result = string.Copy(data.lpData);
-                    return result;
-                }
-                catch
-                {
-                    return null;
-                }
+                return new string(Marshal.PtrToStructure<Copydatastruct>(lParam).lpData);
             }
-
-            return null;
+            catch
+            {
+                return null;
+            }
         }
         
-
         public static void SendMessage(IntPtr hwnd, string message)
         {
             var messageBytes = Encoding.Unicode.GetBytes(message);
-            var data = new UnsafeNative.COPYDATASTRUCT
+            var data = new Copydatastruct
             {
                 dwData = IntPtr.Zero,
                 lpData = message,
                 cbData = messageBytes.Length + 1 /* +1 because of \0 string termination */
             };
 
-            if (UnsafeNative.SendMessage(hwnd, WM_COPYDATA, IntPtr.Zero, ref data) != 0)
+            if (SendMessage(hwnd, WM_COPYDATA, IntPtr.Zero, ref data) != 0)
                 throw new Win32Exception(Marshal.GetLastWin32Error());
         }
     }

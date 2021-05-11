@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
@@ -53,19 +54,25 @@ namespace YoutubeDownloader.Views
             Parser.Default.ParseArguments<Options>(args).WithParsed(option =>
             {
                 if (!option.Urls.IsNullOrEmpty())
+                {
+                    StringBuilder query = new(QueryTextBox.Text!);
+                    if (!query.ToString().IsNullOrEmpty()) query.Append(Environment.NewLine);
                     foreach (string optionUrl in option.Urls!)
                     {
                         if (!IsYoutubeUrl(optionUrl)) continue;
                         if (option.Urls.LastOrDefault() == optionUrl)
                         {
-                            QueryTextBox.Text += optionUrl;
+                            query.Append(optionUrl);
                             continue;
                         }
 
-                        QueryTextBox.Text += optionUrl + Environment.NewLine;
+                        query.Append(optionUrl + Environment.NewLine);
                     }
 
-                if (option.AutoSearch && !QueryTextBox.Text.IsNullOrEmpty())
+                    QueryTextBox.Text = query.ToString();
+                }
+
+                if (option.AutoSearch && !QueryTextBox.Text!.IsNullOrEmpty())
                     QueryButton.Command.Execute(QueryButton.CommandParameter);
             });
         }

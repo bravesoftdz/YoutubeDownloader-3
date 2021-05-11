@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
@@ -19,23 +20,24 @@ namespace YoutubeDownloader.Views
         public RootView()
         {
             InitializeComponent();
-            Loaded += (sender, args) =>
+            Loaded += (_, _) =>
             {
-                WindowHandle = new WindowInteropHelper(Application.Current.MainWindow).Handle;
-                HwndSource.FromHwnd(WindowHandle)?.AddHook(new HwndSourceHook(HandleMessages));
+                WindowHandle = new WindowInteropHelper(Application.Current.MainWindow!).Handle;
+                HwndSource.FromHwnd(WindowHandle)?.AddHook(HandleMessages);
             };
             Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
         }
         
-        public static IntPtr WindowHandle { get; private set; }
+        private IntPtr WindowHandle { get; set; }
 
-        internal static void HandleParameter(string[] args)
+        public void HandleParameter(string[] args)
         {
+            File.WriteAllLines("C:\\Users\\XMG-Privat\\Desktop\\test.txt", args);
             Trace.WriteLine(args);
-            // Do stuff with the args
+            QueryTextBox.Text = args[0];
         }
         
-        private static IntPtr HandleMessages
+        private IntPtr HandleMessages
             (IntPtr handle, int message, IntPtr wParameter, IntPtr lParameter, ref Boolean handled)
         {
             var data = UnsafeNative.GetMessage(message, lParameter);

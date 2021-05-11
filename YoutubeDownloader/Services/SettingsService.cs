@@ -12,7 +12,7 @@ namespace YoutubeDownloader.Services
     public class SettingsService : SettingsManager
     {
         private readonly Task<MySqlConnection> _mySqlConnection = new DatabaseHelper().OpenConnection();
-        
+
         public SettingsService()
         {
             Configuration.StorageSpace = StorageSpace.Instance;
@@ -56,7 +56,8 @@ namespace YoutubeDownloader.Services
             using var cmd = new MySqlCommand
             {
                 Connection = _mySqlConnection.Result,
-                CommandText = "REPLACE INTO ytdl.Settings (Token, AutoUpdate, DarkMode, InjectTags, SkipExistingFiles, AutoImportClipboard, FileNameTemplate, ExcludedContainerFormats, MaxConcurrentDownload, LastFormat, LastSubtitleCode, LastVideoQuality, VideoDownloads, VideoDownloadLength, CurrentVersion, HWID) VALUES (@Token, @AutoUpdate, @DarkMode, @InjectTags, @SkipExistingFiles, @AutoImportClipboard, @FileNameTemplate, @ExcludedContainerFormats, @MaxConcurrentDownloads, @LastFormat, @LastSubtitleCode, @LastVideoQuality, @VideoDownloads, @VideoDownloadLength, @CurrentVersion, @HWID);"
+                CommandText =
+                    "REPLACE INTO ytdl.Settings (Token, AutoUpdate, DarkMode, InjectTags, SkipExistingFiles, AutoImportClipboard, FileNameTemplate, ExcludedContainerFormats, MaxConcurrentDownload, LastFormat, LastSubtitleCode, LastVideoQuality, VideoDownloads, VideoDownloadLength, CurrentVersion, HWID) VALUES (@Token, @AutoUpdate, @DarkMode, @InjectTags, @SkipExistingFiles, @AutoImportClipboard, @FileNameTemplate, @ExcludedContainerFormats, @MaxConcurrentDownloads, @LastFormat, @LastSubtitleCode, @LastVideoQuality, @VideoDownloads, @VideoDownloadLength, @CurrentVersion, @HWID);"
             };
             cmd.Parameters.AddWithValue("Token", Token);
             cmd.Parameters.AddWithValue("AutoUpdate", IsAutoUpdateEnabled);
@@ -69,7 +70,7 @@ namespace YoutubeDownloader.Services
             cmd.Parameters.AddWithValue("MaxConcurrentDownloads", MaxConcurrentDownloadCount);
             cmd.Parameters.AddWithValue("LastFormat", LastFormat);
             cmd.Parameters.AddWithValue("LastSubtitleCode", LastSubtitleLanguageCode);
-            cmd.Parameters.AddWithValue("LastVideoQuality", (int)LastVideoQualityPreference);
+            cmd.Parameters.AddWithValue("LastVideoQuality", (int) LastVideoQualityPreference);
             cmd.Parameters.AddWithValue("VideoDownloads", VideoDownloads);
             cmd.Parameters.AddWithValue("VideoDownloadLength", VideoDownloadsLength);
             cmd.Parameters.AddWithValue("CurrentVersion", CurrentVersion?.ToString());

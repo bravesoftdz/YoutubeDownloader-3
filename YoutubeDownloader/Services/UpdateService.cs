@@ -40,7 +40,7 @@ namespace YoutubeDownloader.Services
         {
             if (!_settingsService.IsAutoUpdateEnabled)
                 return null;
-            
+
             try
             {
                 var check = await _updateManager.CheckForUpdatesAsync();

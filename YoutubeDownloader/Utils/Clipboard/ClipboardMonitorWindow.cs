@@ -10,22 +10,46 @@ using System.Windows.Markup;
 namespace YoutubeDownloader.Utils.Clipboard
 {
     /// <summary>
-    /// Clipboard Monitor window class
+    ///     Clipboard Monitor window class
     /// </summary>
     public class ClipboardMonitorWindow : Window
     {
         private const int WM_CLIPBOARDUPDATE = 0x031D;
 
+        /// <summary>
+        ///     Clipboard Update dependency property
+        /// </summary>
+        public static readonly DependencyProperty ClipboardUpdateCommandProperty =
+            DependencyProperty.Register("ClipboardUpdateCommand", typeof(ICommand), typeof(ClipboardMonitorWindow),
+                new FrameworkPropertyMetadata(null));
+
+        /// <summary>
+        ///     Clipboard Notification dependency property
+        /// </summary>
+        public static readonly DependencyProperty ClipboardNotificationProperty =
+            DependencyProperty.Register("ClipboardNotification", typeof(bool), typeof(ClipboardMonitorWindow),
+                new FrameworkPropertyMetadata(true, OnClipboardNotificationChanged));
+
         private IntPtr _windowHandle;
 
         /// <summary>
-        /// Event for clipboard update notification.
+        ///     ICommand to be called on clipboard update.
+        /// </summary>
+        private ICommand ClipboardUpdateCommand => (ICommand) GetValue(ClipboardUpdateCommandProperty);
+
+        /// <summary>
+        ///     Enable clipboard notification.
+        /// </summary>
+        private bool ClipboardNotification => (bool) GetValue(ClipboardNotificationProperty);
+
+        /// <summary>
+        ///     Event for clipboard update notification.
         /// </summary>
         public event EventHandler ClipboardUpdate = null!;
 
         /// <summary>
-        /// Raises the System.Windows.FrameworkElement.Initialized event. This method is
-        /// invoked whenever System.Windows.FrameworkElement.IsInitialized is set to true internally.
+        ///     Raises the System.Windows.FrameworkElement.Initialized event. This method is
+        ///     invoked whenever System.Windows.FrameworkElement.IsInitialized is set to true internally.
         /// </summary>
         /// <param name="e">The System.Windows.RoutedEventArgs that contains the event data.</param>
         protected override void OnInitialized(EventArgs e)
@@ -35,59 +59,28 @@ namespace YoutubeDownloader.Utils.Clipboard
             _windowHandle = new WindowInteropHelper(this).EnsureHandle();
             HwndSource.FromHwnd(_windowHandle)?.AddHook(HwndHandler);
 
-            if (ClipboardNotification)
-            {
-                Start();
-            }
+            if (ClipboardNotification) Start();
         }
-
-        /// <summary>
-        /// Clipboard Update dependency property
-        /// </summary>
-        public static readonly DependencyProperty ClipboardUpdateCommandProperty =
-            DependencyProperty.Register("ClipboardUpdateCommand", typeof(ICommand), typeof(ClipboardMonitorWindow),
-                new FrameworkPropertyMetadata(null));
-
-        /// <summary>
-        /// ICommand to be called on clipboard update.
-        /// </summary>
-        private ICommand ClipboardUpdateCommand => (ICommand) GetValue(ClipboardUpdateCommandProperty);
-
-        /// <summary>
-        /// Clipboard Notification dependency property
-        /// </summary>
-        public static readonly DependencyProperty ClipboardNotificationProperty =
-            DependencyProperty.Register("ClipboardNotification", typeof(bool), typeof(ClipboardMonitorWindow),
-                new FrameworkPropertyMetadata(true, OnClipboardNotificationChanged));
 
         private static void OnClipboardNotificationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             ClipboardMonitorWindow clipboardMonitorWindow = (ClipboardMonitorWindow) o;
-            bool value = (bool) e.NewValue;
+            var value = (bool) e.NewValue;
             if (value)
-            {
                 clipboardMonitorWindow.Start();
-            }
             else
-            {
                 clipboardMonitorWindow.Stop();
-            }
         }
 
         /// <summary>
-        /// Enable clipboard notification.
-        /// </summary>
-        private bool ClipboardNotification => (bool) GetValue(ClipboardNotificationProperty);
-
-        /// <summary>
-        /// Override to handle clipboard notification.
+        ///     Override to handle clipboard notification.
         /// </summary>
         protected virtual void OnClipboardUpdate()
         {
         }
 
         /// <summary>
-        /// Enable clipboard notification.
+        ///     Enable clipboard notification.
         /// </summary>
         private void Start()
         {
@@ -95,7 +88,7 @@ namespace YoutubeDownloader.Utils.Clipboard
         }
 
         /// <summary>
-        /// Disable clipboard notification.
+        ///     Disable clipboard notification.
         /// </summary>
         private void Stop()
         {
@@ -109,10 +102,7 @@ namespace YoutubeDownloader.Utils.Clipboard
                 // fire event
                 ClipboardUpdate?.Invoke(this, new EventArgs());
                 // execute command
-                if (ClipboardUpdateCommand?.CanExecute(null) ?? false)
-                {
-                    ClipboardUpdateCommand?.Execute(null);
-                }
+                if (ClipboardUpdateCommand?.CanExecute(null) ?? false) ClipboardUpdateCommand?.Execute(null);
 
                 // call virtual method
                 OnClipboardUpdate();

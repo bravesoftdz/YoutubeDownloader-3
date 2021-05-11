@@ -11,12 +11,12 @@ namespace YoutubeDownloader.Utils
         private const string ConnectionString =
             "Server=nuerk-solutions.de;User Id=ytdl;Password=YTDL-2021!;Database=ytdl";
 
-        private MySqlConnection MySqlConnection { get; }
-
         public DatabaseHelper()
         {
             MySqlConnection = new MySqlConnection(ConnectionString);
         }
+
+        private MySqlConnection MySqlConnection { get; }
 
         public async Task<MySqlConnection> OpenConnection()
         {
@@ -29,6 +29,9 @@ namespace YoutubeDownloader.Utils
             throw new TokenException(Resources.TokenVerifyView_NoConnection_Ex);
         }
 
-        public async Task CloseConnection() => await MySqlConnection.CloseAsync();
+        public async Task CloseConnection()
+        {
+            await MySqlConnection.CloseAsync();
+        }
     }
 }

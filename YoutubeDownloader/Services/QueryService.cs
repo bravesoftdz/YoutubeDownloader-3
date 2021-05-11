@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using YoutubeDownloader.Language;
 using YoutubeDownloader.Models;
 using YoutubeExplode;
 using YoutubeExplode.Channels;
@@ -76,10 +77,10 @@ namespace YoutubeDownloader.Services
             {
                 var videos = await _youtube.Search.GetVideosAsync(query.Value).CollectAsync(100);
 
-                return new ExecutedQuery(query, Language.Resources.MessageBoxView_Search + $" {query.Value}", videos);
+                return new ExecutedQuery(query, Resources.MessageBoxView_Search + $" {query.Value}", videos);
             }
 
-            throw new ArgumentException(Language.Resources.MessageBoxView_Not_Found.Replace("%", $"'{query}'"),
+            throw new ArgumentException(Resources.MessageBoxView_Not_Found.Replace("%", $"'{query}'"),
                 nameof(query));
         }
 

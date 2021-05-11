@@ -8,22 +8,13 @@ namespace YoutubeDownloader.Utils.Cli
     public static class UnsafeNative
     {
         private const int WM_COPYDATA = 0x004A;
-        
+
         [DllImport("user32.dll")]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
-        
+
         [DllImport("User32.dll", EntryPoint = "SendMessage")]
         private static extern int SendMessage(IntPtr hWnd, int message, IntPtr wParam, ref Copydatastruct lParam);
 
-        [StructLayout(LayoutKind.Sequential)]
-        private struct Copydatastruct
-        {
-            public IntPtr dwData;
-            public int cbData;
-
-            [MarshalAs(UnmanagedType.LPWStr)] public string lpData;
-        }
-        
         public static string? GetMessage(int message, IntPtr lParam)
         {
             if (message != WM_COPYDATA) return null;
@@ -36,7 +27,7 @@ namespace YoutubeDownloader.Utils.Cli
                 return null;
             }
         }
-        
+
         public static void SendMessage(IntPtr hwnd, string message)
         {
             var messageBytes = Encoding.Unicode.GetBytes(message);
@@ -49,6 +40,15 @@ namespace YoutubeDownloader.Utils.Cli
 
             if (SendMessage(hwnd, WM_COPYDATA, IntPtr.Zero, ref data) != 0)
                 throw new Win32Exception(Marshal.GetLastWin32Error());
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct Copydatastruct
+        {
+            public IntPtr dwData;
+            public int cbData;
+
+            [MarshalAs(UnmanagedType.LPWStr)] public string lpData;
         }
     }
 }

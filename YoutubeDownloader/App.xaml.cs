@@ -1,21 +1,9 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
-using System.Windows;
 using System.Windows.Media;
-using System.Windows.Navigation;
-using AngleSharp.Text;
-using CliWrap;
 using MaterialDesignThemes.Wpf;
-using TagLib;
-using Tyrrrz.Extensions;
 using YoutubeDownloader.Utils;
-using YoutubeDownloader.Views;
-using File = System.IO.File;
 
 namespace YoutubeDownloader
 {
@@ -34,23 +22,6 @@ namespace YoutubeDownloader
 
     public partial class App
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-            string[] args = Environment.GetCommandLineArgs();
-            // if (SingleInstance.AlreadyRunning())
-                // Current.Shutdown();
-
-            // foreach (Window? w in Current.Windows)
-            //     if (w is RootView view)
-            //     {
-            //         view.Activate();
-            //         var match = Array.Find(args, text => text.Contains("x-youtube-client"));
-            //         if (match == null) return;
-            //         view.QueryTextBox.Text = match!.Split("//", 2)[1];
-            //     }
-        }
-
         private static Theme LightTheme { get; } = Theme.Create(
             new MaterialDesignLightTheme(),
             MediaColor.FromHex("#343838"),

@@ -6,7 +6,7 @@ using System.Windows.Interop;
 namespace YoutubeDownloader.Utils.Clipboard
 {
     /// <summary>
-    /// Clipboard Monitor class to notify if the clipboard content changes
+    ///     Clipboard Monitor class to notify if the clipboard content changes
     /// </summary>
     public class ClipboardMonitor
     {
@@ -15,12 +15,7 @@ namespace YoutubeDownloader.Utils.Clipboard
         private readonly IntPtr _windowHandle;
 
         /// <summary>
-        /// Event for clipboard update notification.
-        /// </summary>
-        public event EventHandler ClipboardUpdate = null!;
-
-        /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="window">Main window of the application.</param>
         /// <param name="start">Enable clipboard notification on startup or not.</param>
@@ -32,7 +27,12 @@ namespace YoutubeDownloader.Utils.Clipboard
         }
 
         /// <summary>
-        /// Enable clipboard notification.
+        ///     Event for clipboard update notification.
+        /// </summary>
+        public event EventHandler ClipboardUpdate = null!;
+
+        /// <summary>
+        ///     Enable clipboard notification.
         /// </summary>
         private void Start()
         {
@@ -40,7 +40,7 @@ namespace YoutubeDownloader.Utils.Clipboard
         }
 
         /// <summary>
-        /// Disable clipboard notification.
+        ///     Disable clipboard notification.
         /// </summary>
         public void Stop()
         {
@@ -49,10 +49,7 @@ namespace YoutubeDownloader.Utils.Clipboard
 
         private IntPtr HwndHandler(IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam, ref bool handled)
         {
-            if (msg == WM_CLIPBOARDUPDATE)
-            {
-                this.ClipboardUpdate?.Invoke(this, new EventArgs());
-            }
+            if (msg == WM_CLIPBOARDUPDATE) ClipboardUpdate?.Invoke(this, new EventArgs());
 
             handled = false;
             return IntPtr.Zero;

@@ -65,7 +65,7 @@ namespace YoutubeDownloader.Views
                         QueryTextBox.Text += optionUrl + Environment.NewLine;
                     }
 
-                if (option.AutoSearch)
+                if (option.AutoSearch && !QueryTextBox.Text.IsNullOrEmpty())
                     QueryButton.Command.Execute(QueryButton.CommandParameter);
             });
         }

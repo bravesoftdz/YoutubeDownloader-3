@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Markup;
+using CommandLine;
 using Tyrrrz.Extensions;
 using YoutubeDownloader.Services;
-using YoutubeDownloader.Utils;
 using YoutubeDownloader.Utils.Cli;
 
 namespace YoutubeDownloader.Views
 {
     public partial class RootView
     {
-        public static SettingsService? SettingsService { get; set; }
-        private IntPtr WindowHandle { get; set; }
-
         public RootView()
         {
             InitializeComponent();
@@ -30,13 +27,54 @@ namespace YoutubeDownloader.Views
             Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
         }
 
+        public static SettingsService? SettingsService { get; set; }
+        private IntPtr WindowHandle { get; set; }
 
-        public void HandleCliParameter(string[] args)
+
+        public void HandleCliParameter(List<string> args)
         {
-            File.WriteAllLines("C:\\Users\\XMG-Privat\\Desktop\\test.txt", args);
-            Trace.WriteLine(args);
-            QueryTextBox.Text = args[0];
+            //Chrome Extension Check
+            const string xYoutubeClient = "x-youtube-client://";
+            if (args.Count == 1 && args[0].Contains(xYoutubeClient))
+            {
+                var parsedUrls = Regex.Match(args[0], "(?<=urls\\/)(.*)(?=\\/endurls)").Value.Split("&");
+                var isAutoSearch = Regex.Match(args[0], "autosearch").Success;
+
+                if (parsedUrls.Length != 0)
+                    args.Add("--urls");
+
+                args.AddRange(parsedUrls.Where(IsYoutubeUrl));
+
+                if (isAutoSearch)
+                    args.Add("--autosearch=true");
+            }
+
+            //Default CLI behavior
+            Parser.Default.ParseArguments<Options>(args).WithParsed(option =>
+            {
+                if (!option.Urls.IsNullOrEmpty())
+                    foreach (string optionUrl in option.Urls!)
+                    {
+                        if (!IsYoutubeUrl(optionUrl)) continue;
+                        if (option.Urls.LastOrDefault() == optionUrl)
+                        {
+                            QueryTextBox.Text += optionUrl;
+                            continue;
+                        }
+
+                        QueryTextBox.Text += optionUrl + Environment.NewLine;
+                    }
+
+                if (option.AutoSearch)
+                    QueryButton.Command.Execute(QueryButton.CommandParameter);
+            });
         }
+
+        private bool IsYoutubeUrl(string url)
+        {
+            return Regex.Match(url, "^.*(youtu.be\\/|list=|watch\\?v=|embed)([^#\\&\\?]*).*").Success;
+        }
+
 
         private IntPtr HandleMessages(IntPtr handle, int message, IntPtr wParameter, IntPtr lParameter,
             ref bool handled)
@@ -53,7 +91,7 @@ namespace YoutubeDownloader.Views
             UnsafeNative.SetForegroundWindow(new WindowInteropHelper(Application.Current.MainWindow).Handle);
 
             var args = data.Split(' ');
-            HandleCliParameter(args);
+            HandleCliParameter(args.ToList());
             handled = true;
 
             return IntPtr.Zero;

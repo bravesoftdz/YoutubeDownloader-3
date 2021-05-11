@@ -86,6 +86,7 @@
 
                         <!--  Process query button  -->
                         <Button
+                            x:Name="QueryButton"
                             Grid.Column="2"
                             Margin="0,6,6,6"
                             Padding="4"

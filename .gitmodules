@@ -1,0 +1,3 @@
+[submodule "YoutubeDownloader-Extension"]
+	path = YoutubeDownloader-Extension
+	url = https://github.com/derech1e/YoutubeDownloader-Extension.git

@@ -109,7 +109,7 @@ namespace YoutubeDownloader.Views
             try
             {
                 if (!Clipboard.ContainsText() || !SettingsService!.AutoImportClipboard) return;
-                var clipboardText = Clipboard.GetText();
+                var clipboardText = Clipboard.GetText().Replace("https://www.", "");
 
                 if (clipboardText!.IsNullOrEmpty() || QueryTextBox.Text.Contains(clipboardText!) ||
                     QueryTextBox.IsKeyboardFocused) return;

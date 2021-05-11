@@ -10,12 +10,14 @@ using System.Windows.Markup;
 using Tyrrrz.Extensions;
 using YoutubeDownloader.Services;
 using YoutubeDownloader.Utils;
+using YoutubeDownloader.Utils.Cli;
 
 namespace YoutubeDownloader.Views
 {
     public partial class RootView
     {
         public static SettingsService? SettingsService { get; set; }
+        private IntPtr WindowHandle { get; set; }
 
         public RootView()
         {
@@ -27,36 +29,32 @@ namespace YoutubeDownloader.Views
             };
             Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
         }
-        
-        private IntPtr WindowHandle { get; set; }
 
-        public void HandleParameter(string[] args)
+
+        public void HandleCliParameter(string[] args)
         {
             File.WriteAllLines("C:\\Users\\XMG-Privat\\Desktop\\test.txt", args);
             Trace.WriteLine(args);
             QueryTextBox.Text = args[0];
         }
-        
-        private IntPtr HandleMessages
-            (IntPtr handle, int message, IntPtr wParameter, IntPtr lParameter, ref Boolean handled)
+
+        private IntPtr HandleMessages(IntPtr handle, int message, IntPtr wParameter, IntPtr lParameter,
+            ref bool handled)
         {
             var data = UnsafeNative.GetMessage(message, lParameter);
 
-            if (data != null)
-            {
-                if (Application.Current.MainWindow == null)
-                    return IntPtr.Zero;
+            if (data == null) return IntPtr.Zero;
+            if (Application.Current.MainWindow == null)
+                return IntPtr.Zero;
 
-                if (Application.Current.MainWindow.WindowState == WindowState.Minimized)
-                    Application.Current.MainWindow.WindowState = WindowState.Normal;
+            if (Application.Current.MainWindow.WindowState == WindowState.Minimized)
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
 
-                UnsafeNative.SetForegroundWindow(new WindowInteropHelper
-                    (Application.Current.MainWindow).Handle);
+            UnsafeNative.SetForegroundWindow(new WindowInteropHelper(Application.Current.MainWindow).Handle);
 
-                var args = data.Split(' ');
-                HandleParameter(args);
-                handled = true;
-            }
+            var args = data.Split(' ');
+            HandleCliParameter(args);
+            handled = true;
 
             return IntPtr.Zero;
         }
@@ -68,14 +66,13 @@ namespace YoutubeDownloader.Views
                 if (!Clipboard.ContainsText() || !SettingsService!.AutoImportClipboard) return;
                 var clipboardText = Clipboard.GetText();
 
-                if (!clipboardText!.IsNullOrEmpty() && !QueryTextBox.Text.Contains(clipboardText!) &&
-                    !QueryTextBox.IsKeyboardFocused)
-                    if (Regex.Match(clipboardText!, "^.*(youtu.be\\/|list=|watch\\?v=|embed)([^#\\&\\?]*).*").Success)
-                    {
-                        if (!QueryTextBox.Text.IsNullOrEmpty())
-                            QueryTextBox.Text += Environment.NewLine;
-                        QueryTextBox.Text += clipboardText!;
-                    }
+                if (clipboardText!.IsNullOrEmpty() || QueryTextBox.Text.Contains(clipboardText!) ||
+                    QueryTextBox.IsKeyboardFocused) return;
+                if (!Regex.Match(clipboardText!, "^.*(youtu.be\\/|list=|watch\\?v=|embed)([^#\\&\\?]*).*")
+                    .Success) return;
+                if (!QueryTextBox.Text.IsNullOrEmpty())
+                    QueryTextBox.Text += Environment.NewLine;
+                QueryTextBox.Text += clipboardText!;
             }
             catch
             {

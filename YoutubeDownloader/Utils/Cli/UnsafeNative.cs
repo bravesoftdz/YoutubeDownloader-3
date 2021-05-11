@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace YoutubeDownloader.Utils
+namespace YoutubeDownloader.Utils.Cli
 {
     public static class UnsafeNative
     {

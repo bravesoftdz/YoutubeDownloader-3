@@ -5,6 +5,7 @@ using Stylet;
 using StyletIoC;
 using YoutubeDownloader.Services;
 using YoutubeDownloader.Utils;
+using YoutubeDownloader.Utils.Cli;
 using YoutubeDownloader.ViewModels;
 using YoutubeDownloader.ViewModels.Framework;
 using YoutubeDownloader.Views;
@@ -46,7 +47,7 @@ namespace YoutubeDownloader
             {
                 base.Start(args);
                 RootView rootView = (RootView)Application.MainWindow!;
-                rootView.HandleParameter(args);
+                rootView.HandleCliParameter(args);
                 return; // In this case we just proceed on loading the program
             }
 

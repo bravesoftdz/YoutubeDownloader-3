@@ -1,13 +1,9 @@
-﻿using System.Diagnostics;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using Stylet;
 using StyletIoC;
 using YoutubeDownloader.Services;
-using YoutubeDownloader.Utils.Cli;
 using YoutubeDownloader.ViewModels;
 using YoutubeDownloader.ViewModels.Framework;
-using YoutubeDownloader.Views;
 
 #if !DEBUG
 using System.Windows;
@@ -31,27 +27,6 @@ namespace YoutubeDownloader
 
             // Increase maximum concurrent connections
             ServicePointManager.DefaultConnectionLimit = 20;
-        }
-
-        public override void Start(string[] args)
-        {
-            var proc = Process.GetCurrentProcess();
-            var processName = proc.ProcessName.Replace(".vshost", "");
-            var runningProcess = Process.GetProcesses().FirstOrDefault(x =>
-                (x.ProcessName == processName || x.ProcessName == proc.ProcessName ||
-                 x.ProcessName == proc.ProcessName + ".vshost") && x.Id != proc.Id);
-
-            if (runningProcess == null)
-            {
-                base.Start(args);
-                RootView rootView = (RootView) Application.MainWindow!;
-                rootView.HandleCliParameter(args.ToList());
-                return; // In this case we just proceed on loading the program
-            }
-
-            if (args.Length > 0)
-                UnsafeNative.SendMessage(runningProcess.MainWindowHandle, string.Join(" ", args));
-            Application.Shutdown();
         }
 
         protected override void ConfigureIoC(IStyletIoCBuilder builder)

@@ -214,17 +214,9 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to + Unterstützung für 360° Videos hinzugefügt
+        ///   Looks up a localized string similar to + Automatisches Importieren der Zwischenablage
         ///
-        ///- Unterstützung für das Veröffentlichungsdatum eingestellt
-        ///
-        ///* Ein Fehler mit dem Download von alterbeschränkten Videos wurde behoben
-        ///* Ein Fehler mit dem Download von Playlisten wurde behoben
-        ///* Ein Fehler mit dem Download von Vorschaubildern wurde behoben
-        ///* Ein Fehler mit der Suchfunktion wurde behoben
-        ///* Ein Fehler mit dem Download von 360° Videos wurde behoben
-        ///* Ein Fehler beim Injizieren von Video bezogenen Informationen wurde behoben
-        ///* Weitere Youtub [rest of string was truncated]&quot;;.
+        ///* Interne Anpassung für zukünftige Updates vorgenommen.
         /// </summary>
         public static string News {
             get {
@@ -395,7 +387,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fügt automatisch Youtubelinks aus der Zwiscenablage in die Suchleiste ein.
+        ///   Looks up a localized string similar to Erkennt und trägt automatisch Youtube-formatierte Links aus der Zwiscenablage in die Suchleiste ein.
         /// </summary>
         public static string SettingsView_AutoImportClipboard_Desc {
             get {

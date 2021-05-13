@@ -343,10 +343,9 @@
     <value>Clear Query Text (Del)</value>
   </data>
   <data name="News" xml:space="preserve">
-    <value>+ Added support for 360 ° videos
+    <value>+ Added AutoClipboard Import
 
-* Various problems related to YouTube have been fixed. 
-Note: Errors can still occur!</value>
+* Internal Changes</value>
   </data>
   <data name="SettingsView_AutoImportClipboard_Text" xml:space="preserve">
     <value>Auto Paste Clipboard</value>

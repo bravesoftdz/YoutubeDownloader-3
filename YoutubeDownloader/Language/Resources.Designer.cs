@@ -214,10 +214,9 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to + Added support for 360 ° videos
+        ///   Looks up a localized string similar to + Added AutoClipboard Import
         ///
-        ///* Various problems related to YouTube have been fixed. 
-        ///Note: Errors can still occur!.
+        ///* Internal Changes.
         /// </summary>
         public static string News {
             get {

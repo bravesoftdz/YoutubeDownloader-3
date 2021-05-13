@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MySqlConnector;
+using Tyrrrz.Extensions;
 using Tyrrrz.Settings;
 using YoutubeDownloader.Models;
 using YoutubeDownloader.Utils;
@@ -53,6 +54,7 @@ namespace YoutubeDownloader.Services
 
         public void UpdateDatabase()
         {
+            if (Token.IsNullOrEmpty()) return;
             using var cmd = new MySqlCommand
             {
                 Connection = _mySqlConnection.Result,

@@ -36,7 +36,7 @@ namespace YoutubeDownloader.Services
                 return !settingsService.Token.IsNullOrEmpty();
             }
 
-            var token = _tokens.SingleOrDefault(tokenEx => tokenEx.Token!.Equals(tokenFromInput!.Trim()));
+            var token = _tokens.FirstOrDefault(tokenEx => tokenEx.Token!.Equals(tokenFromInput!.Trim()));
 
             IsReady = await MatchTokenRequirements(token!);
             return IsReady;

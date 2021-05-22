@@ -346,7 +346,7 @@
     <value>Zwischenablage automatisch einfügen</value>
   </data>
   <data name="SettingsView_AutoImportClipboard_Desc" xml:space="preserve">
-    <value>Erkennt und trägt automatisch Youtube-formatierte Links aus der Zwiscenablage in die Suchleiste ein</value>
+    <value>Erkennt und trägt automatisch Youtube-formatierte Links aus der Zwischenablage in die Suchleiste ein</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>+ Automatisches Importieren der Zwischenablage

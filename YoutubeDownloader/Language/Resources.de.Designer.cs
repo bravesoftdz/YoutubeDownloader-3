@@ -388,7 +388,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erkennt und trägt automatisch Youtube-formatierte Links aus der Zwiscenablage in die Suchleiste ein.
+        ///   Looks up a localized string similar to Erkennt und trägt automatisch Youtube-formatierte Links aus der Zwischenablage in die Suchleiste ein.
         /// </summary>
         public static string SettingsView_AutoImportClipboard_Desc {
             get {

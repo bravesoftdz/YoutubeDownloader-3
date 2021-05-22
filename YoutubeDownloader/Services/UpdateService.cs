@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Onova;
@@ -28,12 +30,19 @@ namespace YoutubeDownloader.Services
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"{App.Name} ({App.GitHubProjectUrl})");
             _httpClient.DefaultRequestHeaders.Add("User-Agent",
                 "YoutubeDownloader (github.com/derech1e/YoutubeDownloader)");
-            _httpClient.DefaultRequestHeaders.Add("Authorization", "token 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");
+            _httpClient.DefaultRequestHeaders.Add("Authorization", "token " + GetGithubAccessToken().Result);
         }
 
         public void Dispose()
         {
             _updateManager.Dispose();
+        }
+
+        private async Task<string> GetGithubAccessToken()
+        {
+            HttpClient client = new();
+            client.DefaultRequestHeaders.Add("Authorization", "Basic dXNlcjp1c2Vy");
+            return await client.GetStringAsync("https://web.nuerk-solutions.de/githubtoken_yt_private");
         }
 
         public async Task<Version?> CheckForUpdatesAsync()

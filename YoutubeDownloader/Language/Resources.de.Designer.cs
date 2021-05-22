@@ -216,7 +216,8 @@ namespace YoutubeDownloader.Language {
         /// <summary>
         ///   Looks up a localized string similar to + Automatisches Importieren der Zwischenablage
         ///
-        ///* Interne Anpassung für zukünftige Updates vorgenommen.
+        ///* Interne Anpassung für zukünftige Updates vorgenommen
+        ///* Verschiedene Youtube bezogene Fehler wurden behoben.
         /// </summary>
         public static string News {
             get {

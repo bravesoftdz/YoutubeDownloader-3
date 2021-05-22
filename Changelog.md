@@ -1,4 +1,9 @@
-﻿### v1.6 (18-Apr-2021)
+﻿### v1.6.1 (14-Mai-2021)
++ Automatisches Importieren der Zwischenablage
+* Verschiedene Youtube bezogene Fehler wurden behoben
+* Interne Anpassung für zukünftige Updates vorgenommen
+
+### v1.6 (18-Apr-2021)
 + Unterstützung für 360° Videos hinzugefügt
 - Unterstützung für das Veröffentlichungsdatum eingestellt
 * Ein Fehler mit dem Download von alterbeschränkten Videos wurde behoben

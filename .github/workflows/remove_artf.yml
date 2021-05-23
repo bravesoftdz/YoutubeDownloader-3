@@ -1,0 +1,18 @@
+﻿name: Remove-Artf
+on:
+  workflow_dispatch:
+    
+jobs:
+  Remove-old-artifacts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Remove old artifacts
+        uses: c-hive/gha-remove-artifacts@v1.2.0
+        with:
+          age: '1 day'
+          skip-tags: false
+          skip-recent: 1
+    
+    

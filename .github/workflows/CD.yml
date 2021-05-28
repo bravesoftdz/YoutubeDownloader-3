@@ -32,6 +32,10 @@ jobs:
         & "c:\Program Files (x86)\Inno Setup 6\ISCC.exe" Installer/Installer.iss
       shell: pwsh
 
+    - name: Create archive
+      run: Compress-Archive -Path YoutubeDownloader/bin/Publish/* -DestinationPath YoutubeDownloader/bin/Publish/Archive.zip -Force
+      shell: pwsh
+
     - name: Create release
       id: create_release
       uses: actions/create-release@v1.0.1

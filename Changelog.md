@@ -2,6 +2,7 @@
 + Automatisches Importieren der Zwischenablage
 * Interne Anpassung für zukünftige Updates vorgenommen
 * Verschiedene Youtube bezogene Fehler wurden behoben
+* Fehler mit HDR Videos behoben
 
 ### v1.6 (18-Apr-2021)
 + Unterstützung für 360° Videos hinzugefügt

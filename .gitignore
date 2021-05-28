@@ -25,3 +25,6 @@ bld/
 
 # FFmpeg binary
 ffmpeg.exe
+
+#Installer
+Installer/Source/

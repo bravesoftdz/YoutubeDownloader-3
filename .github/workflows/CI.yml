@@ -28,10 +28,6 @@ jobs:
         Copy-Item -Path YoutubeDownloader/bin/Publish/ -Recurse -Destination Installer/Source/
         & "c:\Program Files (x86)\Inno Setup 6\ISCC.exe" Installer/Installer.iss
       shell: pwsh
-      
-    - name: Pack
-      run: Compress-Archive -Path YoutubeDownloader/bin/Publish/* -DestinationPath YoutubeDownloader/bin/Publish/Archive.zip -Force
-      shell: pwsh
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v1

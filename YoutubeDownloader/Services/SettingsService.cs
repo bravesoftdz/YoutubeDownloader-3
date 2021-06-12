@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 using MySqlConnector;
 using Tyrrrz.Extensions;
@@ -12,7 +13,7 @@ namespace YoutubeDownloader.Services
 {
     public class SettingsService : SettingsManager
     {
-        private readonly Task<MySqlConnection> _mySqlConnection = new DatabaseHelper().OpenConnection();
+        private Task<MySqlConnection> _mySqlConnection = new DatabaseHelper().OpenConnection();
 
         public SettingsService()
         {
@@ -55,6 +56,12 @@ namespace YoutubeDownloader.Services
         public void UpdateDatabase()
         {
             if (Token.IsNullOrEmpty()) return;
+
+            if (_mySqlConnection.Result.State != ConnectionState.Open)
+            {
+            _mySqlConnection = new DatabaseHelper().OpenConnection();
+            }
+            
             using var cmd = new MySqlCommand
             {
                 Connection = _mySqlConnection.Result,

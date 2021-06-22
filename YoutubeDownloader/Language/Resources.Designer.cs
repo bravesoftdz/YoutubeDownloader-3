@@ -214,9 +214,8 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to + Added AutoClipboard Import
-        ///
-        ///* Internal Changes.
+        ///   Looks up a localized string similar to * Optimierung des Installationsprozesses
+        ///* Verschiedene Youtube bezogene Fehler wurden behoben.
         /// </summary>
         public static string News {
             get {

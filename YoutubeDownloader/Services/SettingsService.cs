@@ -59,9 +59,9 @@ namespace YoutubeDownloader.Services
 
             if (_mySqlConnection.Result.State != ConnectionState.Open)
             {
-            _mySqlConnection = new DatabaseHelper().OpenConnection();
+                _mySqlConnection = new DatabaseHelper().OpenConnection();
             }
-            
+
             using var cmd = new MySqlCommand
             {
                 Connection = _mySqlConnection.Result,

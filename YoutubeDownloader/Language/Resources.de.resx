@@ -349,10 +349,7 @@
     <value>Erkennt und trägt automatisch Youtube-formatierte Links aus der Zwischenablage in die Suchleiste ein</value>
   </data>
   <data name="News" xml:space="preserve">
-    <value>+ Automatisches Importieren der Zwischenablage
-
-* Interne Anpassung für zukünftige Updates vorgenommen
-* Verschiedene Youtube bezogene Fehler wurden behoben
-* Fehler bei HDR Videos behoben</value>
+    <value>* Optimierung des Installationsprozesses
+* Verschiedene Youtube bezogene Fehler wurden behoben</value>
   </data>
 </root>

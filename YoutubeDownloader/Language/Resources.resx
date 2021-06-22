@@ -343,9 +343,8 @@
     <value>Clear Query Text (Del)</value>
   </data>
   <data name="News" xml:space="preserve">
-    <value>+ Added AutoClipboard Import
-
-* Internal Changes</value>
+    <value>* Optimierung des Installationsprozesses
+* Verschiedene Youtube bezogene Fehler wurden behoben</value>
   </data>
   <data name="SettingsView_AutoImportClipboard_Text" xml:space="preserve">
     <value>Auto Paste Clipboard</value>

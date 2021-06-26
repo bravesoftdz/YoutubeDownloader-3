@@ -352,4 +352,7 @@
   <data name="SettingsView_AutoImportClipboard_Desc" xml:space="preserve">
     <value>Automatically inserts Youtube links from the clipboard into the search bar</value>
   </data>
+  <data name="TokenVerifyView_NoConnection_Internet" xml:space="preserve">
+    <value>Failed to connect to the internet!</value>
+  </data>
 </root>

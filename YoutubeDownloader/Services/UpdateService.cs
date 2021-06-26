@@ -3,9 +3,11 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Windows;
 using Onova;
 using Onova.Exceptions;
 using Onova.Services;
+using YoutubeDownloader.Language;
 
 namespace YoutubeDownloader.Services
 {
@@ -30,7 +32,22 @@ namespace YoutubeDownloader.Services
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"{App.Name} ({App.GitHubProjectUrl})");
             _httpClient.DefaultRequestHeaders.Add("User-Agent",
                 "YoutubeDownloader (github.com/derech1e/YoutubeDownloader)");
-            _httpClient.DefaultRequestHeaders.Add("Authorization", "token " + GetGithubAccessToken());
+
+            try
+            {
+                _httpClient.DefaultRequestHeaders.Add("Authorization", "token " + GetGithubAccessToken());
+            }
+            catch (AggregateException exception)
+            {
+                var exitBox = MessageBox.Show(
+                    Resources.TokenVerifyView_NoConnection_Internet + "\n\n\n" + exception.StackTrace,
+                    Resources.MessageBoxView_Error,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Stop);
+                if (exitBox == MessageBoxResult.OK)
+                    Application.Current.Shutdown();
+            }
+
         }
 
         public void Dispose()

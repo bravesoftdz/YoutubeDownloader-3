@@ -719,6 +719,15 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to connect to the internet!.
+        /// </summary>
+        public static string TokenVerifyView_NoConnection_Internet {
+            get {
+                return ResourceManager.GetString("TokenVerifyView_NoConnection_Internet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verify token.
         /// </summary>
         public static string TokenVerifyView_Title {

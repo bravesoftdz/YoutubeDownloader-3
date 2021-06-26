@@ -352,4 +352,7 @@
     <value>* Optimierung des Installationsprozesses
 * Verschiedene Youtube bezogene Fehler wurden behoben</value>
   </data>
+  <data name="TokenVerifyView_NoConnection_Internet" xml:space="preserve">
+    <value>Es konnte keine Internetverbindung hergestellt werden!</value>
+  </data>
 </root>

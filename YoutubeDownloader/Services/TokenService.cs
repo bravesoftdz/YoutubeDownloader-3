@@ -22,7 +22,7 @@ namespace YoutubeDownloader.Services
         {
             try
             {
-                await CacheDatabase();
+                await FetchFromDatabase();
             }
             catch (MySqlException exception)
             {
@@ -42,7 +42,7 @@ namespace YoutubeDownloader.Services
             return IsReady;
         }
 
-        private async Task CacheDatabase()
+        private async Task FetchFromDatabase()
         {
             await using var command = new MySqlCommand("SELECT * FROM Tokens;", await _databaseHelper.OpenConnection());
             using var reader = command.ExecuteReaderAsync();

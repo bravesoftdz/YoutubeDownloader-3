@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using YoutubeDownloader.Language;
 using YoutubeDownloader.Services;
 using YoutubeDownloader.Utils.Token;
@@ -38,10 +39,17 @@ namespace YoutubeDownloader.ViewModels.Dialogs
                 if (isTokenValid!)
                 {
                     Close();
-                    var errorDialog = _viewModelFactory.CreateMessageBoxViewModel(
-                        Resources.TokenVerifyView_Activated_Text,
-                        Resources.TokenVerifyView_Activated_Desc);
-                    await _dialogManager.ShowDialogAsync(errorDialog, true);
+                    try
+                    {
+                        var tokenActivateDialog = _viewModelFactory.CreateMessageBoxViewModel(
+                            Resources.TokenVerifyView_Activated_Text,
+                            Resources.TokenVerifyView_Activated_Desc);
+                        await _dialogManager.ShowDialogAsync(tokenActivateDialog, true);
+                    }
+                    catch (Exception e)
+                    {
+                        // ignored
+                    }
 
                     if (_settingsService.CurrentVersion == null || _settingsService.CurrentVersion < App.Version)
                     {

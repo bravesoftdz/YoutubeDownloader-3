@@ -1,4 +1,8 @@
-﻿### v1.6.1 (22-Mai-2021)
+﻿### v1.6.2 (22-Jun-2021)
+* Optimierung des Installationsprozesses
+* Verschiedene Youtube bezogene Fehler wurden behoben
+
+### v1.6.1 (22-Mai-2021)
 + Automatisches Importieren der Zwischenablage
 * Interne Anpassung für zukünftige Updates vorgenommen
 * Verschiedene Youtube bezogene Fehler wurden behoben

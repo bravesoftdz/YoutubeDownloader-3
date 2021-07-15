@@ -117,6 +117,8 @@ namespace YoutubeDownloader.ViewModels
                 var isTokenValid = await _tokenService.IsTokenValid(_settingsService.Token, _settingsService);
                 if (!isTokenValid!)
                     await ShowTokenVerify();
+                else
+                    ShowNews();
             }
             catch (TokenException ex)
             {
@@ -125,11 +127,6 @@ namespace YoutubeDownloader.ViewModels
                 await _dialogManager.ShowDialogAsync(errorDialog);
                 _settingsService.Token = string.Empty;
                 await ShowTokenVerify();
-            }
-            finally
-            {
-                if (_tokenService.IsReady)
-                    ShowNews();
             }
 
             await CheckForUpdatesAsync();

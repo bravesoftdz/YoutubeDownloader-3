@@ -343,8 +343,13 @@
     <value>Clear Query Text (Del)</value>
   </data>
   <data name="News" xml:space="preserve">
-    <value>* Optimierung des Installationsprozesses
-* Verschiedene Youtube bezogene Fehler wurden behoben</value>
+    <value>+ Benötigte Bibliotheken von Microsoft werden nun automatisch heruntergeladen
+
+* Ein Fehler, der den Downloader bei Instabiler Internetverbindung zum Absturz brachte, wurde behoben
+* Ein Fehler mit der Aktivierung des Tokens wurde behoben
+* Ein Fehler mit dem Download von Livestreams wurde behoben
+* Ein Fehler, der das News Fenster nicht richtig dargestellt hat, wurde behoben
+</value>
   </data>
   <data name="SettingsView_AutoImportClipboard_Text" xml:space="preserve">
     <value>Auto Paste Clipboard</value>

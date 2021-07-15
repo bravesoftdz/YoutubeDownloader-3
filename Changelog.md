@@ -1,4 +1,12 @@
-﻿### v1.6.2 (22-Jun-2021)
+﻿### v1.6.3 (15-Jul-2021)
++ Benötigte Bibliotheken von Microsoft werden nun automatisch heruntergeladen
+
+* Ein Fehler, der den Downloader bei Instabiler Internetverbindung zum Absturz brachte, wurde behoben
+* Ein Fehler mit der Aktivierung des Tokens wurde behoben
+* Ein Fehler mit dem Download von Livestreams wurde behoben
+* Ein Fehler, der das News Fenster nicht richtig dargestellt hat, wurde behoben
+
+### v1.6.2 (22-Jun-2021)
 * Optimierung des Installationsprozesses
 * Verschiedene Youtube bezogene Fehler wurden behoben
 

@@ -1,4 +1,7 @@
-﻿### v1.6.3 (15-Jul-2021)
+﻿### v1.6.4 (29-Jul-2021)
+* Verschiedene Youtube bezogene Fehler wurden behoben
+
+### v1.6.3 (15-Jul-2021)
 + Benötigte Bibliotheken von Microsoft werden nun automatisch heruntergeladen
 
 * Ein Fehler, der den Downloader bei Instabiler Internetverbindung zum Absturz brachte, wurde behoben

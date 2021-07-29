@@ -214,13 +214,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to + Benötigte Bibliotheken von Microsoft werden nun automatisch heruntergeladen
-        ///
-        ///* Ein Fehler, der den Downloader bei Instabiler Internetverbindung zum Absturz brachte, wurde behoben
-        ///* Ein Fehler mit der Aktivierung des Tokens wurde behoben
-        ///* Ein Fehler mit dem Download von Livestreams wurde behoben
-        ///* Ein Fehler, der das News Fenster nicht richtig dargestellt hat, wurde behoben
-        ///.
+        ///   Looks up a localized string similar to * Verschiedene Youtube bezogene Fehler wurden behoben.
         /// </summary>
         public static string News {
             get {

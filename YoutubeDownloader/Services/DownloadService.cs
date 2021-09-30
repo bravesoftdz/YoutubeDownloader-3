@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using YoutubeDownloader.Models;
+using YoutubeDownloader.Utils;
 using YoutubeExplode;
 using YoutubeExplode.Converter;
 using YoutubeExplode.Videos.Streams;
@@ -16,7 +17,7 @@ namespace YoutubeDownloader.Services
         private readonly SemaphoreSlim _semaphore = new(1, 1);
 
         private readonly SettingsService _settingsService;
-        private readonly YoutubeClient _youtube = new();
+        private readonly YoutubeClient _youtube = new(Http.Client);
 
         private int _concurrentDownloadCount;
 

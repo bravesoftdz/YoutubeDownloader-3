@@ -92,7 +92,8 @@ namespace YoutubeDownloader.ViewModels
                     {
                         _updateService.FinalizeUpdate(true);
                         RequestClose();
-                    });
+                    }
+                );
             }
             catch
             {
@@ -111,7 +112,7 @@ namespace YoutubeDownloader.ViewModels
                 App.SetDarkTheme();
             else
                 App.SetLightTheme();
-            
+
             try
             {
                 var isTokenValid = await _tokenService.IsTokenValid(_settingsService.Token, _settingsService);

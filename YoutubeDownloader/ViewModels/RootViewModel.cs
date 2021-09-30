@@ -129,7 +129,7 @@ namespace YoutubeDownloader.ViewModels
                 await ShowTokenVerify();
             }
             
-            _settingsService.FetchDatabase();
+            await _settingsService.FetchDatabase();
 
             await CheckForUpdatesAsync();
         }
@@ -139,7 +139,7 @@ namespace YoutubeDownloader.ViewModels
             base.OnClose();
 
             _settingsService.Save();
-            _settingsService.UpdateDatabase();
+            _settingsService.UpdateDatabase().Wait(1000);
 
             // Cancel all downloads
             foreach (var download in Downloads)

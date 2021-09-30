@@ -14,7 +14,7 @@ namespace YoutubeDownloader.Services
 {
     public class SettingsService : SettingsManager
     {
-        private Task<MySqlConnection> _mySqlConnection = new DatabaseHelper().OpenConnection();
+        private readonly DatabaseHelper _databaseHelper = new DatabaseHelper();
 
         public SettingsService()
         {
@@ -55,18 +55,17 @@ namespace YoutubeDownloader.Services
         public long VideoDownloadsLength { get; set; }
 
 
-        public void FetchDatabase()
+        public async Task FetchDatabase()
         {
             if (Token.IsNullOrEmpty()) return;
 
-            if (_mySqlConnection.Result.State != ConnectionState.Open)
+            await using var cmd = new MySqlCommand
             {
-                _mySqlConnection = new DatabaseHelper().OpenConnection();
-            }
-            
-            var command = new MySqlCommand("SELECT * FROM Settings WHERE Token LIKE @token", _mySqlConnection.Result);
-            command.Parameters.AddWithValue("token", Token);
-            using var reader = command.ExecuteReaderAsync();
+                Connection = await _databaseHelper.OpenConnection(),
+                CommandText = "SELECT * FROM Settings WHERE Token LIKE @token;"
+            };
+            cmd.Parameters.AddWithValue("token", Token);
+            using var reader = cmd.ExecuteReaderAsync();
 
             while (reader.Result.Read())
             {
@@ -77,7 +76,7 @@ namespace YoutubeDownloader.Services
                 FileNameTemplate = reader.Result.GetString(5);
                 // ExcludedContainerFormats = reader.Result.GetString(6);
                 MaxConcurrentDownloadCount = reader.Result.GetInt32(7);
-                LastFormat = reader.Result.IsDBNull(8) ? null :reader.Result.GetString(8);
+                LastFormat = reader.Result.IsDBNull(8) ? null : reader.Result.GetString(8);
                 LastSubtitleLanguageCode = reader.Result.IsDBNull(9) ? null : reader.Result.GetString(9);
                 LastVideoQualityPreference = (VideoQualityPreference) reader.Result.GetInt32(10);
                 VideoDownloads = reader.Result.GetInt32(11);
@@ -86,22 +85,16 @@ namespace YoutubeDownloader.Services
                 IsAutoUpdateEnabled = reader.Result.GetBoolean(14);
             }
 
-            _mySqlConnection.Result.Close();
+            await _databaseHelper.CloseConnection();
             this.Save();
         }
-        
-        public void UpdateDatabase()
+
+        public async Task UpdateDatabase()
         {
             if (Token.IsNullOrEmpty()) return;
-
-            if (_mySqlConnection.Result.State != ConnectionState.Open)
+            await using var cmd = new MySqlCommand
             {
-                _mySqlConnection = new DatabaseHelper().OpenConnection();
-            }
-
-            using var cmd = new MySqlCommand
-            {
-                Connection = _mySqlConnection.Result,
+                Connection = await _databaseHelper.OpenConnection(),
                 CommandText =
                     "REPLACE INTO ytdl.Settings (Token, AutoUpdate, DarkMode, InjectTags, SkipExistingFiles, AutoImportClipboard, FileNameTemplate, ExcludedContainerFormats, MaxConcurrentDownload, LastFormat, LastSubtitleCode, LastVideoQuality, VideoDownloads, VideoDownloadLength, CurrentVersion, HWID) VALUES (@Token, @AutoUpdate, @DarkMode, @InjectTags, @SkipExistingFiles, @AutoImportClipboard, @FileNameTemplate, @ExcludedContainerFormats, @MaxConcurrentDownloads, @LastFormat, @LastSubtitleCode, @LastVideoQuality, @VideoDownloads, @VideoDownloadLength, @CurrentVersion, @HWID);"
             };
@@ -112,7 +105,7 @@ namespace YoutubeDownloader.Services
             cmd.Parameters.AddWithValue("SkipExistingFiles", ShouldSkipExistingFiles);
             cmd.Parameters.AddWithValue("AutoImportClipboard", AutoImportClipboard);
             cmd.Parameters.AddWithValue("FileNameTemplate", FileNameTemplate);
-            // cmd.Parameters.AddWithValue("ExcludedContainerFormats", String.Join(", ", ExcludedContainerFormats == null ? "" : ExcludedContainerFormats));
+            cmd.Parameters.AddWithValue("ExcludedContainerFormats", ExcludedContainerFormats?.ToString());
             cmd.Parameters.AddWithValue("MaxConcurrentDownloads", MaxConcurrentDownloadCount);
             cmd.Parameters.AddWithValue("LastFormat", LastFormat);
             cmd.Parameters.AddWithValue("LastSubtitleCode", LastSubtitleLanguageCode);
@@ -121,8 +114,8 @@ namespace YoutubeDownloader.Services
             cmd.Parameters.AddWithValue("VideoDownloadLength", VideoDownloadsLength);
             cmd.Parameters.AddWithValue("CurrentVersion", CurrentVersion?.ToString());
             cmd.Parameters.AddWithValue("HWID", HWIDGenerator.UID);
-            cmd.ExecuteNonQuery();
-            _mySqlConnection.Result.Close();
+            await cmd.ExecuteNonQueryAsync();
+            await _databaseHelper.CloseConnection();
         }
     }
 }

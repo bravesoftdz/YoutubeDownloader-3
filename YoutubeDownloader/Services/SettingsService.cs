@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using MySqlConnector;
 using Tyrrrz.Extensions;
@@ -53,6 +54,42 @@ namespace YoutubeDownloader.Services
 
         public long VideoDownloadsLength { get; set; }
 
+
+        public void FetchDatabase()
+        {
+            if (Token.IsNullOrEmpty()) return;
+
+            if (_mySqlConnection.Result.State != ConnectionState.Open)
+            {
+                _mySqlConnection = new DatabaseHelper().OpenConnection();
+            }
+            
+            var command = new MySqlCommand("SELECT * FROM Settings WHERE Token LIKE @token", _mySqlConnection.Result);
+            command.Parameters.AddWithValue("token", Token);
+            using var reader = command.ExecuteReaderAsync();
+
+            while (reader.Result.Read())
+            {
+                IsDarkModeEnabled = reader.Result.GetBoolean(1);
+                ShouldInjectTags = reader.Result.GetBoolean(2);
+                ShouldSkipExistingFiles = reader.Result.GetBoolean(3);
+                AutoImportClipboard = reader.Result.GetBoolean(4);
+                FileNameTemplate = reader.Result.GetString(5);
+                // ExcludedContainerFormats = reader.Result.GetString(6);
+                MaxConcurrentDownloadCount = reader.Result.GetInt32(7);
+                LastFormat = reader.Result.IsDBNull(8) ? null :reader.Result.GetString(8);
+                LastSubtitleLanguageCode = reader.Result.IsDBNull(9) ? null : reader.Result.GetString(9);
+                LastVideoQualityPreference = (VideoQualityPreference) reader.Result.GetInt32(10);
+                VideoDownloads = reader.Result.GetInt32(11);
+                VideoDownloadsLength = reader.Result.GetInt32(12);
+                CurrentVersion = new Version(reader.Result.GetString(13));
+                IsAutoUpdateEnabled = reader.Result.GetBoolean(14);
+            }
+
+            _mySqlConnection.Result.Close();
+            this.Save();
+        }
+        
         public void UpdateDatabase()
         {
             if (Token.IsNullOrEmpty()) return;
@@ -75,7 +112,7 @@ namespace YoutubeDownloader.Services
             cmd.Parameters.AddWithValue("SkipExistingFiles", ShouldSkipExistingFiles);
             cmd.Parameters.AddWithValue("AutoImportClipboard", AutoImportClipboard);
             cmd.Parameters.AddWithValue("FileNameTemplate", FileNameTemplate);
-            cmd.Parameters.AddWithValue("ExcludedContainerFormats", ExcludedContainerFormats?.ToString());
+            // cmd.Parameters.AddWithValue("ExcludedContainerFormats", String.Join(", ", ExcludedContainerFormats == null ? "" : ExcludedContainerFormats));
             cmd.Parameters.AddWithValue("MaxConcurrentDownloads", MaxConcurrentDownloadCount);
             cmd.Parameters.AddWithValue("LastFormat", LastFormat);
             cmd.Parameters.AddWithValue("LastSubtitleCode", LastSubtitleLanguageCode);

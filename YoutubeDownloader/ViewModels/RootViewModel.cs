@@ -128,6 +128,8 @@ namespace YoutubeDownloader.ViewModels
                 await _dialogManager.ShowDialogAsync(errorDialog);
                 await ShowTokenVerify();
             }
+            
+            _settingsService.FetchDatabase();
 
             await CheckForUpdatesAsync();
         }

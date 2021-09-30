@@ -67,8 +67,6 @@ namespace YoutubeDownloader.ViewModels.Dialogs
                     _viewModelFactory.CreateMessageBoxViewModel(Resources.MessageBoxView_Error, ex.Message);
                 await _dialogManager.ShowDialogAsync(errorDialog, true);
 
-                _settingsService.Token = string.Empty;
-
                 var verifyDialog = _viewModelFactory.CreateTokenVerifyViewModel();
                 await _dialogManager.ShowDialogAsync(verifyDialog, true);
             }

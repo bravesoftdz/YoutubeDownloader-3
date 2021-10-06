@@ -349,7 +349,10 @@
     <value>Erkennt und trägt automatisch Youtube-formatierte Links aus der Zwischenablage in die Suchleiste ein</value>
   </data>
   <data name="News" xml:space="preserve">
-    <value>* Verschiedene Youtube bezogene Fehler wurden behoben</value>
+    <value>* Ein Fehler wurde behoben, bei dem der Download bei fehlerhaftem Taging unterbrochen wurde
+* Ein Fehler wurde behoben, bei dem sich Einstellungen bei Verbindungsabbruch gelöscht haben
+* Ein Fehler mit der automatischen Installation von Microsoft Bibliotheken wurde behoben
+* Ein visueller Fehler in einem Dialog wurde behoben</value>
   </data>
   <data name="TokenVerifyView_NoConnection_Internet" xml:space="preserve">
     <value>Es konnte keine Internetverbindung hergestellt werden!</value>

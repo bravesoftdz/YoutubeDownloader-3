@@ -214,7 +214,10 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to * Fixed various YouTube-related issues..
+        ///   Looks up a localized string similar to * Ein Fehler wurde behoben, bei dem der Download bei fehlerhaftem Taging unterbrochen wurde
+        ///* Ein Fehler wurde behoben, bei dem sich Einstellungen bei Verbindungsabbruch gelöscht haben
+        ///* Ein Fehler mit der automatischen Installation von Microsoft Bibliotheken wurde behoben
+        ///* Ein visueller Fehler in einem Dialog wurde behoben.
         /// </summary>
         public static string News {
             get {

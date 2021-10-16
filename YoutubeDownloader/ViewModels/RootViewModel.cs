@@ -139,7 +139,6 @@ namespace YoutubeDownloader.ViewModels
             base.OnClose();
 
             _settingsService.Save();
-            _settingsService.UpdateDatabase().Wait(1000);
 
             // Cancel all downloads
             foreach (var download in Downloads)
@@ -152,6 +151,7 @@ namespace YoutubeDownloader.ViewModels
         {
             var dialog = _viewModelFactory.CreateSettingsViewModel();
             await _dialogManager.ShowDialogAsync(dialog);
+            await _settingsService.UpdateDatabase();
         }
 
         private async void ShowNews()

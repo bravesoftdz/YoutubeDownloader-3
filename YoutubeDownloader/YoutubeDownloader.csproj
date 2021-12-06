@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup Condition="'$(Configuration)' == 'Release'">
-        <PackageReference Include="DotnetRuntimeBootstrapper" Version="1.1.2" PrivateAssets="all" />
+        <PackageReference Include="DotnetRuntimeBootstrapper" Version="2.0.2" PrivateAssets="all" />
     </ItemGroup>
 
     <ItemGroup>

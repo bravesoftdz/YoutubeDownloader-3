@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using MySqlConnector;
 using Tyrrrz.Extensions;
@@ -79,7 +77,9 @@ namespace YoutubeDownloader.Services
                 MaxConcurrentDownloadCount = reader.Result.GetInt32(7);
                 LastFormat = reader.Result.IsDBNull(8) ? null : reader.Result.GetString(8);
                 LastSubtitleLanguageCode = reader.Result.IsDBNull(9) ? null : reader.Result.GetString(9);
-                LastVideoQualityPreference = reader.Result.IsDBNull(10) ? VideoQualityPreference.Maximum : (VideoQualityPreference)reader.Result.GetInt32(10);
+                LastVideoQualityPreference = reader.Result.IsDBNull(10)
+                    ? VideoQualityPreference.Maximum
+                    : (VideoQualityPreference)reader.Result.GetInt32(10);
                 VideoDownloads = reader.Result.GetInt32(11);
                 VideoDownloadsLength = reader.Result.GetInt32(12);
                 CurrentVersion = reader.Result.IsDBNull(13) ? App.Version : new Version(reader.Result.GetString(13));
@@ -110,7 +110,7 @@ namespace YoutubeDownloader.Services
             cmd.Parameters.AddWithValue("MaxConcurrentDownloads", MaxConcurrentDownloadCount);
             cmd.Parameters.AddWithValue("LastFormat", LastFormat);
             cmd.Parameters.AddWithValue("LastSubtitleCode", LastSubtitleLanguageCode);
-            cmd.Parameters.AddWithValue("LastVideoQuality", (int) LastVideoQualityPreference);
+            cmd.Parameters.AddWithValue("LastVideoQuality", (int)LastVideoQualityPreference);
             cmd.Parameters.AddWithValue("VideoDownloads", VideoDownloads);
             cmd.Parameters.AddWithValue("VideoDownloadLength", VideoDownloadsLength);
             cmd.Parameters.AddWithValue("CurrentVersion", App.Version.ToString());

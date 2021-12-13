@@ -1,4 +1,8 @@
-﻿### v1.6.5 (6-Okt-2021)
+﻿### v1.6.6 (13-Dez-2021)
+* Verschiedene Youtube bezogene Fehler wurden behoben
+* Ein Fehler mit der Speicherung von Daten wurde behoben
+
+### v1.6.5 (6-Okt-2021)
 * Ein Fehler wurde behoben, bei dem der Download bei fehlerhaftem Taging unterbrochen wurde
 * Ein Fehler wurde behoben, bei dem sich Einstellungen bei Verbindungsabbruch gelöscht haben
 * Ein Fehler mit der automatischen Installation von Microsoft Bibliotheken wurde behoben

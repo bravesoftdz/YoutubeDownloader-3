@@ -539,6 +539,15 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to - adds everything after v=.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_8 {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to $author.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_Var_author {
@@ -580,6 +589,15 @@ namespace YoutubeDownloader.Language {
         public static string SettingsView_FileNameTemplate_Desc_Var_uploadDate {
             get {
                 return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_uploadDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to $url.
+        /// </summary>
+        public static string SettingsView_FileNameTemplate_Desc_Var_url {
+            get {
+                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_url", resourceCulture);
             }
         }
         

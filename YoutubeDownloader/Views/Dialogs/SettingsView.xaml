@@ -88,7 +88,7 @@
                 IsChecked="{Binding ShouldSkipExistingFiles}" />
         </DockPanel>
 
-        <!--  Skip existing files  -->
+        <!--  Auto import clipboard  -->
         <DockPanel
             Background="Transparent"
             LastChildFill="False"
@@ -127,6 +127,9 @@
                     <LineBreak />
                     <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_length}" />
                     <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_7}" />
+                    <LineBreak />
+                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_url}" />
+                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_8}" />
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>

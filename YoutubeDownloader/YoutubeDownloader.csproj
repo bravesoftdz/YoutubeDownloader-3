@@ -65,11 +65,6 @@
         </EmbeddedResource>
     </ItemGroup>
 
-    <Target Name="Format XAML" AfterTargets="BeforeBuild">
-        <Exec Command="dotnet tool restore" />
-        <Exec Command="dotnet xstyler -r -d &quot;$(MSBuildProjectDirectory)&quot;" />
-    </Target>
-
     <!-- This downloads FFmpeg and copies it to output directory-->
     <Target Name="Download FFmpeg before build" BeforeTargets="PreBuildEvent">
         <Exec Command="powershell -ExecutionPolicy Bypass -File &quot;$(ProjectDir)/DownloadFfmpeg.ps1&quot;" />

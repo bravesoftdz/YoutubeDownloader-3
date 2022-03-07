@@ -214,8 +214,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to * Various Youtube related bugs have been fixed
-        ///* A bug with saving data has been fixed.
+        ///   Looks up a localized string similar to * Fixed various YouTube-related issues.
         /// </summary>
         public static string News {
             get {

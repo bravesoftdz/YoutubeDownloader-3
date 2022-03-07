@@ -16,7 +16,6 @@ namespace YoutubeDownloader.Utils
 
         private static string LengthToken { get; } = Resources.SettingsView_FileNameTemplate_Desc_Var_length;
 
-        private static string URLToken { get; } = "$url";
         public static string DefaultTemplate { get; } = $"{TitleToken}";
 
         public static string GenerateFileName(
@@ -31,7 +30,6 @@ namespace YoutubeDownloader.Utils
             result = result.Replace(TitleToken, video.Title);
             result = result.Replace(AuthorToken, video.Author.Title);
             result = result.Replace(LengthToken, video.Duration.ToString());
-            result = result.Replace(URLToken, video.Url.Substring(video.Url.IndexOf("v=") + 2));
 
             result = result.Trim();
 

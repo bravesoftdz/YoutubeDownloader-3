@@ -115,7 +115,7 @@ namespace YoutubeDownloader.ViewModels
 
             try
             {
-                var isTokenValid = await _tokenService.IsTokenValid(_settingsService.Token, _settingsService);
+                var isTokenValid = await _tokenService.IsTokenValid(_settingsService.Token);
                 if (!isTokenValid!)
                     await ShowTokenVerify();
                 else
@@ -128,9 +128,6 @@ namespace YoutubeDownloader.ViewModels
                 await _dialogManager.ShowDialogAsync(errorDialog);
                 await ShowTokenVerify();
             }
-            
-            await _settingsService.FetchDatabase();
-
             await CheckForUpdatesAsync();
         }
 
@@ -139,7 +136,7 @@ namespace YoutubeDownloader.ViewModels
             base.OnClose();
 
             _settingsService.Save();
-            _settingsService.UpdateDatabase();
+            _tokenService.UpdateStats(_settingsService);
 
             // Cancel all downloads
             foreach (var download in Downloads)

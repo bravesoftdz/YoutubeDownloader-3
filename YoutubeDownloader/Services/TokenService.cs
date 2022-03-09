@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using MySqlConnector;
-using Tyrrrz.Extensions;
+using Newtonsoft.Json;
 using YoutubeDownloader.Language;
 using YoutubeDownloader.Utils;
 using YoutubeDownloader.Utils.Token;
@@ -14,81 +11,54 @@ namespace YoutubeDownloader.Services
 {
     public class TokenService
     {
-        private readonly DatabaseHelper _databaseHelper = new();
-        private readonly List<TokenEx> _tokens = new();
-        public bool IsReady { get; private set; }
+        private record RequestModel(string? Hwid = default, int? VideoDownloads = default,
+            long? VideoDownloadLength = default);
+        private record ResponseModel(int? youtubeCode = -1, bool success = false);
 
-        public async Task<bool> IsTokenValid(string? tokenFromInput, SettingsService settingsService)
+
+        public async Task<bool> IsTokenValid(string? token)
         {
-            try
+            var bodyJson = JsonConvert.SerializeObject(new RequestModel(HWIDGenerator.UID));
+            var bodyData = new StringContent(bodyJson, Encoding.UTF8, "application/json");
+
+            var response = await Http.Client.PostAsync(
+                "https://europe-west1-logbookbackend.cloudfunctions.net/api/youtube/" + token, bodyData);
+            var result = await response.Content.ReadAsStringAsync();
+
+            var responseModel = new ResponseModel(-1, true);
+
+            if (!bool.TryParse(result, out _))
             {
-                await FetchFromDatabase();
+                responseModel = JsonConvert.DeserializeObject<ResponseModel>(result);
             }
-            catch (MySqlException exception)
+
+            if (!responseModel!.success)
             {
-                var exitBox = MessageBox.Show(
-                    Resources.TokenVerifyView_NoConnection_Ex + "\n" + exception.StackTrace,
-                    Resources.MessageBoxView_Error,
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Stop);
-                if (exitBox == MessageBoxResult.OK)
-                    Application.Current.Shutdown();
-                return !settingsService.Token.IsNullOrEmpty();
+                throw responseModel.youtubeCode switch
+                {
+                    0 => new TokenException(Resources.TokenVerifyView_Invaild_Ex),
+                    1 => new TokenException(Resources.TokenVerifyView_Disabled_Ex),
+                    2 => new TokenException(Resources.TokenVerifyView_Expired_Ex),
+                    3 => new TokenException(Resources.TokenVerifyView_Amount_Ex),
+                    _ => new TokenException("-1")
+                };
             }
 
-            var token = _tokens.FirstOrDefault(tokenEx => tokenEx.Token!.Equals(tokenFromInput!.Trim()));
-
-            IsReady = await MatchTokenRequirements(token!);
-            return IsReady;
+            return responseModel.success;
         }
 
-        private async Task FetchFromDatabase()
+        public bool UpdateStats(SettingsService settingsService)
         {
-            await using var command = new MySqlCommand("SELECT * FROM Tokens;", await _databaseHelper.OpenConnection());
-            using var reader = command.ExecuteReaderAsync();
+            var bodyJson = JsonConvert.SerializeObject(new RequestModel(HWIDGenerator.UID,
+                settingsService.VideoDownloads, settingsService.VideoDownloadsLength));
+            var bodyData = new StringContent(bodyJson, Encoding.UTF8, "application/json");
 
-            while (await reader.Result.ReadAsync())
-                _tokens.Add(
-                    new TokenEx(reader.Result.GetInt32(0),
-                        reader.Result.GetByte(2) != 0,
-                        reader.Result.GetString(3),
-                        await reader.Result.IsDBNullAsync(4) ? DateTime.MaxValue : reader.Result.GetDateTime(4),
-                        await reader.Result.IsDBNullAsync(5) ? "NULL" : reader.Result.GetString(5),
-                        reader.Result.GetByte(6) != 0));
-
-            await _databaseHelper.CloseConnection();
-        }
-
-        private async Task<bool> UpdateDatabase(TokenEx tokenEx)
-        {
-            await using var cmd = new MySqlCommand
-            {
-                Connection = await _databaseHelper.OpenConnection(),
-                CommandText = "UPDATE `ytdl`.`Tokens` SET `Hwid`=@hwid WHERE `id`=@id;"
-            };
-            cmd.Parameters.AddWithValue("hwid", HWIDGenerator.UID);
-            cmd.Parameters.AddWithValue("id", tokenEx.Id);
-            await cmd.ExecuteNonQueryAsync();
-            await _databaseHelper.CloseConnection();
-            return true;
-        }
-
-        private async Task<bool> MatchTokenRequirements(TokenEx? tokenEx)
-        {
-            if (tokenEx?.Token == null || tokenEx.Token.IsNullOrEmpty())
-                throw new TokenException(Resources.TokenVerifyView_Invaild_Ex);
-
-            if (!(bool) tokenEx.Enabled!)
-                throw new TokenException(Resources.TokenVerifyView_Disabled_Ex);
-
-            if (tokenEx.ExpiryDate! < DateTime.Now)
-                throw new TokenException(Resources.TokenVerifyView_Expired_Ex);
-
-            if (!(bool) tokenEx.SystemBind!) return true;
-            if (tokenEx.Hwid! == HWIDGenerator.UID) return true;
-            if (!tokenEx.Hwid!.Equals("NULL"))
-                throw new TokenException(Resources.TokenVerifyView_Amount_Ex);
-            return await UpdateDatabase(tokenEx);
+            using var client = Http.Client;
+            var response = client.PatchAsync(
+                "https://europe-west1-logbookbackend.cloudfunctions.net/api/youtube/" + settingsService.Token,
+                bodyData);
+            return response.Result.IsSuccessStatusCode;
+            // var result = await response.Content.ReadAsStringAsync();
         }
     }
 }

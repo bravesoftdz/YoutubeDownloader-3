@@ -23,33 +23,41 @@ namespace YoutubeDownloader.Services
 
         public async Task<bool> IsTokenValid(string? token)
         {
-            var bodyJson = JsonConvert.SerializeObject(new RequestModel(HWIDGenerator.UID));
-            var bodyData = new StringContent(bodyJson, Encoding.UTF8, "application/json");
-
-            var response = await Http.Client.PostAsync(
-                "https://europe-west1-logbookbackend.cloudfunctions.net/api/youtube/" + token, bodyData);
-            var result = await response.Content.ReadAsStringAsync();
-
-            var responseModel = new ResponseModel(-1, true);
-
-            if (!bool.TryParse(result, out _))
+            try
             {
-                responseModel = JsonConvert.DeserializeObject<ResponseModel>(result);
-            }
+                var bodyJson = JsonConvert.SerializeObject(new RequestModel(HWIDGenerator.UID));
+                var bodyData = new StringContent(bodyJson, Encoding.UTF8, "application/json");
 
-            if (!responseModel!.success)
-            {
-                throw responseModel.youtubeCode switch
+                var response = await Http.Client.PostAsync(
+                    "https://europe-west1-logbookbackend.cloudfunctions.net/api/youtube/" + token, bodyData);
+                var result = await response.Content.ReadAsStringAsync();
+
+                var responseModel = new ResponseModel(-1, true);
+
+                if (!bool.TryParse(result, out _))
                 {
-                    0 => new TokenException(Resources.TokenVerifyView_Invaild_Ex),
-                    1 => new TokenException(Resources.TokenVerifyView_Disabled_Ex),
-                    2 => new TokenException(Resources.TokenVerifyView_Expired_Ex),
-                    3 => new TokenException(Resources.TokenVerifyView_Amount_Ex),
-                    _ => new TokenException("-1")
-                };
-            }
+                    responseModel = JsonConvert.DeserializeObject<ResponseModel>(result);
+                }
 
-            return responseModel.success;
+                if (!responseModel!.success)
+                {
+                    throw responseModel.youtubeCode switch
+                    {
+                        0 => new TokenException(Resources.TokenVerifyView_Invaild_Ex),
+                        1 => new TokenException(Resources.TokenVerifyView_Disabled_Ex),
+                        2 => new TokenException(Resources.TokenVerifyView_Expired_Ex),
+                        3 => new TokenException(Resources.TokenVerifyView_Amount_Ex),
+                        _ => new TokenException("-1")
+                    };
+                }
+
+                return responseModel.success;
+            }
+            catch (Exception exception)
+            {
+                throw new TokenException("Das System wird gestartet. Bitte versuche es in 30 Sekunden erneut.",
+                    exception);
+            }
         }
 
         public void UpdateStats(SettingsService settingsService)
@@ -59,7 +67,6 @@ namespace YoutubeDownloader.Services
             var bodyData = new StringContent(bodyJson, Encoding.UTF8, "application/json");
 
             using var client = Http.Client;
-            client.Timeout = TimeSpan.MaxValue;
             client.PatchAsync(
                 "https://europe-west1-logbookbackend.cloudfunctions.net/api/youtube/" + settingsService.Token,
                 bodyData);

@@ -22,13 +22,13 @@ namespace YoutubeDownloader.Behaviors
 
         public IList? SelectedItems
         {
-            get => (IList?) GetValue(SelectedItemsProperty);
+            get => (IList?)GetValue(SelectedItemsProperty);
             set => SetValue(SelectedItemsProperty, value);
         }
 
         private static void OnSelectedItemsChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
-            var behavior = (VideoMultiSelectionListBoxBehavior) sender;
+            var behavior = (VideoMultiSelectionListBoxBehavior)sender;
             if (behavior._modelHandled) return;
 
             if (behavior.AssociatedObject is null)
@@ -74,7 +74,7 @@ namespace YoutubeDownloader.Behaviors
             base.OnAttached();
 
             AssociatedObject.SelectionChanged += OnListBoxSelectionChanged;
-            ((INotifyCollectionChanged) AssociatedObject.Items).CollectionChanged += OnListBoxItemsChanged;
+            ((INotifyCollectionChanged)AssociatedObject.Items).CollectionChanged += OnListBoxItemsChanged;
         }
 
         /// <inheritdoc />
@@ -85,7 +85,7 @@ namespace YoutubeDownloader.Behaviors
             if (AssociatedObject is not null)
             {
                 AssociatedObject.SelectionChanged -= OnListBoxSelectionChanged;
-                ((INotifyCollectionChanged) AssociatedObject.Items).CollectionChanged -= OnListBoxItemsChanged;
+                ((INotifyCollectionChanged)AssociatedObject.Items).CollectionChanged -= OnListBoxItemsChanged;
             }
         }
     }

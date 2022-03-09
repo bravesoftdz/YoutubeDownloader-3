@@ -46,7 +46,7 @@ namespace YoutubeDownloader.ViewModels.Dialogs
                             Resources.TokenVerifyView_Activated_Desc);
                         await _dialogManager.ShowDialogAsync(tokenActivateDialog, true);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         // ignored
                     }

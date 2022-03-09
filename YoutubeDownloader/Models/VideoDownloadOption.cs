@@ -21,7 +21,7 @@ namespace YoutubeDownloader.Models
             string format,
             string label,
             params IStreamInfo[] streamInfos)
-            : this(format, label, (IReadOnlyList<IStreamInfo>) streamInfos)
+            : this(format, label, (IReadOnlyList<IStreamInfo>)streamInfos)
         {
         }
 
@@ -61,7 +61,7 @@ namespace YoutubeDownloader.Models
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != GetType()) return false;
 
-            return Equals((VideoDownloadOption) obj);
+            return Equals((VideoDownloadOption)obj);
         }
 
         public override int GetHashCode()

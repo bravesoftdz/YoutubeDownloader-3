@@ -29,7 +29,7 @@ namespace YoutubeDownloader.Views
                 if (clipboardText!.IsNullOrEmpty() || QueryTextBox.Text.Contains(clipboardText!) ||
                     QueryTextBox.IsKeyboardFocused) return;
                 if (!Regex.Match(clipboardText!, "^.*(youtu.be\\/|list=|watch\\?v=|embed)([^#\\&\\?]*).*")
-                    .Success) return;
+                        .Success) return;
                 if (!QueryTextBox.Text.IsNullOrEmpty())
                     QueryTextBox.Text += Environment.NewLine;
                 QueryTextBox.Text += clipboardText!;

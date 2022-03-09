@@ -124,7 +124,7 @@ namespace YoutubeDownloader.Services
             videoTitle = videoTitle.Replace("(animated video)", "", StringComparison.OrdinalIgnoreCase);
 
             // Split by common artist/title separator characters
-            var split = videoTitle.Split(new[] {" - ", " ~ ", " — ", " – "}, StringSplitOptions.RemoveEmptyEntries);
+            var split = videoTitle.Split(new[] { " - ", " ~ ", " — ", " – " }, StringSplitOptions.RemoveEmptyEntries);
 
             // Extract artist and title
             if (split.Length >= 2)
@@ -159,7 +159,7 @@ namespace YoutubeDownloader.Services
             appleTag?.SetDashBox("Channel", "Channel", video.Author.Title);
 
             file.Tag.Pictures = picture is not null
-                ? new[] {picture}
+                ? new[] { picture }
                 : Array.Empty<IPicture>();
 
             file.Save();
@@ -183,12 +183,12 @@ namespace YoutubeDownloader.Services
 
             var file = File.Create(filePath);
 
-            file.Tag.Performers = new[] {resolvedArtist ?? artist ?? ""};
+            file.Tag.Performers = new[] { resolvedArtist ?? artist ?? "" };
             file.Tag.Title = resolvedTitle ?? title ?? "";
             file.Tag.Album = resolvedAlbumName ?? "";
 
             file.Tag.Pictures = picture is not null
-                ? new[] {picture}
+                ? new[] { picture }
                 : Array.Empty<IPicture>();
 
             file.Save();

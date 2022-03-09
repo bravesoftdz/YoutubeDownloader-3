@@ -6,7 +6,7 @@ namespace YoutubeDownloader.Utils
     {
         public static Color FromHex(string hex)
         {
-            return (Color) ColorConverter.ConvertFromString(hex);
+            return (Color)ColorConverter.ConvertFromString(hex);
         }
     }
 }

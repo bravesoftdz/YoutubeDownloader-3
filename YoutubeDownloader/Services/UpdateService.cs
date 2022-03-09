@@ -47,7 +47,6 @@ namespace YoutubeDownloader.Services
                 if (exitBox == MessageBoxResult.OK)
                     Application.Current.Shutdown();
             }
-
         }
 
         public void Dispose()
@@ -59,7 +58,7 @@ namespace YoutubeDownloader.Services
         {
             HttpClient client = new();
             client.DefaultRequestHeaders.Add("Authorization", "Basic dXNlcjp1c2Vy");
-            var task = Task.Run(() => client.GetStringAsync("https://web.nuerk-solutions.de/githubtoken_yt_private")); 
+            var task = Task.Run(() => client.GetStringAsync("https://web.nuerk-solutions.de/githubtoken_yt_private"));
             task.Wait();
             return task.Result;
         }

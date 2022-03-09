@@ -35,12 +35,12 @@ namespace YoutubeDownloader.Utils.Clipboard
         /// <summary>
         ///     ICommand to be called on clipboard update.
         /// </summary>
-        private ICommand ClipboardUpdateCommand => (ICommand) GetValue(ClipboardUpdateCommandProperty);
+        private ICommand ClipboardUpdateCommand => (ICommand)GetValue(ClipboardUpdateCommandProperty);
 
         /// <summary>
         ///     Enable clipboard notification.
         /// </summary>
-        private bool ClipboardNotification => (bool) GetValue(ClipboardNotificationProperty);
+        private bool ClipboardNotification => (bool)GetValue(ClipboardNotificationProperty);
 
         /// <summary>
         ///     Event for clipboard update notification.
@@ -64,8 +64,8 @@ namespace YoutubeDownloader.Utils.Clipboard
 
         private static void OnClipboardNotificationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            ClipboardMonitorWindow clipboardMonitorWindow = (ClipboardMonitorWindow) o;
-            var value = (bool) e.NewValue;
+            ClipboardMonitorWindow clipboardMonitorWindow = (ClipboardMonitorWindow)o;
+            var value = (bool)e.NewValue;
             if (value)
                 clipboardMonitorWindow.Start();
             else

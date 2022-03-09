@@ -128,12 +128,12 @@ namespace YoutubeDownloader.ViewModels
                 await _dialogManager.ShowDialogAsync(errorDialog);
                 await ShowTokenVerify();
             }
+
             await CheckForUpdatesAsync();
         }
 
         protected override void OnClose()
         {
-            base.OnClose();
 
             _settingsService.Save();
             _tokenService.UpdateStats(_settingsService);
@@ -143,6 +143,7 @@ namespace YoutubeDownloader.ViewModels
                 download.Cancel();
 
             _updateService.FinalizeUpdate(false);
+            base.OnClose();
         }
 
         public async void ShowSettings()

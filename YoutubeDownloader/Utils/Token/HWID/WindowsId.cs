@@ -18,9 +18,9 @@ namespace YoutubeDownloader.Utils.Token.HWID
 
             foreach (var o in managCollec)
             {
-                var managObj = (ManagementObject) o;
+                var managObj = (ManagementObject)o;
                 windowsInfo = managObj.Properties["Caption"].Value + Environment.UserName +
-                              (string) managObj.Properties["Version"].Value;
+                              (string)managObj.Properties["Version"].Value;
                 break;
             }
 

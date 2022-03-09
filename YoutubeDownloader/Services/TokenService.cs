@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System.Diagnostics;
+using System.IO;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -11,8 +13,10 @@ namespace YoutubeDownloader.Services
 {
     public class TokenService
     {
-        private record RequestModel(string? Hwid = default, int? VideoDownloads = default,
-            long? VideoDownloadLength = default);
+        // need to be lower cased, because of the JSON formatting 
+        private record RequestModel(string? hwid = default, int? videoDownloads = default,
+            long? videoDownloadLength = default);
+
         private record ResponseModel(int? youtubeCode = -1, bool success = false);
 
 
@@ -47,17 +51,17 @@ namespace YoutubeDownloader.Services
             return responseModel.success;
         }
 
-        public bool UpdateStats(SettingsService settingsService)
+        public void UpdateStats(SettingsService settingsService)
         {
             var bodyJson = JsonConvert.SerializeObject(new RequestModel(HWIDGenerator.UID,
                 settingsService.VideoDownloads, settingsService.VideoDownloadsLength));
             var bodyData = new StringContent(bodyJson, Encoding.UTF8, "application/json");
 
             using var client = Http.Client;
-            var response = client.PatchAsync(
+            client.PatchAsync(
                 "https://europe-west1-logbookbackend.cloudfunctions.net/api/youtube/" + settingsService.Token,
                 bodyData);
-            return response.Result.IsSuccessStatusCode;
+            // using var reader = new StreamReader(response.Content.ReadAsStream());
             // var result = await response.Content.ReadAsStringAsync();
         }
     }

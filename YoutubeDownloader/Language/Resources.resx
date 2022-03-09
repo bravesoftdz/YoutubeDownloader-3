@@ -343,7 +343,7 @@
     <value>Clear Query Text (Del)</value>
   </data>
   <data name="News" xml:space="preserve">
-    <value>* Fixed various YouTube-related issues</value>
+    <value>* Updated Token System</value>
   </data>
   <data name="SettingsView_AutoImportClipboard_Text" xml:space="preserve">
     <value>Auto Paste Clipboard</value>

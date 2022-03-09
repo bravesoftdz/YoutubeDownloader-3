@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -58,6 +59,7 @@ namespace YoutubeDownloader.Services
             var bodyData = new StringContent(bodyJson, Encoding.UTF8, "application/json");
 
             using var client = Http.Client;
+            client.Timeout = TimeSpan.MaxValue;
             client.PatchAsync(
                 "https://europe-west1-logbookbackend.cloudfunctions.net/api/youtube/" + settingsService.Token,
                 bodyData);

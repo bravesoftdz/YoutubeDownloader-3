@@ -349,7 +349,7 @@
     <value>Erkennt und trägt automatisch Youtube-formatierte Links aus der Zwischenablage in die Suchleiste ein</value>
   </data>
   <data name="News" xml:space="preserve">
-    <value>* Verschiedene Youtube bezogene Fehler wurden behoben</value>
+    <value>* Tokensystem überarbeitet</value>
   </data>
   <data name="TokenVerifyView_NoConnection_Internet" xml:space="preserve">
     <value>Es konnte keine Internetverbindung hergestellt werden!</value>

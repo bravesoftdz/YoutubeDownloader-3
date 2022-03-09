@@ -214,7 +214,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to * Verschiedene Youtube bezogene Fehler wurden behoben.
+        ///   Looks up a localized string similar to * Tokensystem überarbeitet.
         /// </summary>
         public static string News {
             get {

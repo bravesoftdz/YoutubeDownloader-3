@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Gress;
@@ -95,8 +96,9 @@ namespace YoutubeDownloader.ViewModels
                     }
                 );
             }
-            catch
+            catch (Exception exception)
             {
+                Debug.WriteLine(exception);
                 // Failure to update shouldn't crash the application
                 Notifications.Enqueue(Resources.Update_Error_Desc);
             }
@@ -128,8 +130,11 @@ namespace YoutubeDownloader.ViewModels
                 await _dialogManager.ShowDialogAsync(errorDialog);
                 await ShowTokenVerify();
             }
+            finally
+            {
+                await CheckForUpdatesAsync();
+            }
 
-            await CheckForUpdatesAsync();
         }
 
         protected override void OnClose()

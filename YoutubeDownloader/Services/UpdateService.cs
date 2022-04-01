@@ -2,12 +2,14 @@
 using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using Onova;
 using Onova.Exceptions;
 using Onova.Services;
 using YoutubeDownloader.Language;
+using YoutubeDownloader.Utils.Token;
 
 namespace YoutubeDownloader.Services
 {
@@ -32,21 +34,6 @@ namespace YoutubeDownloader.Services
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"{App.Name} ({App.GitHubProjectUrl})");
             _httpClient.DefaultRequestHeaders.Add("User-Agent",
                 "YoutubeDownloader (github.com/derech1e/YoutubeDownloader)");
-
-            try
-            {
-                _httpClient.DefaultRequestHeaders.Add("Authorization", "token " + GetGithubAccessToken());
-            }
-            catch (AggregateException exception)
-            {
-                var exitBox = MessageBox.Show(
-                    Resources.TokenVerifyView_NoConnection_Internet + "\n\n\n" + exception.StackTrace,
-                    Resources.MessageBoxView_Error,
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Stop);
-                if (exitBox == MessageBoxResult.OK)
-                    Application.Current.Shutdown();
-            }
         }
 
         public void Dispose()
@@ -54,19 +41,28 @@ namespace YoutubeDownloader.Services
             _updateManager.Dispose();
         }
 
-        private string GetGithubAccessToken()
+        private async Task<string> GetGithubAccessToken()
         {
             HttpClient client = new();
             client.DefaultRequestHeaders.Add("Authorization", "Basic dXNlcjp1c2Vy");
-            var task = Task.Run(() => client.GetStringAsync("https://web.nuerk-solutions.de/githubtoken_yt_private"));
-            task.Wait();
-            return task.Result;
+            try
+            {
+                return await client.GetStringAsync(
+                    "https://raw.githubusercontent.com/derech1e/smartnexthome/1412d31e59daaf2fa02ce8c0e3496bd7c0734665/public/githubtoken_yt_private");
+            }
+            catch
+            {
+                throw new Exception("Es konnte keine Verbindung zum Updateserver hergestellt werden.");
+            }
         }
 
         public async Task<Version?> CheckForUpdatesAsync()
         {
             if (!_settingsService.IsAutoUpdateEnabled)
                 return null;
+
+            var token = await GetGithubAccessToken();
+            _httpClient.DefaultRequestHeaders.Add("Authorization", "token " + Regex.Replace(token, @"\t|\n|\r", ""));
 
             try
             {

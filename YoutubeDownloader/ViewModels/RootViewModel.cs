@@ -134,12 +134,10 @@ namespace YoutubeDownloader.ViewModels
             {
                 await CheckForUpdatesAsync();
             }
-
         }
 
         protected override void OnClose()
         {
-
             _settingsService.Save();
             _tokenService.UpdateStats(_settingsService);
 

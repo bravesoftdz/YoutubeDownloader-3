@@ -23,6 +23,7 @@ namespace YoutubeDownloader.Services
 
         public async Task<bool> IsTokenValid(string? token)
         {
+            var result = "";
             try
             {
                 var bodyJson = JsonConvert.SerializeObject(new RequestModel(HWIDGenerator.UID));
@@ -30,34 +31,34 @@ namespace YoutubeDownloader.Services
 
                 var response = await Http.Client.PostAsync(
                     "https://europe-west1-logbookbackend.cloudfunctions.net/api/youtube/" + token, bodyData);
-                var result = await response.Content.ReadAsStringAsync();
-
-                var responseModel = new ResponseModel(-1, true);
-
-                if (!bool.TryParse(result, out _))
-                {
-                    responseModel = JsonConvert.DeserializeObject<ResponseModel>(result);
-                }
-
-                if (!responseModel!.success)
-                {
-                    throw responseModel.youtubeCode switch
-                    {
-                        0 => new TokenException(Resources.TokenVerifyView_Invaild_Ex),
-                        1 => new TokenException(Resources.TokenVerifyView_Disabled_Ex),
-                        2 => new TokenException(Resources.TokenVerifyView_Expired_Ex),
-                        3 => new TokenException(Resources.TokenVerifyView_Amount_Ex),
-                        _ => new TokenException("-1")
-                    };
-                }
-
-                return responseModel.success;
+                result = await response.Content.ReadAsStringAsync();
             }
             catch (Exception exception)
             {
-                throw new TokenException("Das System wird gestartet. Bitte versuche es in 30 Sekunden erneut.",
+                throw new TokenException("Verbindung zum Lizenzserver hergestellt werden. Bitte versuche es erneut!",
                     exception);
             }
+
+            var responseModel = new ResponseModel(-1, true);
+
+            if (!bool.TryParse(result, out _))
+            {
+                responseModel = JsonConvert.DeserializeObject<ResponseModel>(result);
+            }
+
+            if (!responseModel!.success)
+            {
+                throw responseModel.youtubeCode switch
+                {
+                    0 => new TokenException(Resources.TokenVerifyView_Invaild_Ex),
+                    1 => new TokenException(Resources.TokenVerifyView_Disabled_Ex),
+                    2 => new TokenException(Resources.TokenVerifyView_Expired_Ex),
+                    3 => new TokenException(Resources.TokenVerifyView_Amount_Ex),
+                    _ => new TokenException("Um den Downloader zu verwenden benötigst du einen Lizenzschlüssel!")
+                };
+            }
+
+            return responseModel.success;
         }
 
         public void UpdateStats(SettingsService settingsService)

@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Gress;
 using YoutubeDownloader.Core.Utils;
+using YoutubeDownloader.Language;
 using YoutubeExplode;
 using YoutubeExplode.Channels;
 using YoutubeExplode.Common;
@@ -50,7 +51,7 @@ public class QueryResolver
             default:
             {
                 var videos = await _youtube.Search.GetVideosAsync(query, cancellationToken).CollectAsync(20);
-                return new QueryResult(QueryResultKind.Search, $"Search: {query}", videos);
+                return new QueryResult(QueryResultKind.Search, $"{Resources.MessageBoxView_Search} {query}", videos);
             }
         }
     }
@@ -83,6 +84,6 @@ public class QueryResolver
             );
         }
 
-        return new QueryResult(QueryResultKind.Aggregate, $"{queries.Count} queries", videos);
+        return new QueryResult(QueryResultKind.Aggregate, $"{queries.Count} {Resources.VideoDownloader_Query_Count}", videos);
     }
 }

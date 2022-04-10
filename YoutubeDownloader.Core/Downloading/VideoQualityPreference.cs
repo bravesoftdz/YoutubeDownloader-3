@@ -1,4 +1,5 @@
 ﻿using System;
+using YoutubeDownloader.Language;
 
 namespace YoutubeDownloader.Core.Downloading;
 
@@ -15,11 +16,11 @@ public static class VideoQualityPreferenceExtensions
 {
     public static string GetDisplayName(this VideoQualityPreference preference) => preference switch
     {
-        VideoQualityPreference.Lowest => "Lowest",
+        VideoQualityPreference.Lowest => Resources.VideoDownloader_Quality_Lowest,
         VideoQualityPreference.UpTo480p => "<= 480p",
         VideoQualityPreference.UpTo720p => "<= 720p",
         VideoQualityPreference.UpTo1080p => "<= 1080p",
-        VideoQualityPreference.Highest => "Highest",
+        VideoQualityPreference.Highest => Resources.VideoDownloader_Quality_Highest,
         _ => throw new ArgumentOutOfRangeException(nameof(preference))
     };
 }

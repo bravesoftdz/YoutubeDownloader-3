@@ -36,33 +36,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="Language\Resources.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Resources.resx</DependentUpon>
-        </Compile>
         <Compile Update="Language\Resources.de.Designer.cs">
             <AutoGen>True</AutoGen>
             <DependentUpon>Resources.de.resx</DependentUpon>
             <DesignTime>True</DesignTime>
         </Compile>
-        <Compile Update="Language\Resources.de.Designer.cs">
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Resources.de.resx</DependentUpon>
-            <DesignTime>True</DesignTime>
-        </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-        <EmbeddedResource Update="Language\Resources.de.resx">
-            <Generator>PublicResXFileCodeGenerator</Generator>
-            <CustomToolNamespace></CustomToolNamespace>
-        </EmbeddedResource>
-        <EmbeddedResource Update="Language\Resources.resx">
-            <Generator>PublicResXFileCodeGenerator</Generator>
-            <CustomToolNamespace>YoutubeDownloader.Language</CustomToolNamespace>
-            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>

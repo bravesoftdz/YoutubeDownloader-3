@@ -4,6 +4,7 @@ using System.Threading;
 using Gress;
 using Stylet;
 using YoutubeDownloader.Core.Downloading;
+using YoutubeDownloader.Language;
 using YoutubeDownloader.Utils;
 using YoutubeDownloader.ViewModels.Dialogs;
 using YoutubeDownloader.ViewModels.Framework;
@@ -70,7 +71,7 @@ public class DownloadViewModel : PropertyChangedBase, IDisposable
         catch (Exception ex)
         {
             await _dialogManager.ShowDialogAsync(
-                _viewModelFactory.CreateMessageBoxViewModel("Error", ex.Message)
+                _viewModelFactory.CreateMessageBoxViewModel(Resources.MessageBoxView_Error, ex.Message)
             );
         }
     }
@@ -89,7 +90,7 @@ public class DownloadViewModel : PropertyChangedBase, IDisposable
         catch (Exception ex)
         {
             await _dialogManager.ShowDialogAsync(
-                _viewModelFactory.CreateMessageBoxViewModel("Error", ex.Message)
+                _viewModelFactory.CreateMessageBoxViewModel(Resources.MessageBoxView_Error, ex.Message)
             );
         }
     }

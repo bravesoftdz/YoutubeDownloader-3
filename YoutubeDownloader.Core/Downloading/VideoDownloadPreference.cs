@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using YoutubeDownloader.Language;
 using YoutubeExplode.Videos.Streams;
 
 namespace YoutubeDownloader.Core.Downloading;
@@ -39,7 +40,7 @@ public record VideoDownloadPreference(
             VideoQualityPreference.Lowest => orderedOptions
                 .LastOrDefault(o => o.Container == PreferredContainer),
 
-            _ => throw new InvalidOperationException($"Unknown video quality preference '{PreferredVideoQuality}'.")
+            _ => throw new InvalidOperationException($"{Resources.VideoDownloader_Unkown_Quality} '{PreferredVideoQuality}'.")
         };
 
         return

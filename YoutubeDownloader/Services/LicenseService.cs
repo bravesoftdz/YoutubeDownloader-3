@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +21,6 @@ namespace YoutubeDownloader.Services
 
         public async Task<bool> IsLicenseValid(string? license)
         {
-            string result;
             var responseModel = new ResponseModel(-1, true);
             try
             {
@@ -31,7 +29,7 @@ namespace YoutubeDownloader.Services
 
                 var response = await Http.Client.PostAsync(
                     "https://europe-west1-logbookbackend.cloudfunctions.net/api/youtube/" + license, bodyData);
-                result = await response.Content.ReadAsStringAsync();
+                var result = await response.Content.ReadAsStringAsync();
                 
                 if (!bool.TryParse(result, out _))
                 {
@@ -40,7 +38,7 @@ namespace YoutubeDownloader.Services
             }
             catch (Exception exception)
             {
-                throw new Exception("Verbindung zum Lizenzserver hergestellt werden. Bitte versuche es erneut!",
+                throw new Exception(Resources.LicenseService_InvalidConnection,
                     exception);
             }
             
@@ -48,11 +46,11 @@ namespace YoutubeDownloader.Services
             {
                 throw responseModel.youtubeCode switch
                 {
-                    0 => new Exception(Resources.TokenVerifyView_Invaild_Ex),
-                    1 => new Exception(Resources.TokenVerifyView_Disabled_Ex),
-                    2 => new Exception(Resources.TokenVerifyView_Expired_Ex),
-                    3 => new Exception(Resources.TokenVerifyView_Amount_Ex),
-                    _ => new Exception("Um den Downloader zu verwenden benötigst du einen Lizenzschlüssel!")
+                    0 => new Exception(Resources.LicenseService_invalid),
+                    1 => new Exception(Resources.LicenseService_disabled),
+                    2 => new Exception(Resources.LicenseService_expired),
+                    3 => new Exception(Resources.LicenseService_amount),
+                    _ => new Exception(Resources.LicenseService_need_a_token)
                 };
             }
             return responseModel.success;

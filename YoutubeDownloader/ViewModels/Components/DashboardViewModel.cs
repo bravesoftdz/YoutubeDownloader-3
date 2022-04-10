@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Gress;
 using Gress.Completable;
 using Stylet;
 using YoutubeDownloader.Core.Downloading;
 using YoutubeDownloader.Core.Resolving;
+using YoutubeDownloader.Language;
 using YoutubeDownloader.Services;
 using YoutubeDownloader.Utils;
 using YoutubeDownloader.ViewModels.Dialogs;
@@ -29,7 +27,7 @@ public class DashboardViewModel : PropertyChangedBase
     private readonly QueryResolver _queryResolver = new();
     private readonly VideoDownloader _videoDownloader = new();
 
-    public bool IsBusy { get; private set; }
+    private bool IsBusy { get; set; }
 
     public ProgressContainer<Percentage> Progress { get; } = new();
 
@@ -176,8 +174,8 @@ public class DashboardViewModel : PropertyChangedBase
             {
                 await _dialogManager.ShowDialogAsync(
                     _viewModelFactory.CreateMessageBoxViewModel(
-                        "Nothing found",
-                        "Couldn't find any videos based on the query or URL you provided"
+                        Resources.Download_Nothing_Found_1,
+                        Resources.Download_Nothing_Found_2
                     )
                 );
             }
@@ -186,7 +184,7 @@ public class DashboardViewModel : PropertyChangedBase
         {
             await _dialogManager.ShowDialogAsync(
                 _viewModelFactory.CreateMessageBoxViewModel(
-                    "Error",
+                    Resources.MessageBoxView_Error,
                     // Short error message for YouTube-related errors, full for others
                     ex is YoutubeExplodeException
                         ? ex.Message

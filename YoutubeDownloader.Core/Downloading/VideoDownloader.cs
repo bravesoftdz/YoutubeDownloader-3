@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Gress;
 using YoutubeDownloader.Core.Downloading.Tagging;
 using YoutubeDownloader.Core.Utils;
+using YoutubeDownloader.Language;
 using YoutubeExplode;
 using YoutubeExplode.Converter;
 using YoutubeExplode.Videos;
@@ -35,7 +36,7 @@ public class VideoDownloader
 
         return
             preference.TryGetBestOption(options) ??
-            throw new InvalidOperationException("No suitable download option found.");
+            throw new InvalidOperationException(Resources.VideoDownloader_No_Download);
     }
 
     public async Task DownloadAsync(

@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using Tyrrrz.Settings;
 using YoutubeDownloader.Core.Downloading;
+using YoutubeDownloader.Language;
 using YoutubeExplode.Videos.Streams;
 
 namespace YoutubeDownloader.Services;
@@ -13,7 +14,7 @@ public partial class SettingsService : SettingsManager
     public bool IsDarkModeEnabled { get; set; } = IsDarkModeEnabledByDefault();
     
     public bool ShouldSkipExistingFiles { get; set; }
-    public string FileNameTemplate { get; set; } = "$title";
+    public string FileNameTemplate { get; set; } = Resources.SettingsService_FileNameTemplate_title;
 
     public int ParallelLimit { get; set; } = 2;
 

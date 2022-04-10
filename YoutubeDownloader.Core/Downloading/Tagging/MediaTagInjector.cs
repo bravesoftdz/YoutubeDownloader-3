@@ -19,7 +19,7 @@ internal class MediaTagInjector
             mediaFile.SetDescription(description);
 
         mediaFile.SetComment(
-            "Downloaded using YoutubeDownloader (https://github.com/Tyrrrz/YoutubeDownloader)" +
+            "Downloaded using YoutubeDownloader" +
             Environment.NewLine +
             $"Video: {video.Title}" +
             Environment.NewLine +

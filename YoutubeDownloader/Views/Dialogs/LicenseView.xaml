@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:dialogs="clr-namespace:YoutubeDownloader.ViewModels.Dialogs"
-    xmlns:language="clr-namespace:YoutubeDownloader.Language"
+    xmlns:language="clr-namespace:YoutubeDownloader.Language;assembly=YoutubeDownloader.Core"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:s="https://github.com/canton7/Stylet"
@@ -20,7 +20,7 @@
             Margin="16"
             FontSize="17"
             FontWeight="SemiBold"
-            Text="{x:Static language:Resources.TokenVerifyView_Title}" />
+            Text="{x:Static language:Resources.LicenseView_Title}" />
 
         <!--  Default file name template  -->
         <TextBox
@@ -30,7 +30,7 @@
             Text="{Binding License}">
             <TextBox.ToolTip>
                 <TextBlock>
-                    <Run Text="{x:Static language:Resources.TokenVerifyView_Desc_1}" />
+                    <Run Text="{x:Static language:Resources.LicenseView_ToolTip}" />
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>

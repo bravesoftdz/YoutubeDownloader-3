@@ -83,7 +83,7 @@ public class RootViewModel : Screen
         _settingsService.CurrentVersion = App.Version;
 
         var dialog = _viewModelFactory.CreateMessageBoxViewModel(
-            "Changelog - v" + App.VersionString, Resources.News
+            "Changelog - v" + App.VersionString, Resources.Changelog
         );
 
         await _dialogManager.ShowDialogAsync(dialog);
@@ -104,8 +104,8 @@ public class RootViewModel : Screen
         if (await _dialogManager.ShowDialogAsync(licenseDialog) == true)
         {
             var successDialog = _viewModelFactory.CreateMessageBoxViewModel(
-                Resources.TokenVerifyView_Activated_Text,
-                Resources.TokenVerifyView_Activated_Desc);
+                Resources.LicenseService_Activated_Title,
+                Resources.LicenseService_Activated_Description);
 
             await _dialogManager.ShowDialogAsync(successDialog);
             await ShowChangelog();

@@ -39,7 +39,7 @@ namespace YoutubeDownloader.Language {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("YoutubeDownloader.Language.Resources.de", typeof(Resources_de).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("YoutubeDownloader.Core.Language.Resources.de", typeof(Resources_de).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,15 @@ namespace YoutubeDownloader.Language {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to test.
+        /// </summary>
+        public static string Changelog {
+            get {
+                return ResourceManager.GetString("Changelog", resourceCulture);
             }
         }
         
@@ -142,6 +151,78 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Der Lizenzschlüssel wurde erfolgreich aktiviert!.
+        /// </summary>
+        public static string LicenseService_Activated_Description {
+            get {
+                return ResourceManager.GetString("LicenseService_Activated_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktiviert!.
+        /// </summary>
+        public static string LicenseService_Activated_Title {
+            get {
+                return ResourceManager.GetString("LicenseService_Activated_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diese Lizenz wurde bereits eingelöst!.
+        /// </summary>
+        public static string LicenseService_amount {
+            get {
+                return ResourceManager.GetString("LicenseService_amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dieser Token wurde deaktiviert!.
+        /// </summary>
+        public static string LicenseService_disabled {
+            get {
+                return ResourceManager.GetString("LicenseService_disabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dieser Token ist abgelaufen! Bitte aktivieren Sie einen neuen!.
+        /// </summary>
+        public static string LicenseService_expired {
+            get {
+                return ResourceManager.GetString("LicenseService_expired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitte benutze einen gültigen Token!.
+        /// </summary>
+        public static string LicenseService_invalid {
+            get {
+                return ResourceManager.GetString("LicenseService_invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es konnte keine Verbindung zum Lizenzserver hergestellt werden. Bitte versuche es erneut!.
+        /// </summary>
+        public static string LicenseService_InvalidConnection {
+            get {
+                return ResourceManager.GetString("LicenseService_InvalidConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Um den Downloader zu verwenden benötigst du einen Lizenzschlüssel!.
+        /// </summary>
+        public static string LicenseService_need_a_token {
+            get {
+                return ResourceManager.GetString("LicenseService_need_a_token", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AKTIVIEREN.
         /// </summary>
         public static string MessageBoxView_Button_Activate {
@@ -169,7 +250,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fehler!.
+        ///   Looks up a localized string similar to Fehler.
         /// </summary>
         public static string MessageBoxView_Error {
             get {
@@ -210,15 +291,6 @@ namespace YoutubeDownloader.Language {
         public static string Name_Settings {
             get {
                 return ResourceManager.GetString("Name_Settings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to * Tokensystem überarbeitet.
-        /// </summary>
-        public static string News {
-            get {
-                return ResourceManager.GetString("News", resourceCulture);
             }
         }
         
@@ -385,6 +457,42 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to $autor.
+        /// </summary>
+        public static string SettingsService_FileNameTemplate_Author {
+            get {
+                return ResourceManager.GetString("SettingsService_FileNameTemplate_Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to $id.
+        /// </summary>
+        public static string SettingsService_FileNameTemplate_Id {
+            get {
+                return ResourceManager.GetString("SettingsService_FileNameTemplate_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to $nummer.
+        /// </summary>
+        public static string SettingsService_FileNameTemplate_Num {
+            get {
+                return ResourceManager.GetString("SettingsService_FileNameTemplate_Num", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to $datum.
+        /// </summary>
+        public static string SettingsService_FileNameTemplate_UploadDate {
+            get {
+                return ResourceManager.GetString("SettingsService_FileNameTemplate_UploadDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erkennt und trägt automatisch Youtube-formatierte Links aus der Zwischenablage in die Suchleiste ein.
         /// </summary>
         public static string SettingsView_AutoImportClipboard_Desc {
@@ -529,38 +637,11 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $autor.
-        /// </summary>
-        public static string SettingsView_FileNameTemplate_Desc_Var_author {
-            get {
-                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_author", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to $nummer.
-        /// </summary>
-        public static string SettingsView_FileNameTemplate_Desc_Var_num {
-            get {
-                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_num", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to $titel.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_Var_title {
             get {
                 return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to $datum.
-        /// </summary>
-        public static string SettingsView_FileNameTemplate_Desc_Var_uploadDate {
-            get {
-                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_uploadDate", resourceCulture);
             }
         }
         
@@ -628,65 +709,11 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der Lizenzschlüssel wurde erfolgreich aktiviert!.
-        /// </summary>
-        public static string TokenVerifyView_Activated_Desc {
-            get {
-                return ResourceManager.GetString("TokenVerifyView_Activated_Desc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Aktiviert!.
-        /// </summary>
-        public static string TokenVerifyView_Activated_Text {
-            get {
-                return ResourceManager.GetString("TokenVerifyView_Activated_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Diese Lizenz wurde bereits eingelöst!.
-        /// </summary>
-        public static string TokenVerifyView_Amount_Ex {
-            get {
-                return ResourceManager.GetString("TokenVerifyView_Amount_Ex", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Bitte gib die Lizenz zur Aktivierung  ein!.
         /// </summary>
         public static string TokenVerifyView_Desc_1 {
             get {
                 return ResourceManager.GetString("TokenVerifyView_Desc_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dieser Token wurde deaktiviert!.
-        /// </summary>
-        public static string TokenVerifyView_Disabled_Ex {
-            get {
-                return ResourceManager.GetString("TokenVerifyView_Disabled_Ex", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dieser Token ist abgelaufen! Bitte aktivieren Sie einen neuen!.
-        /// </summary>
-        public static string TokenVerifyView_Expired_Ex {
-            get {
-                return ResourceManager.GetString("TokenVerifyView_Expired_Ex", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bitte benutze einen gültigen Token!.
-        /// </summary>
-        public static string TokenVerifyView_Invaild_Ex {
-            get {
-                return ResourceManager.GetString("TokenVerifyView_Invaild_Ex", resourceCulture);
             }
         }
         
@@ -750,6 +777,60 @@ namespace YoutubeDownloader.Language {
         public static string Update_Error_Desc {
             get {
                 return ResourceManager.GetString("Update_Error_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es konnte keine Verbindung zum Updateserver hergestellt werden..
+        /// </summary>
+        public static string UpdateService_No_Connection {
+            get {
+                return ResourceManager.GetString("UpdateService_No_Connection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine passende Download-Option gefunden..
+        /// </summary>
+        public static string VideoDownloader_No_Download {
+            get {
+                return ResourceManager.GetString("VideoDownloader_No_Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Höchste.
+        /// </summary>
+        public static string VideoDownloader_Quality_Highest {
+            get {
+                return ResourceManager.GetString("VideoDownloader_Quality_Highest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Niedrigste.
+        /// </summary>
+        public static string VideoDownloader_Quality_Lowest {
+            get {
+                return ResourceManager.GetString("VideoDownloader_Quality_Lowest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ergebnisse.
+        /// </summary>
+        public static string VideoDownloader_Query_Count {
+            get {
+                return ResourceManager.GetString("VideoDownloader_Query_Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unbekannte bevorzugte Videoqualität.
+        /// </summary>
+        public static string VideoDownloader_Unkown_Quality {
+            get {
+                return ResourceManager.GetString("VideoDownloader_Unkown_Quality", resourceCulture);
             }
         }
     }

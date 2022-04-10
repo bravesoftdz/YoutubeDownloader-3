@@ -118,234 +118,261 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="RootView_TextBox_Query" xml:space="preserve">
-    <value>URL or search query (press Shift+Enter to add multiple)</value>
+    <value>URL oder Suchen (Shift+Enter für Zeilenumbruch)</value>
   </data>
   <data name="RootView_Button_Query" xml:space="preserve">
-    <value>Process query (Enter)</value>
+    <value>Suchen (Enter)</value>
   </data>
   <data name="Name_Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
   </data>
   <data name="RootView_ContentPlaceholder" xml:space="preserve">
-    <value>Copy-paste URL or type in a search query to start downloading</value>
+    <value>URL oder einen Suchbegriff eingeben um den Download zu starten</value>
   </data>
   <data name="RootView_ContextMenu_RemoveDownload" xml:space="preserve">
-    <value>Remove download</value>
+    <value>Download entfernen</value>
   </data>
   <data name="RootView_ContextMenu_RemoveInactiveDownloads" xml:space="preserve">
-    <value>Remove all inactive downloads</value>
+    <value>Alle inaktiven Downloads entfernen</value>
   </data>
   <data name="RootView_ContextMenu_RemoveSuccessfulDownloads" xml:space="preserve">
-    <value>Remove all successful downloads</value>
+    <value>Alle erfolgreichen Downloads entfernen</value>
   </data>
   <data name="RootView_ContextMenu_RestartFailedDownloads" xml:space="preserve">
-    <value>Restart all failed downloads</value>
+    <value>Alle fehlgeschlagenen Downloads neustarten</value>
   </data>
   <data name="RootView_FileName_Header" xml:space="preserve">
-    <value>File</value>
+    <value>Datei</value>
   </data>
   <data name="RootView_Status" xml:space="preserve">
     <value>Status</value>
   </data>
   <data name="RootView_Status_Pending" xml:space="preserve">
-    <value>Pending...</value>
+    <value>Warten...</value>
   </data>
   <data name="RootView_Status_Successful" xml:space="preserve">
-    <value>✓ Done</value>
+    <value>✓ Fertig</value>
   </data>
   <data name="RootView_Status_Canceled" xml:space="preserve">
-    <value>✗ Canceled</value>
+    <value>✗ Abbgeborchen</value>
   </data>
   <data name="RootView_Status_Failed" xml:space="preserve">
-    <value>✗ Failed</value>
+    <value>✗ Fehlgeschlagen</value>
   </data>
   <data name="RootView_Button_Cancel_ToolTip" xml:space="preserve">
-    <value>Cancel download</value>
+    <value>Download abbrechen</value>
   </data>
   <data name="RootView_Button_Restart_ToolTip" xml:space="preserve">
-    <value>Restart download</value>
+    <value>Download neustarten</value>
   </data>
   <data name="RootView_Button_ShowFile_ToolTip" xml:space="preserve">
-    <value>Navigate to file</value>
+    <value>Zu Datei navigieren</value>
   </data>
   <data name="RootView_Button_OpenFile_ToolTip" xml:space="preserve">
-    <value>Play</value>
+    <value>Abspielen</value>
   </data>
   <data name="ContextMenu_Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Kopieren</value>
   </data>
   <data name="Download_Video_Format" xml:space="preserve">
     <value>Format:</value>
   </data>
   <data name="Download_Video_Quality" xml:space="preserve">
-    <value>Video quality:</value>
+    <value>Videoqualität:</value>
   </data>
   <data name="Download_Video_Button_Download" xml:space="preserve">
-    <value>DOWNLOAD</value>
+    <value>HERUNTERLADEN</value>
   </data>
   <data name="Download_Video_Button_Cancel" xml:space="preserve">
-    <value>CANCEL</value>
+    <value>ABBRECHEN</value>
   </data>
   <data name="Download_Video_Subtitles" xml:space="preserve">
-    <value>Subtitles:</value>
+    <value>Untertitel:</value>
   </data>
   <data name="MessageBoxView_Button_Close" xml:space="preserve">
-    <value>CLOSE</value>
+    <value>SCHLIEßEN</value>
   </data>
   <data name="SettingsView_AutoUpdates_Desc_1" xml:space="preserve">
-    <value>Perform automatic updates on every launch</value>
+    <value>Führt automatische Updates nach jedem Start durch</value>
   </data>
   <data name="SettingsView_AutoUpdates_Desc_2" xml:space="preserve">
-    <value>Warning:</value>
+    <value>Warnung:</value>
   </data>
   <data name="SettingsView_AutoUpdates_Desc_3" xml:space="preserve">
-    <value>disabling this is NOT recommended because the application will stop working when integration with YouTube inevitably breaks in the future</value>
+    <value>Diese Funktion zu deaktivieren ist NICHT empfohlen, da der Downloader bei neunen Änderungen von Youtube möglicherweise nicht mehr funktioniert</value>
   </data>
   <data name="SettingsView_AutoUpdates_Text" xml:space="preserve">
-    <value>Auto-updates</value>
+    <value>Automatische Updates</value>
   </data>
   <data name="SettingsView_DarkMode_Desc_1" xml:space="preserve">
-    <value>Use darker colors in the UI</value>
+    <value>Benutzt dunkle Farben im Interface</value>
   </data>
   <data name="SettingsView_DarkMode_Text" xml:space="preserve">
-    <value>Dark mode</value>
+    <value>Dunkles Design</value>
   </data>
   <data name="SettingsView_InjectTags_Desc_1" xml:space="preserve">
-    <value>Media tags can be automatically inferred from video title and injected into output file</value>
+    <value>Medien-Tags können automatisch aus dem Videotitel abgeleitet und in die gespeicherte Datei eingefügt werden</value>
   </data>
   <data name="SettingsView_InjectTags_Text" xml:space="preserve">
-    <value>Automatically inject media tags</value>
+    <value>Medien-Tags automatisch einbinden</value>
   </data>
   <data name="SettingsView_SkipExistingFiles_Desc_1" xml:space="preserve">
-    <value>When selecting multiple videos to download, skip those that already have a matching file in the directory</value>
+    <value>Bei mehreren Videodownloads, werden gleichnaminge Datein in einem Ordner nicht erneut heruntergeladen</value>
   </data>
   <data name="SettingsView_SkipExistingFiles_Text" xml:space="preserve">
-    <value>Skip downloads for files that already exist</value>
+    <value>Vorhandene Downloads überspringen</value>
   </data>
   <data name="SettingsView_FileNameTemplate_Hint" xml:space="preserve">
-    <value>File name template</value>
+    <value>Dateinamenvorlage</value>
   </data>
   <data name="SettingsView_FileNameTemplate_Desc_1" xml:space="preserve">
-    <value>Template used for generating file names for downloaded videos</value>
+    <value>Diese Vorlage wird zur Generierung des Dateinamen der Downloads benutzt</value>
   </data>
   <data name="SettingsView_FileNameTemplate_Desc_2" xml:space="preserve">
-    <value>Available variables:</value>
+    <value>Mögliche Variablen:</value>
   </data>
   <data name="SettingsView_FileNameTemplate_Desc_3" xml:space="preserve">
-    <value>- video's position in the list (if applicable)</value>
+    <value>- Position des Videos in einer Playlist (falls vorhanden)</value>
   </data>
   <data name="SettingsView_FileNameTemplate_Desc_4" xml:space="preserve">
-    <value>- video title</value>
+    <value>- Videotitel</value>
   </data>
   <data name="SettingsView_FileNameTemplate_Desc_5" xml:space="preserve">
-    <value>- video author</value>
+    <value>- Videoautor</value>
   </data>
-  <data name="SettingsView_FileNameTemplate_Desc_Var_num" xml:space="preserve">
-    <value>$num</value>
+  <data name="SettingsService_FileNameTemplate_Num" xml:space="preserve">
+    <value>$nummer</value>
   </data>
   <data name="SettingsView_FileNameTemplate_Desc_Var_title" xml:space="preserve">
-    <value>$title</value>
+    <value>$titel</value>
   </data>
-  <data name="SettingsView_FileNameTemplate_Desc_Var_author" xml:space="preserve">
-    <value>$author</value>
+  <data name="SettingsService_FileNameTemplate_Author" xml:space="preserve">
+    <value>$autor</value>
   </data>
-  <data name="SettingsView_FileNameTemplate_Desc_Var_uploadDate" xml:space="preserve">
-    <value>$uploadDate</value>
+  <data name="SettingsService_FileNameTemplate_UploadDate" xml:space="preserve">
+    <value>$datum</value>
   </data>
   <data name="SettingsView_ExcludedContainer_Desc_1" xml:space="preserve">
-    <value>Comma separated list of container formats excluded from format list when downloading a video</value>
+    <value>Eine durch Kommas getrennte Liste der Formate, die beim Herunterladen eines Videos von der Formatliste ausgeschlossen wird</value>
   </data>
   <data name="SettingsView_ExcludedContainer_Desc_2" xml:space="preserve">
-    <value>Ex: webm,ogg</value>
+    <value>z.B.: webm,ogg</value>
   </data>
   <data name="SettingsView_ExcludedContainer_Text" xml:space="preserve">
-    <value>Excluded container formats</value>
-  </data>
-  <data name="SettingsView_MaxDownloads_Desc_1" xml:space="preserve">
-    <value>How many downloads can be active at one time</value>
+    <value>Ausgeschlossene Formate</value>
   </data>
   <data name="SettingsView_MaxDownloads_Text" xml:space="preserve">
     <value>Parallel limit:</value>
   </data>
+  <data name="SettingsView_MaxDownloads_Desc_1" xml:space="preserve">
+    <value>Anzahl der gleichzeitig aktiven Downloads</value>
+  </data>
   <data name="MessageBoxView_Button_Save" xml:space="preserve">
-    <value>SAVE</value>
+    <value>SPEICHERN</value>
   </data>
   <data name="TokenVerifyView_Title" xml:space="preserve">
-    <value>Validate token</value>
+    <value>Lizenz verifizieren</value>
   </data>
   <data name="TokenVerifyView_Desc_1" xml:space="preserve">
-    <value>Please enter a Token!</value>
+    <value>Bitte gib die Lizenz zur Aktivierung  ein!</value>
   </data>
   <data name="MessageBoxView_Button_Activate" xml:space="preserve">
-    <value>ACTIVATE</value>
+    <value>AKTIVIEREN</value>
   </data>
   <data name="MessageBoxView_Search" xml:space="preserve">
-    <value>Search:</value>
+    <value>Suche:</value>
   </data>
   <data name="MessageBoxView_Not_Found" xml:space="preserve">
-    <value>Could not parse query</value>
+    <value>Es konnten keine Ergebnisse für % gefunden werden</value>
   </data>
   <data name="MessageBoxView_Error" xml:space="preserve">
-    <value>Error!</value>
-  </data>
-  <data name="Update_Desc_1" xml:space="preserve">
-    <value>Downloading update to % ...</value>
+    <value>Fehler</value>
   </data>
   <data name="Update_Button" xml:space="preserve">
-    <value>INSTALL NOW</value>
+    <value>JETZT INSTALLIEREN</value>
   </data>
-  <data name="Update_Error_Desc" xml:space="preserve">
-    <value>Failed to perform application update</value>
+  <data name="Update_Desc_1" xml:space="preserve">
+    <value>Update von % herunterladen...</value>
   </data>
   <data name="Update_Desc_2" xml:space="preserve">
-    <value>Update has been downloaded and will be installed when you exit</value>
+    <value>Das Update wurde heruntergeladen und wird beim Beenden installiert</value>
+  </data>
+  <data name="Update_Error_Desc" xml:space="preserve">
+    <value>Fehler beim Updaten des Downloaders</value>
   </data>
   <data name="MultipleDownloads_Text" xml:space="preserve">
-    <value>Multiple queries</value>
+    <value>Mehrfachauswahl</value>
   </data>
   <data name="Download_Nothing_Found_1" xml:space="preserve">
-    <value>Nothing found</value>
+    <value>Nichts gefunden</value>
   </data>
   <data name="Download_Nothing_Found_2" xml:space="preserve">
-    <value>Couldn't find any videos based on the query or URL you provided</value>
+    <value>Basierend auf dem angegebenen Suchbegriff oder der URL konnten keine Videos gefunden werden</value>
   </data>
   <data name="Download_Nothing_Found_3" xml:space="preserve">
-    <value>Video % contains no streams</value>
+    <value>Das Video % enthält keine Streams</value>
   </data>
-  <data name="TokenVerifyView_Activated_Text" xml:space="preserve">
-    <value>Activated!</value>
+  <data name="LicenseService_Activated_Title" xml:space="preserve">
+    <value>Aktiviert!</value>
   </data>
-  <data name="TokenVerifyView_Activated_Desc" xml:space="preserve">
-    <value>License successfully activated!</value>
+  <data name="LicenseService_Activated_Description" xml:space="preserve">
+    <value>Der Lizenzschlüssel wurde erfolgreich aktiviert!</value>
   </data>
-  <data name="TokenVerifyView_Invaild_Ex" xml:space="preserve">
-    <value>Please enter a vaild token!</value>
+  <data name="LicenseService_invalid" xml:space="preserve">
+    <value>Bitte benutze einen gültigen Token!</value>
   </data>
-  <data name="TokenVerifyView_Disabled_Ex" xml:space="preserve">
-    <value>The token is disabled!</value>
+  <data name="LicenseService_disabled" xml:space="preserve">
+    <value>Dieser Token wurde deaktiviert!</value>
   </data>
-  <data name="TokenVerifyView_Amount_Ex" xml:space="preserve">
-    <value>Token already used!</value>
+  <data name="LicenseService_amount" xml:space="preserve">
+    <value>Diese Lizenz wurde bereits eingelöst!</value>
   </data>
-  <data name="TokenVerifyView_Expired_Ex" xml:space="preserve">
-    <value>Token expired! Please enter a new one!</value>
+  <data name="LicenseService_expired" xml:space="preserve">
+    <value>Dieser Token ist abgelaufen! Bitte aktivieren Sie einen neuen!</value>
   </data>
   <data name="TokenVerifyView_NoConnection_Ex" xml:space="preserve">
-    <value>Failed connection to databse!</value>
+    <value>Es konnte keine Verbindung zur Datenbank hergestellt werden!</value>
   </data>
   <data name="RootView_Button_Delete_Query" xml:space="preserve">
-    <value>Clear Query Text (Del)</value>
-  </data>
-  <data name="News" xml:space="preserve">
-    <value>* Updated Token System</value>
+    <value>Suche löschen (Entf)</value>
   </data>
   <data name="SettingsView_AutoImportClipboard_Text" xml:space="preserve">
-    <value>Auto Paste Clipboard</value>
+    <value>Zwischenablage automatisch einfügen</value>
   </data>
   <data name="SettingsView_AutoImportClipboard_Desc" xml:space="preserve">
-    <value>Automatically inserts Youtube links from the clipboard into the search bar</value>
+    <value>Erkennt und trägt automatisch Youtube-formatierte Links aus der Zwischenablage in die Suchleiste ein</value>
   </data>
   <data name="TokenVerifyView_NoConnection_Internet" xml:space="preserve">
-    <value>Failed to connect to the internet!</value>
+    <value>Es konnte keine Internetverbindung hergestellt werden!</value>
+  </data>
+  <data name="LicenseService_InvalidConnection" xml:space="preserve">
+    <value>Es konnte keine Verbindung zum Lizenzserver hergestellt werden. Bitte versuche es erneut!</value>
+  </data>
+  <data name="LicenseService_need_a_token" xml:space="preserve">
+    <value>Um den Downloader zu verwenden benötigst du einen Lizenzschlüssel!</value>
+  </data>
+  <data name="UpdateService_No_Connection" xml:space="preserve">
+    <value>Es konnte keine Verbindung zum Updateserver hergestellt werden.</value>
+  </data>
+  <data name="SettingsService_FileNameTemplate_Id" xml:space="preserve">
+    <value>$id</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>test</value>
+  </data>
+  <data name="VideoDownloader_No_Download" xml:space="preserve">
+    <value>Keine passende Download-Option gefunden.</value>
+  </data>
+  <data name="VideoDownloader_Unkown_Quality" xml:space="preserve">
+    <value>Unbekannte bevorzugte Videoqualität</value>
+  </data>
+  <data name="VideoDownloader_Quality_Lowest" xml:space="preserve">
+    <value>Niedrigste</value>
+  </data>
+  <data name="VideoDownloader_Quality_Highest" xml:space="preserve">
+    <value>Höchste</value>
+  </data>
+  <data name="VideoDownloader_Query_Count" xml:space="preserve">
+    <value>ergebnisse</value>
   </data>
 </root>

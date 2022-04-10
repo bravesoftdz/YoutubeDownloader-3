@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Onova;
 using Onova.Exceptions;
 using Onova.Services;
+using YoutubeDownloader.Language;
 
 namespace YoutubeDownloader.Services;
 
@@ -33,16 +34,14 @@ public class UpdateService : IDisposable
 
     private async Task<string> GetGithubAccessToken()
     {
-        HttpClient client = new();
-        client.DefaultRequestHeaders.Add("Authorization", "Basic dXNlcjp1c2Vy");
         try
         {
-            return await client.GetStringAsync(
-                "https://raw.githubusercontent.com/derech1e/smartnexthome/1412d31e59daaf2fa02ce8c0e3496bd7c0734665/public/githubtoken_yt_private");
+            return await new HttpClient().GetStringAsync(
+                "https://update.nuerk-solutions.de");
         }
         catch
         {
-            throw new Exception("Es konnte keine Verbindung zum Updateserver hergestellt werden.");
+            throw new Exception(Resources.UpdateService_No_Connection);
         }
     }
 
@@ -51,11 +50,11 @@ public class UpdateService : IDisposable
         if (!_settingsService.IsAutoUpdateEnabled)
             return null;
 
-        var token = await GetGithubAccessToken();
-        _httpClient.DefaultRequestHeaders.Add("Authorization", "token " + Regex.Replace(token, @"\t|\n|\r", ""));
-
         try
         {
+            var token = await GetGithubAccessToken();
+            _httpClient.DefaultRequestHeaders.Add("Authorization", "token " + Regex.Replace(token, @"\t|\n|\r", ""));
+
             var check = await _updateManager.CheckForUpdatesAsync();
             return check.CanUpdate ? check.LastVersion : null;
         }

@@ -45,7 +45,7 @@ public class DownloadViewModel : PropertyChangedBase, IDisposable
         Progress.Bind(o => o.Current, (_, _) => NotifyOfPropertyChange(() => IsProgressIndeterminate));
     }
 
-    public bool CanCancel => Status == DownloadStatus.Started;
+    public bool CanCancel => Status is DownloadStatus.Enqueued or DownloadStatus.Started;
 
     public void Cancel()
     {

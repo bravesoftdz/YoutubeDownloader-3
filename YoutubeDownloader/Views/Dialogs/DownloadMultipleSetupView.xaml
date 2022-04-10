@@ -156,7 +156,10 @@
                 DockPanel.Dock="Right"
                 IsEnabled="{Binding SelectedContainer.IsAudioOnly, Converter={x:Static converters:InverseBoolConverter.Instance}}"
                 Orientation="Horizontal">
-                <TextBlock VerticalAlignment="Center" Text="Video quality:" />
+                <TextBlock 
+                    Margin="8,0,0,0"
+                    VerticalAlignment="Center" 
+                    Text="Video quality:" />
                 <ComboBox
                     Width="150"
                     Margin="8,0,0,0"

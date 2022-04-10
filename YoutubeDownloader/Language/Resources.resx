@@ -240,9 +240,6 @@
   <data name="SettingsView_FileNameTemplate_Desc_5" xml:space="preserve">
     <value>- video author</value>
   </data>
-  <data name="SettingsView_FileNameTemplate_Desc_7" xml:space="preserve">
-    <value>- video length</value>
-  </data>
   <data name="SettingsView_FileNameTemplate_Desc_Var_num" xml:space="preserve">
     <value>$num</value>
   </data>
@@ -254,9 +251,6 @@
   </data>
   <data name="SettingsView_FileNameTemplate_Desc_Var_uploadDate" xml:space="preserve">
     <value>$uploadDate</value>
-  </data>
-  <data name="SettingsView_FileNameTemplate_Desc_Var_length" xml:space="preserve">
-    <value>$length</value>
   </data>
   <data name="SettingsView_ExcludedContainer_Desc_1" xml:space="preserve">
     <value>Comma separated list of container formats excluded from format list when downloading a video</value>
@@ -271,13 +265,13 @@
     <value>How many downloads can be active at one time</value>
   </data>
   <data name="SettingsView_MaxDownloads_Text" xml:space="preserve">
-    <value>Maximum concurrent downloads:</value>
+    <value>Parallel limit:</value>
   </data>
   <data name="MessageBoxView_Button_Save" xml:space="preserve">
     <value>SAVE</value>
   </data>
   <data name="TokenVerifyView_Title" xml:space="preserve">
-    <value>Verify token</value>
+    <value>Validate token</value>
   </data>
   <data name="TokenVerifyView_Desc_1" xml:space="preserve">
     <value>Please enter a Token!</value>
@@ -322,7 +316,7 @@
     <value>Activated!</value>
   </data>
   <data name="TokenVerifyView_Activated_Desc" xml:space="preserve">
-    <value>Token successfully activated!</value>
+    <value>License successfully activated!</value>
   </data>
   <data name="TokenVerifyView_Invaild_Ex" xml:space="preserve">
     <value>Please enter a vaild token!</value>

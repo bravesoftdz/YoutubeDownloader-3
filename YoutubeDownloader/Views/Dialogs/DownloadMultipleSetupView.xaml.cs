@@ -1,10 +1,11 @@
-﻿namespace YoutubeDownloader.Views.Dialogs
+﻿using System.Windows.Controls;
+
+namespace YoutubeDownloader.Views.Dialogs;
+
+public partial class DownloadMultipleSetupView : UserControl
 {
-    public partial class DownloadMultipleSetupView
+    public DownloadMultipleSetupView()
     {
-        public DownloadMultipleSetupView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

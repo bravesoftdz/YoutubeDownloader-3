@@ -1,49 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
+using Microsoft.Win32;
 using Tyrrrz.Settings;
-using YoutubeDownloader.Models;
-using YoutubeDownloader.Utils;
+using YoutubeDownloader.Core.Downloading;
+using YoutubeExplode.Videos.Streams;
 
-namespace YoutubeDownloader.Services
+namespace YoutubeDownloader.Services;
+
+public partial class SettingsService : SettingsManager
 {
-    public class SettingsService : SettingsManager
+    public bool IsAutoUpdateEnabled { get; set; } = true;
+
+    public bool IsDarkModeEnabled { get; set; } = IsDarkModeEnabledByDefault();
+    
+    public bool ShouldSkipExistingFiles { get; set; }
+    public string FileNameTemplate { get; set; } = "$title";
+
+    public int ParallelLimit { get; set; } = 2;
+
+    public Container LastContainer { get; set; } = Container.Mp4;
+    
+    public VideoQualityPreference LastVideoQualityPreference { get; set; } = VideoQualityPreference.Highest;
+
+    public string? License { get; set; }
+
+    public Version? CurrentVersion { get; set; }
+
+    public int VideoDownloads { get; set; }
+
+    public long VideoDownloadsLength { get; set; }
+
+    public SettingsService()
     {
-        public SettingsService()
+        Configuration.StorageSpace = StorageSpace.Instance;
+        Configuration.SubDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
+                                         "\\YoutubeDownloader";
+        Configuration.FileName = "Settings.dat";
+    }
+}
+
+public partial class SettingsService
+{
+    private static bool IsDarkModeEnabledByDefault()
+    {
+        try
         {
-            Configuration.StorageSpace = StorageSpace.Instance;
-            Configuration.SubDirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
-                                             "\\YoutubeDownloader";
-            Configuration.FileName = "Settings.dat";
+            return Registry.CurrentUser.OpenSubKey(
+                "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", 
+                false
+            )?.GetValue("AppsUseLightTheme") is 0;
         }
-
-        public bool IsAutoUpdateEnabled { get; set; } = true;
-
-        public bool IsDarkModeEnabled { get; set; }
-
-        public bool ShouldInjectTags { get; set; } = true;
-
-        public bool ShouldSkipExistingFiles { get; set; }
-
-        public bool AutoImportClipboard { get; set; }
-
-        public string FileNameTemplate { get; set; } = FileNameGenerator.DefaultTemplate;
-
-        public IReadOnlyList<string>? ExcludedContainerFormats { get; set; }
-
-        public int MaxConcurrentDownloadCount { get; set; } = 2;
-
-        public string? LastFormat { get; set; }
-
-        public string? LastSubtitleLanguageCode { get; set; }
-
-        public VideoQualityPreference LastVideoQualityPreference { get; set; } = VideoQualityPreference.Maximum;
-
-        public string Token { get; set; } = "";
-
-        public Version? CurrentVersion { get; set; }
-
-        public int VideoDownloads { get; set; }
-
-        public long VideoDownloadsLength { get; set; }
+        catch
+        {
+            return false;
+        }
     }
 }

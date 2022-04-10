@@ -1,59 +1,43 @@
 ﻿using System;
-using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Input;
-using System.Windows.Markup;
-using Tyrrrz.Extensions;
-using YoutubeDownloader.Services;
+using System.Windows.Interop;
+using System.Linq;
+using YoutubeDownloader.Utils.Cli;
+using YoutubeDownloader.ViewModels;
 
 namespace YoutubeDownloader.Views
 {
     public partial class RootView
     {
+        private static IntPtr WindowHandle { get; set; }
         public RootView()
         {
-            InitializeComponent();
-            Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
+            // See https://www.codeproject.com/Articles/1224031/Passing-Parameters-to-a-Running-Application-in-WPF for more information
+            Loaded += (_, _) =>
+            {
+                // Receive messages from second instance
+                WindowHandle = new WindowInteropHelper(Application.Current.MainWindow!).Handle;
+                HwndSource.FromHwnd(WindowHandle)?.AddHook(HandleMessages);
+            };
         }
 
-        public static SettingsService? SettingsService { get; set; }
-
-        protected override void OnClipboardUpdate()
+        private IntPtr HandleMessages(IntPtr handle, int message, IntPtr wParameter, IntPtr lParameter,
+            ref bool handled)
         {
-            try
-            {
-                if (!Clipboard.ContainsText() || !SettingsService!.AutoImportClipboard) return;
-                var clipboardText = Clipboard.GetText().Replace("https://www.", "");
+            var data = UnsafeNative.GetMessage(message, lParameter);
 
-                if (clipboardText!.IsNullOrEmpty() || QueryTextBox.Text.Contains(clipboardText!) ||
-                    QueryTextBox.IsKeyboardFocused) return;
-                if (!Regex.Match(clipboardText!, "^.*(youtu.be\\/|list=|watch\\?v=|embed)([^#\\&\\?]*).*")
-                        .Success) return;
-                if (!QueryTextBox.Text.IsNullOrEmpty())
-                    QueryTextBox.Text += Environment.NewLine;
-                QueryTextBox.Text += clipboardText!;
-            }
-            catch
-            {
-                // ignored
-            }
-        }
+            if (data == null || Application.Current.MainWindow == null)
+                return IntPtr.Zero;
 
-        private void QueryTextBox_OnPreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            // Disable new lines when pressing enter without shift
-            if (e.Key == Key.Enter && e.KeyboardDevice.Modifiers != ModifierKeys.Shift)
-            {
-                e.Handled = true;
+            if (Application.Current.MainWindow.WindowState == WindowState.Minimized)
+                Application.Current.MainWindow.WindowState = WindowState.Normal; // Focus Window
 
-                // We handle the event here so we have to directly "press" the default button
-                AccessKeyManager.ProcessKey(null, "\x000D", false);
-            }
-            else if (e.Key == Key.Delete && e.KeyboardDevice.Modifiers == ModifierKeys.Shift)
-            {
-                QueryTextBox.Clear();
-            }
+            UnsafeNative.SetForegroundWindow(new WindowInteropHelper(Application.Current.MainWindow).Handle);
+
+            ((RootViewModel)DataContext).HandleCliParameter(data.Split(' ').ToList());
+            handled = true;
+
+            return IntPtr.Zero;
         }
     }
 }

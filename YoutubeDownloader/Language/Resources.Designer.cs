@@ -529,29 +529,11 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - video length.
-        /// </summary>
-        public static string SettingsView_FileNameTemplate_Desc_7 {
-            get {
-                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_7", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to $author.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_Var_author {
             get {
                 return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_author", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to $length.
-        /// </summary>
-        public static string SettingsView_FileNameTemplate_Desc_Var_length {
-            get {
-                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_length", resourceCulture);
             }
         }
         
@@ -619,7 +601,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum concurrent downloads:.
+        ///   Looks up a localized string similar to Parallel limit:.
         /// </summary>
         public static string SettingsView_MaxDownloads_Text {
             get {
@@ -646,7 +628,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Token successfully activated!.
+        ///   Looks up a localized string similar to License successfully activated!.
         /// </summary>
         public static string TokenVerifyView_Activated_Desc {
             get {
@@ -727,7 +709,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verify token.
+        ///   Looks up a localized string similar to Validate token.
         /// </summary>
         public static string TokenVerifyView_Title {
             get {

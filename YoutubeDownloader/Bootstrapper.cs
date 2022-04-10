@@ -1,9 +1,16 @@
-﻿using System.Net;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 using Stylet;
 using StyletIoC;
 using YoutubeDownloader.Services;
+using YoutubeDownloader.Utils.Cli;
 using YoutubeDownloader.ViewModels;
 using YoutubeDownloader.ViewModels.Framework;
+using YoutubeDownloader.Views;
 
 #if !DEBUG
 using System.Windows;
@@ -14,6 +21,28 @@ namespace YoutubeDownloader
 {
     public class Bootstrapper : Bootstrapper<RootViewModel>
     {
+        private static readonly Mutex Mutex = new(true, "{8A6B0AC4-B9C1-45fe-A8CE-72E04E6BDE8F}");
+        public override void Start(string[] args)
+        {
+            if (Mutex.WaitOne(TimeSpan.Zero, true))
+            {
+                base.Start(args);
+                var rootView = (RootView) Application.MainWindow!;
+                ((RootViewModel)rootView.DataContext).HandleCliParameter(args.ToList());
+                Mutex.ReleaseMutex();
+                return; // In this case we just proceed on loading the program
+            }
+
+            if (args.Length > 0)
+            {
+                // Send message to running process
+                var runningProcess = Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).First();
+                UnsafeNative.SendMessage(runningProcess.MainWindowHandle, string.Join(" ", args));
+            }
+
+            Application.Shutdown();
+        }
+        // Init UI stuff 
         protected override void OnStart()
         {
             base.OnStart();
@@ -33,13 +62,8 @@ namespace YoutubeDownloader
         {
             base.ConfigureIoC(builder);
 
-            // Bind singleton services singleton
-            builder.Bind<DownloadService>().ToSelf().InSingletonScope();
             builder.Bind<SettingsService>().ToSelf().InSingletonScope();
-            builder.Bind<TaggingService>().ToSelf().InSingletonScope();
-            builder.Bind<TokenService>().ToSelf().InSingletonScope();
-
-            // Bind view model factory
+            builder.Bind<LicenseService>().ToSelf().InSingletonScope();
             builder.Bind<IViewModelFactory>().ToAbstractFactory();
         }
 

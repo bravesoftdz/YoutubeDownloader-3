@@ -3,177 +3,171 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:dialogs="clr-namespace:YoutubeDownloader.ViewModels.Dialogs"
     xmlns:language="clr-namespace:YoutubeDownloader.Language"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:dialogs="clr-namespace:YoutubeDownloader.ViewModels.Dialogs"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:s="https://github.com/canton7/Stylet"
-    MinWidth="300"
-    d:DataContext="{d:DesignInstance Type=dialogs:SettingsViewModel}"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    Width="380"
     Style="{DynamicResource MaterialDesignRoot}"
+    d:DataContext="{d:DesignInstance Type=dialogs:SettingsViewModel}"
     mc:Ignorable="d">
-    <StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
         <TextBlock
-            Margin="16"
-            FontSize="17"
+            FontSize="19"
+            FontWeight="Light"
+            Grid.Row="0"
+            Margin="16,16,16,8"
             Text="{x:Static language:Resources.Name_Settings}" />
 
-        <!--  Auto-updates  -->
-        <DockPanel Background="Transparent" LastChildFill="False">
-            <DockPanel.ToolTip>
-                <TextBlock>
-                    <Run Text="{x:Static language:Resources.SettingsView_AutoUpdates_Desc_1}" />
-                    <LineBreak />
-                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsView_AutoUpdates_Desc_2}" />
-                    <Run Text="{x:Static language:Resources.SettingsView_AutoUpdates_Desc_3}" />
-                </TextBlock>
-            </DockPanel.ToolTip>
-            <TextBlock
-                Margin="16,8"
-                DockPanel.Dock="Left"
-                Text="{x:Static language:Resources.SettingsView_AutoUpdates_Text}" />
-            <ToggleButton
-                Margin="16,8"
-                DockPanel.Dock="Right"
-                IsChecked="{Binding IsAutoUpdateEnabled}" />
-        </DockPanel>
+        <Border
+            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            BorderThickness="0,1"
+            Grid.Row="1"
+            Padding="0,8">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <!--  Auto-updates  -->
+                    <DockPanel Background="Transparent" LastChildFill="False">
+                        <DockPanel.ToolTip>
+                            <TextBlock>
+                                <Run Text="{x:Static language:Resources.SettingsView_AutoUpdates_Desc_1}" />
+                                <LineBreak />
+                                <Run FontWeight="SemiBold"
+                                     Text="{x:Static language:Resources.SettingsView_AutoUpdates_Desc_2}" />
+                                <Run Text="{x:Static language:Resources.SettingsView_AutoUpdates_Desc_3}" />
+                            </TextBlock>
+                        </DockPanel.ToolTip>
+                        <TextBlock
+                            DockPanel.Dock="Left"
+                            Margin="16,8"
+                            Text="{x:Static language:Resources.SettingsView_AutoUpdates_Text}"
+                            VerticalAlignment="Center" />
+                        <ToggleButton
+                            DockPanel.Dock="Right"
+                            IsChecked="{Binding IsAutoUpdateEnabled}"
+                            Margin="16,8"
+                            VerticalAlignment="Center" />
+                    </DockPanel>
 
-        <!--  Dark mode  -->
-        <DockPanel
-            Background="Transparent"
-            LastChildFill="False"
-            ToolTip="{x:Static language:Resources.SettingsView_DarkMode_Desc_1}">
-            <TextBlock
-                Margin="16,8"
-                DockPanel.Dock="Left"
-                Text="{x:Static language:Resources.SettingsView_DarkMode_Text}" />
-            <ToggleButton
-                x:Name="DarkModeToggleButton"
-                Margin="16,8"
-                Checked="DarkModeToggleButton_Checked"
-                DockPanel.Dock="Right"
-                IsChecked="{Binding IsDarkModeEnabled}"
-                Unchecked="DarkModeToggleButton_Unchecked" />
-        </DockPanel>
+                    <!--  Dark mode  -->
+                    <DockPanel
+                        Background="Transparent"
+                        LastChildFill="False"
+                        ToolTip="{x:Static language:Resources.SettingsView_DarkMode_Desc_1}">
+                        <TextBlock
+                            DockPanel.Dock="Left"
+                            Margin="16,8"
+                            Text="{x:Static language:Resources.SettingsView_DarkMode_Text}"
+                            VerticalAlignment="Center" />
+                        <ToggleButton
+                            Checked="DarkModeToggleButton_Checked"
+                            DockPanel.Dock="Right"
+                            IsChecked="{Binding IsDarkModeEnabled}"
+                            Margin="16,8"
+                            Unchecked="DarkModeToggleButton_Unchecked"
+                            VerticalAlignment="Center"
+                            x:Name="DarkModeToggleButton" />
+                    </DockPanel>
 
-        <!--  Inject tags  -->
-        <DockPanel
-            Background="Transparent"
-            LastChildFill="False"
-            ToolTip="{x:Static language:Resources.SettingsView_InjectTags_Desc_1}">
-            <TextBlock
-                Margin="16,8"
-                DockPanel.Dock="Left"
-                Text="{x:Static language:Resources.SettingsView_InjectTags_Text}" />
-            <ToggleButton
-                Margin="16,8"
-                DockPanel.Dock="Right"
-                IsChecked="{Binding ShouldInjectTags}" />
-        </DockPanel>
+                    <!--  Skip existing files  -->
+                    <DockPanel
+                        Background="Transparent"
+                        LastChildFill="False"
+                        ToolTip="When selecting multiple videos to download, skip those that already have a matching file in the target directory">
+                        <TextBlock
+                            Margin="16,8"
+                            DockPanel.Dock="Left"
+                            Text="Skip existing files" />
+                        <ToggleButton
+                            Margin="16,8"
+                            DockPanel.Dock="Right"
+                            IsChecked="{Binding ShouldSkipExistingFiles}" />
+                    </DockPanel>
 
-        <!--  Skip existing files  -->
-        <DockPanel
-            Background="Transparent"
-            LastChildFill="False"
-            ToolTip="{x:Static language:Resources.SettingsView_SkipExistingFiles_Desc_1}">
-            <TextBlock
-                Margin="16,8"
-                DockPanel.Dock="Left"
-                Text="{x:Static language:Resources.SettingsView_SkipExistingFiles_Text}" />
-            <ToggleButton
-                Margin="16,8"
-                DockPanel.Dock="Right"
-                IsChecked="{Binding ShouldSkipExistingFiles}" />
-        </DockPanel>
-
-        <!--  Skip existing files  -->
-        <DockPanel
-            Background="Transparent"
-            LastChildFill="False"
-            ToolTip="{x:Static language:Resources.SettingsView_AutoImportClipboard_Desc}">
-            <TextBlock
-                Margin="16,8"
-                DockPanel.Dock="Left"
-                Text="{x:Static language:Resources.SettingsView_AutoImportClipboard_Text}" />
-            <ToggleButton
-                Margin="16,8"
-                DockPanel.Dock="Right"
-                IsChecked="{Binding AutoImportClipboard}" />
-        </DockPanel>
-
-        <!--  File name template  -->
-        <TextBox
-            Margin="16,8"
-            materialDesign:HintAssist.Hint="{x:Static language:Resources.SettingsView_FileNameTemplate_Hint}"
-            materialDesign:HintAssist.IsFloating="True"
-            Text="{Binding FileNameTemplate}">
-            <TextBox.ToolTip>
-                <TextBlock>
-                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_1}" />
-                    <LineBreak />
-                    <LineBreak />
-                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_2}" />
-                    <LineBreak />
-                    <Run FontWeight="SemiBold"
-                         Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_num}" />
-                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_3}" />
-                    <LineBreak />
-                    <Run FontWeight="SemiBold"
-                         Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_title}" />
-                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_4}" />
-                    <LineBreak />
-                    <Run FontWeight="SemiBold"
-                         Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_author}" />
-                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_5}" />
-                    <LineBreak />
-                    <Run FontWeight="SemiBold"
-                         Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_Var_length}" />
-                    <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_7}" />
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-
-        <!--  Excluded container formats  -->
-        <TextBox
-            Margin="16,8"
-            materialDesign:HintAssist.Hint="{x:Static language:Resources.SettingsView_ExcludedContainer_Text}"
-            materialDesign:HintAssist.IsFloating="True"
-            Text="{Binding ExcludedContainerFormats}">
-            <TextBox.ToolTip>
-                <TextBlock>
-                    <Run Text="{x:Static language:Resources.SettingsView_ExcludedContainer_Desc_1}" />
-                    <LineBreak />
-                    <LineBreak />
-                    <Run Text="{x:Static language:Resources.SettingsView_ExcludedContainer_Desc_2}" />
-                </TextBlock>
-            </TextBox.ToolTip>
-        </TextBox>
-
-        <!--  Max concurrent downloads  -->
-        <StackPanel Background="Transparent" ToolTip="{x:Static language:Resources.SettingsView_MaxDownloads_Desc_1}">
-            <TextBlock Margin="16,8,16,4">
-                <Run Text="{x:Static language:Resources.SettingsView_MaxDownloads_Text}" />
-                <Run FontWeight="DemiBold" Text="{Binding MaxConcurrentDownloads, Mode=OneWay}" />
-            </TextBlock>
-            <Slider
-                Margin="16,4,16,8"
-                IsSnapToTickEnabled="True"
-                Maximum="10"
-                Minimum="1"
-                TickFrequency="1"
-                Value="{Binding MaxConcurrentDownloads}" />
-        </StackPanel>
+                    <!--  File name template  -->
+                    <DockPanel
+                        Margin="16,8"
+                        Background="Transparent"
+                        LastChildFill="False">
+                        <DockPanel.ToolTip>
+                            <TextBlock>
+                                <Run Text="Template used for generating file names for downloaded videos" />
+                                <LineBreak />
+                                <LineBreak />
+                                <Run Text="Available tokens:" />
+                                <LineBreak />
+                                <Run FontWeight="SemiBold" Text="$num" />
+                                <Run Text="- video's position in the list (if applicable)" />
+                                <LineBreak />
+                                <Run FontWeight="SemiBold" Text="$id" />
+                                <Run Text="- video ID" />
+                                <LineBreak />
+                                <Run FontWeight="SemiBold" Text="$title" />
+                                <Run Text="- video title" />
+                                <LineBreak />
+                                <Run FontWeight="SemiBold" Text="$author" />
+                                <Run Text="- video author" />
+                            </TextBlock>
+                        </DockPanel.ToolTip>
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
+                            Text="File name template" />
+                        <TextBox
+                            Width="150"
+                            VerticalAlignment="Center"
+                            DockPanel.Dock="Right"
+                            Text="{Binding FileNameTemplate}" />
+                    </DockPanel>
+                    
+                    <!--  Max concurrent downloads  -->
+                    <DockPanel
+                        Background="Transparent"
+                        LastChildFill="False"
+                        Margin="16,8"
+                        ToolTip="{x:Static language:Resources.SettingsView_MaxDownloads_Desc_1}">
+                        <TextBlock
+                            DockPanel.Dock="Left"
+                            Text="{x:Static language:Resources.SettingsView_MaxDownloads_Text}"
+                            TextAlignment="Right"
+                            VerticalAlignment="Center" />
+                        <StackPanel
+                            DockPanel.Dock="Right"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+                            <TextBlock
+                                FontWeight="SemiBold"
+                                Margin="10,0"
+                                Text="{Binding ParallelLimit}"
+                                VerticalAlignment="Center" />
+                            <Slider
+                                Maximum="10"
+                                Minimum="1"
+                                Style="{DynamicResource MaterialDesignThinSlider}"
+                                Value="{Binding ParallelLimit}"
+                                VerticalAlignment="Center"
+                                Width="150" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
 
         <!--  Save button  -->
         <Button
-            Margin="8"
-            HorizontalAlignment="Right"
             Command="{s:Action Close}"
             Content="{x:Static language:Resources.MessageBoxView_Button_Save}"
+            Grid.Row="2"
+            HorizontalAlignment="Stretch"
             IsCancel="True"
             IsDefault="True"
-            Style="{DynamicResource MaterialDesignFlatButton}" />
-    </StackPanel>
+            Margin="16"
+            Style="{DynamicResource MaterialDesignOutlinedButton}" />
+    </Grid>
 </UserControl>

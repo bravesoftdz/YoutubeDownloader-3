@@ -240,9 +240,6 @@
   <data name="SettingsView_FileNameTemplate_Desc_5" xml:space="preserve">
     <value>- Videoautor</value>
   </data>
-  <data name="SettingsView_FileNameTemplate_Desc_7" xml:space="preserve">
-    <value>- Länge des Videos</value>
-  </data>
   <data name="SettingsView_FileNameTemplate_Desc_Var_num" xml:space="preserve">
     <value>$nummer</value>
   </data>
@@ -255,9 +252,6 @@
   <data name="SettingsView_FileNameTemplate_Desc_Var_uploadDate" xml:space="preserve">
     <value>$datum</value>
   </data>
-  <data name="SettingsView_FileNameTemplate_Desc_Var_length" xml:space="preserve">
-    <value>$länge</value>
-  </data>
   <data name="SettingsView_ExcludedContainer_Desc_1" xml:space="preserve">
     <value>Eine durch Kommas getrennte Liste der Formate, die beim Herunterladen eines Videos von der Formatliste ausgeschlossen wird</value>
   </data>
@@ -268,7 +262,7 @@
     <value>Ausgeschlossene Formate</value>
   </data>
   <data name="SettingsView_MaxDownloads_Text" xml:space="preserve">
-    <value>Maximale gleichzeitiger Downloads:</value>
+    <value>Parallel limit:</value>
   </data>
   <data name="SettingsView_MaxDownloads_Desc_1" xml:space="preserve">
     <value>Anzahl der gleichzeitig aktiven Downloads</value>
@@ -277,10 +271,10 @@
     <value>SPEICHERN</value>
   </data>
   <data name="TokenVerifyView_Title" xml:space="preserve">
-    <value>Token verifizieren</value>
+    <value>Lizenz verifizieren</value>
   </data>
   <data name="TokenVerifyView_Desc_1" xml:space="preserve">
-    <value>Bitte gib den Token zur Aktivierung  ein!</value>
+    <value>Bitte gib die Lizenz zur Aktivierung  ein!</value>
   </data>
   <data name="MessageBoxView_Button_Activate" xml:space="preserve">
     <value>AKTIVIEREN</value>
@@ -322,7 +316,7 @@
     <value>Aktiviert!</value>
   </data>
   <data name="TokenVerifyView_Activated_Desc" xml:space="preserve">
-    <value>Der Token wurde erfolgreich Aktiviert!</value>
+    <value>Der Lizenzschlüssel wurde erfolgreich aktiviert!</value>
   </data>
   <data name="TokenVerifyView_Invaild_Ex" xml:space="preserve">
     <value>Bitte benutze einen gültigen Token!</value>
@@ -331,7 +325,7 @@
     <value>Dieser Token wurde deaktiviert!</value>
   </data>
   <data name="TokenVerifyView_Amount_Ex" xml:space="preserve">
-    <value>Dieser Token wurde bereits eingelöst!</value>
+    <value>Diese Lizenz wurde bereits eingelöst!</value>
   </data>
   <data name="TokenVerifyView_Expired_Ex" xml:space="preserve">
     <value>Dieser Token ist abgelaufen! Bitte aktivieren Sie einen neuen!</value>

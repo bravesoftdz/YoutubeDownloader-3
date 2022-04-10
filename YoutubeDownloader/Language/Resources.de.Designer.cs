@@ -529,29 +529,11 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to - Länge des Videos.
-        /// </summary>
-        public static string SettingsView_FileNameTemplate_Desc_7 {
-            get {
-                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_7", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to $autor.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_Var_author {
             get {
                 return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_author", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to $länge.
-        /// </summary>
-        public static string SettingsView_FileNameTemplate_Desc_Var_length {
-            get {
-                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_length", resourceCulture);
             }
         }
         
@@ -619,7 +601,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximale gleichzeitiger Downloads:.
+        ///   Looks up a localized string similar to Parallel limit:.
         /// </summary>
         public static string SettingsView_MaxDownloads_Text {
             get {
@@ -646,7 +628,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der Token wurde erfolgreich Aktiviert!.
+        ///   Looks up a localized string similar to Der Lizenzschlüssel wurde erfolgreich aktiviert!.
         /// </summary>
         public static string TokenVerifyView_Activated_Desc {
             get {
@@ -664,7 +646,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dieser Token wurde bereits eingelöst!.
+        ///   Looks up a localized string similar to Diese Lizenz wurde bereits eingelöst!.
         /// </summary>
         public static string TokenVerifyView_Amount_Ex {
             get {
@@ -673,7 +655,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte gib den Token zur Aktivierung  ein!.
+        ///   Looks up a localized string similar to Bitte gib die Lizenz zur Aktivierung  ein!.
         /// </summary>
         public static string TokenVerifyView_Desc_1 {
             get {
@@ -727,7 +709,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Token verifizieren.
+        ///   Looks up a localized string similar to Lizenz verifizieren.
         /// </summary>
         public static string TokenVerifyView_Title {
             get {

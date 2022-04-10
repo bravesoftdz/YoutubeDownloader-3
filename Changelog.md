@@ -1,4 +1,10 @@
-﻿### v1.6.6 (13-Dez-2021)
+﻿### v1.6.8 (09-Mär-2022)
+* Tokensystem überarbeitet.
+
+### v1.6.7 (07-Mär-2022)
+* Verschiedene Youtube bezogene Fehler wurden behoben
+
+### v1.6.6 (13-Dez-2021)
 * Verschiedene Youtube bezogene Fehler wurden behoben
 * Ein Fehler mit der Speicherung von Daten wurde behoben
 

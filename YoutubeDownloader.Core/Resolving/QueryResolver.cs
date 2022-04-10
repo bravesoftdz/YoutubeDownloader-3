@@ -21,33 +21,37 @@ public class QueryResolver
         string query,
         CancellationToken cancellationToken = default)
     {
-        // Playlist
-        if (PlaylistId.TryParse(query) is { } playlistId)
-        {
-            var playlist = await _youtube.Playlists.GetAsync(playlistId, cancellationToken);
-            var videos = await _youtube.Playlists.GetVideosAsync(playlistId, cancellationToken);
-            return new QueryResult(QueryResultKind.Playlist, $"Playlist: {playlist.Title}", videos);
-        }
+        // Only consider URLs when parsing IDs.
+        // All other queries are treated as search queries.
+        var isUrl = Uri.IsWellFormedUriString(query, UriKind.Absolute);
 
-        // Video
-        if (VideoId.TryParse(query) is { } videoId)
+        switch (isUrl)
         {
-            var video = await _youtube.Videos.GetAsync(videoId, cancellationToken);
-            return new QueryResult(QueryResultKind.Video, video.Title, new[] {video});
-        }
-
-        // Channel
-        if (ChannelId.TryParse(query) is { } channelId)
-        {
-            var channel = await _youtube.Channels.GetAsync(channelId, cancellationToken);
-            var videos = await _youtube.Channels.GetUploadsAsync(channelId, cancellationToken);
-            return new QueryResult(QueryResultKind.Channel, $"Channel: {channel.Title}", videos);
-        }
-
-        // Search
-        {
-            var videos = await _youtube.Search.GetVideosAsync(query, cancellationToken).CollectAsync(20);
-            return new QueryResult(QueryResultKind.Search, $"Search: {query}", videos);
+            // Playlist
+            case true when PlaylistId.TryParse(query) is { } playlistId:
+            {
+                var playlist = await _youtube.Playlists.GetAsync(playlistId, cancellationToken);
+                var videos = await _youtube.Playlists.GetVideosAsync(playlistId, cancellationToken);
+                return new QueryResult(QueryResultKind.Playlist, $"Playlist: {playlist.Title}", videos);
+            }
+            // Video
+            case true when VideoId.TryParse(query) is { } videoId:
+            {
+                var video = await _youtube.Videos.GetAsync(videoId, cancellationToken);
+                return new QueryResult(QueryResultKind.Video, video.Title, new[] {video});
+            }
+            // Channel
+            case true when ChannelId.TryParse(query) is { } channelId:
+            {
+                var channel = await _youtube.Channels.GetAsync(channelId, cancellationToken);
+                var videos = await _youtube.Channels.GetUploadsAsync(channelId, cancellationToken);
+                return new QueryResult(QueryResultKind.Channel, $"Channel: {channel.Title}", videos);
+            }
+            default:
+            {
+                var videos = await _youtube.Search.GetVideosAsync(query, cancellationToken).CollectAsync(20);
+                return new QueryResult(QueryResultKind.Search, $"Search: {query}", videos);
+            }
         }
     }
 

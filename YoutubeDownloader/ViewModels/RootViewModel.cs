@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using MaterialDesignThemes.Wpf;
 using Stylet;
 using YoutubeDownloader.Language;
 using YoutubeDownloader.Services;
+using YoutubeDownloader.Utils;
 using YoutubeDownloader.ViewModels.Components;
 using YoutubeDownloader.ViewModels.Dialogs;
 using YoutubeDownloader.ViewModels.Framework;
@@ -83,10 +84,13 @@ public class RootViewModel : Screen
         _settingsService.CurrentVersion = App.Version;
 
         var dialog = _viewModelFactory.CreateMessageBoxViewModel(
-            "Changelog - v" + App.VersionString, Resources.Changelog
+            "Changelog - v" + App.VersionString, Resources.Changelog,
+            "CHROME EXTENSION", Resources.MessageBoxView_Button_Close
         );
-
-        await _dialogManager.ShowDialogAsync(dialog);
+        if (await _dialogManager.ShowDialogAsync(dialog) == true)
+        {
+            ProcessEx.StartShellExecute("https://chrome.google.com/webstore/detail/open-in-youtubedownloader/ocjnlgpggmhcfjflphoalojankbkinoe");
+        }
     }
 
     private async Task ShowLicenseDialog()

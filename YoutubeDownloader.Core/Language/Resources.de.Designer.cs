@@ -62,11 +62,16 @@ namespace YoutubeDownloader.Language {
         
         /// <summary>
         ///   Looks up a localized string similar to - Die Genauigkeit der Metadaten wurde verbessert. Außerdem wurde die Liste der eingefügten Medien-Tags um einige zusätzliche Informationen erweitert.
+        ///
         ///- Token $id für die Video-Id hinzugefügt.
+        ///
         ///- Automatische Erkennung des Dunklen Designs hinzugefügt.
+        ///
         ///- Dropdown für Untertitelauswahl wurde entfernt. Untertitel werden jetzt automatisch heruntergeladen und in die Videodatei eingebettet.
+        ///
         ///- Die Option „Medien-Tags einfügen“ wurde entfernt. Medien-Tags werden jetzt immer eingefügt.
-        ///- Die Option „Ausgeschlosse [rest of string was truncated]&quot;;.
+        ///
+        ///- Die Option „Aus [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Changelog {
             get {

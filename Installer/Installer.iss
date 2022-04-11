@@ -44,7 +44,7 @@ Name: "{autodesktop}\{#AppName}"; Filename: "{app}\YoutubeDownloader.exe"; Tasks
 [Registry]
 Root: HKCU; Subkey: "SOFTWARE\Classes\x-youtube-client"; ValueType: string; ValueData: "URL:x-youtube-client"   
 Root: HKCU; Subkey: "SOFTWARE\Classes\x-youtube-client"; ValueType: string; ValueName: "URL Protocol"
-Root: HKCU; Subkey: "SOFTWARE\Classes\x-youtube-client\shell\open\command"; ValueType: string; ValueData: """{app}\YoutubeDownloader.exe"" --protocol-launcher ""%1"""
+Root: HKCU; Subkey: "SOFTWARE\Classes\x-youtube-client\shell\open\command"; ValueType: string; ValueData: """{app}\YoutubeDownloader.exe"" ""%1"""
 
 [Run]
 Filename: "{app}\YoutubeDownloader.exe"; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent

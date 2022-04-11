@@ -26,6 +26,7 @@ public class DashboardViewModel : PropertyChangedBase
 
     private readonly QueryResolver _queryResolver = new();
     private readonly VideoDownloader _videoDownloader = new();
+    private readonly SettingsService _settingsService;
 
     private bool IsBusy { get; set; }
 
@@ -44,6 +45,7 @@ public class DashboardViewModel : PropertyChangedBase
     {
         _viewModelFactory = viewModelFactory;
         _dialogManager = dialogManager;
+        _settingsService = settingsService;
 
         _progressMuxer = Progress.CreateMuxer().WithAutoReset();
 
@@ -86,6 +88,8 @@ public class DashboardViewModel : PropertyChangedBase
                 );
 
                 download.Status = DownloadStatus.Completed;
+                _settingsService.VideoDownloads++;
+                _settingsService.VideoDownloadsLength += (long)download.Video!.Duration!.Value.TotalMilliseconds;
             }
             catch (Exception ex)
             {
@@ -124,7 +128,7 @@ public class DashboardViewModel : PropertyChangedBase
     {
         Query = string.Empty;
     }
-    
+
     public async void ProcessQuery()
     {
         if (string.IsNullOrWhiteSpace(Query))

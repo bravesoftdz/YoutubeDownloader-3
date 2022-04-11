@@ -84,7 +84,7 @@ public class RootViewModel : Screen
         _settingsService.CurrentVersion = App.Version;
 
         var dialog = _viewModelFactory.CreateMessageBoxViewModel(
-            "Changelog - v" + App.VersionString, Resources.Changelog,
+            "Changelog - v" + App.VersionString, Resources.Changelog.Trim(),
             "CHROME EXTENSION", Resources.MessageBoxView_Button_Close
         );
         if (await _dialogManager.ShowDialogAsync(dialog) == true)

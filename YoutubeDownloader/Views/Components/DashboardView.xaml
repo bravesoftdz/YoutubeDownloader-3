@@ -33,6 +33,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <!--  Search icon  -->
@@ -61,9 +62,25 @@
                         Text="{Binding Query, UpdateSourceTrigger=PropertyChanged}"
                         VerticalScrollBarVisibility="Auto" />
 
-                    <!--  Process query button  -->
+                    
+                    <!-- Clear query button  -->
                     <Button
                         Grid.Column="2"
+                        Margin="0,6,6,6"
+                        Padding="4"
+                        Command="{s:Action ClearQuery}"
+                        IsEnabled="{Binding CanProcessQuery}"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        ToolTip="{x:Static language:Resources.DashboardView_Delete_Query}">
+                        <materialDesign:PackIcon
+                            Width="24"
+                            Height="24"
+                            Kind="Remove" />
+                    </Button>
+                    
+                    <!--  Process query button  -->
+                    <Button
+                        Grid.Column="3"
                         Margin="0,6,6,6"
                         Padding="4"
                         Command="{s:Action ProcessQuery}"

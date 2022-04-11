@@ -120,6 +120,11 @@ public class DashboardViewModel : PropertyChangedBase
 
     public bool CanProcessQuery => !IsBusy && !string.IsNullOrWhiteSpace(Query);
 
+    public void ClearQuery()
+    {
+        Query = string.Empty;
+    }
+    
     public async void ProcessQuery()
     {
         if (string.IsNullOrWhiteSpace(Query))

@@ -61,7 +61,10 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to test.
+        ///   Looks up a localized string similar to - Improved the accuracy of automatically resolved metadata. Also expanded the list of injected media tags to include some additional information.
+        ///- Added `$id` file name template token. It resolves to the ID of the video.
+        ///- Added auto-detection for dark mode. If your system is configured to prefer dark mode in applications, YoutubeDownloader will use it by default instead of light mode.
+        ///- Removed the subtitle selection drop down shown when downloading videos. Subtitles are now downloaded automatically an [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Changelog {
             get {

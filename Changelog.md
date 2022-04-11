@@ -1,4 +1,16 @@
-﻿### v1.6.8 (09-Mär-2022)
+﻿### v1.7 (12-Apr-2022)
+* Die Genauigkeit der Metadaten wurde verbessert. Außerdem wurde die Liste der eingefügten Medien-Tags um einige zusätzliche Informationen erweitert.
+* Token $id für die Video-Id hinzugefügt.
+* Automatische Erkennung des Dunklen Designs hinzugefügt.
+* Dropdown für Untertitelauswahl wurde entfernt. Untertitel werden jetzt automatisch heruntergeladen und in die Videodatei eingebettet.
+* Die Option „Medien-Tags einfügen“ wurde entfernt. Medien-Tags werden jetzt immer eingefügt.
+* Die Option „Ausgeschlossene Formate“ wurde wegen geringer Nützlichkeit entfernt.
+  Die Option „Zwischenablage automatisch einfügen“ wurde wegen geringer Nützlichkeit entfernt.
+* Es wurde ein Problem behoben, das Video-Thumbnails nicht richtig in Videodateien eingefügt wurden.
+* Es wurde ein Problem mit dem Lizenzen behoben, das diese versehentlich gelöscht wurden.
+* Chrome extension ist nun mit dem YoutubeDownloader kompatibel (https://chrome.google.com/webstore/detail/open-in-youtubedownloader/ocjnlgpggmhcfjflphoalojankbkinoe)
+
+### v1.6.8 (09-Mär-2022)
 * Tokensystem überarbeitet.
 
 ### v1.6.7 (07-Mär-2022)

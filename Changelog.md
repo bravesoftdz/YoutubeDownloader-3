@@ -1,4 +1,4 @@
-﻿### v1.7 (12-Apr-2022)
+﻿### v1.7 (11-Apr-2022)
 * Die Genauigkeit der Metadaten wurde verbessert. Außerdem wurde die Liste der eingefügten Medien-Tags um einige zusätzliche Informationen erweitert.
 * Token $id für die Video-Id hinzugefügt.
 * Automatische Erkennung des Dunklen Designs hinzugefügt.

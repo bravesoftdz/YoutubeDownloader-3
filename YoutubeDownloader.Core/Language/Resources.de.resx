@@ -277,7 +277,7 @@
     <value>Diese Lizenz ist abgelaufen! Bitte aktivieren eine neue!</value>
   </data>
   <data name="DashboardView_Delete_Query" xml:space="preserve">
-    <value>Suche löschen (Entf)</value>
+    <value>Suche löschen (Shift + Entf)</value>
   </data>
   <data name="LicenseService_InvalidConnection" xml:space="preserve">
     <value>Es konnte keine Verbindung zum Lizenzserver hergestellt werden. Bitte versuche es erneut!</value>

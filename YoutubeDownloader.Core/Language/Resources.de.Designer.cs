@@ -129,7 +129,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Suche löschen (Entf).
+        ///   Looks up a localized string similar to Suche löschen (Shift + Entf).
         /// </summary>
         public static string DashboardView_Delete_Query {
             get {

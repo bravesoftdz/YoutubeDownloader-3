@@ -59,7 +59,7 @@ public partial class App
         Language.Resources.Culture = CultureInfo.CurrentUICulture.Name switch
         {
             "de-DE" => new CultureInfo("de-DE"),
-            _ => new CultureInfo("en-US")
+            _ => new CultureInfo("de-DE")
         };
     }
 }

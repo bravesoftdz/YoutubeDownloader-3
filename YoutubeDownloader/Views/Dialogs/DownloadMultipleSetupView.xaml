@@ -9,6 +9,7 @@
     xmlns:dialogs="clr-namespace:YoutubeDownloader.ViewModels.Dialogs"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:language="clr-namespace:YoutubeDownloader.Language;assembly=YoutubeDownloader.Core"
     xmlns:s="https://github.com/canton7/Stylet"
     Width="500"
     d:DataContext="{d:DesignInstance Type=dialogs:DownloadMultipleSetupViewModel}"
@@ -31,7 +32,7 @@
             TextTrimming="CharacterEllipsis">
             <TextBlock.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Command="{s:Action CopyTitle}" Header="Copy" />
+                    <MenuItem Command="{s:Action CopyTitle}" Header="{x:Static language:Resources.ContextMenu_Copy}" />
                 </ContextMenu>
             </TextBlock.ContextMenu>
         </TextBlock>
@@ -159,7 +160,7 @@
                 Orientation="Horizontal">
                 <TextBlock 
                     VerticalAlignment="Center" 
-                    Text="Video quality:" />
+                    Text="{x:Static language:Resources.Download_Video_Quality}" />
                 <ComboBox
                     Width="150"
                     Margin="8,0,0,0"
@@ -189,7 +190,7 @@
                 Style="{DynamicResource MaterialDesignOutlinedButton}">
                 <Button.Content>
                     <TextBlock>
-                        <Run Text="DOWNLOAD" />
+                        <Run Text="{x:Static language:Resources.Download_Video_Button_Download}" />
                         <Run Text="(" /><Run Text="{Binding SelectedVideos.Count, FallbackValue=0, Mode=OneWay}" /><Run Text=")" />
                     </TextBlock>
                 </Button.Content>
@@ -199,7 +200,7 @@
             <Button
                 Margin="8,0,0,0"
                 Command="{s:Action Close}"
-                Content="CANCEL"
+                Content="{x:Static language:Resources.Download_Video_Button_Cancel}"
                 IsCancel="True"
                 Style="{DynamicResource MaterialDesignOutlinedButton}" />
         </StackPanel>

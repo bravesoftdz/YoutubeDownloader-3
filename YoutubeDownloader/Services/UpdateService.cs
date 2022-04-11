@@ -41,7 +41,7 @@ public class UpdateService : IDisposable
         }
         catch
         {
-            throw new Exception(Resources.UpdateService_No_Connection);
+            throw new Exception(Resources.RootViewModel_Update_No_Connection);
         }
     }
 

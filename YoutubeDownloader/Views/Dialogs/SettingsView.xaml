@@ -23,7 +23,7 @@
             FontWeight="Light"
             Grid.Row="0"
             Margin="16,16,16,8"
-            Text="{x:Static language:Resources.Name_Settings}" />
+            Text="{x:Static language:Resources.DashboardView_Settings_Title}" />
 
         <Border
             BorderBrush="{DynamicResource MaterialDesignDivider}"
@@ -79,11 +79,11 @@
                     <DockPanel
                         Background="Transparent"
                         LastChildFill="False"
-                        ToolTip="When selecting multiple videos to download, skip those that already have a matching file in the target directory">
+                        ToolTip="{x:Static language:Resources.SettingsView_SkipExistingFiles_Desc_1}">
                         <TextBlock
                             Margin="16,8"
                             DockPanel.Dock="Left"
-                            Text="Skip existing files" />
+                            Text="{x:Static language:Resources.SettingsView_SkipExistingFiles_Text}" />
                         <ToggleButton
                             Margin="16,8"
                             DockPanel.Dock="Right"
@@ -97,28 +97,28 @@
                         LastChildFill="False">
                         <DockPanel.ToolTip>
                             <TextBlock>
-                                <Run Text="Template used for generating file names for downloaded videos" />
+                                <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_1}" />
                                 <LineBreak />
                                 <LineBreak />
-                                <Run Text="Available tokens:" />
+                                <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_2}" />
                                 <LineBreak />
                                 <Run FontWeight="SemiBold" Text="$num" />
-                                <Run Text="- video's position in the list (if applicable)" />
+                                <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_3}" />
                                 <LineBreak />
                                 <Run FontWeight="SemiBold" Text="$id" />
                                 <Run Text="- video ID" />
                                 <LineBreak />
-                                <Run FontWeight="SemiBold" Text="$title" />
-                                <Run Text="- video title" />
+                                <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsService_FileNameTemplate_title}" />
+                                <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_4}" />
                                 <LineBreak />
-                                <Run FontWeight="SemiBold" Text="$author" />
-                                <Run Text="- video author" />
+                                <Run FontWeight="SemiBold" Text="{x:Static language:Resources.SettingsService_FileNameTemplate_Author}" />
+                                <Run Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Desc_5}" />
                             </TextBlock>
                         </DockPanel.ToolTip>
                         <TextBlock
                             VerticalAlignment="Center"
                             DockPanel.Dock="Left"
-                            Text="File name template" />
+                            Text="{x:Static language:Resources.SettingsView_FileNameTemplate_Hint}" />
                         <TextBox
                             Width="150"
                             VerticalAlignment="Center"
@@ -134,7 +134,7 @@
                         ToolTip="{x:Static language:Resources.SettingsView_MaxDownloads_Desc_1}">
                         <TextBlock
                             DockPanel.Dock="Left"
-                            Text="{x:Static language:Resources.SettingsView_MaxDownloads_Text}"
+                            Text="Parallel limit:"
                             TextAlignment="Right"
                             VerticalAlignment="Center" />
                         <StackPanel

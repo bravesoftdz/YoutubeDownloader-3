@@ -30,7 +30,7 @@
             Text="{Binding License}">
             <TextBox.ToolTip>
                 <TextBlock>
-                    <Run Text="{x:Static language:Resources.LicenseView_ToolTip}" />
+                    <Run Text="{x:Static language:Resources.LicenseService_invalid}" />
                 </TextBlock>
             </TextBox.ToolTip>
         </TextBox>
@@ -40,7 +40,7 @@
             Margin="8"
             HorizontalAlignment="Right"
             Command="{s:Action Validate}"
-            Content="{x:Static language:Resources.MessageBoxView_Button_Activate}"
+            Content="{x:Static language:Resources.LicenseView_Activate}"
             Cursor="Hand"
             IsDefault="True"
             IsEnabled="{Binding ElementName=tokenString, Path=Text.Length, Mode=OneWay}"

@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:language="clr-namespace:YoutubeDownloader.Language;assembly=YoutubeDownloader.Core"
     xmlns:s="https://github.com/canton7/Stylet"
     d:DataContext="{d:DesignInstance Type=components:DashboardViewModel}"
     FocusManager.FocusedElement="{Binding ElementName=QueryTextBox}"
@@ -50,7 +51,7 @@
                         Grid.Column="1"
                         Margin="0,6,6,8"
                         VerticalAlignment="Bottom"
-                        materialDesign:HintAssist.Hint="URL or search query"
+                        materialDesign:HintAssist.Hint="{x:Static language:Resources.DashboardView_TextBox_Query}"
                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                         AcceptsReturn="True"
                         BorderThickness="0"
@@ -68,7 +69,7 @@
                         Command="{s:Action ProcessQuery}"
                         IsDefault="True"
                         Style="{DynamicResource MaterialDesignFlatButton}"
-                        ToolTip="Process query (Enter)">
+                        ToolTip="{x:Static language:Resources.DashboardView_Query_Tooltip}">
                         <materialDesign:PackIcon
                             Width="24"
                             Height="24"
@@ -85,7 +86,7 @@
                 Command="{s:Action ShowSettings}"
                 Foreground="{DynamicResource MaterialDesignDarkForeground}"
                 Style="{DynamicResource MaterialDesignFlatButton}"
-                ToolTip="Settings">
+                ToolTip="{x:Static language:Resources.DashboardView_Settings_Title}">
                 <Button.Resources>
                     <SolidColorBrush x:Key="MaterialDesignFlatButtonClick" Color="#4C4C4C" />
                 </Button.Resources>
@@ -123,15 +124,15 @@
                     FontWeight="Light"
                     TextAlignment="Center"
                     TextWrapping="Wrap">
-                    <Run Text="Copy-paste a" />
+                    <Run Text="{x:Static language:Resources.DashboardView_TextBlock_Line_1}" />
                     <Run FontWeight="SemiBold" Text="URL" />
-                    <Run Text="or enter a" />
-                    <Run FontWeight="SemiBold" Text="search query" />
-                    <Run Text="to start downloading" />
+                    <Run Text="{x:Static language:Resources.DashboardView_TextBlock_Line_2}" />
+                    <Run FontWeight="SemiBold" Text="{x:Static language:Resources.DashboardView_TextBlock_Line_3}" />
+                    <Run Text="{x:Static language:Resources.DashboardView_TextBlock_Line_4}" />
                     <LineBreak />
-                    <Run Text="Press" />
+                    <Run Text="{x:Static language:Resources.DashboardView_TextBlock_Line_5}" />
                     <Run FontWeight="SemiBold" Text="Shift+Enter" />
-                    <Run Text="to add multiple items" />
+                    <Run Text="{x:Static language:Resources.DashboardView_TextBlock_Line_6}" />
                 </TextBlock>
             </StackPanel>
 
@@ -146,12 +147,12 @@
                 Visibility="{Binding Downloads.Count, Converter={x:Static s:BoolToVisibilityConverter.Instance}}">
                 <DataGrid.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Command="{s:Action RemoveSuccessfulDownloads}" Header="Remove successful downloads" />
-                        <MenuItem Command="{s:Action RemoveInactiveDownloads}" Header="Remove inactive downloads" />
+                        <MenuItem Command="{s:Action RemoveSuccessfulDownloads}" Header="{x:Static language:Resources.DashboardView_ContextMenu_Remove_Successful_Downloads}" />
+                        <MenuItem Command="{s:Action RemoveInactiveDownloads}" Header="{x:Static language:Resources.DashboardView_ContextMenu_Remove_Inactive_Downloads}" />
                         <Separator />
-                        <MenuItem Command="{s:Action RestartFailedDownloads}" Header="Restart failed downloads" />
+                        <MenuItem Command="{s:Action RestartFailedDownloads}" Header="{x:Static language:Resources.DashboardView_ContextMenu_RestartFailedDownloads}" />
                         <Separator />
-                        <MenuItem Command="{s:Action CancelAllDownloads}" Header="Cancel all downloads" />
+                        <MenuItem Command="{s:Action CancelAllDownloads}" Header="{x:Static language:Resources.DashboardView_ContextMenu_Cancel_All_Downloads}" />
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.RowStyle>
@@ -188,7 +189,7 @@
                     <!--  File name  -->
                     <DataGridTemplateColumn
                         Width="*"
-                        Header="File"
+                        Header="{x:Static language:Resources.DashboardView_Download_File_Row_Title}"
                         SortMemberPath="FileName">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type components:DownloadViewModel}">
@@ -256,7 +257,7 @@
                                                     <!--  Pending  -->
                                                     <DataTrigger Binding="{Binding Status}" Value="{x:Static components:DownloadStatus.Enqueued}">
                                                         <Setter Property="Opacity" Value="0.7" />
-                                                        <Setter Property="Text" Value="Pending..." />
+                                                        <Setter Property="Text" Value="{x:Static language:Resources.DashboardView_Download_Status_Pending}" />
                                                     </DataTrigger>
 
                                                     <!--  Downloading  -->
@@ -267,19 +268,19 @@
                                                     <!--  Successful  -->
                                                     <DataTrigger Binding="{Binding Status}" Value="{x:Static components:DownloadStatus.Completed}">
                                                         <Setter Property="Foreground" Value="{DynamicResource SuccessBrush}" />
-                                                        <Setter Property="Text" Value="✓ Done" />
+                                                        <Setter Property="Text" Value="{x:Static language:Resources.DashboardView_Download_Status_Successful}" />
                                                     </DataTrigger>
 
                                                     <!--  Canceled  -->
                                                     <DataTrigger Binding="{Binding Status}" Value="{x:Static components:DownloadStatus.Canceled}">
                                                         <Setter Property="Foreground" Value="{DynamicResource CanceledBrush}" />
-                                                        <Setter Property="Text" Value="✗ Canceled" />
+                                                        <Setter Property="Text" Value="{x:Static language:Resources.DashboardView_Download_Status_Canceled}" />
                                                     </DataTrigger>
 
                                                     <!--  Failed  -->
                                                     <DataTrigger Binding="{Binding Status}" Value="{x:Static components:DownloadStatus.Failed}">
                                                         <Setter Property="Foreground" Value="{DynamicResource FailedBrush}" />
-                                                        <Setter Property="Text" Value="⚠ Failed" />
+                                                        <Setter Property="Text" Value="{x:Static language:Resources.DashboardView_Download_Status_Failed}" />
                                                         <Setter Property="ToolTip" Value="{Binding ErrorMessage}" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -306,7 +307,7 @@
                                         s:View.ActionTarget="{Binding}"
                                         Command="{s:Action ShowFile}"
                                         Style="{DynamicResource MaterialDesignFlatButton}"
-                                        ToolTip="Show file"
+                                        ToolTip="{x:Static language:Resources.DashboardView_ShowFile_ToolTip}"
                                         Visibility="{Binding CanShowFile, Converter={x:Static s:BoolToVisibilityConverter.Instance}}">
                                         <materialDesign:PackIcon
                                             Width="24"
@@ -321,7 +322,7 @@
                                         s:View.ActionTarget="{Binding}"
                                         Command="{s:Action OpenFile}"
                                         Style="{DynamicResource MaterialDesignFlatButton}"
-                                        ToolTip="Play"
+                                        ToolTip="{x:Static language:Resources.DashboardView_OpenFile_ToolTip}"
                                         Visibility="{Binding CanOpenFile, Converter={x:Static s:BoolToVisibilityConverter.Instance}}">
                                         <materialDesign:PackIcon
                                             Width="24"
@@ -336,7 +337,7 @@
                                         s:View.ActionTarget="{Binding}"
                                         Command="{s:Action Cancel}"
                                         Style="{DynamicResource MaterialDesignFlatButton}"
-                                        ToolTip="Cancel download"
+                                        ToolTip="{x:Static language:Resources.DashboardView_Cancel_ToolTip}"
                                         Visibility="{Binding CanCancel, Converter={x:Static s:BoolToVisibilityConverter.Instance}}">
                                         <materialDesign:PackIcon
                                             Width="24"
@@ -351,7 +352,7 @@
                                         Command="{s:Action RestartDownload}"
                                         CommandParameter="{Binding}"
                                         Style="{DynamicResource MaterialDesignFlatButton}"
-                                        ToolTip="Restart download"
+                                        ToolTip="{x:Static language:Resources.DashboardView_Restart_ToolTip}"
                                         Visibility="{Binding IsCanceledOrFailed, Converter={x:Static s:BoolToVisibilityConverter.Instance}}">
                                         <materialDesign:PackIcon
                                             Width="24"

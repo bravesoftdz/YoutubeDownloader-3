@@ -174,8 +174,8 @@ public class DashboardViewModel : PropertyChangedBase
             {
                 await _dialogManager.ShowDialogAsync(
                     _viewModelFactory.CreateMessageBoxViewModel(
-                        Resources.Download_Nothing_Found_1,
-                        Resources.Download_Nothing_Found_2
+                        Resources.DashboardView_Nothing_Found_Title,
+                        Resources.DashboardView_Nothing_Found_Message
                     )
                 );
             }

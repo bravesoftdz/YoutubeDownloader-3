@@ -50,7 +50,7 @@ namespace YoutubeDownloader.Services
                     1 => new Exception(Resources.LicenseService_disabled),
                     2 => new Exception(Resources.LicenseService_expired),
                     3 => new Exception(Resources.LicenseService_amount),
-                    _ => new Exception(Resources.LicenseService_need_a_token)
+                    _ => new Exception(Resources.LicenseService_need_a_license)
                 };
             }
             return responseModel.success;

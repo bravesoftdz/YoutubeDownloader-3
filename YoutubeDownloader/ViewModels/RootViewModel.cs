@@ -56,13 +56,13 @@ public class RootViewModel : Screen
                 return;
 
             // Notify user of an update and prepare it
-            Notifications.Enqueue(Resources.Update_Desc_1.Replace("%", $"{App.Name} v{updateVersion}"));
+            Notifications.Enqueue(Resources.RootViewModel_Update_Downloading.Replace("%", $"{App.Name} v{updateVersion}"));
             await _updateService.PrepareUpdateAsync(updateVersion);
 
             // Prompt user to install update (otherwise install it when application exits)
             Notifications.Enqueue(
-                Resources.Update_Desc_2,
-                Resources.Update_Button, () =>
+                Resources.RootViewModel_Update_Installable,
+                Resources.RootViewModel_Update_Install, () =>
                 {
                     _updateService.FinalizeUpdate(true);
                     RequestClose();
@@ -72,7 +72,7 @@ public class RootViewModel : Screen
         catch
         {
             // Failure to update shouldn't crash the application
-            Notifications.Enqueue(Resources.Update_Error_Desc);
+            Notifications.Enqueue(Resources.RootViewModel_Update_Error);
         }
     }
 

@@ -8,6 +8,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:s="https://github.com/canton7/Stylet"
+    xmlns:language="clr-namespace:YoutubeDownloader.Language;assembly=YoutubeDownloader.Core"
     Width="500"
     d:DataContext="{d:DesignInstance Type=dialogs:DownloadSingleSetupViewModel}"
     Loaded="{s:Action OnViewLoaded}"
@@ -30,7 +31,7 @@
                 ToolTip="{Binding Video.Title}">
                 <TextBlock.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Command="{s:Action CopyTitle}" Header="Copy" />
+                        <MenuItem Command="{s:Action CopyTitle}" Header="{x:Static language:Resources.ContextMenu_Copy}" />
                     </ContextMenu>
                 </TextBlock.ContextMenu>
             </TextBlock>
@@ -85,7 +86,7 @@
                             s:View.ActionTarget="{Binding DownloadSetup}"
                             Command="{s:Action OpenVideoPage}"
                             Focusable="False">
-                            <Run Text="Open on YouTube" />
+                            <Run Text="{x:Static language:Resources.DownloadSingeSetupView_Open_link}" />
                         </Hyperlink>
                     </TextBlock>
                 </StackPanel>
@@ -152,7 +153,7 @@
                 <!--  Download  -->
                 <Button
                     Command="{s:Action Confirm}"
-                    Content="DOWNLOAD"
+                    Content="{x:Static language:Resources.Download_Video_Button_Download}"
                     IsDefault="True"
                     Style="{DynamicResource MaterialDesignOutlinedButton}" />
 
@@ -160,7 +161,7 @@
                 <Button
                     Margin="8,0,0,0"
                     Command="{s:Action Close}"
-                    Content="CANCEL"
+                    Content="{x:Static language:Resources.Download_Video_Button_Cancel}"
                     IsCancel="True"
                     Style="{DynamicResource MaterialDesignOutlinedButton}" />
             </StackPanel>

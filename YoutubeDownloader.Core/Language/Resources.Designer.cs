@@ -79,29 +79,227 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nothing found.
+        ///   Looks up a localized string similar to Cancel download.
         /// </summary>
-        public static string Download_Nothing_Found_1 {
+        public static string DashboardView_Cancel_ToolTip {
             get {
-                return ResourceManager.GetString("Download_Nothing_Found_1", resourceCulture);
+                return ResourceManager.GetString("DashboardView_Cancel_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel all downloads.
+        /// </summary>
+        public static string DashboardView_ContextMenu_Cancel_All_Downloads {
+            get {
+                return ResourceManager.GetString("DashboardView_ContextMenu_Cancel_All_Downloads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove inactive downloads.
+        /// </summary>
+        public static string DashboardView_ContextMenu_Remove_Inactive_Downloads {
+            get {
+                return ResourceManager.GetString("DashboardView_ContextMenu_Remove_Inactive_Downloads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove successful downloads.
+        /// </summary>
+        public static string DashboardView_ContextMenu_Remove_Successful_Downloads {
+            get {
+                return ResourceManager.GetString("DashboardView_ContextMenu_Remove_Successful_Downloads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart failed downloads.
+        /// </summary>
+        public static string DashboardView_ContextMenu_RestartFailedDownloads {
+            get {
+                return ResourceManager.GetString("DashboardView_ContextMenu_RestartFailedDownloads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Query Text (Del).
+        /// </summary>
+        public static string DashboardView_Delete_Query {
+            get {
+                return ResourceManager.GetString("DashboardView_Delete_Query", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string DashboardView_Download_File_Row_Title {
+            get {
+                return ResourceManager.GetString("DashboardView_Download_File_Row_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ✗ Canceled.
+        /// </summary>
+        public static string DashboardView_Download_Status_Canceled {
+            get {
+                return ResourceManager.GetString("DashboardView_Download_Status_Canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⚠ Failed.
+        /// </summary>
+        public static string DashboardView_Download_Status_Failed {
+            get {
+                return ResourceManager.GetString("DashboardView_Download_Status_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending....
+        /// </summary>
+        public static string DashboardView_Download_Status_Pending {
+            get {
+                return ResourceManager.GetString("DashboardView_Download_Status_Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ✓ Done.
+        /// </summary>
+        public static string DashboardView_Download_Status_Successful {
+            get {
+                return ResourceManager.GetString("DashboardView_Download_Status_Successful", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Couldn&apos;t find any videos based on the query or URL you provided.
         /// </summary>
-        public static string Download_Nothing_Found_2 {
+        public static string DashboardView_Nothing_Found_Message {
             get {
-                return ResourceManager.GetString("Download_Nothing_Found_2", resourceCulture);
+                return ResourceManager.GetString("DashboardView_Nothing_Found_Message", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Video % contains no streams.
+        ///   Looks up a localized string similar to Nothing found.
         /// </summary>
-        public static string Download_Nothing_Found_3 {
+        public static string DashboardView_Nothing_Found_Title {
             get {
-                return ResourceManager.GetString("Download_Nothing_Found_3", resourceCulture);
+                return ResourceManager.GetString("DashboardView_Nothing_Found_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play.
+        /// </summary>
+        public static string DashboardView_OpenFile_ToolTip {
+            get {
+                return ResourceManager.GetString("DashboardView_OpenFile_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process query (Enter).
+        /// </summary>
+        public static string DashboardView_Query_Tooltip {
+            get {
+                return ResourceManager.GetString("DashboardView_Query_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart download.
+        /// </summary>
+        public static string DashboardView_Restart_ToolTip {
+            get {
+                return ResourceManager.GetString("DashboardView_Restart_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string DashboardView_Settings_Title {
+            get {
+                return ResourceManager.GetString("DashboardView_Settings_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show file.
+        /// </summary>
+        public static string DashboardView_ShowFile_ToolTip {
+            get {
+                return ResourceManager.GetString("DashboardView_ShowFile_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy-paste a.
+        /// </summary>
+        public static string DashboardView_TextBlock_Line_1 {
+            get {
+                return ResourceManager.GetString("DashboardView_TextBlock_Line_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to or enter a.
+        /// </summary>
+        public static string DashboardView_TextBlock_Line_2 {
+            get {
+                return ResourceManager.GetString("DashboardView_TextBlock_Line_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to search query.
+        /// </summary>
+        public static string DashboardView_TextBlock_Line_3 {
+            get {
+                return ResourceManager.GetString("DashboardView_TextBlock_Line_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to start downloading.
+        /// </summary>
+        public static string DashboardView_TextBlock_Line_4 {
+            get {
+                return ResourceManager.GetString("DashboardView_TextBlock_Line_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press.
+        /// </summary>
+        public static string DashboardView_TextBlock_Line_5 {
+            get {
+                return ResourceManager.GetString("DashboardView_TextBlock_Line_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to add multiple items.
+        /// </summary>
+        public static string DashboardView_TextBlock_Line_6 {
+            get {
+                return ResourceManager.GetString("DashboardView_TextBlock_Line_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URL or search query.
+        /// </summary>
+        public static string DashboardView_TextBox_Query {
+            get {
+                return ResourceManager.GetString("DashboardView_TextBox_Query", resourceCulture);
             }
         }
         
@@ -124,15 +322,6 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Format:.
-        /// </summary>
-        public static string Download_Video_Format {
-            get {
-                return ResourceManager.GetString("Download_Video_Format", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Video quality:.
         /// </summary>
         public static string Download_Video_Quality {
@@ -142,11 +331,11 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subtitles:.
+        ///   Looks up a localized string similar to Open on YouTube.
         /// </summary>
-        public static string Download_Video_Subtitles {
+        public static string DownloadSingeSetupView_Open_link {
             get {
-                return ResourceManager.GetString("Download_Video_Subtitles", resourceCulture);
+                return ResourceManager.GetString("DownloadSingeSetupView_Open_link", resourceCulture);
             }
         }
         
@@ -169,7 +358,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Token already used!.
+        ///   Looks up a localized string similar to License already used!.
         /// </summary>
         public static string LicenseService_amount {
             get {
@@ -178,7 +367,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The token is disabled!.
+        ///   Looks up a localized string similar to License disabled!.
         /// </summary>
         public static string LicenseService_disabled {
             get {
@@ -187,7 +376,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Token expired! Please enter a new one!.
+        ///   Looks up a localized string similar to License expired! Please enter a new one!.
         /// </summary>
         public static string LicenseService_expired {
             get {
@@ -196,7 +385,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter a vaild token!.
+        ///   Looks up a localized string similar to Please enter a vaild license!.
         /// </summary>
         public static string LicenseService_invalid {
             get {
@@ -216,18 +405,27 @@ namespace YoutubeDownloader.Language {
         /// <summary>
         ///   Looks up a localized string similar to You need a license to use the downloader!.
         /// </summary>
-        public static string LicenseService_need_a_token {
+        public static string LicenseService_need_a_license {
             get {
-                return ResourceManager.GetString("LicenseService_need_a_token", resourceCulture);
+                return ResourceManager.GetString("LicenseService_need_a_license", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to ACTIVATE.
         /// </summary>
-        public static string MessageBoxView_Button_Activate {
+        public static string LicenseView_Activate {
             get {
-                return ResourceManager.GetString("MessageBoxView_Button_Activate", resourceCulture);
+                return ResourceManager.GetString("LicenseView_Activate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration.
+        /// </summary>
+        public static string LicenseView_Title {
+            get {
+                return ResourceManager.GetString("LicenseView_Title", resourceCulture);
             }
         }
         
@@ -259,15 +457,6 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not parse query.
-        /// </summary>
-        public static string MessageBoxView_Not_Found {
-            get {
-                return ResourceManager.GetString("MessageBoxView_Not_Found", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Search:.
         /// </summary>
         public static string MessageBoxView_Search {
@@ -277,182 +466,47 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Multiple queries.
+        ///   Looks up a localized string similar to Downloading update to % ....
         /// </summary>
-        public static string MultipleDownloads_Text {
+        public static string RootViewModel_Update_Downloading {
             get {
-                return ResourceManager.GetString("MultipleDownloads_Text", resourceCulture);
+                return ResourceManager.GetString("RootViewModel_Update_Downloading", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings.
+        ///   Looks up a localized string similar to Failed to perform application update.
         /// </summary>
-        public static string Name_Settings {
+        public static string RootViewModel_Update_Error {
             get {
-                return ResourceManager.GetString("Name_Settings", resourceCulture);
+                return ResourceManager.GetString("RootViewModel_Update_Error", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel download.
+        ///   Looks up a localized string similar to INSTALL NOW.
         /// </summary>
-        public static string RootView_Button_Cancel_ToolTip {
+        public static string RootViewModel_Update_Install {
             get {
-                return ResourceManager.GetString("RootView_Button_Cancel_ToolTip", resourceCulture);
+                return ResourceManager.GetString("RootViewModel_Update_Install", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear Query Text (Del).
+        ///   Looks up a localized string similar to Update has been downloaded and will be installed when you exit.
         /// </summary>
-        public static string RootView_Button_Delete_Query {
+        public static string RootViewModel_Update_Installable {
             get {
-                return ResourceManager.GetString("RootView_Button_Delete_Query", resourceCulture);
+                return ResourceManager.GetString("RootViewModel_Update_Installable", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Play.
+        ///   Looks up a localized string similar to Failed to connect to update server..
         /// </summary>
-        public static string RootView_Button_OpenFile_ToolTip {
+        public static string RootViewModel_Update_No_Connection {
             get {
-                return ResourceManager.GetString("RootView_Button_OpenFile_ToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Process query (Enter).
-        /// </summary>
-        public static string RootView_Button_Query {
-            get {
-                return ResourceManager.GetString("RootView_Button_Query", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Restart download.
-        /// </summary>
-        public static string RootView_Button_Restart_ToolTip {
-            get {
-                return ResourceManager.GetString("RootView_Button_Restart_ToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Navigate to file.
-        /// </summary>
-        public static string RootView_Button_ShowFile_ToolTip {
-            get {
-                return ResourceManager.GetString("RootView_Button_ShowFile_ToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Copy-paste URL or type in a search query to start downloading.
-        /// </summary>
-        public static string RootView_ContentPlaceholder {
-            get {
-                return ResourceManager.GetString("RootView_ContentPlaceholder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove download.
-        /// </summary>
-        public static string RootView_ContextMenu_RemoveDownload {
-            get {
-                return ResourceManager.GetString("RootView_ContextMenu_RemoveDownload", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove all inactive downloads.
-        /// </summary>
-        public static string RootView_ContextMenu_RemoveInactiveDownloads {
-            get {
-                return ResourceManager.GetString("RootView_ContextMenu_RemoveInactiveDownloads", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove all successful downloads.
-        /// </summary>
-        public static string RootView_ContextMenu_RemoveSuccessfulDownloads {
-            get {
-                return ResourceManager.GetString("RootView_ContextMenu_RemoveSuccessfulDownloads", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Restart all failed downloads.
-        /// </summary>
-        public static string RootView_ContextMenu_RestartFailedDownloads {
-            get {
-                return ResourceManager.GetString("RootView_ContextMenu_RestartFailedDownloads", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File.
-        /// </summary>
-        public static string RootView_FileName_Header {
-            get {
-                return ResourceManager.GetString("RootView_FileName_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Status.
-        /// </summary>
-        public static string RootView_Status {
-            get {
-                return ResourceManager.GetString("RootView_Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ✗ Canceled.
-        /// </summary>
-        public static string RootView_Status_Canceled {
-            get {
-                return ResourceManager.GetString("RootView_Status_Canceled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ✗ Failed.
-        /// </summary>
-        public static string RootView_Status_Failed {
-            get {
-                return ResourceManager.GetString("RootView_Status_Failed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pending....
-        /// </summary>
-        public static string RootView_Status_Pending {
-            get {
-                return ResourceManager.GetString("RootView_Status_Pending", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ✓ Done.
-        /// </summary>
-        public static string RootView_Status_Successful {
-            get {
-                return ResourceManager.GetString("RootView_Status_Successful", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to URL or search query (press Shift+Enter to add multiple).
-        /// </summary>
-        public static string RootView_TextBox_Query {
-            get {
-                return ResourceManager.GetString("RootView_TextBox_Query", resourceCulture);
+                return ResourceManager.GetString("RootViewModel_Update_No_Connection", resourceCulture);
             }
         }
         
@@ -462,24 +516,6 @@ namespace YoutubeDownloader.Language {
         public static string SettingsService_FileNameTemplate_Author {
             get {
                 return ResourceManager.GetString("SettingsService_FileNameTemplate_Author", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to $id.
-        /// </summary>
-        public static string SettingsService_FileNameTemplate_Id {
-            get {
-                return ResourceManager.GetString("SettingsService_FileNameTemplate_Id", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to $num.
-        /// </summary>
-        public static string SettingsService_FileNameTemplate_Num {
-            get {
-                return ResourceManager.GetString("SettingsService_FileNameTemplate_Num", resourceCulture);
             }
         }
         
@@ -498,24 +534,6 @@ namespace YoutubeDownloader.Language {
         public static string SettingsService_FileNameTemplate_UploadDate {
             get {
                 return ResourceManager.GetString("SettingsService_FileNameTemplate_UploadDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Automatically inserts Youtube links from the clipboard into the search bar.
-        /// </summary>
-        public static string SettingsView_AutoImportClipboard_Desc {
-            get {
-                return ResourceManager.GetString("SettingsView_AutoImportClipboard_Desc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Auto Paste Clipboard.
-        /// </summary>
-        public static string SettingsView_AutoImportClipboard_Text {
-            get {
-                return ResourceManager.GetString("SettingsView_AutoImportClipboard_Text", resourceCulture);
             }
         }
         
@@ -574,33 +592,6 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comma separated list of container formats excluded from format list when downloading a video.
-        /// </summary>
-        public static string SettingsView_ExcludedContainer_Desc_1 {
-            get {
-                return ResourceManager.GetString("SettingsView_ExcludedContainer_Desc_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ex: webm,ogg.
-        /// </summary>
-        public static string SettingsView_ExcludedContainer_Desc_2 {
-            get {
-                return ResourceManager.GetString("SettingsView_ExcludedContainer_Desc_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Excluded container formats.
-        /// </summary>
-        public static string SettingsView_ExcludedContainer_Text {
-            get {
-                return ResourceManager.GetString("SettingsView_ExcludedContainer_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Template used for generating file names for downloaded videos.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_1 {
@@ -610,7 +601,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Available variables:.
+        ///   Looks up a localized string similar to Available tokens:.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Desc_2 {
             get {
@@ -646,38 +637,11 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $title.
-        /// </summary>
-        public static string SettingsView_FileNameTemplate_Desc_Var_title {
-            get {
-                return ResourceManager.GetString("SettingsView_FileNameTemplate_Desc_Var_title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to File name template.
         /// </summary>
         public static string SettingsView_FileNameTemplate_Hint {
             get {
                 return ResourceManager.GetString("SettingsView_FileNameTemplate_Hint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Media tags can be automatically inferred from video title and injected into output file.
-        /// </summary>
-        public static string SettingsView_InjectTags_Desc_1 {
-            get {
-                return ResourceManager.GetString("SettingsView_InjectTags_Desc_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Automatically inject media tags.
-        /// </summary>
-        public static string SettingsView_InjectTags_Text {
-            get {
-                return ResourceManager.GetString("SettingsView_InjectTags_Text", resourceCulture);
             }
         }
         
@@ -691,16 +655,7 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Parallel limit:.
-        /// </summary>
-        public static string SettingsView_MaxDownloads_Text {
-            get {
-                return ResourceManager.GetString("SettingsView_MaxDownloads_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to When selecting multiple videos to download, skip those that already have a matching file in the directory.
+        ///   Looks up a localized string similar to When selecting multiple videos to download, skip those that already have a matching file in the target directory.
         /// </summary>
         public static string SettingsView_SkipExistingFiles_Desc_1 {
             get {
@@ -709,92 +664,11 @@ namespace YoutubeDownloader.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skip downloads for files that already exist.
+        ///   Looks up a localized string similar to Skip existing files.
         /// </summary>
         public static string SettingsView_SkipExistingFiles_Text {
             get {
                 return ResourceManager.GetString("SettingsView_SkipExistingFiles_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please enter a Token!.
-        /// </summary>
-        public static string LicenseView_ToolTip {
-            get {
-                return ResourceManager.GetString("TokenVerifyView_Desc_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Failed connection to databse!.
-        /// </summary>
-        public static string TokenVerifyView_NoConnection_Ex {
-            get {
-                return ResourceManager.GetString("TokenVerifyView_NoConnection_Ex", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Failed to connect to the internet!.
-        /// </summary>
-        public static string TokenVerifyView_NoConnection_Internet {
-            get {
-                return ResourceManager.GetString("TokenVerifyView_NoConnection_Internet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Validate token.
-        /// </summary>
-        public static string LicenseView_Title {
-            get {
-                return ResourceManager.GetString("TokenVerifyView_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to INSTALL NOW.
-        /// </summary>
-        public static string Update_Button {
-            get {
-                return ResourceManager.GetString("Update_Button", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Downloading update to % ....
-        /// </summary>
-        public static string Update_Desc_1 {
-            get {
-                return ResourceManager.GetString("Update_Desc_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update has been downloaded and will be installed when you exit.
-        /// </summary>
-        public static string Update_Desc_2 {
-            get {
-                return ResourceManager.GetString("Update_Desc_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Failed to perform application update.
-        /// </summary>
-        public static string Update_Error_Desc {
-            get {
-                return ResourceManager.GetString("Update_Error_Desc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Failed to connect to update server..
-        /// </summary>
-        public static string UpdateService_No_Connection {
-            get {
-                return ResourceManager.GetString("UpdateService_No_Connection", resourceCulture);
             }
         }
         

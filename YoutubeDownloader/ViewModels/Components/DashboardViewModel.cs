@@ -27,6 +27,7 @@ public class DashboardViewModel : PropertyChangedBase
     private readonly QueryResolver _queryResolver = new();
     private readonly VideoDownloader _videoDownloader = new();
     private readonly SettingsService _settingsService;
+    private readonly LicenseService _licenseService;
 
     private bool IsBusy { get; set; }
 
@@ -41,11 +42,13 @@ public class DashboardViewModel : PropertyChangedBase
     public DashboardViewModel(
         IViewModelFactory viewModelFactory,
         DialogManager dialogManager,
-        SettingsService settingsService)
+        SettingsService settingsService,
+        LicenseService licenseService)
     {
         _viewModelFactory = viewModelFactory;
         _dialogManager = dialogManager;
         _settingsService = settingsService;
+        _licenseService = licenseService;
 
         _progressMuxer = Progress.CreateMuxer().WithAutoReset();
 
@@ -131,7 +134,7 @@ public class DashboardViewModel : PropertyChangedBase
 
     public async void ProcessQuery()
     {
-        if (string.IsNullOrWhiteSpace(Query))
+        if (string.IsNullOrWhiteSpace(Query) || !_licenseService.isVerified)
             return;
 
         IsBusy = true;

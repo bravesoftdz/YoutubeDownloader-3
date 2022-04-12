@@ -11,6 +11,7 @@ namespace YoutubeDownloader.Services
     public class LicenseService
     {
         readonly string hwid = libc.hwid.HwId.Generate();
+        public bool isVerified { get; private set; }
 
         // need to be lower cased, because of the JSON formatting 
         private record RequestModel(string? hwid = default, int? videoDownloads = default,
@@ -44,6 +45,7 @@ namespace YoutubeDownloader.Services
             
             if (!responseModel!.success)
             {
+                isVerified = false;
                 throw responseModel.youtubeCode switch
                 {
                     0 => new Exception(Resources.LicenseService_invalid),
@@ -53,7 +55,7 @@ namespace YoutubeDownloader.Services
                     _ => new Exception(Resources.LicenseService_need_a_license)
                 };
             }
-            return responseModel.success;
+            return isVerified = true;
         }
 
         public void UpdateStats(SettingsService settingsService)

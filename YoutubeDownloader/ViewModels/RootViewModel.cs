@@ -28,7 +28,7 @@ public class RootViewModel : Screen
     public SnackbarMessageQueue Notifications { get; } = new(TimeSpan.FromSeconds(5));
 
     public DashboardViewModel Dashboard { get; }
-    
+
     public RootViewModel(
         IViewModelFactory viewModelFactory,
         DialogManager dialogManager,
@@ -43,7 +43,7 @@ public class RootViewModel : Screen
         _licenseService = licenseService;
 
         Dashboard = _viewModelFactory.CreateDashboardViewModel();
-        
+
         DisplayName = $"{App.Name} v{App.VersionString}";
     }
 
@@ -57,7 +57,8 @@ public class RootViewModel : Screen
                 return;
 
             // Notify user of an update and prepare it
-            Notifications.Enqueue(Resources.RootViewModel_Update_Downloading.Replace("%", $"{App.Name} v{updateVersion}"));
+            Notifications.Enqueue(
+                Resources.RootViewModel_Update_Downloading.Replace("%", $"{App.Name} v{updateVersion}"));
             await _updateService.PrepareUpdateAsync(updateVersion);
 
             // Prompt user to install update (otherwise install it when application exits)
@@ -89,7 +90,8 @@ public class RootViewModel : Screen
         );
         if (await _dialogManager.ShowDialogAsync(dialog) == true)
         {
-            ProcessEx.StartShellExecute("https://chrome.google.com/webstore/detail/open-in-youtubedownloader/ocjnlgpggmhcfjflphoalojankbkinoe");
+            ProcessEx.StartShellExecute(
+                "https://chrome.google.com/webstore/detail/open-in-youtubedownloader/ocjnlgpggmhcfjflphoalojankbkinoe");
         }
     }
 
@@ -127,8 +129,13 @@ public class RootViewModel : Screen
     }
 
 
-    public async void HandleCliParameter(IReadOnlyList<string> args)
+    public async void HandleCliParameter(List<string> args)
     {
+        if (args.Count == 2)
+        {
+            args[0] = args[1];
+            args.RemoveAt(1);
+        }
         StringBuilder queryBuilder = new();
         if (args.Count != 1 || !args[0].Contains("x-youtube-client://") || await IsBusy.Task) return;
         var urlRegex = Regex.Match(args[0], "(?<=urls\\/)(.*)(?=\\/endurls)").Value.Split("&");
